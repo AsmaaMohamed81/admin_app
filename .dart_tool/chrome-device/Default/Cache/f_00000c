@@ -1,0 +1,395 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/classes.repository.dart', 'packages/admin_app/data/model/classes.dart'], (function load__packages__admin_app__bloc__classes_bloc__classes_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__classes$46repository$46dart, packages__admin_app__data__model__classes$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const classes$46repository = packages__admin_app__data__repository__classes$46repository$46dart.data__repository__classes$46repository;
+  const classes = packages__admin_app__data__model__classes$46dart.data__model__classes;
+  var classes_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    ClassesEventL: () => (T.ClassesEventL = dart.constFn(dart.legacy(classes_bloc.ClassesEvent)))(),
+    FetchClassesL: () => (T.FetchClassesL = dart.constFn(dart.legacy(classes_bloc.FetchClasses)))(),
+    DeletClassesL: () => (T.DeletClassesL = dart.constFn(dart.legacy(classes_bloc.DeletClasses)))(),
+    AddOrEditClassesL: () => (T.AddOrEditClassesL = dart.constFn(dart.legacy(classes_bloc.AddOrEditClasses)))(),
+    ClassesStateL: () => (T.ClassesStateL = dart.constFn(dart.legacy(classes_bloc.ClassesState)))(),
+    _AsyncStarImplOfClassesStateL: () => (T._AsyncStarImplOfClassesStateL = dart.constFn(async._AsyncStarImpl$(T.ClassesStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/classes_bloc/classes_bloc.dart"];
+  var repository$ = dart.privateName(classes_bloc, "ClassesBloc.repository");
+  classes_bloc.ClassesEvent = class ClassesEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (classes_bloc.ClassesEvent.new = function() {
+    classes_bloc.ClassesEvent.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesEvent.prototype;
+  dart.addTypeTests(classes_bloc.ClassesEvent);
+  dart.addTypeCaches(classes_bloc.ClassesEvent);
+  dart.setGetterSignature(classes_bloc.ClassesEvent, () => ({
+    __proto__: dart.getGetters(classes_bloc.ClassesEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(classes_bloc.ClassesEvent, I[0]);
+  classes_bloc.ClassesState = class ClassesState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (classes_bloc.ClassesState.new = function() {
+    classes_bloc.ClassesState.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesState.prototype;
+  dart.addTypeTests(classes_bloc.ClassesState);
+  dart.addTypeCaches(classes_bloc.ClassesState);
+  dart.setGetterSignature(classes_bloc.ClassesState, () => ({
+    __proto__: dart.getGetters(classes_bloc.ClassesState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(classes_bloc.ClassesState, I[0]);
+  classes_bloc.ClassesBloc = class ClassesBloc extends bloc.Bloc$(dart.legacy(classes_bloc.ClassesEvent), dart.legacy(classes_bloc.ClassesState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.ClassesEventL().as(event);
+      return new (T._AsyncStarImplOfClassesStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchClassesL().is(event)) {
+          if (stream.add(new classes_bloc.ClassesLoading.new())) return;
+          yield;
+          try {
+            let classes = (yield this.repository.getAllClasses(event.schoolId));
+            if (stream.add(new classes_bloc.ClassesLoaded.new(classes))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new classes_bloc.ClassesError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletClassesL().is(event)) {
+          if (stream.add(new classes_bloc.ClassesLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteClasses(event.access, event.id));
+            if (stream.add(new classes_bloc.ClassesDeleted.new(isdelete))) return;
+            yield;
+            let classes = (yield this.repository.getAllClasses(event.schoolId));
+            if (stream.add(new classes_bloc.ClassesLoaded.new(classes))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new classes_bloc.ClassesError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditClassesL().is(event)) {
+          if (stream.add(new classes_bloc.ClassesLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeClasses(event.access, event.id, event.schoolId, event.classId, event.yearId, event.name));
+            if (stream.add(new classes_bloc.ClassesAddOrEdite.new(result))) return;
+            yield;
+            let classes = (yield this.repository.getAllClasses(event.schoolId));
+            if (stream.add(new classes_bloc.ClassesLoaded.new(classes))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new classes_bloc.ClassesError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (classes_bloc.ClassesBloc.new = function(repository) {
+    this[repository$] = repository;
+    classes_bloc.ClassesBloc.__proto__.new.call(this, new classes_bloc.ClassesInitial.new());
+    ;
+  }).prototype = classes_bloc.ClassesBloc.prototype;
+  dart.addTypeTests(classes_bloc.ClassesBloc);
+  dart.addTypeCaches(classes_bloc.ClassesBloc);
+  dart.setMethodSignature(classes_bloc.ClassesBloc, () => ({
+    __proto__: dart.getMethods(classes_bloc.ClassesBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(classes_bloc.ClassesState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(classes_bloc.ClassesBloc, I[0]);
+  dart.setFieldSignature(classes_bloc.ClassesBloc, () => ({
+    __proto__: dart.getFields(classes_bloc.ClassesBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(classes$46repository.ClassesRepository))
+  }));
+  var schoolId$ = dart.privateName(classes_bloc, "FetchClasses.schoolId");
+  classes_bloc.FetchClasses = class FetchClasses extends classes_bloc.ClassesEvent {
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (classes_bloc.FetchClasses.new = function(schoolId) {
+    this[schoolId$] = schoolId;
+    classes_bloc.FetchClasses.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.FetchClasses.prototype;
+  dart.addTypeTests(classes_bloc.FetchClasses);
+  dart.addTypeCaches(classes_bloc.FetchClasses);
+  dart.setLibraryUri(classes_bloc.FetchClasses, I[0]);
+  dart.setFieldSignature(classes_bloc.FetchClasses, () => ({
+    __proto__: dart.getFields(classes_bloc.FetchClasses.__proto__),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(classes_bloc, "DeletClasses.access");
+  var id$ = dart.privateName(classes_bloc, "DeletClasses.id");
+  var schoolId$0 = dart.privateName(classes_bloc, "DeletClasses.schoolId");
+  classes_bloc.DeletClasses = class DeletClasses extends classes_bloc.ClassesEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (classes_bloc.DeletClasses.new = function(access, id, schoolId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$0] = schoolId;
+    classes_bloc.DeletClasses.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.DeletClasses.prototype;
+  dart.addTypeTests(classes_bloc.DeletClasses);
+  dart.addTypeCaches(classes_bloc.DeletClasses);
+  dart.setLibraryUri(classes_bloc.DeletClasses, I[0]);
+  dart.setFieldSignature(classes_bloc.DeletClasses, () => ({
+    __proto__: dart.getFields(classes_bloc.DeletClasses.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(classes_bloc, "AddOrEditClasses.access");
+  var id$0 = dart.privateName(classes_bloc, "AddOrEditClasses.id");
+  var schoolId$1 = dart.privateName(classes_bloc, "AddOrEditClasses.schoolId");
+  var classId$ = dart.privateName(classes_bloc, "AddOrEditClasses.classId");
+  var yearId$ = dart.privateName(classes_bloc, "AddOrEditClasses.yearId");
+  var name$ = dart.privateName(classes_bloc, "AddOrEditClasses.name");
+  classes_bloc.AddOrEditClasses = class AddOrEditClasses extends classes_bloc.ClassesEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get classId() {
+      return this[classId$];
+    }
+    set classId(value) {
+      super.classId = value;
+    }
+    get yearId() {
+      return this[yearId$];
+    }
+    set yearId(value) {
+      super.yearId = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+  };
+  (classes_bloc.AddOrEditClasses.new = function(access, id, schoolId, name, classId, yearId) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[schoolId$1] = schoolId;
+    this[name$] = name;
+    this[classId$] = classId;
+    this[yearId$] = yearId;
+    classes_bloc.AddOrEditClasses.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.AddOrEditClasses.prototype;
+  dart.addTypeTests(classes_bloc.AddOrEditClasses);
+  dart.addTypeCaches(classes_bloc.AddOrEditClasses);
+  dart.setLibraryUri(classes_bloc.AddOrEditClasses, I[0]);
+  dart.setFieldSignature(classes_bloc.AddOrEditClasses, () => ({
+    __proto__: dart.getFields(classes_bloc.AddOrEditClasses.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    classId: dart.finalFieldType(dart.legacy(core.int)),
+    yearId: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  classes_bloc.ClassesInitial = class ClassesInitial extends classes_bloc.ClassesState {};
+  (classes_bloc.ClassesInitial.new = function() {
+    classes_bloc.ClassesInitial.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesInitial.prototype;
+  dart.addTypeTests(classes_bloc.ClassesInitial);
+  dart.addTypeCaches(classes_bloc.ClassesInitial);
+  dart.setLibraryUri(classes_bloc.ClassesInitial, I[0]);
+  classes_bloc.ClassesLoading = class ClassesLoading extends classes_bloc.ClassesState {};
+  (classes_bloc.ClassesLoading.new = function() {
+    classes_bloc.ClassesLoading.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesLoading.prototype;
+  dart.addTypeTests(classes_bloc.ClassesLoading);
+  dart.addTypeCaches(classes_bloc.ClassesLoading);
+  dart.setLibraryUri(classes_bloc.ClassesLoading, I[0]);
+  var classes$ = dart.privateName(classes_bloc, "ClassesLoaded.classes");
+  classes_bloc.ClassesLoaded = class ClassesLoaded extends classes_bloc.ClassesState {
+    get classes() {
+      return this[classes$];
+    }
+    set classes(value) {
+      super.classes = value;
+    }
+  };
+  (classes_bloc.ClassesLoaded.new = function(classes) {
+    this[classes$] = classes;
+    classes_bloc.ClassesLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesLoaded.prototype;
+  dart.addTypeTests(classes_bloc.ClassesLoaded);
+  dart.addTypeCaches(classes_bloc.ClassesLoaded);
+  dart.setLibraryUri(classes_bloc.ClassesLoaded, I[0]);
+  dart.setFieldSignature(classes_bloc.ClassesLoaded, () => ({
+    __proto__: dart.getFields(classes_bloc.ClassesLoaded.__proto__),
+    classes: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(classes.Classes))))
+  }));
+  var message$ = dart.privateName(classes_bloc, "ClassesDeleted.message");
+  classes_bloc.ClassesDeleted = class ClassesDeleted extends classes_bloc.ClassesState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (classes_bloc.ClassesDeleted.new = function(message) {
+    this[message$] = message;
+    classes_bloc.ClassesDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesDeleted.prototype;
+  dart.addTypeTests(classes_bloc.ClassesDeleted);
+  dart.addTypeCaches(classes_bloc.ClassesDeleted);
+  dart.setLibraryUri(classes_bloc.ClassesDeleted, I[0]);
+  dart.setFieldSignature(classes_bloc.ClassesDeleted, () => ({
+    __proto__: dart.getFields(classes_bloc.ClassesDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(classes_bloc, "ClassesAddOrEdite.results");
+  classes_bloc.ClassesAddOrEdite = class ClassesAddOrEdite extends classes_bloc.ClassesState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (classes_bloc.ClassesAddOrEdite.new = function(results) {
+    this[results$] = results;
+    classes_bloc.ClassesAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesAddOrEdite.prototype;
+  dart.addTypeTests(classes_bloc.ClassesAddOrEdite);
+  dart.addTypeCaches(classes_bloc.ClassesAddOrEdite);
+  dart.setLibraryUri(classes_bloc.ClassesAddOrEdite, I[0]);
+  dart.setFieldSignature(classes_bloc.ClassesAddOrEdite, () => ({
+    __proto__: dart.getFields(classes_bloc.ClassesAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(classes_bloc, "ClassesError.message");
+  classes_bloc.ClassesError = class ClassesError extends classes_bloc.ClassesState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (classes_bloc.ClassesError.new = function(message) {
+    this[message$0] = message;
+    classes_bloc.ClassesError.__proto__.new.call(this);
+    ;
+  }).prototype = classes_bloc.ClassesError.prototype;
+  dart.addTypeTests(classes_bloc.ClassesError);
+  dart.addTypeCaches(classes_bloc.ClassesError);
+  dart.setLibraryUri(classes_bloc.ClassesError, I[0]);
+  dart.setFieldSignature(classes_bloc.ClassesError, () => ({
+    __proto__: dart.getFields(classes_bloc.ClassesError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  classes_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/classes_bloc/classes_bloc.dart", {
+    "package:admin_app/bloc/classes_bloc/classes_bloc.dart": classes_bloc
+  }, {
+    "package:admin_app/bloc/classes_bloc/classes_bloc.dart": ["classes_event.dart", "classes_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["classes_event.dart","classes_state.dart","classes_bloc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAM4B;IAAE;;;AAHtB;;EAAc;;;;;;;;;;ACIM;IAAE;;;AAHtB;;EAAc;;;;;;;;;ICQI;;;;;;;2BAMT;AADqB;AAGlC,YAAU,qBAAN,KAAK;AACP,yBAAM;UAAN;AACA;AACQ,2BAAU,MAAM,AAAW,8BAAc,AAAM,KAAD;AACpD,2BAAM,mCAAc,OAAO;YAA3B;;gBACO;AACP,2BAAM,kCAAe,cAAF,CAAC;YAApB;;cAEG,KAAU,qBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,4BAAW,MAAM,AAAW,8BAAc,AAAM,KAAD,SAAS,AAAM,KAAD;AACnE,2BAAM,oCAAe,QAAQ;YAA7B;AAEM,2BAAU,MAAM,AAAW,8BAAc,AAAM,KAAD;AACpD,2BAAM,mCAAc,OAAO;YAA3B;;gBACO;AACP,2BAAM,kCAAe,cAAF,CAAC;YAApB;;cAEG,KAAU,yBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,0BAAS,MAAM,AAAW,gCAAgB,AAAM,KAAD,SAAS,AAAM,KAAD,KAC/D,AAAM,KAAD,WAAW,AAAM,KAAD,UAAU,AAAM,KAAD,SAAS,AAAM,KAAD;AACtD,2BAAM,uCAAkB,MAAM;YAA9B;AAEM,2BAAU,MAAM,AAAW,8BAAc,AAAM,KAAD;AACpD,2BAAM,mCAAc,OAAO;YAA3B;;gBACO;AACP,2BAAM,kCAAe,cAAF,CAAC;YAApB;;;MAGN;;;;IAtC2B;AAAc,sDAAM;;EAAiB;;;;;;;;;;;;;;IFJtD;;;;;;;;IAEQ;AAAlB;;EAA2B;;;;;;;;;;;;IAId;;;;;;IACH;;;;;;IACA;;;;;;;4CAEQ,QAAa,IAAS;IAAtB;IAAa;IAAS;AAAxC;;EAAiD;;;;;;;;;;;;;;;;;IAIlC;;;;;;IACL;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACG;;;;;;;gDAES,QAAa,IAAS,UAAe,MAAW,SAAc;IAA9D;IAAa;IAAS;IAAe;IAAW;IAAc;AAApF;;EAA2F;;;;;;;;;;;;;;;;;ECrBlD;;;;;;;;EAEA;;;;;;IAGrB;;;;;;;;IAED;AAAnB;;EAA2B;;;;;;;;;;IAIA;;;;;;;;IAEP;AAApB;;EAA4B;;;;;;;;;;IAID;;;;;;;;IAEJ;AAAvB;;EAA+B;;;;;;;;;;IAIlB;;;;;;;;IAEK;AAAlB;;EAA0B;;;;;;;;;;ACqB1B,UAAW,qCAA2C,cAAM;EAC9D","file":"../../../../../../packages/admin_app/bloc/classes_bloc/classes_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__classes_bloc__classes_bloc: classes_bloc
+  };
+}));
+
+//# sourceMappingURL=classes_bloc.dart.lib.js.map

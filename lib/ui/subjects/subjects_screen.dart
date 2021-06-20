@@ -204,32 +204,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
     return new Future.delayed(const Duration(seconds: 10), () => "1");
   }
 
-  // Widget _buildAddSubjects() {
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(
-  //       horizontal: MediaQuery.of(context).size.width * 0.04,
-  //     ),
-  //     child: Form(
-  //       key: _formKey,
-  //       child: TextFormField(
-  //         controller: nameHolder,
-  //         onChanged: (value) {
-  //           _materialName = value;
-  //         },
-  //         validator: validateSubjects,
-  //         decoration: InputDecoration(
-  //           errorMaxLines: 2,
-  //           hintText: "Add New Subject",
-  //           hintStyle: TextStyle(fontSize: 12),
-  //           suffixIcon: Padding(
-  //               padding: EdgeInsets.only(top: 5),
-  //               child: _buildSaveBtn(context)),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget _buildSaveBtn(context) {
     return BlocBuilder<SubjectsBloc, SubjectsState>(
       builder: (context, state) {
@@ -354,30 +328,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                 ),
               ));
         });
-    // showModalBottomSheet(
-    //     backgroundColor: Colors.transparent,
-    //     context: context,
-    //     builder: (BuildContext bc) {
-    //       return Theme(
-    //         data: themeData.copyWith(
-    //           canvasColor: Colors.transparent,
-    //         ),
-    //         child: DecoratedBox(
-    //             decoration: BoxDecoration(color: Colors.transparent),
-    //             child: ClipRRect(
-    //                 borderRadius: BorderRadius.only(
-    //                     topLeft: Radius.circular(22.0),
-    //                     topRight: Radius.circular(22.0)),
-    //                 child: Container(
-    //                   padding: EdgeInsets.all(10.0),
-    //                   decoration: BoxDecoration(
-    //                     color: Color(0xFF01579B),
-    //                   ),
-    //                   height: 350.0,
-    //                   child: Text("salsla"),
-    //                 ))),
-    //       );
-    //     });
   }
 
   @override
@@ -436,52 +386,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                   ),
                   key: _scaffoldKey,
                   appBar: appBar,
-                  // bottomNavigationBar: BottomNavigationBar(
-                  //   currentIndex:
-                  //       2, // this will be set when a new tab is tapped
-
-                  //   items: const <BottomNavigationBarItem>[
-                  //     BottomNavigationBarItem(
-                  //       icon: Icon(
-                  //         Icons.person_outline_outlined,
-                  //       ),
-                  //       label: " ",
-                  //     ),
-                  //     BottomNavigationBarItem(
-                  //       icon: Icon(
-                  //         Icons.notifications,
-                  //       ),
-                  //       label: " ",
-                  //     ),
-                  //     BottomNavigationBarItem(
-                  //       icon: Icon(
-                  //         Icons.home,
-                  //       ),
-                  //       label: "",
-                  //     ),
-                  //     BottomNavigationBarItem(
-                  //       icon: Icon(
-                  //         Icons.shopping_cart,
-                  //       ),
-                  //       label: " ",
-                  //     ),
-                  //     BottomNavigationBarItem(
-                  //       icon: Icon(
-                  //         Icons.more_horiz,
-                  //       ),
-                  //       label: " ",
-                  //     ),
-                  //   ],
-                  //   selectedItemColor: mainAppColor,
-                  //   type: BottomNavigationBarType.fixed,
-                  //   unselectedItemColor: Colors.grey,
-                  //   iconSize: 30,
-
-                  //   elevation: 5,
-                  //   onTap: _onItemTap,
-                  // ),
                   bottomNavigationBar: DemoBottomAppBar(),
-
                   floatingActionButton: Container(
                     height: 60.0,
                     width: 60.0,

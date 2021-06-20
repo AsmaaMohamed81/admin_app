@@ -54,7 +54,10 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
         yield SubjectsLoaded(subjects);
       } catch (e) {
         yield SubjectsError(e.toString());
-      }
+      }  
+
+
+      
     }
   }
 }
