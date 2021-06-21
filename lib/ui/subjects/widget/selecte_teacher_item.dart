@@ -23,21 +23,20 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
   void initState() {
     super.initState();
 
-    SelecteTeacherItem.materialListId.clear();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+    SelecteTeacherItem.materialListId=[];
     for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
       if (widget.subjects.teacherToSubjects[i].teacherId == widget.teacher.id) {
         check = true;
         SelecteTeacherItem.materialListId
-            .add(widget.subjects.teacherToSubjects[i].teacherId);
+            .add(widget.teacher.id);
         print("${widget.subjects.teacherToSubjects[i].teacherName}");
       }
     }
     print("lenght teacher=${SelecteTeacherItem.materialListId.length}");
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: 70,
       padding: EdgeInsets.all(8),
