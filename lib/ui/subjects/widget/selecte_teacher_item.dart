@@ -23,12 +23,10 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
   void initState() {
     super.initState();
 
-    SelecteTeacherItem.materialListId=[];
     for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
       if (widget.subjects.teacherToSubjects[i].teacherId == widget.teacher.id) {
         check = true;
-        SelecteTeacherItem.materialListId
-            .add(widget.teacher.id);
+        SelecteTeacherItem.materialListId.add(widget.teacher.id);
         print("${widget.subjects.teacherToSubjects[i].teacherName}");
       }
     }

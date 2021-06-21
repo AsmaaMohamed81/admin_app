@@ -68,7 +68,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context).settings.arguments ;
+    args = ModalRoute.of(context).settings.arguments;
     print("iiiiiiiiiiiiiid ${args.subjects.id.toString()}");
 
     _authProvider = Provider.of<AuthProvider>(context);
@@ -142,7 +142,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
                               args.subjects.name,
                               args.subjects.abbreviation,
                               SelecteTeacherItem.materialListId));
-
+                          SelecteTeacherItem.materialListId = [];
                           Navigator.of(context).pushNamed('/subjects_screen');
                         },
                         child: CustomText(
