@@ -12,7 +12,7 @@ class CustomTextFormFieldAuth extends StatelessWidget {
 
   const CustomTextFormFieldAuth(
       {Key key,
-      this.text,
+      this.text = 'text',
       this.hintText,
       this.onChange,
       this.obsecureText = false,

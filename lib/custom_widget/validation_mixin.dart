@@ -84,6 +84,17 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
     }
     return null;
   }
+    String validateAbberviation(String abberviation) {
+    if (abberviation.trim().length == 0) {
+      return AppLocalizations.of(context).translate('abberviation_name_validation');
+    } else {
+      if (!isLength(abberviation, 2, 30)) {
+        return AppLocalizations.of(context)
+            .translate('abberviation_name_validation_lenght');
+      }
+    }
+    return null;
+  }
 
   String validateMaterial(String material) {
     if (material.trim().length == 0) {

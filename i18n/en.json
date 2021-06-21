@@ -116,8 +116,12 @@
   "level_name_validation_lenght":"Sorry , level must be between 2 and 30 characters long",
   "subject_name_validation": "Please Enter Subject Name",
   "subject_name_validation_lenght":"Sorry , Subject must be between 2 and 30 characters long",
-  "class_name_validation_lenght":"Sorry , Class name must be between 2 and 30 characters long",
+ 
+  "abberviation_name_validation": "Please Enter Abberviation Name",
+  "abberviation_name_validation_lenght":"Sorry , Abberviation must be between 2 and 30 characters long",
 
+  "class_name_validation_lenght":"Sorry , Class name must be between 2 and 30 characters long",
+  "text":"text",
   "class_name_validation": "Please Enter Class Name ",
   "email_validation": "please enter email",
   "email_validation_valid":"Please Enter Valid Email Or UserName",

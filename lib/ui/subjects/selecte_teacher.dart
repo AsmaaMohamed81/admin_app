@@ -110,7 +110,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
         )
       ],
     );
-   
+
     return BlocProvider(
         create: (context) => TeachersBloc(TeachersRepositoryImp())
           ..add(FetchTeachers(_authProvider.ownSchool.id)),
@@ -142,7 +142,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
                               args.subjects.abbreviation,
                               SelecteTeacherItem.materialListId));
 
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed('/subjects_screen');
                         },
                         child: CustomText(
                           text: "Add Teacher",
@@ -171,7 +171,5 @@ class _SelectTeacherState extends State<SelectTeacher> {
               }
               return Container();
             })));
-  
-  
   }
 }

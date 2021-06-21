@@ -55,6 +55,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
           listener: (context, state) {
             if (state is SubjectsAddOrEdite) {
               if (state.results['status'] == "Success") {
+                print("satatus == ${state.results}");
                 _result(state.results);
               } else {
                 Commons.showError(context, state.results["message"]);
@@ -88,8 +89,17 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                          color: searchcolor,
-                          borderRadius: BorderRadius.circular(20.0)),
+                        color: searchcolor,
+                        borderRadius: BorderRadius.circular(20.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 4,
+                            offset: Offset(0, 8), // changes position of shadow
+                          ),
+                        ],
+                      ),
                       child: TextField(
                         controller: _searchController,
                         cursorColor: mainAppColor,
@@ -105,8 +115,11 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
                             _subjectsList.forEach((userDetail) {
                               if (userDetail.name
-                                  .toLowerCase()
-                                  .contains(text.toLowerCase())) {
+                                      .toLowerCase()
+                                      .contains(text.toLowerCase()) ||
+                                  userDetail.abbreviation
+                                      .toLowerCase()
+                                      .contains(text.toLowerCase())) {
                                 _searchResult.add(userDetail);
                               }
                             });
@@ -117,15 +130,18 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: mainAppColor),
-                          ),
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 12.0),
+                          border: InputBorder.none,
+
+                          // border: OutlineInputBorder(
+                          //   borderRadius: BorderRadius.circular(20.0),
+                          //   borderSide: BorderSide(color: Colors.white),
+
+                          // ),
+                          contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                           prefixIcon: Icon(
                             Icons.search,
-                            color: black,
+                            color: HexColor('212121'),
+                            size: 17,
                           ),
                           hintText: "Search Subjects",
                         ),
@@ -256,11 +272,12 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   _settingModalBottomSheet(context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
+        isScrollControlled: true,
         context: context,
         builder: (builder) {
           return new Container(
               margin: EdgeInsets.only(bottom: 50),
-              padding: EdgeInsets.all(50),
+              padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
               height: 250.0,
               decoration: new BoxDecoration(
                   color: HexColor('F2F7F9'),
@@ -280,6 +297,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         validator: validateSubjects,
                         decoration: InputDecoration(
                           errorMaxLines: 2,
+                          errorStyle: TextStyle(fontSize: 10),
                           hintText: "Subject Name",
                           hintStyle: TextStyle(fontSize: 12),
                         ),
@@ -289,9 +307,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         onChanged: (value) {
                           _abberviation = value;
                         },
-                        validator: validateSubjects,
+                        validator: validateAbberviation,
                         decoration: InputDecoration(
                           errorMaxLines: 2,
+                          errorStyle: TextStyle(fontSize: 10),
                           hintText: "Abberviation",
                           hintStyle: TextStyle(fontSize: 12),
                         ),
@@ -320,7 +339,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                               ),
                             ),
                           ),
-                          SizedBox(width: 7),
                         ],
                       ),
                     ],
@@ -371,37 +389,35 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         )
       ],
     );
+    context.read<SubjectsBloc>()
+      ..add(FetchSubjects(_authProvider.ownSchool.id));
 
     return NetworkIndicator(
         child: PageContainer(
-            child: BlocProvider(
-                create: (context) => SubjectsBloc(SubjectsRepositoryImp())
-                  ..add(FetchSubjects(_authProvider.ownSchool.id)),
-                child: Scaffold(
-                  drawer: Theme(
-                    data: Theme.of(context).copyWith(
-                      canvasColor: mainAppColor,
-                    ),
-                    child: AppDrawer(),
-                  ),
-                  key: _scaffoldKey,
-                  appBar: appBar,
-                  bottomNavigationBar: DemoBottomAppBar(),
-                  floatingActionButton: Container(
-                    height: 60.0,
-                    width: 60.0,
-                    padding: EdgeInsets.all(5),
-                    child: FloatingActionButton(
-                      backgroundColor: floatbottom,
-                      onPressed: () => _settingModalBottomSheet(context),
-                      tooltip: 'Increment Counter',
-                      child: const Icon(Icons.add),
-                    ),
-                  ),
-                  floatingActionButtonLocation:
-                      FloatingActionButtonLocation.endDocked,
-                  body: _buildBodyItem(),
-                  resizeToAvoidBottomInset: false,
-                ))));
+            child: Scaffold(
+      drawer: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: mainAppColor,
+        ),
+        child: AppDrawer(),
+      ),
+      key: _scaffoldKey,
+      appBar: appBar,
+      bottomNavigationBar: DemoBottomAppBar(),
+      floatingActionButton: Container(
+        height: 60.0,
+        width: 60.0,
+        padding: EdgeInsets.all(5),
+        child: FloatingActionButton(
+          backgroundColor: floatbottom,
+          onPressed: () => _settingModalBottomSheet(context),
+          tooltip: 'Increment Counter',
+          child: const Icon(Icons.add),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      body: _buildBodyItem(),
+      resizeToAvoidBottomInset: false,
+    )));
   }
 }

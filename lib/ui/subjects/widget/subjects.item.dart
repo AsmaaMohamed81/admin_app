@@ -3,17 +3,14 @@ import 'package:admin_app/custom_widget/dialogs/log_out_dialog.dart';
 import 'package:admin_app/custom_widget/validation_mixin.dart';
 import 'package:admin_app/data/model/subjects.dart';
 import 'package:admin_app/provider/auth_provider.dart';
-import 'package:admin_app/ui/subjects/arguments.dart';
 import 'package:admin_app/ui/subjects/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
-import 'package:admin_app/utils/app_colors.dart';
 import 'package:admin_app/utils/commons.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:admin_app/utils/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 class SubjectsItem extends StatefulWidget {
@@ -26,21 +23,15 @@ class SubjectsItem extends StatefulWidget {
 }
 
 class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
-  bool _isLoading = false;
   AuthProvider _authProvider;
-  TextEditingController _searchController = TextEditingController();
 
   bool isEdit = true;
 
-  String _editeSubjects;
+  String _editeSubjects, _editeabbrevation;
+  List<TeacherToSubjects> listIdTeacher;
+  List<int> id = [];
 
   final _formkey = GlobalKey<FormState>();
-
-  final nameHolder = TextEditingController();
-
-  clearTextInput() {
-    nameHolder.clear();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +71,37 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                         )
                       ],
                     )
-                  : Form(
-                      key: _formkey,
-                      child: TextFormField(
-                        onChanged: (value) {
-                          _editeSubjects = value;
-                        },
-                        initialValue: widget.subjects.name,
-                        validator: validateSubjects,
-                        decoration: InputDecoration(
-                            errorMaxLines: 2,
-                            suffixIcon: Container(
-                              width: 50,
+                  : Expanded(
+                      child: Form(
+                        key: _formkey,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                      onChanged: (value) {
+                                        _editeSubjects = value;
+                                      },
+                                      initialValue: widget.subjects.name,
+                                      validator: validateSubjects,
+                                      decoration: InputDecoration(
+                                        errorMaxLines: 2,
+                                      )),
+                                  TextFormField(
+                                      onChanged: (value) {
+                                        _editeabbrevation = value;
+                                      },
+                                      initialValue:
+                                          widget.subjects.abbreviation,
+                                      validator: validateAbberviation,
+                                      decoration: InputDecoration(
+                                        errorMaxLines: 2,
+                                      )),
+                                ],
+                              ),
+                            ),
+                            Expanded(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -105,11 +115,14 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                                     child: Icon(
                                       Icons.cancel_rounded,
                                       color: Colors.red,
+                                      size: 40,
                                     ),
                                   ),
                                 ],
                               ),
-                            )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
             ],
@@ -138,7 +151,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
     return IconSlideAction(
       color: Colors.green,
       icon: Icons.edit,
-      onTap: () async {
+      onTap: () {
         setState(() {
           isEdit = false;
         });
@@ -160,53 +173,36 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
               )
             : Navigator.pushNamed(context, '/list_teacher_screen',
                 arguments: ArgumentsTeacherSubjects(
-                    widget.subjects.teacherToSubjects, null));
+                    widget.subjects.teacherToSubjects, null, widget.subjects));
       },
     );
   }
 
   Widget _buildDeleteIcon() {
-    return BlocListener<SubjectsBloc, SubjectsState>(
-      listener: (context, state) {
-        if (state is SubjectsDeleted) {
-          if (state.message['status'] == "Success") {
-            _result(state.message);
-          } else {
-            Commons.showError(context, state.message["message"]);
-          }
-        }
+    return IconSlideAction(
+      color: Colors.red,
+      icon: Icons.delete,
+      onTap: () async {
+        showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (_) {
+              return LogoutDialog(
+                button1: "Yes",
+                button2: "NO",
+                alertMessage:
+                    "Are you sure you want to delete Subjects \"${widget.subjects.name}\" , Do you want to continue?",
+                onPressedConfirm: () {
+                  context.read<SubjectsBloc>().add(DeletSubjects(
+                      _authProvider.currentUser.accessToken,
+                      widget.subjects.id,
+                      _authProvider.ownSchool.id));
+                },
+              );
+            });
+
+        print(" ${Urls.Delete_Subject}?Id=${widget.subjects.id}");
       },
-      child: BlocBuilder<SubjectsBloc, SubjectsState>(
-        builder: (context, state) {
-          SubjectsBloc bloc = BlocProvider.of<SubjectsBloc>(context);
-
-          return IconSlideAction(
-            color: Colors.red,
-            icon: Icons.delete,
-            onTap: () async {
-              showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) {
-                    return LogoutDialog(
-                      button1: "Yes",
-                      button2: "NO",
-                      alertMessage:
-                          "Are you sure you want to delete Subjects \"${widget.subjects.name}\" , Do you want to continue?",
-                      onPressedConfirm: () {
-                        bloc.add(DeletSubjects(
-                            _authProvider.currentUser.accessToken,
-                            widget.subjects.id,
-                            _authProvider.ownSchool.id));
-                      },
-                    );
-                  });
-
-              print(" ${Urls.Delete_Subject}?Id=${widget.subjects.id}");
-            },
-          );
-        },
-      ),
     );
   }
 
@@ -224,30 +220,37 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
   }
 
   Widget _buildCheckEditIcon() {
-    return BlocBuilder<SubjectsBloc, SubjectsState>(
-      builder: (context, state) {
-        SubjectsBloc bloc = BlocProvider.of<SubjectsBloc>(context);
-        return Container(
-            child: InkWell(
-          onTap: () async {
-            if (_editeSubjects == null) {
-              _editeSubjects = widget.subjects.name;
-            }
-            if (_formkey.currentState.validate()) {
-              bloc.add(AddOrEditSubjects(
-                  _authProvider.currentUser.accessToken,
-                  widget.subjects.id,
-                  _authProvider.ownSchool.id,
-                  _editeSubjects,
-                  _editeSubjects, []));
-            }
-          },
-          child: Icon(
-            Icons.check_circle,
-            color: Colors.green,
-          ),
-        ));
+    return Container(
+        child: InkWell(
+      onTap: () {
+        if (_editeSubjects == null) {
+          _editeSubjects = widget.subjects.name;
+        }
+        if (_editeabbrevation == null) {
+          _editeabbrevation = widget.subjects.abbreviation;
+        }
+        if (listIdTeacher == null) {
+          listIdTeacher = widget.subjects.teacherToSubjects;
+
+          for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
+            id.add(widget.subjects.teacherToSubjects[i].teacherId);
+          }
+        }
+        if (_formkey.currentState.validate()) {
+          context.read<SubjectsBloc>().add(AddOrEditSubjects(
+              _authProvider.currentUser.accessToken,
+              widget.subjects.id,
+              _authProvider.ownSchool.id,
+              _editeSubjects,
+              _editeabbrevation,
+              id));
+        }
       },
-    );
+      child: Icon(
+        Icons.check_circle,
+        color: Colors.green,
+        size: 40,
+      ),
+    ));
   }
 }

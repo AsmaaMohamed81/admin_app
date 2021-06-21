@@ -1,3 +1,4 @@
+import 'package:admin_app/custom_widget/demobottomappbar.dart';
 import 'package:admin_app/ui/subjects/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/list_teacher_item.dart';
@@ -67,9 +68,31 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
         itemCount: args.teacherToSubjects.length,
         itemBuilder: (context, index) {
           return List_teacher_Item(
-              subjects: args.teacherToSubjects[index], Index: index);
+              teacherTosubjects: args.teacherToSubjects[index],
+              subjects: args.subjects,
+              delete: () {
+                setState(() {
+                  args.teacherToSubjects.removeAt(index);
+                });
+              },
+              Index: index);
         },
       ),
+      bottomNavigationBar: DemoBottomAppBar(),
+      floatingActionButton: Container(
+        height: 60.0,
+        width: 60.0,
+        padding: EdgeInsets.all(5),
+        child: FloatingActionButton(
+          backgroundColor: floatbottom,
+          onPressed: () => Navigator.pushNamed(context, '/select_teacher',
+              arguments: ArgumentsTeacher(args.subjects, null)),
+          tooltip: 'Increment Counter',
+          child: const Icon(Icons.add),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      resizeToAvoidBottomInset: false,
     );
   }
 }
