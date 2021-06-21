@@ -6,6 +6,7 @@ import 'package:admin_app/data/model/teachers.dart';
 import 'package:admin_app/data/repository/teacher.repository.dart';
 import 'package:admin_app/provider/auth_provider.dart';
 import 'package:admin_app/ui/subjects/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/selecte_teacher_item.dart';
 import 'package:admin_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class SelectTeacher extends StatefulWidget {
 class _SelectTeacherState extends State<SelectTeacher> {
   List<Teachers> _teachersList;
   AuthProvider _authProvider;
-  var args;
+  ArgumentsTeacherSubjects args;
 
   Widget _buildSaveBtn(context) {
     return BlocBuilder<SubjectsBloc, SubjectsState>(
@@ -67,7 +68,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context).settings.arguments as ArgumentsTeacher;
+    args = ModalRoute.of(context).settings.arguments ;
     print("iiiiiiiiiiiiiid ${args.subjects.id.toString()}");
 
     _authProvider = Provider.of<AuthProvider>(context);
@@ -161,8 +162,9 @@ class _SelectTeacherState extends State<SelectTeacher> {
                   itemCount: _teachersList.length,
                   itemBuilder: (context, index) {
                     return SelecteTeacherItem(
+                      subjects: args.subjects,
                       teacher: _teachersList[index],
-                      Index: index,
+                      indexi: index,
                     );
                   },
                 );

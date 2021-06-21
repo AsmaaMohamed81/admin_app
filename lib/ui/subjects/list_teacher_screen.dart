@@ -22,7 +22,6 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context).settings.arguments;
-    print("sadjsdfjs=${args.teacherToSubjects.length}");
     final appBar = AppBar(
       backgroundColor: mainAppColor,
       elevation: 0,
@@ -86,7 +85,8 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
         child: FloatingActionButton(
           backgroundColor: floatbottom,
           onPressed: () => Navigator.pushNamed(context, '/select_teacher',
-              arguments: ArgumentsTeacher(args.subjects, null)),
+              arguments: ArgumentsTeacherSubjects(
+                  args.subjects.teacherToSubjects, null, args.subjects)),
           tooltip: 'Increment Counter',
           child: const Icon(Icons.add),
         ),

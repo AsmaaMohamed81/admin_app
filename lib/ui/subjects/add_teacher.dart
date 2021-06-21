@@ -1,13 +1,14 @@
 import 'package:admin_app/ui/education_classes/arguments.dart';
 import 'package:admin_app/ui/subjects/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
 import 'package:admin_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddTeacher extends StatelessWidget {
-  var args;
+  ArgumentsTeacher args;
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context).settings.arguments as ArgumentsTeacher;
+    args = ModalRoute.of(context).settings.arguments;
     print("iiiiiiiiiiiiiid ${args.subjects.id.toString()}");
 
     final appBar = AppBar(
@@ -75,7 +76,10 @@ class AddTeacher extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, '/select_teacher',
-                        arguments: ArgumentsTeacher(args.subjects, null));
+                        arguments: ArgumentsTeacherSubjects(
+                            args.subjects.teacherToSubjects,
+                            null,
+                            args.subjects));
                   },
                 ),
               ),

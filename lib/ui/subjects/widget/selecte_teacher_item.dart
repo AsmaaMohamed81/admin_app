@@ -1,13 +1,15 @@
+import 'package:admin_app/data/model/subjects.dart';
 import 'package:admin_app/data/model/teachers.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class SelecteTeacherItem extends StatefulWidget {
+  final Subjects subjects;
   final Teachers teacher;
-  final int Index;
+  final int indexi;
   static List<int> materialListId = [];
 
-  const SelecteTeacherItem({Key key, this.teacher, this.Index})
+  const SelecteTeacherItem({Key key, this.teacher, this.indexi, this.subjects})
       : super(key: key);
 
   @override
@@ -15,28 +17,31 @@ class SelecteTeacherItem extends StatefulWidget {
 }
 
 class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
-  int selectedRadio;
-  bool check = true;
+  bool check = false;
 
   @override
   void initState() {
     super.initState();
-    selectedRadio = 0;
-    SelecteTeacherItem.materialListId.clear();
-  }
 
-  setSelectedRadio(int val) {
-    setState(() {
-      selectedRadio = val;
-    });
+    SelecteTeacherItem.materialListId.clear();
   }
 
   @override
   Widget build(BuildContext context) {
+    for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
+      if (widget.subjects.teacherToSubjects[i].teacherId == widget.teacher.id) {
+        check = true;
+        SelecteTeacherItem.materialListId
+            .add(widget.subjects.teacherToSubjects[i].teacherId);
+        print("${widget.subjects.teacherToSubjects[i].teacherName}");
+      }
+    }
+    print("lenght teacher=${SelecteTeacherItem.materialListId.length}");
+
     return Container(
       height: 70,
       padding: EdgeInsets.all(8),
-      color: widget.Index % 2 == 0 ? HexColor('F3F4FF') : Colors.white,
+      color: widget.indexi % 2 == 0 ? HexColor('F3F4FF') : Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -63,31 +68,28 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
           Transform.scale(
               scale: .9,
               child: Checkbox(
-                  value: widget.teacher.isSelected,
+                  value: check,
                   onChanged: (bool value) {
-                    widget.teacher.isSelected = false;
                     int materialID = widget.teacher.id;
                     print("id material check = ${widget.teacher.id}");
-                    // materialListId
-                    //     .add(materialList[index].id);
-                    widget.teacher.isSelected = value;
-                    // print("ccccc${materialListId[0].toString()}");
-                    print("vlaue$value");
+
+                    check = value;
+                    print("vlaue$value check$check");
 
                     setState(() {
                       if (value) {
-                        check = true;
                         SelecteTeacherItem.materialListId.add(materialID);
                       } else {
                         SelecteTeacherItem.materialListId.remove(materialID);
                       }
 
-                      widget.teacher.isSelected = value;
+                      // widget.teacher.isSelected = value;
                     });
+
+                    print(SelecteTeacherItem.materialListId);
                   })),
         ],
       ),
     );
-  
   }
 }
