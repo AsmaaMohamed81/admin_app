@@ -41,11 +41,15 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   List<Subjects> _subjectsList = [];
   clearTextInput() {
     nameHolder.clear();
+    nameHolder2.clear();
   }
 
   @override
   void initState() {
     super.initState();
+    context.read<SubjectsBloc>()
+      ..add(FetchSubjects(
+          Provider.of<AuthProvider>(context, listen: false).ownSchool.id));
   }
 
   Widget _buildBodyItem() {
@@ -327,7 +331,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
-                              onPressed: () => Navigator.of(context).pop(),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                clearTextInput();
+                              },
                               color: bluecancel,
                               child: Text(
                                 'Cancel',
@@ -389,8 +396,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         )
       ],
     );
-    context.read<SubjectsBloc>()
-      ..add(FetchSubjects(_authProvider.ownSchool.id));
 
     return NetworkIndicator(
         child: PageContainer(
