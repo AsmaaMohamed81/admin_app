@@ -87,6 +87,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                                       validator: validateSubjects,
                                       decoration: InputDecoration(
                                         errorMaxLines: 2,
+                                        errorStyle: TextStyle(fontSize: 9),
                                       )),
                                   TextFormField(
                                       onChanged: (value) {
@@ -97,6 +98,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                                       validator: validateAbberviation,
                                       decoration: InputDecoration(
                                         errorMaxLines: 2,
+                                        errorStyle: TextStyle(fontSize: 9),
                                       )),
                                 ],
                               ),
@@ -191,7 +193,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                 button1: "Yes",
                 button2: "NO",
                 alertMessage:
-                    "Are you sure you want to delete Subjects \"${widget.subjects.name}\" , Do you want to continue?",
+                    "Are you sure you want to delete Subject \"${widget.subjects.name}\" , Do you want to continue?",
                 onPressedConfirm: () {
                   context.read<SubjectsBloc>().add(DeletSubjects(
                       _authProvider.currentUser.accessToken,

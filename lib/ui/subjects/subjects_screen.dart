@@ -280,7 +280,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         context: context,
         builder: (builder) {
           return new Container(
-              margin: EdgeInsets.only(bottom: 50),
               padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
               height: 250.0,
               decoration: new BoxDecoration(
@@ -301,7 +300,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         validator: validateSubjects,
                         decoration: InputDecoration(
                           errorMaxLines: 2,
-                          errorStyle: TextStyle(fontSize: 10),
+                          errorStyle: TextStyle(fontSize: 9),
                           hintText: "Subject Name",
                           hintStyle: TextStyle(fontSize: 12),
                         ),
@@ -314,7 +313,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         validator: validateAbberviation,
                         decoration: InputDecoration(
                           errorMaxLines: 2,
-                          errorStyle: TextStyle(fontSize: 10),
+                          errorStyle: TextStyle(fontSize: 9),
                           hintText: "Abberviation",
                           hintStyle: TextStyle(fontSize: 12),
                         ),

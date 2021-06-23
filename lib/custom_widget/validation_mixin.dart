@@ -88,7 +88,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
     if (abberviation.trim().length == 0) {
       return AppLocalizations.of(context).translate('abberviation_name_validation');
     } else {
-      if (!isLength(abberviation, 2, 30)) {
+      if (!isLength(abberviation, 2, 6)) {
         return AppLocalizations.of(context)
             .translate('abberviation_name_validation_lenght');
       }
