@@ -3,7 +3,7 @@ class Subjects {
   String name;
   String abbreviation;
   int schoolId;
-  List<TeacherToSubjects> teacherToSubjects = [];
+  List<TeacherToSubjects> teacherToSubjects;
 
   Subjects(
       {this.id,
@@ -18,7 +18,7 @@ class Subjects {
     abbreviation = json['abbreviation'];
     schoolId = json['schoolId'];
     if (json['teacherToSubjects'] != null) {
-      teacherToSubjects = [];
+      teacherToSubjects = new List<TeacherToSubjects>();
       json['teacherToSubjects'].forEach((v) {
         teacherToSubjects.add(new TeacherToSubjects.fromJson(v));
       });
@@ -45,13 +45,15 @@ class TeacherToSubjects {
   String subjectName;
   int teacherId;
   String teacherName;
+  String teacherPhoto;
 
   TeacherToSubjects(
       {this.id,
       this.subjectId,
       this.subjectName,
       this.teacherId,
-      this.teacherName});
+      this.teacherName,
+      this.teacherPhoto});
 
   TeacherToSubjects.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -59,6 +61,7 @@ class TeacherToSubjects {
     subjectName = json['subjectName'];
     teacherId = json['teacherId'];
     teacherName = json['teacherName'];
+    teacherPhoto = json['teacherPhoto'];
   }
 
   Map<String, dynamic> toJson() {
@@ -68,6 +71,7 @@ class TeacherToSubjects {
     data['subjectName'] = this.subjectName;
     data['teacherId'] = this.teacherId;
     data['teacherName'] = this.teacherName;
+    data['teacherPhoto'] = this.teacherPhoto;
     return data;
   }
 }

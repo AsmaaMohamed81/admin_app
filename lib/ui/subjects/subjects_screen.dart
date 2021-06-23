@@ -189,6 +189,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     color: mainAppColor,
                   )
                 : ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: _searchResult.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SubjectsItem(
@@ -423,7 +424,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: _buildBodyItem(),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
     )));
   }
 }

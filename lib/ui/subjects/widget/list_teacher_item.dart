@@ -50,7 +50,10 @@ class _List_teacher_ItemState extends State<List_teacher_Item> {
                     child: CircleAvatar(
                         radius: 23,
                         backgroundImage: NetworkImage(
-                            "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png")),
+                          widget.teacherTosubjects.teacherPhoto == null
+                              ? "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png"
+                              : widget.teacherTosubjects.teacherPhoto,
+                        )),
                   ),
                 ),
                 Text(widget.teacherTosubjects.teacherName),

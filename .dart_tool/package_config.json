@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "alphabet_list_scroll_view",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/alphabet_list_scroll_view-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0",
       "packageUri": "lib/",
@@ -114,12 +120,6 @@
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_keyboard_aware_dialog",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_aware_dialog-1.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.7"
     },
     {
       "name": "flutter_localizations",
@@ -272,6 +272,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "rxdart",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.26.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+4",
       "packageUri": "lib/",
@@ -374,6 +380,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "vibration",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/vibration-1.7.4-nullsafety.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "vibration_web",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/vibration_web-1.6.3-nullsafety.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "win32",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.0.5",
       "packageUri": "lib/",
@@ -392,7 +410,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-06-21T16:19:11.078348Z",
+  "generated": "2021-06-23T13:07:08.664986Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }

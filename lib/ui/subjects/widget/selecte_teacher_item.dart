@@ -53,7 +53,7 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
                   child: CircleAvatar(
                       radius: 23,
                       backgroundImage: NetworkImage(
-                        widget.teacher.userPhoto.isEmpty
+                        widget.teacher.userPhoto==null
                             ? "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png"
                             : widget.teacher.userPhoto,
                       )),

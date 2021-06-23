@@ -39,7 +39,8 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
     return Column(
       children: [
         Slidable(
-          actionPane: SlidableDrawerDismissal(),
+          actionPane:
+              isEdit ? SlidableDrawerDismissal() : SlidableBehindActionPane(),
           actionExtentRatio: 0.12,
           child: Row(
             children: [
