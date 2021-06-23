@@ -30,7 +30,7 @@ class _List_teacher_ItemState extends State<List_teacher_Item> {
     _authProvider = Provider.of<AuthProvider>(context);
 
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
+      actionPane: SlidableDrawerDismissal(),
       actionExtentRatio: 0.12,
       child: Container(
         height: 70,

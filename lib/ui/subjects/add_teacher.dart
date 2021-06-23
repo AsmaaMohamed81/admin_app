@@ -2,6 +2,7 @@ import 'package:admin_app/ui/education_classes/arguments.dart';
 import 'package:admin_app/ui/subjects/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
 import 'package:admin_app/utils/app_colors.dart';
+import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class AddTeacher extends StatelessWidget {
@@ -19,8 +20,12 @@ class AddTeacher extends StatelessWidget {
         bottom: Radius.circular(20),
       )),
       leading: GestureDetector(
-          // onTap: () => _scaffoldKey.currentState.openDrawer(),
-          child: Container()),
+        onTap: () => Navigator.pop(context),
+        child: Icon(
+          Icons.arrow_back_ios_outlined,
+          color: Colors.white,
+        ),
+      ),
       //  Image.asset(
       //   'assets/images/menu.png',
       //   color: Colors.white,
@@ -28,26 +33,27 @@ class AddTeacher extends StatelessWidget {
       title: Center(
           child: Text("Subject Teachers",
               style: Theme.of(context).textTheme.headline1)),
-      actions: <Widget>[
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Stack(
-            children: <Widget>[
-              Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-                  height: 30,
-                  width: 30,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                  ),
-                ),
-              ])
-            ],
-          ),
-        )
-      ],
+      // actions: <Widget>[
+      //   GestureDetector(
+      //     onTap: () => Navigator.pop(context),
+      //     child: Stack(
+      //       children: <Widget>[
+      //         Column(children: <Widget>[
+      //           Container(
+      //             margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+      //             height: 30,
+      //             width: 30,
+      //             child: Icon(
+      //               Icons.arrow_forward_ios,
+      //               color: Colors.white,
+      //             ),
+      //           ),
+
+      //         ])
+      //       ],
+      //     ),
+      //   )
+      // ],
     );
 
     return Scaffold(
@@ -58,10 +64,15 @@ class AddTeacher extends StatelessWidget {
             children: [
               Image.asset('assets/images/teacher_ban.png'),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    'No Teacher assigned to this subject ,please add first teacher'),
-              ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'No Teacher assigned to this subject ,please add first teacher',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: HexColor('B9C3D5'),
+                      fontSize: 16,
+                    ),
+                  )),
               Container(
                 height: 50,
                 width: 50,
@@ -73,6 +84,7 @@ class AddTeacher extends StatelessWidget {
                   child: Icon(
                     Icons.add,
                     color: white,
+                    size: 40,
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, '/select_teacher',

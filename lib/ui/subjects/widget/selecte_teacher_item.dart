@@ -59,32 +59,56 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
                       )),
                 ),
               ),
-              Text(widget.teacher.userName.toString()),
+              Text(
+                widget.teacher.userName.toString(),
+                style:
+                    TextStyle(color: check ? HexColor('F98622') : Colors.black),
+              ),
             ],
           ),
           Transform.scale(
               scale: .9,
-              child: Checkbox(
-                  value: check,
-                  onChanged: (bool value) {
-                    int materialID = widget.teacher.id;
-                    print("id material check = ${widget.teacher.id}");
-
-                    check = value;
-                    print("vlaue$value check$check");
-
-                    setState(() {
-                      if (value) {
-                        SelecteTeacherItem.materialListId.add(materialID);
-                      } else {
-                        SelecteTeacherItem.materialListId.remove(materialID);
+              child: Container(
+                height: 23,
+                width: 23,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: HexColor('CACEF6'))),
+                child: Checkbox(
+                    activeColor: Colors.transparent,
+                    fillColor: MaterialStateColor.resolveWith((states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return Colors
+                            .transparent; // the color when checkbox is selected;
                       }
+                      return Colors
+                          .transparent; //the color when checkbox is unselected;
+                    }),
+                    checkColor: HexColor('F98622'),
 
-                      // widget.teacher.isSelected = value;
-                    });
+                    // activeColor: Colors.white,
+                    // checkColor: HexColor('F98622'),
+                    value: check,
+                    onChanged: (bool value) {
+                      int materialID = widget.teacher.id;
+                      print("id material check = ${widget.teacher.id}");
 
-                    print(SelecteTeacherItem.materialListId);
-                  })),
+                      check = value;
+                      print("vlaue$value check$check");
+
+                      setState(() {
+                        if (value) {
+                          SelecteTeacherItem.materialListId.add(materialID);
+                        } else {
+                          SelecteTeacherItem.materialListId.remove(materialID);
+                        }
+
+                        // widget.teacher.isSelected = value;
+                      });
+
+                      print(SelecteTeacherItem.materialListId);
+                    }),
+              )),
         ],
       ),
     );

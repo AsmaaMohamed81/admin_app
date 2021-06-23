@@ -54,7 +54,9 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
   Widget _buildBodyItem() {
     return RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          return await setState(() {});
+        },
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
             if (state is SubjectsAddOrEdite) {
@@ -98,9 +100,9 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 3,
+                            spreadRadius: 1,
                             blurRadius: 4,
-                            offset: Offset(0, 8), // changes position of shadow
+                            offset: Offset(0, 2), // changes position of shadow
                           ),
                         ],
                       ),
@@ -374,26 +376,26 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
       title: Center(
           child:
               Text("Subjects", style: Theme.of(context).textTheme.headline1)),
-      actions: <Widget>[
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Stack(
-            children: <Widget>[
-              Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-                  height: 30,
-                  width: 30,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                  ),
-                ),
-              ])
-            ],
-          ),
-        )
-      ],
+      // actions: <Widget>[
+      //   GestureDetector(
+      //     onTap: () => Navigator.pop(context),
+      //     child: Stack(
+      //       children: <Widget>[
+      //         Column(children: <Widget>[
+      //           Container(
+      //             margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+      //             height: 30,
+      //             width: 30,
+      //             child: Icon(
+      //               Icons.arrow_forward_ios,
+      //               color: Colors.white,
+      //             ),
+      //           ),
+      //         ])
+      //       ],
+      //     ),
+      //   )
+      // ],
     );
 
     return NetworkIndicator(

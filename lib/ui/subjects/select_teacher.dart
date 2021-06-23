@@ -81,8 +81,16 @@ class _SelectTeacherState extends State<SelectTeacher> {
         bottom: Radius.circular(20),
       )),
       leading: GestureDetector(
-          // onTap: () => _scaffoldKey.currentState.openDrawer(),
-          child: Container()),
+          onTap: () => Navigator.pop(context),
+          child: Container(
+        margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+        height: 30,
+        width: 30,
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.white,
+        ),
+      )),
       //  Image.asset(
       //   'assets/images/menu.png',
       //   color: Colors.white,
@@ -92,16 +100,15 @@ class _SelectTeacherState extends State<SelectTeacher> {
               style: Theme.of(context).textTheme.headline1)),
       actions: <Widget>[
         GestureDetector(
-          onTap: () => Navigator.pop(context),
           child: Stack(
             children: <Widget>[
               Column(children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-                  height: 30,
-                  width: 30,
+                  margin: EdgeInsets.only(left: 10, right: 10, top: 22),
+                  height: 25,
+                  width: 25,
                   child: Icon(
-                    Icons.arrow_forward_ios,
+                    Icons.search,
                     color: Colors.white,
                   ),
                 ),

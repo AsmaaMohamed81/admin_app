@@ -39,7 +39,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
     return Column(
       children: [
         Slidable(
-          actionPane: SlidableDrawerActionPane(),
+          actionPane: SlidableDrawerDismissal(),
           actionExtentRatio: 0.12,
           child: Row(
             children: [
@@ -87,7 +87,11 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                                       validator: validateSubjects,
                                       decoration: InputDecoration(
                                         errorMaxLines: 2,
-                                        errorStyle: TextStyle(fontSize: 9),
+                                        errorStyle: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .02),
                                       )),
                                   TextFormField(
                                       onChanged: (value) {
@@ -98,7 +102,11 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                                       validator: validateAbberviation,
                                       decoration: InputDecoration(
                                         errorMaxLines: 2,
-                                        errorStyle: TextStyle(fontSize: 9),
+                                        errorStyle: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .02),
                                       )),
                                 ],
                               ),
