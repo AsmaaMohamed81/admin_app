@@ -62,10 +62,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
             if (state is SubjectsAddOrEdite) {
-              if (state.results['status'] == "Success") {
+              if (state.results['status'] == "Success" ) {
                 print("satatus == ${state.results}");
                 _result(state.results);
-              } else if ((state.results['status'] == "Error" && value == 0)) {
+              } else if ((state.results['status'] == "Error"&& value==0)) {
                 _settingModalBottomSheet(context);
               } else {
                 Commons.showError(context, state.results["message"]);
