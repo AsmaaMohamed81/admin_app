@@ -32,6 +32,8 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
+  int value;
+
   final nameHolder = TextEditingController();
   final nameHolder2 = TextEditingController();
 
@@ -63,6 +65,8 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
               if (state.results['status'] == "Success") {
                 print("satatus == ${state.results}");
                 _result(state.results);
+              } else if ((state.results['status'] == "Error" && value == 0)) {
+                _settingModalBottomSheet(context);
               } else {
                 Commons.showError(context, state.results["message"]);
               }
@@ -208,13 +212,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
   _result(Map<String, dynamic> results) {
     Commons.showToast(
-      context: context,
-      message: results["message"],
-    );
+        context: context, message: results["message"], duration: 3);
 
     clearTextInput();
     FocusScopeNode currentFocus = FocusScope.of(context);
-    sleep1();
 
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
@@ -252,6 +253,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     _abberviation, []));
 
                 Navigator.of(context).pop();
+                value = 0;
               }
             },
             color: floatbottom,
@@ -362,6 +364,8 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
     _authProvider = Provider.of<AuthProvider>(context);
 
     final appBar = AppBar(
+      centerTitle: true,
+
       backgroundColor: mainAppColor,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -374,9 +378,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
             'assets/images/menu.png',
             color: Colors.white,
           )),
-      title: Center(
-          child:
-              Text("Subjects", style: Theme.of(context).textTheme.headline1)),
+      title: Text("Subjects", style: Theme.of(context).textTheme.headline1),
       // actions: <Widget>[
       //   GestureDetector(
       //     onTap: () => Navigator.pop(context),

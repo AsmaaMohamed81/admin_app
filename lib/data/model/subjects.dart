@@ -45,6 +45,7 @@ class TeacherToSubjects {
   String subjectName;
   int teacherId;
   String teacherName;
+  bool isClassRoomTeacher;
   String teacherPhoto;
 
   TeacherToSubjects(
@@ -53,6 +54,7 @@ class TeacherToSubjects {
       this.subjectName,
       this.teacherId,
       this.teacherName,
+      this.isClassRoomTeacher,
       this.teacherPhoto});
 
   TeacherToSubjects.fromJson(Map<String, dynamic> json) {
@@ -61,6 +63,7 @@ class TeacherToSubjects {
     subjectName = json['subjectName'];
     teacherId = json['teacherId'];
     teacherName = json['teacherName'];
+    isClassRoomTeacher = json['isClassRoomTeacher'];
     teacherPhoto = json['teacherPhoto'];
   }
 
@@ -71,6 +74,7 @@ class TeacherToSubjects {
     data['subjectName'] = this.subjectName;
     data['teacherId'] = this.teacherId;
     data['teacherName'] = this.teacherName;
+    data['isClassRoomTeacher'] = this.isClassRoomTeacher;
     data['teacherPhoto'] = this.teacherPhoto;
     return data;
   }

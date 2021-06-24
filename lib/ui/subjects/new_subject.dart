@@ -59,6 +59,8 @@ class _NewSubjectState extends State<NewSubject> with ValidationMixin {
     _authProvider = Provider.of<AuthProvider>(context);
 
     final appBar = AppBar(
+            centerTitle: true, 
+
       backgroundColor: mainAppColor,
       elevation: 0,
       leading: GestureDetector(

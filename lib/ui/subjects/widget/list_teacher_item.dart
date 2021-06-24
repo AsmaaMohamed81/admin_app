@@ -33,32 +33,54 @@ class _List_teacher_ItemState extends State<List_teacher_Item> {
       actionPane: SlidableDrawerDismissal(),
       actionExtentRatio: 0.12,
       child: Container(
-        height: 70,
+        height: 80,
         padding: EdgeInsets.all(8),
         color: widget.Index % 2 == 0 ? HexColor('F3F4FF') : Colors.white,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: HexColor('3034A5'),
+              child: CircleAvatar(
+                radius: 28,
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
+                    radius: 23,
+                    backgroundImage: NetworkImage(
+                      widget.teacherTosubjects.teacherPhoto == null
+                          ? "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png"
+                          : widget.teacherTosubjects.teacherPhoto,
+                    )),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: HexColor('3034A5'),
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.white,
-                    child: CircleAvatar(
-                        radius: 23,
-                        backgroundImage: NetworkImage(
-                          widget.teacherTosubjects.teacherPhoto == null
-                              ? "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png"
-                              : widget.teacherTosubjects.teacherPhoto,
-                        )),
+                Text(
+                  widget.teacherTosubjects.teacherName,
+                  style: TextStyle(
+                    color: HexColor('707070'),
+                    fontSize: 16,
                   ),
                 ),
-                Text(widget.teacherTosubjects.teacherName),
+                Text(
+                  widget.teacherTosubjects.isClassRoomTeacher
+                      ? "Teacher Room Class"
+                      : " ",
+                  style: TextStyle(
+                    color: HexColor('B9C3D5'),
+                    fontSize: 10,
+                  ),
+                ),
               ],
             ),
+         
+         
           ],
         ),
       ),

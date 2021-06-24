@@ -1,8 +1,9 @@
 import 'package:admin_app/custom_widget/demobottomappbar.dart';
-import 'package:admin_app/ui/subjects/arguments.teacher.dart';
-import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/list_teacher_item.dart';
 import 'package:admin_app/utils/app_colors.dart';
+import 'package:admin_app/utils/commons.dart';
 import 'package:flutter/material.dart';
 
 class ListTeacherScreen extends StatefulWidget {
@@ -22,7 +23,10 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context).settings.arguments;
+
     final appBar = AppBar(
+      centerTitle: true,
+
       backgroundColor: mainAppColor,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -44,9 +48,8 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
       //   'assets/images/menu.png',
       //   color: Colors.white,
       // )),
-      title: Center(
-          child: Text("${args.subjects.name} Teachers",
-              style: Theme.of(context).textTheme.headline1)),
+      title: Text("${args.subjects.name} Teachers",
+          style: Theme.of(context).textTheme.headline1),
       actions: <Widget>[
         GestureDetector(
           // onTap: () => Navigator.pop(context),
@@ -80,6 +83,18 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
               delete: () {
                 setState(() {
                   args.teacherToSubjects.removeAt(index);
+
+                  if (args.teacherToSubjects.length == 0) {
+                    Navigator.pushNamed(
+                      context,
+                      '/add_taecher',
+                      arguments: ArgumentsTeacher(args.subjects, null),
+                    );
+                  }
+                  Commons.showToast(
+                      context: context,
+                      message: " the teacher has been deleted successfully",
+                      duration: 20);
                 });
               },
               Index: index);

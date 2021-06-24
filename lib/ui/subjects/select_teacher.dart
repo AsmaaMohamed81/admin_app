@@ -5,8 +5,8 @@ import 'package:admin_app/custom_widget/demobottomappbar.dart';
 import 'package:admin_app/data/model/teachers.dart';
 import 'package:admin_app/data/repository/teacher.repository.dart';
 import 'package:admin_app/provider/auth_provider.dart';
-import 'package:admin_app/ui/subjects/arguments.teacher.dart';
-import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/selecte_teacher_item.dart';
 import 'package:admin_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +74,8 @@ class _SelectTeacherState extends State<SelectTeacher> {
     _authProvider = Provider.of<AuthProvider>(context);
 
     final appBar = AppBar(
+            centerTitle: true, 
+
       backgroundColor: mainAppColor,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -95,9 +97,8 @@ class _SelectTeacherState extends State<SelectTeacher> {
       //   'assets/images/menu.png',
       //   color: Colors.white,
       // )),
-      title: Center(
-          child: Text("Submit Teachers",
-              style: Theme.of(context).textTheme.headline1)),
+      title: Text("Submit Teachers",
+          style: Theme.of(context).textTheme.headline1),
       actions: <Widget>[
         GestureDetector(
           child: Stack(

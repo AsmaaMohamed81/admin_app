@@ -36,9 +36,10 @@ class Commons {
     showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text(message ,style: TextStyle(
-                fontSize: 13
-              ),),
+              title: Text(
+                message,
+                style: TextStyle(fontSize: 13),
+              ),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(15)),
@@ -107,18 +108,16 @@ class Commons {
 // }
 
   static void showToast(
-      {@required String message, @required BuildContext context, Color color}) {
+      {@required String message,
+      @required BuildContext context,
+      Color color,
+      int duration = 3}) {
     return Toast.show(
       message,
       context,
       backgroundColor: color == null ? mainAppColor : color,
-      duration: Toast.LENGTH_LONG,
+      duration: duration,
       gravity: Toast.BOTTOM,
     );
   }
-
-  
 }
-
-
-

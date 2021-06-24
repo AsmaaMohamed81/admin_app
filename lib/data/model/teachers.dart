@@ -3,16 +3,15 @@ class Teachers {
   int userId;
   String userName;
   bool isAccountActivated;
-  bool isInvited;
+  String status;
   String email;
   String userPhoto;
   int companyId;
   String companyName;
   String companyPhoto;
   String acceptanceStatus;
+  bool isClassRoomTeacher;
   String updateDate;
-  bool isSelected = false;
-
   List<Materials> materials;
 
   Teachers(
@@ -20,28 +19,30 @@ class Teachers {
       this.userId,
       this.userName,
       this.isAccountActivated,
-      this.isInvited,
+      this.status,
       this.email,
       this.userPhoto,
       this.companyId,
       this.companyName,
       this.companyPhoto,
       this.acceptanceStatus,
+      this.isClassRoomTeacher=true,
       this.updateDate,
-      this.materials,this.isSelected});
+      this.materials});
 
   Teachers.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['userId'];
     userName = json['userName'];
     isAccountActivated = json['isAccountActivated'];
-    isInvited = json['isInvited'];
+    status = json['status'];
     email = json['email'];
     userPhoto = json['userPhoto'];
     companyId = json['companyId'];
     companyName = json['companyName'];
     companyPhoto = json['companyPhoto'];
     acceptanceStatus = json['acceptanceStatus'];
+    isClassRoomTeacher = json['isClassRoomTeacher'];
     updateDate = json['updateDate'];
     if (json['materials'] != null) {
       materials = new List<Materials>();
@@ -57,13 +58,14 @@ class Teachers {
     data['userId'] = this.userId;
     data['userName'] = this.userName;
     data['isAccountActivated'] = this.isAccountActivated;
-    data['isInvited'] = this.isInvited;
+    data['status'] = this.status;
     data['email'] = this.email;
     data['userPhoto'] = this.userPhoto;
     data['companyId'] = this.companyId;
     data['companyName'] = this.companyName;
     data['companyPhoto'] = this.companyPhoto;
     data['acceptanceStatus'] = this.acceptanceStatus;
+    data['isClassRoomTeacher'] = this.isClassRoomTeacher;
     data['updateDate'] = this.updateDate;
     if (this.materials != null) {
       data['materials'] = this.materials.map((v) => v.toJson()).toList();

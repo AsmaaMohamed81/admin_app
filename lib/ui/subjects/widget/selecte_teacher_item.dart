@@ -36,7 +36,7 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 80,
       padding: EdgeInsets.all(8),
       color: widget.indexi % 2 == 0 ? HexColor('F3F4FF') : Colors.white,
       child: Row(
@@ -48,21 +48,42 @@ class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
                 radius: 30,
                 backgroundColor: HexColor('3034A5'),
                 child: CircleAvatar(
-                  radius: 25,
+                  radius: 28,
                   backgroundColor: Colors.white,
                   child: CircleAvatar(
                       radius: 23,
                       backgroundImage: NetworkImage(
-                        widget.teacher.userPhoto==null
+                        widget.teacher.userPhoto == null
                             ? "https://nofiredrills.com/wp-content/uploads/2016/10/myavatar.png"
                             : widget.teacher.userPhoto,
                       )),
                 ),
               ),
-              Text(
-                widget.teacher.userName.toString(),
-                style:
-                    TextStyle(color: check ? HexColor('F98622') : Colors.black),
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.teacher.userName.toString(),
+                    style: TextStyle(
+                      color: check ? HexColor('F98622') : HexColor('707070'),
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    widget.teacher.isClassRoomTeacher != null &&
+                            widget.teacher.isClassRoomTeacher
+                        ? "Teacher Room Class"
+                        : " ",
+                    style: TextStyle(
+                      color: HexColor('B9C3D5'),
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,6 +1,6 @@
 import 'package:admin_app/ui/education_classes/arguments.dart';
-import 'package:admin_app/ui/subjects/arguments.teacher.dart';
-import 'package:admin_app/ui/subjects/arguments_techer_subjects.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
 import 'package:admin_app/utils/app_colors.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,8 @@ class AddTeacher extends StatelessWidget {
 
     final appBar = AppBar(
       backgroundColor: mainAppColor,
+      centerTitle: true,
+
       elevation: 0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -30,9 +32,8 @@ class AddTeacher extends StatelessWidget {
       //   'assets/images/menu.png',
       //   color: Colors.white,
       // )),
-      title: Center(
-          child: Text("Subject Teachers",
-              style: Theme.of(context).textTheme.headline1)),
+      title: Text("Subject Teachers",
+          style: Theme.of(context).textTheme.headline1),
       // actions: <Widget>[
       //   GestureDetector(
       //     onTap: () => Navigator.pop(context),
