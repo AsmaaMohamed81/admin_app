@@ -10,6 +10,13 @@ abstract class SubjectsRepository {
       String accessToken, int idSubjects);
   Future<Map<String, dynamic>> addEditeSubjects(String accessToken, String name,
       int idSubjects, int choolId, String abbreviation, List<int> teachers);
+  Future<Map<String, dynamic>> addEditeSubjectsDelete(
+      String accessToken,
+      String name,
+      int idSubjects,
+      int choolId,
+      String abbreviation,
+      List<int> teachers);
 }
 
 class SubjectsRepositoryImp extends SubjectsRepository {
@@ -45,6 +52,32 @@ class SubjectsRepositoryImp extends SubjectsRepository {
 
   @override
   Future<Map<String, dynamic>> addEditeSubjects(
+      String accessToken,
+      String materialname,
+      int idSubjects,
+      int schoolId,
+      String abbreviation,
+      List<int> teachers) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      "Authorization": "Bearer ${accessToken}"
+    };
+    Map<String, dynamic> results = await _apiProvider.post(Urls.Add_Subject,
+        body: {
+          "id": idSubjects,
+          "name": materialname,
+          "schoolId": schoolId,
+          "abbreviation": abbreviation,
+          "teachers": teachers
+        },
+        header: headers);
+
+    return results;
+  }
+
+  @override
+  Future<Map<String, dynamic>> addEditeSubjectsDelete(
       String accessToken,
       String materialname,
       int idSubjects,

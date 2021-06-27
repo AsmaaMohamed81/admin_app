@@ -265,7 +265,7 @@ class _SignUpScreenState extends State<SignUpScreen> with ValidationMixin {
             if (results['status'] == "Success") {
               _register(results);
             } else {
-              Commons.showError(context, results["message"]);
+              Commons.showError(context, results["message"],null);
             }
           }
         },

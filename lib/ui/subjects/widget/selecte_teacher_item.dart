@@ -2,14 +2,17 @@ import 'package:admin_app/data/model/subjects.dart';
 import 'package:admin_app/data/model/teachers.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class SelecteTeacherItem extends StatefulWidget {
   final Subjects subjects;
   final Teachers teacher;
   final int indexi;
+  final Function delete;
   static List<int> materialListId = [];
 
-  const SelecteTeacherItem({Key key, this.teacher, this.indexi, this.subjects})
+  const SelecteTeacherItem(
+      {Key key, this.teacher, this.indexi, this.subjects, this.delete})
       : super(key: key);
 
   @override
@@ -18,19 +21,9 @@ class SelecteTeacherItem extends StatefulWidget {
 
 class _SelecteTeacherItemState extends State<SelecteTeacherItem> {
   bool check = false;
-
   @override
   void initState() {
     super.initState();
-
-    for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
-      if (widget.subjects.teacherToSubjects[i].teacherId == widget.teacher.id) {
-        check = true;
-        SelecteTeacherItem.materialListId.add(widget.teacher.id);
-        print("${widget.subjects.teacherToSubjects[i].teacherName}");
-      }
-    }
-    print("lenght teacher=${SelecteTeacherItem.materialListId.length}");
   }
 
   @override

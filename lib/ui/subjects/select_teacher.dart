@@ -9,6 +9,7 @@ import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/selecte_teacher_item.dart';
 import 'package:admin_app/utils/app_colors.dart';
+import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -74,7 +75,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
     _authProvider = Provider.of<AuthProvider>(context);
 
     final appBar = AppBar(
-            centerTitle: true, 
+      centerTitle: true,
 
       backgroundColor: mainAppColor,
       elevation: 0,
@@ -85,20 +86,20 @@ class _SelectTeacherState extends State<SelectTeacher> {
       leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-        height: 30,
-        width: 30,
-        child: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white,
-        ),
-      )),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+            height: 30,
+            width: 30,
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          )),
       //  Image.asset(
       //   'assets/images/menu.png',
       //   color: Colors.white,
       // )),
-      title: Text("Submit Teachers",
-          style: Theme.of(context).textTheme.headline1),
+      title:
+          Text("Submit Teachers", style: Theme.of(context).textTheme.headline1),
       actions: <Widget>[
         GestureDetector(
           child: Stack(
@@ -142,7 +143,12 @@ class _SelectTeacherState extends State<SelectTeacher> {
 
                           // if (_formKey.currentState.validate()) {
                           print("injjjjjjjjjj");
-
+                          for (int i = 0;
+                              i < args.subjects.teacherToSubjects.length;
+                              i++) {
+                            SelecteTeacherItem.materialListId.add(
+                                args.subjects.teacherToSubjects[i].teacherId);
+                          }
                           context.read<SubjectsBloc>().add(AddOrEditSubjects(
                               _authProvider.currentUser.accessToken,
                               args.subjects.id,
@@ -166,16 +172,33 @@ class _SelectTeacherState extends State<SelectTeacher> {
               } else if (state is TeachersLoaded) {
                 _teachersList = state.teachers;
                 print(_teachersList.length.toString());
-                return ListView.builder(
-                  itemCount: _teachersList.length,
-                  itemBuilder: (context, index) {
-                    return SelecteTeacherItem(
-                      subjects: args.subjects,
-                      teacher: _teachersList[index],
-                      indexi: index,
-                    );
-                  },
-                );
+
+                for (int i = 0;
+                    i < args.subjects.teacherToSubjects.length;
+                    i++) {
+                  print("iiiiii ${i.toString()}");
+                  _teachersList.removeWhere((item) =>
+                      item.id == args.subjects.teacherToSubjects[i].teacherId);
+                }
+                return _teachersList.length > 0
+                    ? ListView.builder(
+                        itemCount: _teachersList.length,
+                        itemBuilder: (context, index) {
+                          return SelecteTeacherItem(
+                            subjects: args.subjects,
+                            teacher: _teachersList[index],
+                            indexi: index,
+                          );
+                        },
+                      )
+                    : Center(
+                        child: Text(
+                        "There are no teachers yet",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: HexColor('B9C3D5'),
+                        ),
+                      ));
               } else if (state is TeachersError) {
                 return Text(state.message.toString());
               }

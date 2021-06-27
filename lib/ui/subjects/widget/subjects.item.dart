@@ -66,7 +66,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                         Text(
                           widget.subjects.abbreviation == null
                               ? " "
-                              : "( ${widget.subjects.abbreviation})",
+                              : "(${widget.subjects.abbreviation})",
                           style: TextStyle(
                               color: HexColor('9A9AA1'), fontSize: 10),
                         )

@@ -94,7 +94,7 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
                   Commons.showToast(
                       context: context,
                       message: " the teacher has been deleted successfully",
-                      duration: 20);
+                      duration: 3);
                 });
               },
               Index: index);

@@ -53,13 +53,13 @@ class _LevelsScreenState extends State<LevelsScreen> with ValidationMixin {
               if (state.results['status'] == "Success") {
                 _result(state.results);
               } else {
-                Commons.showError(context, state.results["message"]);
+                Commons.showError(context, state.results["message"],null);
               }
             } else if (state is LevelsDeleted) {
               if (state.message['status'] == "Success") {
                 _result(state.message);
               } else {
-                Commons.showError(context, state.message["message"]);
+                Commons.showError(context, state.message["message"],null);
               }
             }
           },

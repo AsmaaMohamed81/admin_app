@@ -79,8 +79,6 @@ class _List_teacher_ItemState extends State<List_teacher_Item> {
                 ),
               ],
             ),
-         
-         
           ],
         ),
       ),
@@ -113,15 +111,15 @@ class _List_teacher_ItemState extends State<List_teacher_Item> {
                     id.remove(widget.teacherTosubjects.teacherId);
                   }
                   print("${id}");
+                  widget.delete();
 
-                  context.read<SubjectsBloc>().add(AddOrEditSubjects(
+                  context.read<SubjectsBloc>().add(AddOrEditSubjectsDelete(
                       _authProvider.currentUser.accessToken,
                       widget.subjects.id,
                       _authProvider.ownSchool.id,
                       widget.subjects.name,
                       widget.subjects.abbreviation,
                       id));
-                  widget.delete();
                 },
               );
             });

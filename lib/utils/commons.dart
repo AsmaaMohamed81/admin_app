@@ -32,7 +32,7 @@ class Commons {
     ));
   }
 
-  static void showError(BuildContext context, String message) {
+  static void showError(BuildContext context, String message, Function gg) {
     showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
@@ -48,7 +48,7 @@ class Commons {
                   child: Text("Ok"),
                   textColor: Colors.black,
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    gg();
                   },
                 ),
               ],

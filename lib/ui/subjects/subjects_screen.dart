@@ -32,7 +32,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  int value;
+  int valueu;
 
   final nameHolder = TextEditingController();
   final nameHolder2 = TextEditingController();
@@ -62,19 +62,28 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
             if (state is SubjectsAddOrEdite) {
-              if (state.results['status'] == "Success" ) {
+              if (state.results['status'] == "Success") {
                 print("satatus == ${state.results}");
                 _result(state.results);
-              } else if ((state.results['status'] == "Error"&& value==0)) {
-                _settingModalBottomSheet(context);
+              } else if ((state.results['status'] == "Error" && valueu == 0)) {
+                valueu = 1;
+                Commons.showError(context, state.results["message"], () {
+                  Navigator.of(context).pop();
+
+                  _settingModalBottomSheet(context);
+                });
               } else {
-                Commons.showError(context, state.results["message"]);
+                Commons.showError(context, state.results["message"], () {
+                  Navigator.of(context).pop();
+                });
               }
             } else if (state is SubjectsDeleted) {
               if (state.message['status'] == "Success") {
                 _result(state.message);
               } else {
-                Commons.showError(context, state.message["message"]);
+                Commons.showError(context, state.message["message"], () {
+                  Navigator.of(context).pop();
+                });
               }
             }
           },
@@ -253,7 +262,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     _abberviation, []));
 
                 Navigator.of(context).pop();
-                value = 0;
+                valueu = 0;
               }
             },
             color: floatbottom,
