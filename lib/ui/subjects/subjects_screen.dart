@@ -49,6 +49,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   @override
   void initState() {
     super.initState();
+
     context.read<SubjectsBloc>()
       ..add(FetchSubjects(
           Provider.of<AuthProvider>(context, listen: false).ownSchool.id));
@@ -66,13 +67,16 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                 print("satatus == ${state.results}");
                 _result(state.results);
               } else if ((state.results['status'] == "Error" && valueu == 0)) {
+                print("yeyeyeyeyey");
+
                 valueu = 1;
                 Commons.showError(context, state.results["message"], () {
                   Navigator.of(context).pop();
 
                   _settingModalBottomSheet(context);
                 });
-              } else {
+              } else if (state.results['status'] == "Error" && valueu != 0) {
+                print("nonoononononon");
                 Commons.showError(context, state.results["message"], () {
                   Navigator.of(context).pop();
                 });
@@ -372,6 +376,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   Widget build(BuildContext context) {
     _authProvider = Provider.of<AuthProvider>(context);
 
+    print("vlaue subject screen $valueu");
     final appBar = AppBar(
       centerTitle: true,
 
