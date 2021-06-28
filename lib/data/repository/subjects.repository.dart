@@ -27,7 +27,7 @@ class SubjectsRepositoryImp extends SubjectsRepository {
     List<Subjects> subjectsList;
     final response =
         await _apiProvider.get(Urls.Get_All_Subjects + "?SchoolId=$schoolId");
-    print(response);
+    // print(response);
     Iterable iterable = response['data'];
     subjectsList = iterable.map((model) => Subjects.fromJson(model)).toList();
     return subjectsList;

@@ -62,24 +62,30 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         },
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
+            print("vlaue error $valueu");
+
             if (state is SubjectsAddOrEdite) {
               if (state.results['status'] == "Success") {
                 print("satatus == ${state.results}");
                 _result(state.results);
-              } else if ((state.results['status'] == "Error" && valueu == 0)) {
-                print("yeyeyeyeyey");
+              } else if (state.results['status'] == "Error") {
+                if (valueu == 0) {
+                  print("bootom sheet open");
 
-                valueu = 1;
-                Commons.showError(context, state.results["message"], () {
-                  Navigator.of(context).pop();
+                  valueu = null;
+                  Commons.showError(context, state.results["message"], () {
+                    Navigator.of(context).pop();
 
-                  _settingModalBottomSheet(context);
-                });
-              } else if (state.results['status'] == "Error" && valueu != 0) {
-                print("nonoononononon");
-                Commons.showError(context, state.results["message"], () {
-                  Navigator.of(context).pop();
-                });
+                    _settingModalBottomSheet(context);
+                  });
+                } else {
+                  print("bootom sheet re open");
+
+                  print("nonoononononon");
+                  Commons.showError(context, state.results["message"], () {
+                    Navigator.of(context).pop();
+                  });
+                }
               }
             } else if (state is SubjectsDeleted) {
               if (state.message['status'] == "Success") {
@@ -257,6 +263,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
               if (_formKey.currentState.validate()) {
                 print("injjjjjjjjjj");
+                valueu = 0;
 
                 bloc.add(AddOrEditSubjects(
                     _authProvider.currentUser.accessToken,
@@ -266,7 +273,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     _abberviation, []));
 
                 Navigator.of(context).pop();
-                valueu = 0;
               }
             },
             color: floatbottom,
@@ -376,7 +382,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   Widget build(BuildContext context) {
     _authProvider = Provider.of<AuthProvider>(context);
 
-    print("vlaue subject screen $valueu");
+    print("vlaue first $valueu");
     final appBar = AppBar(
       centerTitle: true,
 
@@ -433,7 +439,11 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         padding: EdgeInsets.all(5),
         child: FloatingActionButton(
           backgroundColor: floatbottom,
-          onPressed: () => _settingModalBottomSheet(context),
+          onPressed: () {
+            print("vlaue open bottom $valueu");
+
+            _settingModalBottomSheet(context);
+          },
           tooltip: 'Increment Counter',
           child: const Icon(Icons.add),
         ),
