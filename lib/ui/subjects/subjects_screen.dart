@@ -25,12 +25,10 @@ class SubjectsScreen extends StatefulWidget {
 
 class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   TextEditingController _searchController = TextEditingController();
-  double _width = 0.0;
-  bool _initialRun = true;
+
   AuthProvider _authProvider;
   String _materialName, _abberviation = '';
   final _formKey = GlobalKey<FormState>();
-  bool _isLoading = false;
 
   int valueu;
 
@@ -38,9 +36,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   final nameHolder2 = TextEditingController();
 
   List<Subjects> _searchResult = [];
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   List<Subjects> _subjectsList = [];
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String textSearch;
   clearTextInput() {
     nameHolder.clear();
     nameHolder2.clear();
@@ -49,7 +48,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   @override
   void initState() {
     super.initState();
-
     context.read<SubjectsBloc>()
       ..add(FetchSubjects(
           Provider.of<AuthProvider>(context, listen: false).ownSchool.id));
@@ -58,7 +56,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   Widget _buildBodyItem() {
     return RefreshIndicator(
         onRefresh: () async {
-          return await setState(() {});
+          // return await setState(() {});
         },
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
@@ -66,139 +64,155 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
             if (state is SubjectsAddOrEdite) {
               if (state.results['status'] == "Success") {
-                print("satatus == ${state.results}");
                 _result(state.results);
-              } else if (state.results['status'] == "Error") {
-                if (valueu == 0) {
-                  print("bootom sheet open");
+              } else {
+                print("bootom sheet re open");
 
-                  valueu = null;
-                  Commons.showError(context, state.results["message"], () {
-                    Navigator.of(context).pop();
-
+                print("nonoononononon");
+                Commons.showError(context, state.results["message"], () {
+                  if (valueu == 0) {
                     _settingModalBottomSheet(context);
-                  });
-                } else {
-                  print("bootom sheet re open");
-
-                  print("nonoononononon");
-                  Commons.showError(context, state.results["message"], () {
-                    Navigator.of(context).pop();
-                  });
-                }
+                    valueu = null;
+                  }
+                });
               }
             } else if (state is SubjectsDeleted) {
               if (state.message['status'] == "Success") {
                 _result(state.message);
               } else {
-                Commons.showError(context, state.message["message"], () {
-                  Navigator.of(context).pop();
-                });
+                Commons.showError(context, state.message["message"], () {});
               }
             }
           },
-          child: Stack(
-            children: [
-              // Container(
-              //   height: 80,
-              //   decoration: BoxDecoration(
-              //     color: mainAppColor,
-              //     borderRadius: BorderRadius.only(
-              //         topLeft: Radius.zero,
-              //         topRight: Radius.zero,
-              //         bottomLeft: Radius.circular(20.0),
-              //         bottomRight: Radius.circular(20.0)),
-              //   ),
-              // ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.05,
-                    vertical: MediaQuery.of(context).size.height * 0.03),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        color: searchcolor,
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 4,
-                            offset: Offset(0, 2), // changes position of shadow
-                          ),
-                        ],
+          child: Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.05,
+                vertical: MediaQuery.of(context).size.height * 0.03),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: searchcolor,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 4,
+                        offset: Offset(0, 2), // changes position of shadow
                       ),
-                      child: TextField(
-                        controller: _searchController,
-                        cursorColor: mainAppColor,
-                        onChanged: (text) {
-                          _searchResult.clear();
+                    ],
+                  ),
+                  child: TextField(
+                    controller: _searchController,
+                    cursorColor: mainAppColor,
+                    textInputAction: TextInputAction.search,
+                    onSubmitted: (text) {
+                      textSearch = text;
+                      _searchResult.clear();
 
-                          if (text.isEmpty) {
-                            setState(() {});
-                            print("empty");
-                            return;
-                          } else {
-                            setState(() {});
+                      if (text.isEmpty) {
+                        setState(() {});
+                        print("empty");
+                        return;
+                      } else {
+                        setState(() {
+                          _subjectsList.forEach((userDetail) {
+                            if (userDetail.name
+                                    .toLowerCase()
+                                    .contains(text.toLowerCase()) ||
+                                userDetail.abbreviation
+                                    .toLowerCase()
+                                    .contains(text.toLowerCase())) {
+                              _searchResult.add(userDetail);
+                            }
+                          });
+                        });
+                      }
+                    },
+                    onChanged: (text) {
+                      textSearch = text;
 
-                            _subjectsList.forEach((userDetail) {
-                              if (userDetail.name
-                                      .toLowerCase()
-                                      .contains(text.toLowerCase()) ||
-                                  userDetail.abbreviation
-                                      .toLowerCase()
-                                      .contains(text.toLowerCase())) {
-                                _searchResult.add(userDetail);
-                              }
-                            });
-                          }
-                        },
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
+                      _searchResult.clear();
 
-                          // border: OutlineInputBorder(
-                          //   borderRadius: BorderRadius.circular(20.0),
-                          //   borderSide: BorderSide(color: Colors.white),
+                      if (text.isEmpty) {
+                        setState(() {});
+                        print("empty");
+                        return;
+                      } else {
+                        setState(() {
+                          _subjectsList.forEach((userDetail) {
+                            if (userDetail.name
+                                    .toLowerCase()
+                                    .contains(text.toLowerCase()) ||
+                                userDetail.abbreviation
+                                    .toLowerCase()
+                                    .contains(text.toLowerCase())) {
+                              _searchResult.add(userDetail);
+                            }
+                          });
+                        });
+                      }
+                    },
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
 
-                          // ),
-                          contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: HexColor('212121'),
-                            size: 17,
-                          ),
-                          hintText: "Search Subjects",
-                        ),
+                      // border: OutlineInputBorder(
+                      //   borderRadius: BorderRadius.circular(20.0),
+                      //   borderSide: BorderSide(color: Colors.white),
+
+                      // ),
+                      contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: HexColor('212121'),
+                        size: 17,
                       ),
+                      hintText: "Search Subjects",
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    // _buildAddSubjects(),
-                    Expanded(
-                      child: BlocBuilder<SubjectsBloc, SubjectsState>(
-                          builder: (context, state) {
-                        if (state is SubjectsLoading) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (state is DeletSubjects) {
-                        } else if (state is SubjectsLoaded) {
-                          _subjectsList = state.subjects;
-                          return _buildListSubjects(_subjectsList);
-                        } else if (state is SubjectsError) {
-                          return Text(state.message.toString());
-                        }
-                        return Container();
-                      }),
-                    )
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 15,
+                ),
+                // _buildAddSubjects(),
+                Expanded(
+                  child: BlocBuilder<SubjectsBloc, SubjectsState>(
+                      builder: (context, state) {
+                    if (state is SubjectsLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (state is SubjectsLoaded) {
+                      _subjectsList = state.subjects;
+
+                      print(
+                          "_subjectsList[0].abbreviation == ${_subjectsList[0].abbreviation}");
+                      if (_searchResult.length > 0) {
+                        _searchResult.clear();
+                        _subjectsList.forEach((userDetail) {
+                          if (userDetail.name
+                                  .toLowerCase()
+                                  .contains(textSearch.toLowerCase()) ||
+                              userDetail.abbreviation
+                                  .toLowerCase()
+                                  .contains(textSearch.toLowerCase())) {
+                            _searchResult.add(userDetail);
+                          }
+                        });
+                      }
+
+                      return _buildListSubjects(_subjectsList);
+                    } else if (state is SubjectsError) {
+                      return Text(state.message.toString());
+                    }
+                    return Container();
+                  }),
+                )
+              ],
+            ),
           ),
         ));
   }
@@ -212,7 +226,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     color: mainAppColor,
                   )
                 : ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
                     itemCount: _searchResult.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SubjectsItem(
@@ -239,65 +252,49 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
     }
-
-    _initialRun = true;
   }
 
   Future sleep1() {
     return new Future.delayed(const Duration(seconds: 10), () => "1");
   }
 
-  Widget _buildSaveBtn(context) {
-    return BlocBuilder<SubjectsBloc, SubjectsState>(
-      builder: (context, state) {
-        SubjectsBloc bloc = BlocProvider.of<SubjectsBloc>(context);
+  Widget _buildSaveBtn(BuildContext context) {
+    return Container(
+      height: 30,
+      width: 75,
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        onPressed: () async {
+          print("in");
 
-        return Container(
-          height: 30,
-          width: 75,
-          child: RaisedButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            onPressed: () async {
-              print("in");
+          if (_formKey.currentState.validate()) {
+            print("injjjjjjjjjj");
+            valueu = 0;
 
-              if (_formKey.currentState.validate()) {
-                print("injjjjjjjjjj");
-                valueu = 0;
+            context.read<SubjectsBloc>().add(AddOrEditSubjects(
+                _authProvider.currentUser.accessToken,
+                0,
+                _authProvider.ownSchool.id,
+                _materialName,
+                _abberviation, []));
 
-                bloc.add(AddOrEditSubjects(
-                    _authProvider.currentUser.accessToken,
-                    0,
-                    _authProvider.ownSchool.id,
-                    _materialName,
-                    _abberviation, []));
-
-                Navigator.of(context).pop();
-              }
-            },
-            color: floatbottom,
-            child: Text(
-              'Save',
-              style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontFamily: 'IBMPlexSans',
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        );
-      },
+            Navigator.of(context).pop();
+          }
+        },
+        color: floatbottom,
+        child: Text(
+          'Save',
+          style: TextStyle(
+              fontSize: 12,
+              color: Colors.white,
+              fontFamily: 'IBMPlexSans',
+              fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 
-  int _selectedIndex = 0;
-  void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  _settingModalBottomSheet(context) {
+  _settingModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
@@ -338,7 +335,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                         decoration: InputDecoration(
                           errorMaxLines: 2,
                           errorStyle: TextStyle(fontSize: 9),
-                          hintText: "Abberviation",
+                          hintText: "Abbreviation",
                           hintStyle: TextStyle(fontSize: 12),
                         ),
                       ),
@@ -382,10 +379,12 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   Widget build(BuildContext context) {
     _authProvider = Provider.of<AuthProvider>(context);
 
+    print("textSearch= ${textSearch}");
+    print("${_searchResult.length}");
+
     print("vlaue first $valueu");
     final appBar = AppBar(
       centerTitle: true,
-
       backgroundColor: mainAppColor,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -399,26 +398,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
             color: Colors.white,
           )),
       title: Text("Subjects", style: Theme.of(context).textTheme.headline1),
-      // actions: <Widget>[
-      //   GestureDetector(
-      //     onTap: () => Navigator.pop(context),
-      //     child: Stack(
-      //       children: <Widget>[
-      //         Column(children: <Widget>[
-      //           Container(
-      //             margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-      //             height: 30,
-      //             width: 30,
-      //             child: Icon(
-      //               Icons.arrow_forward_ios,
-      //               color: Colors.white,
-      //             ),
-      //           ),
-      //         ])
-      //       ],
-      //     ),
-      //   )
-      // ],
     );
 
     return NetworkIndicator(
@@ -437,16 +416,18 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         height: 60.0,
         width: 60.0,
         padding: EdgeInsets.all(5),
-        child: FloatingActionButton(
-          backgroundColor: floatbottom,
-          onPressed: () {
-            print("vlaue open bottom $valueu");
+        child: Commons.isKeyboardHidden(context)
+            ? FloatingActionButton(
+                backgroundColor: floatbottom,
+                onPressed: () {
+                  print("vlaue open bottom $valueu");
 
-            _settingModalBottomSheet(context);
-          },
-          tooltip: 'Increment Counter',
-          child: const Icon(Icons.add),
-        ),
+                  _settingModalBottomSheet(context);
+                },
+                tooltip: 'Increment Counter',
+                child: const Icon(Icons.add),
+              )
+            : Container(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: _buildBodyItem(),

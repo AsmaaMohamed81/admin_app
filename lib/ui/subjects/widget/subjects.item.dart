@@ -217,18 +217,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
     );
   }
 
-  _result(Map<String, dynamic> results) {
-    Commons.showToast(
-      context: context,
-      message: results["message"],
-    );
 
-    FocusScopeNode currentFocus = FocusScope.of(context);
-
-    if (!currentFocus.hasPrimaryFocus) {
-      currentFocus.unfocus();
-    }
-  }
 
   Widget _buildCheckEditIcon() {
     return Container(

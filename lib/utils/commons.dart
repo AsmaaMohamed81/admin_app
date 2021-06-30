@@ -48,6 +48,8 @@ class Commons {
                   child: Text("Ok"),
                   textColor: Colors.black,
                   onPressed: () {
+                    Navigator.of(context).pop();
+
                     gg();
                   },
                 ),
@@ -120,4 +122,11 @@ class Commons {
       gravity: Toast.BOTTOM,
     );
   }
+
+  static  bool isKeyboardHidden(BuildContext context){
+    return MediaQuery.of(context).viewInsets.bottom == 0;
+  }
 }
+
+
+

@@ -54,13 +54,13 @@ final GlobalKey<ScaffoldState> _scaffoldKey =
               if (state.results['status'] == "Success") {
                 _result(state.results);
               } else {
-                Commons.showError(context, state.results["message"],null);
+                Commons.showError(context, state.results["message"],(){});
               }
             } else if (state is LevelsDeleted) {
               if (state.message['status'] == "Success") {
                 _result(state.message);
               } else {
-                Commons.showError(context, state.message["message"],null);
+                Commons.showError(context, state.message["message"],(){});
               }
             }
           },

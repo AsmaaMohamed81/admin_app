@@ -105,47 +105,36 @@ class _LevelsItemState extends State<LevelsItem> with ValidationMixin {
   }
 
   Widget _buildDeleteIcon() {
-    return BlocListener<LevelsBloc, LevelsState>(
-      listener: (context, state) {
-        if (state is LevelsDeleted) {
-          if (state.message['status'] == "Success") {
-            _result(state.message);
-          } else {
-            Commons.showError(context, state.message["message"],null);
-          }
-        }
+    return BlocBuilder<LevelsBloc, LevelsState>(
+      builder: (context, state) {
+        LevelsBloc bloc = BlocProvider.of<LevelsBloc>(context);
+
+        return IconSlideAction(
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () async {
+            showDialog(
+                barrierDismissible: true,
+                context: context,
+                builder: (_) {
+                  return LogoutDialog(
+                    button1: "Yes",
+                    button2: "NO",
+                    alertMessage:
+                        "Are you sure you want to delete Level \"${widget.levels.name}\" , Do you want to continue?",
+                    onPressedConfirm: () {
+                      bloc.add(DeletLevels(
+                          _authProvider.currentUser.accessToken,
+                          widget.levels.id,
+                          _authProvider.ownSchool.id));
+                    },
+                  );
+                });
+
+            print(" ${Urls.Delete_Level}?Id=${widget.levels.id}");
+          },
+        );
       },
-      child: BlocBuilder<LevelsBloc, LevelsState>(
-        builder: (context, state) {
-          LevelsBloc bloc = BlocProvider.of<LevelsBloc>(context);
-
-          return IconSlideAction(
-            color: Colors.red,
-            icon: Icons.delete,
-            onTap: () async {
-              showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) {
-                    return LogoutDialog(
-                      button1: "Yes",
-                      button2: "NO",
-                      alertMessage:
-                          "Are you sure you want to delete Level \"${widget.levels.name}\" , Do you want to continue?",
-                      onPressedConfirm: () {
-                        bloc.add(DeletLevels(
-                            _authProvider.currentUser.accessToken,
-                            widget.levels.id,
-                            _authProvider.ownSchool.id));
-                      },
-                    );
-                  });
-
-              print(" ${Urls.Delete_Level}?Id=${widget.levels.id}");
-            },
-          );
-        },
-      ),
     );
   }
 

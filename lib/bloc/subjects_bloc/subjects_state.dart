@@ -30,6 +30,12 @@ class SubjectsAddOrEdite extends SubjectsState {
   SubjectsAddOrEdite(this.results);
 }
 
+class SubjectsAddOrEditeDelete extends SubjectsState {
+  final Map<String, dynamic> results;
+
+  SubjectsAddOrEditeDelete(this.results);
+}
+
 class SubjectsError extends SubjectsState {
   final String message;
 

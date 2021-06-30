@@ -118,7 +118,7 @@
   "subject_name_validation_lenght":"Sorry , Subject must be between 2 and 30 characters long",
  
   "abberviation_name_validation": "Please Enter abbreviation Name",
-  "abberviation_name_validation_lenght":"Sorry , abbreviation must be between 2 and 6 characters long",
+  "abberviation_name_validation_lenght":"Sorry ,the abbreviation must be between 2 and 6 characters long",
 
   "class_name_validation_lenght":"Sorry , Class name must be between 2 and 30 characters long",
   "text":"text",

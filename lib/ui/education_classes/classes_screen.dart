@@ -189,6 +189,8 @@ class _ClassesScreenState extends State<ClassesScreen> {
                                   setState(() {});
                                 }
                               },
+                             
+                             
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 12,

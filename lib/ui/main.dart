@@ -82,12 +82,7 @@ class _MyAppState extends State<MyApp> {
             ),
             child: Container(),
           ),
-          BlocProvider<SubjectsBloc>(
-            create: (context) => SubjectsBloc(
-              SubjectsRepositoryImp(),
-            ),
-            child: Container(),
-          ),
+         
           ChangeNotifierProvider(
             create: (_) => AuthProvider(),
           ),

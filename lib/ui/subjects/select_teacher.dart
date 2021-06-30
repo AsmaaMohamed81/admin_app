@@ -9,6 +9,7 @@ import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
 import 'package:admin_app/ui/subjects/widget/selecte_teacher_item.dart';
 import 'package:admin_app/utils/app_colors.dart';
+import 'package:admin_app/utils/commons.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,49 +24,6 @@ class _SelectTeacherState extends State<SelectTeacher> {
   List<Teachers> _teachersList;
   AuthProvider _authProvider;
   ArgumentsTeacherSubjects args;
-
-  Widget _buildSaveBtn(context) {
-    return BlocBuilder<SubjectsBloc, SubjectsState>(
-      builder: (context, state) {
-        SubjectsBloc bloc = BlocProvider.of<SubjectsBloc>(context);
-
-        return Container(
-          height: 30,
-          width: 75,
-          child: RaisedButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            onPressed: () async {
-              print("in");
-
-              // if (_formKey.currentState.validate()) {
-              print("injjjjjjjjjj");
-
-              bloc.add(AddOrEditSubjects(
-                  _authProvider.currentUser.accessToken,
-                  args.subjects.id,
-                  _authProvider.ownSchool.id,
-                  args.subjects.name,
-                  args.subjects.abbreviation,
-                  SelecteTeacherItem.materialListId));
-
-              Navigator.of(context).pop();
-              // }
-            },
-            color: floatbottom,
-            child: Text(
-              'Save',
-              style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontFamily: 'IBMPlexSans',
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,23 +99,29 @@ class _SelectTeacherState extends State<SelectTeacher> {
                               "ggdgd lenghts= ${SelecteTeacherItem.materialListId} id = ${args.subjects.id} ${args.subjects.abbreviation}${args.subjects.name}");
                           print("in");
 
-                          // if (_formKey.currentState.validate()) {
-                          print("injjjjjjjjjj");
-                          for (int i = 0;
-                              i < args.subjects.teacherToSubjects.length;
-                              i++) {
-                            SelecteTeacherItem.materialListId.add(
-                                args.subjects.teacherToSubjects[i].teacherId);
+                          if (SelecteTeacherItem.materialListId.length == 0) {
+                            Commons.showToast(
+                                context: context,
+                                message: "there are no changes to be saved ",
+                                duration: 3);
+                          } else {
+                            print("injjjjjjjjjj");
+                            for (int i = 0;
+                                i < args.subjects.teacherToSubjects.length;
+                                i++) {
+                              SelecteTeacherItem.materialListId.add(
+                                  args.subjects.teacherToSubjects[i].teacherId);
+                            }
+                            context.read<SubjectsBloc>().add(AddOrEditSubjects(
+                                _authProvider.currentUser.accessToken,
+                                args.subjects.id,
+                                _authProvider.ownSchool.id,
+                                args.subjects.name,
+                                args.subjects.abbreviation,
+                                SelecteTeacherItem.materialListId));
+                            SelecteTeacherItem.materialListId = [];
+                            Navigator.pushNamed(context, '/subjects_screen');
                           }
-                          context.read<SubjectsBloc>().add(AddOrEditSubjects(
-                              _authProvider.currentUser.accessToken,
-                              args.subjects.id,
-                              _authProvider.ownSchool.id,
-                              args.subjects.name,
-                              args.subjects.abbreviation,
-                              SelecteTeacherItem.materialListId));
-                          SelecteTeacherItem.materialListId = [];
-                          Navigator.of(context).pushNamed('/subjects_screen');
                         },
                         child: CustomText(
                           text: "Add Teacher",

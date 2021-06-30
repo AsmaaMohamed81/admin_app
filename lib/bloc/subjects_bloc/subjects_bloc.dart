@@ -55,7 +55,7 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
       } catch (e) {
         yield SubjectsError(e.toString());
       }
-    } else if (event is AddOrEditSubjects) {
+    } else if (event is AddOrEditSubjectsDelete) {
       yield SubjectsLoading();
       try {
         final result = await repository.addEditeSubjectsDelete(
@@ -65,7 +65,7 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
             event.schoolId,
             event.abberviation,
             event.teachers);
-        yield SubjectsAddOrEdite(result);
+        yield SubjectsAddOrEditeDelete(result);
 
         final subjects = await repository.getAllSubjects(event.schoolId);
         yield SubjectsLoaded(subjects);
