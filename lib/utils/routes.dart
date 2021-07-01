@@ -33,10 +33,7 @@ final routes = {
   '/new_class': (context) => NewClass(),
   '/new_subject': (context) => NewSubject(),
   '/add_taecher': (context) => AddTeacher(),
-  '/select_teacher': (context) => BlocProvider(
-        create: (context) => SubjectsBloc(SubjectsRepositoryImp()),
-        child: SelectTeacher(),
-      ),
+  '/select_teacher': (context) => SelectTeacher(),
   '/list_teacher_screen': (context) => BlocProvider(
         create: (context) => SubjectsBloc(SubjectsRepositoryImp()),
         child: ListTeacherScreen(),

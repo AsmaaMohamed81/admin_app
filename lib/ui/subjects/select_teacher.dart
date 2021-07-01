@@ -121,6 +121,10 @@ class _SelectTeacherState extends State<SelectTeacher> {
                                 SelecteTeacherItem.materialListId));
                             SelecteTeacherItem.materialListId = [];
                             Navigator.pushNamed(context, '/subjects_screen');
+
+        //                        Commons.showToast(
+        // context: context, message: "The teacher has been saved successfully", duration: 3);
+
                           }
                         },
                         child: CustomText(
