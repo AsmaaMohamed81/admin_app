@@ -73,6 +73,43 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
         yield SubjectsError(e.toString());
       }
     }
+
+    else if (event is AddOrEditSubjectsEdite) {
+      yield SubjectsLoading();
+      try {
+        final result = await repository.addEditeSubjectsDelete(
+            event.access,
+            event.materialName,
+            event.id,
+            event.schoolId,
+            event.abberviation,
+            event.teachers);
+        yield SubjectsAddOrEditeEdite(result);
+
+        final subjects = await repository.getAllSubjects(event.schoolId);
+        yield SubjectsLoaded(subjects);
+      } catch (e) {
+        yield SubjectsError(e.toString());
+      }
+    }
+    else if (event is AddOrEditSubjectsSelect) {
+      yield SubjectsLoading();
+      try {
+        final result = await repository.addEditeSubjectsDelete(
+            event.access,
+            event.materialName,
+            event.id,
+            event.schoolId,
+            event.abberviation,
+            event.teachers);
+        yield SubjectsAddOrEditeSelecte(result);
+
+        final subjects = await repository.getAllSubjects(event.schoolId);
+        yield SubjectsLoaded(subjects);
+      } catch (e) {
+        yield SubjectsError(e.toString());
+      }
+    }
   }
 }
 

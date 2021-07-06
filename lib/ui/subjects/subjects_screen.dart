@@ -54,13 +54,15 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
   }
 
   Widget _buildBodyItem() {
+    var d = context.read<SubjectsBloc>().state;
+    print("stattedsjdjsdhjhghjghje====${d}");
     return RefreshIndicator(
         onRefresh: () async {
           // return await setState(() {});
         },
         child: BlocListener<SubjectsBloc, SubjectsState>(
           listener: (context, state) {
-            print("vlaue error $valueu");
+            print("sttae==== ${state}");
 
             if (state is SubjectsAddOrEdite) {
               if (state.results['status'] == "Success") {
@@ -75,6 +77,19 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     valueu = null;
                   }
                 });
+              }
+            } else if (state is SubjectsAddOrEditeEdite) {
+              if (state.results['status'] == "Success") {
+                Navigator.of(context).pop();
+              } else {
+                Commons.showError(context, state.results["message"], () {});
+              }
+            } else if (state is SubjectsAddOrEditeSelecte) {
+              if (state.results['status'] == "Success") {
+                Commons.showToast(
+                    context: context,
+                    message: "The teacher has been saved successfully",
+                    duration: 3);
               }
             } else if (state is SubjectsDeleted) {
               if (state.message['status'] == "Success") {
@@ -230,6 +245,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                     itemBuilder: (BuildContext context, int index) {
                       return SubjectsItem(
                         subjects: _searchResult[index],
+                        listobject: _subjectsList,
                       );
                     })
             : ListView.builder(
@@ -237,6 +253,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
                 itemBuilder: (BuildContext context, int index) {
                   return SubjectsItem(
                     subjects: _subjectsList[index],
+                    listobject: _subjectsList,
                   );
                 })
         : NoData(message: 'No Subject');
@@ -383,6 +400,9 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
     print("${_searchResult.length}");
 
     print("vlaue first $valueu");
+
+    var d = context.read<SubjectsBloc>().state;
+    print("stattedsjdjsdhjhghjghje====${d}");
     final appBar = AppBar(
       centerTitle: true,
       backgroundColor: mainAppColor,

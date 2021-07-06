@@ -88,7 +88,7 @@ class AddTeacher extends StatelessWidget {
                     size: 40,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, '/select_teacher',
+                    Navigator.pushReplacementNamed(context, '/select_teacher',
                         arguments: ArgumentsTeacherSubjects(
                             args.subjects.teacherToSubjects,
                             null,

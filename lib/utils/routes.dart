@@ -20,10 +20,7 @@ final routes = {
   '/': (context) => SplashScreen(),
   '/level_screen': (context) => LevelsScreen(),
   '/home_screen': (context) => HomeScreen(),
-  '/subjects_screen': (context) => BlocProvider(
-        create: (context) => SubjectsBloc(SubjectsRepositoryImp()),
-        child: SubjectsScreen(),
-      ),
+  '/subjects_screen': (context) => SubjectsScreen(),
 
   '/login_screen': (context) => LoginScreen(),
   '/intro_screen': (context) => IntroScreen(),
@@ -34,10 +31,7 @@ final routes = {
   '/new_subject': (context) => NewSubject(),
   '/add_taecher': (context) => AddTeacher(),
   '/select_teacher': (context) => SelectTeacher(),
-  '/list_teacher_screen': (context) => BlocProvider(
-        create: (context) => SubjectsBloc(SubjectsRepositoryImp()),
-        child: ListTeacherScreen(),
-      )
+  '/list_teacher_screen': (context) => ListTeacherScreen()
 
 //   '/notifications_screen': (context) => NotificationsScreen(),
 //   '/account_screen': (context) => AccountScreen(),

@@ -112,7 +112,7 @@ class _SelectTeacherState extends State<SelectTeacher> {
                               SelecteTeacherItem.materialListId.add(
                                   args.subjects.teacherToSubjects[i].teacherId);
                             }
-                            context.read<SubjectsBloc>().add(AddOrEditSubjects(
+                            context.read<SubjectsBloc>().add(AddOrEditSubjectsSelect(
                                 _authProvider.currentUser.accessToken,
                                 args.subjects.id,
                                 _authProvider.ownSchool.id,
@@ -120,10 +120,8 @@ class _SelectTeacherState extends State<SelectTeacher> {
                                 args.subjects.abbreviation,
                                 SelecteTeacherItem.materialListId));
                             SelecteTeacherItem.materialListId = [];
-                            Navigator.pushNamed(context, '/subjects_screen');
-
-        //                        Commons.showToast(
-        // context: context, message: "The teacher has been saved successfully", duration: 3);
+                            Navigator.pushReplacementNamed(
+                                context, '/subjects_screen');
 
                           }
                         },

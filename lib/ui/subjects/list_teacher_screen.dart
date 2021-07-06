@@ -20,6 +20,7 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context).settings.arguments;
@@ -85,7 +86,7 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
                   args.teacherToSubjects.removeAt(index);
 
                   if (args.teacherToSubjects.length == 0) {
-                    Navigator.pushNamed(
+                    Navigator.pushReplacementNamed(
                       context,
                       '/add_taecher',
                       arguments: ArgumentsTeacher(args.subjects, null),
@@ -107,7 +108,7 @@ class _ListTeacherScreenState extends State<ListTeacherScreen> {
         padding: EdgeInsets.all(5),
         child: FloatingActionButton(
           backgroundColor: floatbottom,
-          onPressed: () => Navigator.pushNamed(context, '/select_teacher',
+          onPressed: () => Navigator.pushReplacementNamed(context, '/select_teacher',
               arguments: ArgumentsTeacherSubjects(
                   args.subjects.teacherToSubjects, null, args.subjects)),
           tooltip: 'Increment Counter',

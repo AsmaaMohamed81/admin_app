@@ -5,6 +5,7 @@ import 'package:admin_app/data/model/subjects.dart';
 import 'package:admin_app/provider/auth_provider.dart';
 import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
 import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
+import 'package:admin_app/ui/subjects/widget/adding_new_class_dialog.dart';
 import 'package:admin_app/utils/commons.dart';
 import 'package:admin_app/utils/hex_color.dart';
 import 'package:admin_app/utils/urls.dart';
@@ -15,8 +16,10 @@ import 'package:provider/provider.dart';
 
 class SubjectsItem extends StatefulWidget {
   final Subjects subjects;
+  final List<Subjects> listobject;
 
-  const SubjectsItem({Key key, this.subjects}) : super(key: key);
+  const SubjectsItem({Key key, this.subjects, this.listobject})
+      : super(key: key);
 
   @override
   _SubjectsItemState createState() => _SubjectsItemState();
@@ -35,6 +38,18 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
 
   @override
   Widget build(BuildContext context) {
+    // final stateA = context.read<SubjectsBloc>().state;
+    // if (stateA is SubjectsAddOrEdite) {
+    //   print("esgjdgsgdjkjwkjklsd");
+    //   Navigator.of(context).pop();
+
+    //   if (stateA.results['status'] == "Success") {
+    //     Navigator.of(context).pop();
+    //   }
+    // }
+
+    var d = context.read<SubjectsBloc>().state;
+    print("stattedsjdjsde====${d}");
     _authProvider = Provider.of<AuthProvider>(context);
     return Column(
       children: [
@@ -163,9 +178,16 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
       color: Colors.green,
       icon: Icons.edit,
       onTap: () {
-        setState(() {
-          isEdit = false;
-        });
+        showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (_) {
+              return AddingNewClassDialog(
+                subjectsList: widget.listobject,
+                subjects: widget.subjects,
+                value: 0,
+              );
+            });
       },
     );
   }
@@ -177,12 +199,12 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
       foregroundColor: Colors.white,
       onTap: () {
         widget.subjects.teacherToSubjects.length == 0
-            ? Navigator.pushNamed(
+            ? Navigator.pushReplacementNamed(
                 context,
                 '/add_taecher',
                 arguments: ArgumentsTeacher(widget.subjects, null),
               )
-            : Navigator.pushNamed(context, '/list_teacher_screen',
+            : Navigator.pushReplacementNamed(context, '/list_teacher_screen',
                 arguments: ArgumentsTeacherSubjects(
                     widget.subjects.teacherToSubjects, null, widget.subjects));
       },
@@ -216,8 +238,6 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
       },
     );
   }
-
-
 
   Widget _buildCheckEditIcon() {
     return Container(

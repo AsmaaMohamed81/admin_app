@@ -32,6 +32,28 @@ class AddOrEditSubjects extends SubjectsEvent {
   AddOrEditSubjects(this.access, this.id, this.schoolId, this.materialName,
       this.abberviation, this.teachers);
 }
+class AddOrEditSubjectsEdite extends SubjectsEvent {
+  final String access;
+  final int id;
+  final int schoolId;
+  final String materialName;
+  final String abberviation;
+  final List<int> teachers;
+
+  AddOrEditSubjectsEdite(this.access, this.id, this.schoolId, this.materialName,
+      this.abberviation, this.teachers);
+}
+class AddOrEditSubjectsSelect extends SubjectsEvent {
+  final String access;
+  final int id;
+  final int schoolId;
+  final String materialName;
+  final String abberviation;
+  final List<int> teachers;
+
+  AddOrEditSubjectsSelect(this.access, this.id, this.schoolId, this.materialName,
+      this.abberviation, this.teachers);
+}
 
 class AddOrEditSubjectsDelete extends SubjectsEvent {
   final String access;
