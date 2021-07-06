@@ -204,7 +204,7 @@ class _SubjectsItemState extends State<SubjectsItem> with ValidationMixin {
                 '/add_taecher',
                 arguments: ArgumentsTeacher(widget.subjects, null),
               )
-            : Navigator.pushReplacementNamed(context, '/list_teacher_screen',
+            : Navigator.pushNamed(context, '/list_teacher_screen',
                 arguments: ArgumentsTeacherSubjects(
                     widget.subjects.teacherToSubjects, null, widget.subjects));
       },

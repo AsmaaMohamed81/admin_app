@@ -72,9 +72,7 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
       } catch (e) {
         yield SubjectsError(e.toString());
       }
-    }
-
-    else if (event is AddOrEditSubjectsEdite) {
+    } else if (event is AddOrEditSubjectsEdite) {
       yield SubjectsLoading();
       try {
         final result = await repository.addEditeSubjectsDelete(
@@ -91,8 +89,7 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
       } catch (e) {
         yield SubjectsError(e.toString());
       }
-    }
-    else if (event is AddOrEditSubjectsSelect) {
+    } else if (event is AddOrEditSubjectsSelect) {
       yield SubjectsLoading();
       try {
         final result = await repository.addEditeSubjectsDelete(
@@ -104,8 +101,8 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
             event.teachers);
         yield SubjectsAddOrEditeSelecte(result);
 
-        final subjects = await repository.getAllSubjects(event.schoolId);
-        yield SubjectsLoaded(subjects);
+        // final subjects = await repository.getAllSubjects(event.schoolId);
+        // yield SubjectsLoaded(subjects);
       } catch (e) {
         yield SubjectsError(e.toString());
       }

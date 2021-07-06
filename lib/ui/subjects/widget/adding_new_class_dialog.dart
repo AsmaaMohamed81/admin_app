@@ -50,6 +50,17 @@ class _AddingNewClassDialogState extends State<AddingNewClassDialog>
   bool ismatch = false;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.subjects.teacherToSubjects.length > 0) {
+      for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
+        id.add(widget.subjects.teacherToSubjects[i].teacherId);
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     _authProvider = Provider.of<AuthProvider>(context);
 
@@ -142,11 +153,6 @@ class _AddingNewClassDialogState extends State<AddingNewClassDialog>
   }
 
   Widget _buildSaveBtn(BuildContext context) {
-    if (widget.subjects.teacherToSubjects.length > 0) {
-      for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
-        id.add(widget.subjects.teacherToSubjects[i].teacherId);
-      }
-    }
     return Container(
       height: 30,
       width: 75,
@@ -168,6 +174,7 @@ class _AddingNewClassDialogState extends State<AddingNewClassDialog>
             //     ismatch = true;
             //   }
             // });
+            CircularProgressIndicator();
 
             if (_materialName == null) {
               _materialName = widget.subjects.name;
