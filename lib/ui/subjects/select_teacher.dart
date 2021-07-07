@@ -112,17 +112,17 @@ class _SelectTeacherState extends State<SelectTeacher> {
                               SelecteTeacherItem.materialListId.add(
                                   args.subjects.teacherToSubjects[i].teacherId);
                             }
-                            context.read<SubjectsBloc>().add(AddOrEditSubjectsSelect(
-                                _authProvider.currentUser.accessToken,
-                                args.subjects.id,
-                                _authProvider.ownSchool.id,
-                                args.subjects.name,
-                                args.subjects.abbreviation,
-                                SelecteTeacherItem.materialListId));
+                            context.read<SubjectsBloc>().add(
+                                AddOrEditSubjectsSelect(
+                                    _authProvider.currentUser.accessToken,
+                                    args.subjects.id,
+                                    _authProvider.ownSchool.id,
+                                    args.subjects.name,
+                                    args.subjects.abbreviation,
+                                    SelecteTeacherItem.materialListId));
                             SelecteTeacherItem.materialListId = [];
                             Navigator.pushReplacementNamed(
                                 context, '/subjects_screen');
-
                           }
                         },
                         child: CustomText(
@@ -137,34 +137,48 @@ class _SelectTeacherState extends State<SelectTeacher> {
                 return Center(child: CircularProgressIndicator());
               } else if (state is TeachersLoaded) {
                 _teachersList = state.teachers;
-                print(_teachersList.length.toString());
+                print("lenthhhhhhhhh${_teachersList.length.toString()}");
+                if (_teachersList.length > 0) {
+                  for (int i = 0;
+                      i < args.subjects.teacherToSubjects.length;
+                      i++) {
+                    print("iiiiii ${i.toString()}");
+                    _teachersList.removeWhere((item) =>
+                        item.id ==
+                        args.subjects.teacherToSubjects[i].teacherId);
+                  }
 
-                for (int i = 0;
-                    i < args.subjects.teacherToSubjects.length;
-                    i++) {
-                  print("iiiiii ${i.toString()}");
-                  _teachersList.removeWhere((item) =>
-                      item.id == args.subjects.teacherToSubjects[i].teacherId);
+                  print(args.subjects.teacherToSubjects.length);
+
+                  return _teachersList.length > 0
+                      ? ListView.builder(
+                          itemCount: _teachersList.length,
+                          itemBuilder: (context, index) {
+                            return SelecteTeacherItem(
+                              subjects: args.subjects,
+                              teacher: _teachersList[index],
+                              indexi: index,
+                            );
+                          },
+                        )
+                      : Center(
+                          child: Text(
+                          "All teachers have been added",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: HexColor('B9C3D5'),
+                          ),
+                        ));
+                } else {
+                  return Center(
+                      child: Text(
+                    "There are no teachers to display",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: HexColor('B9C3D5'),
+                    ),
+                  ));
                 }
-                return _teachersList.length > 0
-                    ? ListView.builder(
-                        itemCount: _teachersList.length,
-                        itemBuilder: (context, index) {
-                          return SelecteTeacherItem(
-                            subjects: args.subjects,
-                            teacher: _teachersList[index],
-                            indexi: index,
-                          );
-                        },
-                      )
-                    : Center(
-                        child: Text(
-                        "There are no teachers yet",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: HexColor('B9C3D5'),
-                        ),
-                      ));
               } else if (state is TeachersError) {
                 return Text(state.message.toString());
               }

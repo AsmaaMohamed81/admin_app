@@ -81,6 +81,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
             } else if (state is SubjectsAddOrEditeEdite) {
               if (state.results['status'] == "Success") {
                 Navigator.of(context).pop();
+                _result(state.results);
               } else {
                 Commons.showError(context, state.results["message"], () {});
               }
