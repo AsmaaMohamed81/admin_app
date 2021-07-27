@@ -84,13 +84,51 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
     }
     return null;
   }
-    String validateAbberviation(String abberviation) {
+
+  String validateAbberviation(String abberviation) {
     if (abberviation.trim().length == 0) {
-      return AppLocalizations.of(context).translate('abberviation_name_validation');
+      return AppLocalizations.of(context)
+          .translate('abberviation_name_validation');
     } else {
       if (!isLength(abberviation, 2, 6)) {
         return AppLocalizations.of(context)
             .translate('abberviation_name_validation_lenght');
+      }
+    }
+    return null;
+  }
+
+  String validateAcademic(String academic) {
+    if (academic.trim().length == 0) {
+      return AppLocalizations.of(context).translate('academic_name_validation');
+    } else {
+      if (!isLength(academic, 4, 15)) {
+        return AppLocalizations.of(context)
+            .translate('academic_name_validation_lenght');
+      }
+    }
+    return null;
+  }
+
+  String validateSemester(String semester) {
+    if (semester.trim().length == 0) {
+      return null;
+    } else {
+      if (!isLength(semester, 3, 15)) {
+        return AppLocalizations.of(context)
+            .translate('semester_name_validation_lenght');
+      }
+    }
+    return null;
+  }
+
+  String validateSemesteredit(String semester) {
+    if (semester.trim().length == 0) {
+      return AppLocalizations.of(context).translate('semester_name_validation');
+    } else {
+      if (!isLength(semester, 3, 15)) {
+        return AppLocalizations.of(context)
+            .translate('semester_name_validation_lenght');
       }
     }
     return null;

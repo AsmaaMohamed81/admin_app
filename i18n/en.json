@@ -247,6 +247,13 @@
   "last_name_validation":"Sorry,last name must start by alphabetical character (a-z)",
   "last_name_validation_lenght": "Sorry,your last name must be between 2 and 30 characters long",
 
+
+  "academic_name_validation":"Please enter Academic Year",
+  "academic_name_validation_lenght":"Sorry academic year name must be between 4 and 15 characters long.",
+  "semester_name_validation":"Please enter Semester",
+
+  "semester_name_validation_lenght":"Sorry, semester name must be between 3 and 15 characters long.",
+
   "identity_type_validation": "Please Enter Identity Type",
   "number_id_validation": "Please Enter Number Id",
   "nationality_validation": "Please Enter Nationality",

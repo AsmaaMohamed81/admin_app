@@ -23,14 +23,27 @@ class DeletAcademic extends AcademicEvent {
 
 class AddOrEditAcademic extends AcademicEvent {
   final String access;
-  final int id;
-  final int schoolId;
-  final String materialName;
-  final String abberviation;
-  final List<int> teachers;
 
-  AddOrEditAcademic(this.access, this.id, this.schoolId, this.materialName,
-      this.abberviation, this.teachers);
+  final int id;
+  final String name;
+  final bool isCurrentYear;
+
+  final int schoolId;
+
+  final List<int> semestersId;
+  final List<String> semestersName;
+  final List<bool> isCurrentSemester;
+
+  AddOrEditAcademic(
+    this.access,
+    this.id,
+    this.name,
+    this.isCurrentYear,
+    this.schoolId,
+    this.semestersId,
+    this.semestersName,
+    this.isCurrentSemester,
+  );
 }
 
 class AddOrEditAcademicEdite extends AcademicEvent {

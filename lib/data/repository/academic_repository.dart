@@ -8,8 +8,16 @@ abstract class AcademicRepository {
   Future<List<Academic>> editAcademic();
   Future<Map<String, dynamic>> deleteAcademic(
       String accessToken, int idAcademic);
-  Future<Map<String, dynamic>> addEditeAcademic(String accessToken, String name,
-      int idAcademic, int choolId, String abbreviation, List<int> teachers);
+  Future<Map<String, dynamic>> addEditeAcademic(
+      String accessToken,
+      int id,
+      String name,
+      bool isCurrentYear,
+      int schoolId,
+      List<int> semestersId,
+      List<String> semestersName,
+      List<bool> isCurrentSemester);
+
   Future<Map<String, dynamic>> addEditeAcademicDelete(
       String accessToken,
       String name,
@@ -27,7 +35,7 @@ class AcademicRepositoryImp extends AcademicRepository {
     List<Academic> AcademicList;
     final response = await _apiProvider
         .get(Urls.Get_All_AcademicYears + "?SchoolId=$schoolId");
-    // print(response);
+    print(response);
     Iterable iterable = response['data'];
     AcademicList = iterable.map((model) => Academic.fromJson(model)).toList();
     return AcademicList;
@@ -42,7 +50,7 @@ class AcademicRepositoryImp extends AcademicRepository {
       "Authorization": "Bearer ${accessToken}"
     };
     Map<String, dynamic> results = await _apiProvider
-        .get(Urls.Delete_Subject + "?Id=${idAcademic}", header: headers);
+        .get(Urls.Delete_Academic_Years + "?Id=${idAcademic}", header: headers);
 
     return results;
   }
@@ -53,25 +61,30 @@ class AcademicRepositoryImp extends AcademicRepository {
   @override
   Future<Map<String, dynamic>> addEditeAcademic(
       String accessToken,
-      String materialname,
-      int idAcademic,
+      int id,
+      String name,
+      bool isCurrentYear,
       int schoolId,
-      String abbreviation,
-      List<int> teachers) async {
+      List<int> semestersId,
+      List<String> semestersName,
+      List<bool> isCurrentSemester) async {
     Map<String, String> headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       "Authorization": "Bearer ${accessToken}"
     };
-    Map<String, dynamic> results = await _apiProvider.post(Urls.Add_Subject,
-        body: {
-          "id": idAcademic,
-          "name": materialname,
-          "schoolId": schoolId,
-          "abbreviation": abbreviation,
-          "teachers": teachers
-        },
-        header: headers);
+    Map<String, dynamic> results =
+        await _apiProvider.post(Urls.Save_Academic_Years,
+            body: {
+              "id": id,
+              "name": name,
+              "isCurrentYear": isCurrentYear,
+              "schoolId": schoolId,
+              "semestersId": semestersId,
+              "semestersName": semestersName,
+              "isCurrentSemester": isCurrentSemester
+            },
+            header: headers);
 
     return results;
   }
@@ -89,15 +102,16 @@ class AcademicRepositoryImp extends AcademicRepository {
       'Accept': 'application/json',
       "Authorization": "Bearer ${accessToken}"
     };
-    Map<String, dynamic> results = await _apiProvider.post(Urls.Add_Subject,
-        body: {
-          "id": idAcademic,
-          "name": materialname,
-          "schoolId": schoolId,
-          "abbreviation": abbreviation,
-          "teachers": teachers
-        },
-        header: headers);
+    Map<String, dynamic> results =
+        await _apiProvider.post(Urls.Save_Academic_Years,
+            body: {
+              "id": idAcademic,
+              "name": materialname,
+              "schoolId": schoolId,
+              "abbreviation": abbreviation,
+              "teachers": teachers
+            },
+            header: headers);
 
     return results;
   }

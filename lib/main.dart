@@ -1,7 +1,9 @@
 import 'package:admin_app/bloc/academic_bloc/academic_bloc.dart';
 import 'package:admin_app/bloc/levels_bloc/levels_bloc.dart';
+import 'package:admin_app/bloc/semester_bloc/semester_bloc.dart';
 import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
 import 'package:admin_app/bloc/years_bloc/years_bloc.dart';
+import 'package:admin_app/data/repository/Semester_repository.dart';
 import 'package:admin_app/data/repository/academic_repository.dart';
 import 'package:admin_app/data/repository/level.repository.dart';
 import 'package:admin_app/bloc/classes_bloc/classes_bloc.dart';
@@ -17,9 +19,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import '../locale/app_localizations.dart';
-import '../locale/locale_helper.dart';
-import '../shared_preferences/shared_preferences_helper.dart';
+import 'locale/app_localizations.dart';
+import 'locale/locale_helper.dart';
+import 'shared_preferences/shared_preferences_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -90,6 +92,10 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider(
             create: (context) => AcademicBloc(AcademicRepositoryImp()),
+            child: Container(),
+          ),
+          BlocProvider(
+            create: (context) => SemesterBloc(SemesterRepositoryImp()),
             child: Container(),
           ),
           ChangeNotifierProvider(

@@ -1,7 +1,7 @@
 class Urls {
   static const int ID_SCHOOL = 53;
   static const String BASE_URL =
-      "https://talentnotionapi.azurewebsites.net/api";
+      "https://talentnotionapidev.azurewebsites.net/api";
 
 /////////LOGIN
   static const String LOGIN_URL = BASE_URL + "/Account/Login";
@@ -28,6 +28,10 @@ class Urls {
 ////////AcademicYears
   static const String Get_All_AcademicYears =
       BASE_URL + "/SchoolApi/AcademicYears/GetAcademicYearHasSemesters";
+  static const String Save_Academic_Years =
+      BASE_URL + "/SchoolApi/AcademicYears/SaveAcademicYearHasSemester";
+  static const String Delete_Academic_Years =
+      BASE_URL + "/SchoolApi/AcademicYears/DeleteAcademicYear";
 
   ////////////Classes
   static const String Get_ALL_CLASSES =
@@ -35,6 +39,14 @@ class Urls {
   static const String Add_Class = BASE_URL + "/SchoolApi/Classes/SaveClass";
   static const String Delete_class =
       BASE_URL + "/SchoolApi/Classes/DeleteClass";
+
+  ////////////Semester
+  static const String Get_ALL_Semester =
+      BASE_URL + "/SchoolApi/AcademicYears/GetAcademicYearHasSemestersById";
+  static const String Add_Semester =
+      BASE_URL + "/SchoolApi/Semesters/SaveSemester";
+  static const String Delete_Semester =
+      BASE_URL + "/SchoolApi/Semesters/DeleteSemester";
 
 ////////////////Teacher //////////////
   static const String GET_ALL_TEACHERS =

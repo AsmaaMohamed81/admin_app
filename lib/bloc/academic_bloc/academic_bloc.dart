@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:admin_app/data/model/academic.dart';
 import 'package:admin_app/data/repository/academic_repository.dart';
@@ -43,11 +44,13 @@ class AcademicBloc extends Bloc<AcademicEvent, AcademicState> {
       try {
         final result = await repository.addEditeAcademic(
             event.access,
-            event.materialName,
             event.id,
+            event.name,
+            event.isCurrentYear,
             event.schoolId,
-            event.abberviation,
-            event.teachers);
+            event.semestersId,
+            event.semestersName,
+            event.isCurrentSemester);
         yield AcademicAddOrEdite(result);
 
         final Academic = await repository.getAllAcademic(event.schoolId);

@@ -320,84 +320,88 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         isScrollControlled: true,
         context: context,
         builder: (builder) {
-          return new Container(
-              padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
-              height: 250.0,
-              decoration: new BoxDecoration(
-                  color: HexColor('F2F7F9'),
-                  borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(20.0),
-                      topRight: const Radius.circular(20.0))),
-              child: new Center(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: nameHolder,
-                        onChanged: (value) {
-                          _materialName = value;
-                        },
-                        validator: validateSubjects,
-                        decoration: InputDecoration(
-                          errorMaxLines: 2,
-                          errorStyle: TextStyle(fontSize: 9),
-                          hintText: "Subject Name",
-                          hintStyle: TextStyle(fontSize: 12),
+          return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: new Container(
+                padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
+                height: 250.0,
+                decoration: new BoxDecoration(
+                    color: HexColor('F2F7F9'),
+                    borderRadius: new BorderRadius.only(
+                        topLeft: const Radius.circular(20.0),
+                        topRight: const Radius.circular(20.0))),
+                child: new Center(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: nameHolder,
+                          onChanged: (value) {
+                            _materialName = value;
+                          },
+                          validator: validateSubjects,
+                          decoration: InputDecoration(
+                            errorMaxLines: 2,
+                            errorStyle: TextStyle(fontSize: 9),
+                            hintText: "Subject Name",
+                            hintStyle: TextStyle(fontSize: 12),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: nameHolder2,
-                        onChanged: (value) {
-                          _abberviation = value;
-                        },
-                        validator: validateAbberviation,
-                        decoration: InputDecoration(
-                          errorMaxLines: 2,
-                          errorStyle: TextStyle(fontSize: 9),
-                          hintText: "Abbreviation",
-                          hintStyle: TextStyle(fontSize: 12),
+                        TextFormField(
+                          controller: nameHolder2,
+                          onChanged: (value) {
+                            _abberviation = value;
+                          },
+                          validator: validateAbberviation,
+                          decoration: InputDecoration(
+                            errorMaxLines: 2,
+                            errorStyle: TextStyle(fontSize: 9),
+                            hintText: "Abbreviation",
+                            hintStyle: TextStyle(fontSize: 12),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          _buildSaveBtn(context),
-                          SizedBox(width: 10),
-                          Container(
-                            height: 30,
-                            width: 75,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                clearTextInput();
-                              },
-                              color: bluecancel,
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                    fontFamily: 'IBMPlexSans',
-                                    fontWeight: FontWeight.bold),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            _buildSaveBtn(context),
+                            SizedBox(width: 10),
+                            Container(
+                              height: 30,
+                              width: 75,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  clearTextInput();
+                                },
+                                color: bluecancel,
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                      fontFamily: 'IBMPlexSans',
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ));
+                )),
+          );
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    _appBarCustom = AppBarCustom(title: "Subjects", keyScafold: _scaffoldKey);
+    _appBarCustom = AppBarCustom(
+        title: "Subjects", keyScafold: _scaffoldKey, backarrow: null);
     _authProvider = Provider.of<AuthProvider>(context);
 
     print("textSearch= ${textSearch}");

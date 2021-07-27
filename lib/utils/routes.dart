@@ -1,5 +1,6 @@
 import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
 import 'package:admin_app/data/repository/subjects.repository.dart';
+import 'package:admin_app/ui/acdemic_year/semester_screen.dart';
 import 'package:admin_app/ui/auth/login_screen.dart';
 import 'package:admin_app/ui/auth/sign_up_screen.dart';
 import 'package:admin_app/ui/acdemic_year/academicyears_screen.dart';
@@ -34,6 +35,7 @@ final routes = {
   '/select_teacher': (context) => SelectTeacher(),
   '/list_teacher_screen': (context) => ListTeacherScreen(),
   '/academic_years_screen': (context) => AcademicYears(),
+  '/semester_screen': (context) => SemesterScreen()
 
 //   '/notifications_screen': (context) => NotificationsScreen(),
 //   '/account_screen': (context) => AccountScreen(),

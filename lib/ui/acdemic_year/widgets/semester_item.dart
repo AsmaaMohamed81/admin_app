@@ -1,42 +1,30 @@
-import 'package:admin_app/bloc/academic_bloc/academic_bloc.dart';
-import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
+import 'package:admin_app/bloc/semester_bloc/semester_bloc.dart';
 import 'package:admin_app/custom_widget/dialogs/log_out_dialog.dart';
-import 'package:admin_app/custom_widget/validation_mixin.dart';
-import 'package:admin_app/data/model/academic.dart';
-import 'package:admin_app/data/model/subjects.dart';
+import 'package:admin_app/data/model/semester.dart';
 import 'package:admin_app/provider/auth_provider.dart';
-import 'package:admin_app/ui/acdemic_year/arguments/arguments_academic.dart';
-import 'package:admin_app/ui/acdemic_year/widgets/edit_academic_dialog.dart';
-import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
-import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
-import 'package:admin_app/ui/subjects/widget/adding_new_class_dialog.dart';
+import 'package:admin_app/ui/acdemic_year/widgets/edit_semester_dialog.dart';
 import 'package:admin_app/utils/commons.dart';
 import 'package:admin_app/utils/hex_color.dart';
-import 'package:admin_app/utils/urls.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
-class AcademicItem extends StatefulWidget {
+class SemeterItem extends StatefulWidget {
   final int Index;
-  final Academic academic;
-  final List<Academic> listAcademic;
+  final Semester semester;
 
-  const AcademicItem({Key key, this.academic, this.listAcademic, this.Index})
-      : super(key: key);
+  const SemeterItem({Key key, this.Index, this.semester}) : super(key: key);
 
   @override
-  _AcademicItemState createState() => _AcademicItemState();
+  _SemeterItemState createState() => _SemeterItemState();
 }
 
-class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
+class _SemeterItemState extends State<SemeterItem> {
   AuthProvider _authProvider;
 
   bool isEdit = true;
 
   String _editeSubjects, _editeabbrevation;
-  List<TeacherToSubjects> listIdTeacher;
   List<int> id = [];
 
   final _formkey = GlobalKey<FormState>();
@@ -53,8 +41,6 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
     //   }
     // }
 
-    var d = context.read<SubjectsBloc>().state;
-    print("stattedsjdjsde====${d}");
     _authProvider = Provider.of<AuthProvider>(context);
     return Container(
       height: 80,
@@ -68,27 +54,26 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.academic.name,
+              widget.semester.name,
               style: TextStyle(color: HexColor('140A31'), fontSize: 16),
             ),
             SizedBox(
               height: 5,
             ),
-            widget.academic.isCurrentYear
+            widget.semester.isCurrentSemester
                 ? Container(
                     padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                         color: HexColor('F98622'),
                         borderRadius: BorderRadius.circular(10.0)),
                     child: Text(
-                      "Current Year",
+                      "Current Semester",
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ))
                 : Container()
           ],
         ),
         secondaryActions: <Widget>[
-          _buildAddIcon(),
           _buildEditIcon(),
           _buildDeleteIcon(),
         ],
@@ -105,26 +90,11 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
             barrierDismissible: true,
             context: context,
             builder: (_) {
-              return EditAcademicDialog(
-                academic: widget.academic,
+              return EditSemesterDialog(
+                semester: widget.semester,
                 value: 0,
               );
             });
-      },
-    );
-  }
-
-  Widget _buildAddIcon() {
-    return IconSlideAction(
-      color: HexColor('88C0E3'),
-      icon: Icons.calendar_today_sharp,
-      foregroundColor: Colors.white,
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/semester_screen',
-          arguments: ArgumentsAcademic(widget.academic),
-        );
       },
     );
   }
@@ -134,6 +104,7 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
       color: Colors.red,
       icon: Icons.delete,
       onTap: () async {
+        print(widget.semester.id);
         showDialog(
             barrierDismissible: true,
             context: context,
@@ -142,17 +113,25 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
                 button1: "Yes",
                 button2: "NO",
                 alertMessage:
-                    "Are you sure you want to delete Academic Year \"${widget.academic.name}\" , Do you want to continue?",
+                    "Are you sure you want to delete semester \"${widget.semester.name}\" , Do you want to continue?",
                 onPressedConfirm: () {
-                  context.read<AcademicBloc>().add(DeletAcademic(
-                      _authProvider.currentUser.accessToken,
-                      widget.academic.id,
-                      _authProvider.ownSchool.id));
+                  if (widget.semester.isCurrentSemester) {
+                    Commons.showToast(
+                        context: context,
+                        message: "The current semester cannot be deleted",
+                        duration: 3);
+                  } else {
+                    print(widget.semester.id);
+
+                    context.read<SemesterBloc>().add(DeletSemester(
+                        _authProvider.currentUser.accessToken,
+                        widget.semester.id,
+                        _authProvider.ownSchool.id,
+                        widget.semester.academicYearId));
+                  }
                 },
               );
             });
-
-        print(" ${Urls.Delete_Subject}?Id=${widget.academic.id}");
       },
     );
   }
@@ -162,7 +141,7 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
         child: InkWell(
       onTap: () {
         if (_editeSubjects == null) {
-          _editeSubjects = widget.academic.name;
+          _editeSubjects = widget.semester.name;
         }
         // if (_editeabbrevation == null) {
         //   _editeabbrevation = widget.academic.abbreviation;
@@ -175,13 +154,13 @@ class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
         //   }
         // }
         if (_formkey.currentState.validate()) {
-          context.read<SubjectsBloc>().add(AddOrEditSubjects(
-              _authProvider.currentUser.accessToken,
-              widget.academic.id,
-              _authProvider.ownSchool.id,
-              _editeSubjects,
-              _editeabbrevation,
-              id));
+          // context.read<SemesterBloc>().add(AddOrEditSemester(
+          //     _authProvider.currentUser.accessToken,
+          //     widget.academic.id,
+          //     _authProvider.ownSchool.id,
+          //     _editeSubjects,
+          //     _editeabbrevation,
+          //     id));
         }
       },
       child: Icon(

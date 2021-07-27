@@ -1,3 +1,8 @@
+import 'package:admin_app/bloc/semester_bloc/semester_bloc.dart';
+import 'package:admin_app/data/model/semester.dart';
+import 'package:admin_app/ui/acdemic_year/arguments/arguments_academic.dart';
+import 'package:admin_app/ui/acdemic_year/widgets/semester_item.dart';
+import 'package:flutter/material.dart';
 import 'package:admin_app/bloc/academic_bloc/academic_bloc.dart';
 import 'package:admin_app/custom_widget/app_drawer/app_drawer.dart';
 import 'package:admin_app/custom_widget/appbar/appbar.dart';
@@ -18,16 +23,16 @@ import 'package:provider/provider.dart';
 import 'package:admin_app/provider/auth_provider.dart';
 import 'package:toast/toast.dart';
 
-class AcademicYears extends StatefulWidget {
+class SemesterScreen extends StatefulWidget {
   @override
-  _AcademicYearsState createState() => _AcademicYearsState();
+  _SemesterScreenState createState() => _SemesterScreenState();
 }
 
-class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
+class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
   AppBarCustom _appBarCustom;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  List<Academic> _searchResult = [];
-  List<Academic> _academicList = [];
+  List<Semester> _searchResult = [];
+  List<Semester> _semesterList = [];
   final _formKey = GlobalKey<FormState>();
   TextEditingController _searchController = TextEditingController();
   bool checkyear = false;
@@ -35,6 +40,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
   AuthProvider _authProvider;
   String _yearsname, _semetername;
   int valueu;
+  var args;
 
   final nameHolder = TextEditingController();
   final nameHolder2 = TextEditingController();
@@ -47,19 +53,32 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    args = ModalRoute.of(context).settings.arguments as ArgumentsAcademic;
+  }
+
+  @override
   void initState() {
     super.initState();
-    context.read<AcademicBloc>()
-      ..add(FetchAcademic(
-          Provider.of<AuthProvider>(context, listen: false).ownSchool.id));
+
+    Future.delayed(Duration.zero, () {
+      context.read<SemesterBloc>()..add(FetchSemester(args.academic.id));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    checkyear = args.academic.isCurrentYear;
     _authProvider = Provider.of<AuthProvider>(context);
 
-    _appBarCustom =
-        AppBarCustom(title: "Academic Years", keyScafold: _scaffoldKey);
+    _appBarCustom = AppBarCustom(
+        title: "${args.academic.name} Semesters",
+        keyScafold: _scaffoldKey,
+        backarrow: () {
+          Navigator.of(context).pop();
+        });
 
     return NetworkIndicator(
       child: PageContainer(
@@ -71,7 +90,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
             child: AppDrawer(),
           ),
           key: _scaffoldKey,
-          appBar: _appBarCustom.appBarCustom(),
+          appBar: _appBarCustom.AppBarRow(),
           bottomNavigationBar: DemoBottomAppBar(),
           floatingActionButton: Container(
             height: 60.0,
@@ -130,7 +149,9 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   return;
                 } else {
                   setState(() {
-                    _academicList.forEach((userDetail) {
+                    print("text");
+
+                    _semesterList.forEach((userDetail) {
                       if (userDetail.name
                           .toLowerCase()
                           .contains(text.toLowerCase())) {
@@ -149,7 +170,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   return;
                 } else {
                   setState(() {
-                    _academicList.forEach((userDetail) {
+                    _semesterList.forEach((userDetail) {
                       if (userDetail.name
                           .toLowerCase()
                           .contains(text.toLowerCase())) {
@@ -177,15 +198,15 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   color: HexColor('212121'),
                   size: 17,
                 ),
-                hintText: "Search Academic Year",
+                hintText: "Search Semester",
               ),
             ),
           ),
         ),
         Expanded(
-          child: BlocConsumer<AcademicBloc, AcademicState>(
+          child: BlocConsumer<SemesterBloc, SemesterState>(
             listener: (context, state) {
-              if (state is AcademicAddOrEdite) {
+              if (state is SemesterAddOrEdite) {
                 if (state.results['status'] == "Success") {
                   _result(state.results);
                 } else if (state.results['status'] == "Unauthorized") {
@@ -207,10 +228,10 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
               // TODO: implement listener
             },
             builder: (context, state) {
-              if (state is AcademicLoading) {
+              if (state is SemesterLoading) {
                 return Center(child: CircularProgressIndicator());
-              } else if (state is AcademicLoaded) {
-                _academicList = state.academic;
+              } else if (state is SemesterLoaded) {
+                _semesterList = state.semester;
 
                 // if (_searchResult.length > 0) {
                 //   _searchResult.clear();
@@ -226,8 +247,8 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                 //   });
                 // }
 
-                return _buildListAcademic(_academicList);
-              } else if (state is AcademicError) {
+                return _buildListAcademic(_semesterList);
+              } else if (state is SemesterError) {
                 return Text(state.message.toString());
               }
               return Container();
@@ -252,49 +273,17 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
             print(
                 "_authProvider.currentUser.accessToken${_authProvider.currentUser.accessToken}");
             valueu = 0;
-            if (checkyear == true) {
-              if (checksemester == false) {
-                Commons.showToast(
-                    context: context,
-                    message:
-                        "  The current semester must be selected to set the academic year as the current year",
-                    duration: 3);
-              } else {
-                if (_semetername == '' || _semetername == null) {
-                  Commons.showToast(
-                      context: context,
-                      message:
-                          "  The current semester must be selected to set the academic year as the current year",
-                      duration: 3);
-                } else {
-                  context.read<AcademicBloc>().add(AddOrEditAcademic(
-                      _authProvider.currentUser.accessToken,
-                      0,
-                      _yearsname,
-                      checkyear,
-                      _authProvider.ownSchool.id,
-                      [0],
-                      [_semetername],
-                      [checksemester]));
 
-                  Navigator.of(context).pop();
-                  clearTextInput();
-                }
-              }
-            } else {
-              context.read<AcademicBloc>().add(AddOrEditAcademic(
-                  _authProvider.currentUser.accessToken,
-                  0,
-                  _yearsname,
-                  checkyear,
-                  _authProvider.ownSchool.id,
-                  [0],
-                  [_semetername],
-                  [checksemester]));
+            context.read<SemesterBloc>().add(AddOrEditSemester(
+                _authProvider.currentUser.accessToken,
+                0,
+                _semetername,
+                _authProvider.ownSchool.id,
+                args.academic.id,
+                checksemester));
 
-              Navigator.of(context).pop();
-              clearTextInput();
-            }
+            Navigator.of(context).pop();
+            clearTextInput();
           }
         },
         color: floatbottom,
@@ -321,8 +310,8 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
             return Padding(
               padding: MediaQuery.of(context).viewInsets,
               child: new Container(
-                  padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
-                  height: 300,
+                  padding: EdgeInsets.fromLTRB(50, 20, 50, 10),
+                  height: 200,
                   decoration: new BoxDecoration(
                       color: HexColor('F2F7F9'),
                       borderRadius: new BorderRadius.only(
@@ -334,66 +323,6 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                       child: Column(
                         children: [
                           TextFormField(
-                            controller: nameHolder,
-                            onChanged: (value) {
-                              _yearsname = value;
-                            },
-                            validator: validateAcademic,
-                            decoration: InputDecoration(
-                              errorMaxLines: 2,
-                              errorStyle: TextStyle(fontSize: 9),
-                              hintText: "Academic Year Name",
-                              hintStyle: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Transform.scale(
-                                  scale: .9,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: HexColor('B5C6D1'),
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    child: Checkbox(
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.transparent,
-                                        fillColor:
-                                            MaterialStateColor.resolveWith(
-                                                (states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return Colors
-                                                .transparent; // the color when checkbox is selected;
-                                          }
-                                          return Colors
-                                              .transparent; //the color when checkbox is unselected;
-                                        }),
-                                        value: checkyear,
-                                        onChanged: (bool value) {
-                                          checkyear = value;
-                                          state(() {
-                                            //use that state here
-                                            checkyear = value;
-                                          });
-                                        }),
-                                  )),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              CustomText(
-                                text: "Current Year",
-                                color: HexColor('83A7BE'),
-                                fontSize: 14,
-                              )
-                            ],
-                          ),
-                          TextFormField(
                             controller: nameHolder2,
                             onChanged: (value) {
                               _semetername = value;
@@ -402,7 +331,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                             decoration: InputDecoration(
                               errorMaxLines: 2,
                               errorStyle: TextStyle(fontSize: 9),
-                              hintText: "Academic Semester Year",
+                              hintText: "Academic Semester Name",
                               hintStyle: TextStyle(fontSize: 12),
                             ),
                           ),
@@ -506,8 +435,8 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
     }
   }
 
-  Widget _buildListAcademic(_academicList) {
-    return _academicList.length > 0
+  Widget _buildListAcademic(_semesterList) {
+    return _semesterList.length > 0
         ? _searchResult.length != 0 || _searchController.text.isNotEmpty
             ? _searchResult.length == 0
                 ? CustomText(
@@ -517,21 +446,19 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                 : ListView.builder(
                     itemCount: _searchResult.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return AcademicItem(
+                      return SemeterItem(
                         Index: index,
-                        academic: _searchResult[index],
-                        listAcademic: _academicList,
+                        semester: _searchResult[index],
                       );
                     })
             : ListView.builder(
-                itemCount: _academicList.length,
+                itemCount: _semesterList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return AcademicItem(
+                  return SemeterItem(
                     Index: index,
-                    academic: _academicList[index],
-                    listAcademic: _academicList,
+                    semester: _semesterList[index],
                   );
                 })
-        : NoData(message: 'No Years');
+        : NoData(message: 'No Semetster');
   }
 }
