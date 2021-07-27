@@ -6,7 +6,6 @@ import 'package:admin_app/custom_widget/dialogs/connectivity/network_indicator.d
 import 'package:admin_app/custom_widget/drop_down_list_selector/drop_down_list_selector_object.dart';
 import 'package:admin_app/custom_widget/safe_area/page_container.dart';
 import 'package:admin_app/custom_widget/validation_mixin.dart';
-import 'package:admin_app/data/model/classes.dart';
 import 'package:admin_app/data/model/level.dart';
 import 'package:admin_app/data/model/years.dart';
 import 'package:admin_app/data/repository/level.repository.dart';
@@ -18,7 +17,6 @@ import 'package:admin_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:validators/validators.dart';
 
 class NewClass extends StatefulWidget {
   @override

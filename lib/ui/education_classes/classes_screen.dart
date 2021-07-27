@@ -1,5 +1,6 @@
 import 'package:admin_app/bloc/classes_bloc/classes_bloc.dart';
 import 'package:admin_app/custom_widget/app_drawer/app_drawer.dart';
+import 'package:admin_app/custom_widget/appbar/appbar.dart';
 import 'package:admin_app/custom_widget/custom_text/custom_text.dart';
 import 'package:admin_app/custom_widget/dialogs/connectivity/network_indicator.dart';
 import 'package:admin_app/custom_widget/no_data/no_data.dart';
@@ -25,11 +26,12 @@ class ClassesScreen extends StatefulWidget {
 }
 
 class _ClassesScreenState extends State<ClassesScreen> {
+  AppBarCustom _appBarCustom;
   double _width = 0.0;
   AuthProvider _authProvider;
   TextEditingController _searchController = TextEditingController();
   List<Classes> _searchResult = [];
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   List<Classes> _classesList = [];
   @override
   void initState() {
@@ -189,8 +191,6 @@ class _ClassesScreenState extends State<ClassesScreen> {
                                   setState(() {});
                                 }
                               },
-                             
-                             
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 12,
@@ -310,42 +310,11 @@ class _ClassesScreenState extends State<ClassesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _appBarCustom = AppBarCustom(title: "Classes", keyScafold: _scaffoldKey);
     _authProvider = Provider.of<AuthProvider>(context);
 
     _width = MediaQuery.of(context).size.width;
     context.read<ClassesBloc>()..add(FetchClasses(_authProvider.ownSchool.id));
-
-    final appBar = AppBar(
-      backgroundColor: mainAppColor,
-      elevation: 0,
-      leading: GestureDetector(
-          onTap: () => _scaffoldKey.currentState.openDrawer(),
-          child: Image.asset(
-            'assets/images/menu.png',
-            color: Colors.white,
-          )),
-      title: Text("Classes", style: Theme.of(context).textTheme.headline1),
-      actions: <Widget>[
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Stack(
-            children: <Widget>[
-              Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-                  height: 30,
-                  width: 30,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                  ),
-                ),
-              ])
-            ],
-          ),
-        )
-      ],
-    );
 
     return NetworkIndicator(
         child: PageContainer(
@@ -358,7 +327,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
                   child: AppDrawer(),
                 ),
                 key: _scaffoldKey,
-                appBar: appBar,
+                appBar: _appBarCustom.appBarCustom(),
                 body: _buildBodyItem())));
   }
 }

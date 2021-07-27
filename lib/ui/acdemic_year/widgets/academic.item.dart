@@ -1,0 +1,277 @@
+import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
+import 'package:admin_app/custom_widget/dialogs/log_out_dialog.dart';
+import 'package:admin_app/custom_widget/validation_mixin.dart';
+import 'package:admin_app/data/model/academic.dart';
+import 'package:admin_app/data/model/subjects.dart';
+import 'package:admin_app/provider/auth_provider.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments.teacher.dart';
+import 'package:admin_app/ui/subjects/arguments/arguments_techer_subjects.dart';
+import 'package:admin_app/ui/subjects/widget/adding_new_class_dialog.dart';
+import 'package:admin_app/utils/commons.dart';
+import 'package:admin_app/utils/hex_color.dart';
+import 'package:admin_app/utils/urls.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+
+class AcademicItem extends StatefulWidget {
+  final Academic academic;
+  final List<Academic> listAcademic;
+
+  const AcademicItem({Key key, this.academic, this.listAcademic})
+      : super(key: key);
+
+  @override
+  _AcademicItemState createState() => _AcademicItemState();
+}
+
+class _AcademicItemState extends State<AcademicItem> with ValidationMixin {
+  AuthProvider _authProvider;
+
+  bool isEdit = true;
+
+  String _editeSubjects, _editeabbrevation;
+  List<TeacherToSubjects> listIdTeacher;
+  List<int> id = [];
+
+  final _formkey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    // final stateA = context.read<SubjectsBloc>().state;
+    // if (stateA is SubjectsAddOrEdite) {
+    //   print("esgjdgsgdjkjwkjklsd");
+    //   Navigator.of(context).pop();
+
+    //   if (stateA.results['status'] == "Success") {
+    //     Navigator.of(context).pop();
+    //   }
+    // }
+
+    var d = context.read<SubjectsBloc>().state;
+    print("stattedsjdjsde====${d}");
+    _authProvider = Provider.of<AuthProvider>(context);
+    return Column(
+      children: [
+        Slidable(
+          actionPane:
+              isEdit ? SlidableDrawerDismissal() : SlidableBehindActionPane(),
+          actionExtentRatio: 0.12,
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/images/materialll.png",
+                width: 65,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              isEdit
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                          child: Text(
+                            widget.academic.name,
+                            style: TextStyle(
+                                color: HexColor('707070'), fontSize: 16),
+                          ),
+                        ),
+                        // Text(
+                        //   widget.academic.abbreviation == null
+                        //       ? " "
+                        //       : "(${widget.academic.abbreviation})",
+                        //   style: TextStyle(
+                        //       color: HexColor('9A9AA1'), fontSize: 10),
+                        // )
+                      ],
+                    )
+                  : Expanded(
+                      child: Form(
+                        key: _formkey,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                      onChanged: (value) {
+                                        _editeSubjects = value;
+                                      },
+                                      initialValue: widget.academic.name,
+                                      validator: validateSubjects,
+                                      decoration: InputDecoration(
+                                        errorMaxLines: 2,
+                                        errorStyle: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .02),
+                                      )),
+                                  // TextFormField(
+                                  //     onChanged: (value) {
+                                  //       _editeabbrevation = value;
+                                  //     },
+                                  //     initialValue:
+                                  //         widget.academic.abbreviation,
+                                  //     validator: validateAbberviation,
+                                  //     decoration: InputDecoration(
+                                  //       errorMaxLines: 2,
+                                  //       errorStyle: TextStyle(
+                                  //           fontSize: MediaQuery.of(context)
+                                  //                   .size
+                                  //                   .width *
+                                  //               .02),
+                                  //     )),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  _buildCheckEditIcon(),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        isEdit = true;
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.cancel_rounded,
+                                      color: Colors.red,
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+            ],
+          ),
+          secondaryActions: <Widget>[
+            _buildAddIcon(),
+            _buildEditIcon(),
+            _buildDeleteIcon(),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width * .75,
+                child: Divider(
+                  thickness: 2,
+                )),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _buildEditIcon() {
+    return IconSlideAction(
+      color: Colors.green,
+      icon: Icons.edit,
+      onTap: () {
+        showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (_) {
+              // return AddingNewClassDialog(
+              //   subjectsList: widget.listAcademic,
+              //   subjects: widget.academic,
+              //   value: 0,
+              // );
+            });
+      },
+    );
+  }
+
+  Widget _buildAddIcon() {
+    return IconSlideAction(
+      color: HexColor('88C0E3'),
+      icon: Icons.person_add,
+      foregroundColor: Colors.white,
+      onTap: () {
+        // widget.academic.teacherToSubjects.length == 0
+        //     ? Navigator.pushReplacementNamed(
+        //         context,
+        //         '/add_taecher',
+        //         arguments: ArgumentsTeacher(widget.academic, null),
+        //       )
+        //     : Navigator.pushNamed(context, '/list_teacher_screen',
+        //         arguments: ArgumentsTeacherSubjects(
+        //             widget.academic.teacherToSubjects, null, widget.academic));
+      },
+    );
+  }
+
+  Widget _buildDeleteIcon() {
+    return IconSlideAction(
+      color: Colors.red,
+      icon: Icons.delete,
+      onTap: () async {
+        showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (_) {
+              return LogoutDialog(
+                button1: "Yes",
+                button2: "NO",
+                alertMessage:
+                    "Are you sure you want to delete Subject \"${widget.academic.name}\" , Do you want to continue?",
+                onPressedConfirm: () {
+                  context.read<SubjectsBloc>().add(DeletSubjects(
+                      _authProvider.currentUser.accessToken,
+                      widget.academic.id,
+                      _authProvider.ownSchool.id));
+                },
+              );
+            });
+
+        print(" ${Urls.Delete_Subject}?Id=${widget.academic.id}");
+      },
+    );
+  }
+
+  Widget _buildCheckEditIcon() {
+    return Container(
+        child: InkWell(
+      onTap: () {
+        if (_editeSubjects == null) {
+          _editeSubjects = widget.academic.name;
+        }
+        // if (_editeabbrevation == null) {
+        //   _editeabbrevation = widget.academic.abbreviation;
+        // }
+        // if (listIdTeacher == null) {
+        //   listIdTeacher = widget.academic.teacherToSubjects;
+
+        //   for (int i = 0; i < widget.academic.teacherToSubjects.length; i++) {
+        //     id.add(widget.academic.teacherToSubjects[i].teacherId);
+        //   }
+        // }
+        if (_formkey.currentState.validate()) {
+          context.read<SubjectsBloc>().add(AddOrEditSubjects(
+              _authProvider.currentUser.accessToken,
+              widget.academic.id,
+              _authProvider.ownSchool.id,
+              _editeSubjects,
+              _editeabbrevation,
+              id));
+        }
+      },
+      child: Icon(
+        Icons.check_circle,
+        color: Colors.green,
+        size: 40,
+      ),
+    ));
+  }
+}

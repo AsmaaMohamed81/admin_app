@@ -1,6 +1,5 @@
 part of 'subjects_bloc.dart';
 
-
 abstract class SubjectsState extends Equatable {
   const SubjectsState();
 
@@ -45,7 +44,7 @@ class SubjectsAddOrEditeEdite extends SubjectsState {
 class SubjectsAddOrEditeSelecte extends SubjectsState {
   final Map<String, dynamic> results;
 
-  SubjectsAddOrEditeSelecte (this.results);
+  SubjectsAddOrEditeSelecte(this.results);
 }
 
 class SubjectsError extends SubjectsState {

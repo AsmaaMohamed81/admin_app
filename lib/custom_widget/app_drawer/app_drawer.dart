@@ -186,6 +186,31 @@ class _AppDrawerState extends State<AppDrawer> {
               Divider(
                 color: Colors.white,
               ),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/academic_years_screen');
+                },
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                  size: 14,
+                ),
+                leading: Icon(
+                  FontAwesomeIcons.addressBook,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Academic Years',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16),
+                ),
+              ),
+              Divider(
+                color: Colors.white,
+              ),
               _checkLog(context),
               Divider(
                 color: Colors.white,

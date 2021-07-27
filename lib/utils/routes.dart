@@ -2,6 +2,7 @@ import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
 import 'package:admin_app/data/repository/subjects.repository.dart';
 import 'package:admin_app/ui/auth/login_screen.dart';
 import 'package:admin_app/ui/auth/sign_up_screen.dart';
+import 'package:admin_app/ui/acdemic_year/academicyears_screen.dart';
 import 'package:admin_app/ui/education_classes/classes_screen.dart';
 import 'package:admin_app/ui/education_classes/widgets/new_class.dart';
 import 'package:admin_app/ui/home/home_screen.dart';
@@ -31,7 +32,8 @@ final routes = {
   '/new_subject': (context) => NewSubject(),
   '/add_taecher': (context) => AddTeacher(),
   '/select_teacher': (context) => SelectTeacher(),
-  '/list_teacher_screen': (context) => ListTeacherScreen()
+  '/list_teacher_screen': (context) => ListTeacherScreen(),
+  '/academic_years_screen': (context) => AcademicYears(),
 
 //   '/notifications_screen': (context) => NotificationsScreen(),
 //   '/account_screen': (context) => AccountScreen(),

@@ -70,6 +70,7 @@ flutter:
     - assets/images/logout.png
     - assets/images/reports.png
     - assets/images/menu.png
+    - assets/images/intro_bg.png
     - assets/images/review_lectures.png
     - assets/images/students_requests_icon.png
     - assets/images/students_info_icon.png

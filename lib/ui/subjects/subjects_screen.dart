@@ -1,5 +1,6 @@
 import 'package:admin_app/bloc/subjects_bloc/subjects_bloc.dart';
 import 'package:admin_app/custom_widget/app_drawer/app_drawer.dart';
+import 'package:admin_app/custom_widget/appbar/appbar.dart';
 import 'package:admin_app/custom_widget/custom_text/custom_text.dart';
 import 'package:admin_app/custom_widget/demobottomappbar.dart';
 import 'package:admin_app/custom_widget/dialogs/connectivity/network_indicator.dart';
@@ -24,6 +25,7 @@ class SubjectsScreen extends StatefulWidget {
 }
 
 class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
+  AppBarCustom _appBarCustom;
   TextEditingController _searchController = TextEditingController();
 
   AuthProvider _authProvider;
@@ -395,6 +397,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
   @override
   Widget build(BuildContext context) {
+    _appBarCustom = AppBarCustom(title: "Subjects", keyScafold: _scaffoldKey);
     _authProvider = Provider.of<AuthProvider>(context);
 
     print("textSearch= ${textSearch}");
@@ -404,22 +407,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
 
     var d = context.read<SubjectsBloc>().state;
     print("stattedsjdjsdhjhghjghje====${d}");
-    final appBar = AppBar(
-      centerTitle: true,
-      backgroundColor: mainAppColor,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-        bottom: Radius.circular(20),
-      )),
-      leading: GestureDetector(
-          onTap: () => _scaffoldKey.currentState.openDrawer(),
-          child: Image.asset(
-            'assets/images/menu.png',
-            color: Colors.white,
-          )),
-      title: Text("Subjects", style: Theme.of(context).textTheme.headline1),
-    );
 
     return NetworkIndicator(
         child: PageContainer(
@@ -431,7 +418,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> with ValidationMixin {
         child: AppDrawer(),
       ),
       key: _scaffoldKey,
-      appBar: appBar,
+      appBar: _appBarCustom.appBarCustom(),
       bottomNavigationBar: DemoBottomAppBar(),
       floatingActionButton: Container(
         height: 60.0,

@@ -1,7 +1,7 @@
 import 'package:admin_app/data/model/classes.dart';
 import 'package:admin_app/data/model/subjects.dart';
 
-class ArgumentsTeacher{
+class ArgumentsTeacher {
   final Subjects subjects;
   final int value;
 

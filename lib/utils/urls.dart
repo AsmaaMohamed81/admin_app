@@ -27,7 +27,7 @@ class Urls {
 
 ////////AcademicYears
   static const String Get_All_AcademicYears =
-      BASE_URL + "/SchoolApi/AcademicYears/GetAllAcademicYears";
+      BASE_URL + "/SchoolApi/AcademicYears/GetAcademicYearHasSemesters";
 
   ////////////Classes
   static const String Get_ALL_CLASSES =
