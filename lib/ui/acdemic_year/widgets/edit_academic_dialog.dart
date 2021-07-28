@@ -1,3 +1,4 @@
+import 'package:admin_app/bloc/academic_bloc/academic_bloc.dart';
 import 'package:admin_app/bloc/classes_bloc/classes_bloc.dart';
 import 'package:admin_app/bloc/levels_bloc/levels_bloc.dart';
 import 'package:admin_app/bloc/semester_bloc/semester_bloc.dart';
@@ -53,10 +54,12 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
 
   final nameHolder = TextEditingController();
   final nameHolder2 = TextEditingController();
-  String _yearsname, _semetername;
+  String _yearsname;
   bool checkyear = false;
   bool checksemester = false;
-  bool checksemesteris = false;
+  bool ischeckyear = false;
+  List<Semester> _yearsList;
+  Semester _selsectsemster;
 
   clearTextInput() {
     nameHolder.clear();
@@ -69,6 +72,7 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkyear = widget.academic.isCurrentYear;
     // if (widget.subjects.teacherToSubjects.length > 0) {
     //   for (int i = 0; i < widget.subjects.teacherToSubjects.length; i++) {
     //     id.add(widget.subjects.teacherToSubjects[i].teacherId);
@@ -78,8 +82,6 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
 
   @override
   Widget build(BuildContext context) {
-    checkyear = widget.academic.isCurrentYear;
-
     _authProvider = Provider.of<AuthProvider>(context);
 
     // _width = MediaQuery.of(context).size.width;
@@ -91,7 +93,7 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-            height: MediaQuery.of(context).size.height * .15,
+            height: MediaQuery.of(context).size.height * .25,
             width: MediaQuery.of(context).size.width * .7,
             child: new Center(
               child: Form(
@@ -100,13 +102,13 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
                   children: [
                     TextFormField(
                       onChanged: (value) {
-                        _semetername = value;
+                        _yearsname = value;
                       },
-                      validator: validateSemesteredit,
+                      validator: validateAcademic,
                       decoration: InputDecoration(
                         errorMaxLines: 2,
                         errorStyle: TextStyle(fontSize: 9),
-                        hintText: "Academic Semester Year",
+                        hintText: "Academic Year Name",
                         hintStyle: TextStyle(fontSize: 12),
                       ),
                       initialValue:
@@ -115,69 +117,56 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
                     SizedBox(
                       height: 10,
                     ),
-                    checkyear
-                        ? Row(
-                            children: [
-                              Transform.scale(
-                                  scale: .9,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: HexColor('B5C6D1'),
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    child: Checkbox(
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.transparent,
-                                        fillColor:
-                                            MaterialStateColor.resolveWith(
-                                                (states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return Colors
-                                                .transparent; // the color when checkbox is selected;
-                                          }
-                                          return Colors
-                                              .transparent; //the color when checkbox is unselected;
-                                        }),
+                    Row(
+                      children: [
+                        Transform.scale(
+                            scale: .9,
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                  color: HexColor('B5C6D1'),
+                                  borderRadius: BorderRadius.circular(5.0)),
+                              child: Checkbox(
+                                  checkColor: Colors.white,
+                                  activeColor: Colors.transparent,
+                                  fillColor:
+                                      MaterialStateColor.resolveWith((states) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
+                                      return Colors
+                                          .transparent; // the color when checkbox is selected;
+                                    }
+                                    return Colors
+                                        .transparent; //the color when checkbox is unselected;
+                                  }),
 
-                                        // activeColor: Colors.white,
-                                        // checkColor: HexColor('F98622'),
-                                        value: checksemesteris
-                                            ? true
-                                            : checksemester,
-                                        onChanged: (bool value) {
-                                          print("{$checksemester}");
+                                  // activeColor: Colors.white,
+                                  // checkColor: HexColor('F98622'),
+                                  value: checkyear,
+                                  onChanged: (bool value) {
+                                    print("{$checksemester}");
 
-                                          setState(() {
-                                            if (checksemesteris) {
-                                              Commons.showToast(
-                                                  context: context,
-                                                  message:
-                                                      "The current semester cannot be modified",
-                                                  duration: 3);
-                                              checksemester = checksemesteris;
-                                            } else {
-                                              //use that state here
-                                              checksemester = value;
+                                    setState(() {
+                                      //use that state here
+                                      checkyear = value;
 
-                                              print("{$checksemester}");
-                                            }
-                                          });
-                                        }),
-                                  )),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              CustomText(
-                                text: "Current Semeter",
-                                color: HexColor('83A7BE'),
-                                fontSize: 14,
-                              )
-                            ],
-                          )
-                        : Container(),
+                                      print("{$ischeckyear}");
+                                    });
+                                  }),
+                            )),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        CustomText(
+                          text: "Current Year",
+                          color: HexColor('83A7BE'),
+                          fontSize: 14,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    checkyear ? _buildDropDowenyears() : Container(),
                     SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -213,6 +202,38 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
             )));
   }
 
+  Widget _buildDropDowenyears() {
+    _yearsList = widget.academic.semesters;
+    var yearsListDropDown = _yearsList.map((Semester years) {
+      return new DropdownMenuItem<Semester>(
+        value: years,
+        child: new Text(
+          years.name,
+          style: new TextStyle(color: Colors.black),
+        ),
+      );
+    }).toList();
+
+    return Container(
+      height: 40,
+      child: DropDownListSelectorObject(
+        validatemessage: "Please Select Academic Year",
+        hint: widget.value != 0
+            ? "${widget.academic.name}"
+            : "Select Current SemesterS",
+        value: _selsectsemster,
+        onChangeFunc: (newValue) {
+          setState(() {
+            _selsectsemster = newValue;
+            yearId = _selsectsemster.id;
+            print("semesterid = ${yearId.toString()}");
+          });
+        },
+        dropDownList: yearsListDropDown,
+      ),
+    );
+  }
+
   Widget _buildSaveBtn(BuildContext context) {
     return Container(
       height: 30,
@@ -223,17 +244,28 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
           if (_formKey.currentState.validate()) {
             CircularProgressIndicator();
 
-            if (_semetername == null) {
-              _semetername = widget.academic.name;
-            }
+            List<String> listsemestername;
+            widget.academic.semesters.forEach((userDetail) {
+              listsemestername.add(userDetail.name);
+            });
+            List<int> listsemesterid;
+            widget.academic.semesters.forEach((userDetail) {
+              listsemesterid.add(userDetail.id);
+            });
+            List<bool> listsemestercheck;
+            widget.academic.semesters.forEach((userDetail) {
+              listsemestercheck.add(userDetail.isCurrentSemester);
+            });
 
-            context.read<SemesterBloc>().add(AddOrEditSemester(
+            context.read<AcademicBloc>().add(AddOrEditAcademic(
                 _authProvider.currentUser.accessToken,
                 widget.academic.id,
-                _semetername,
+                _yearsname,
+                checkyear,
                 _authProvider.ownSchool.id,
-                widget.academic.id,
-                checksemester));
+                listsemesterid,
+                listsemestername,
+                listsemestercheck));
 
             Navigator.of(context).pop();
 
