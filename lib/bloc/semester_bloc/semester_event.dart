@@ -45,14 +45,17 @@ class AddOrEditSemester extends SemesterEvent {
 
 class AddOrEditSemesterEdite extends SemesterEvent {
   final String access;
-  final int id;
-  final int schoolId;
-  final String materialName;
-  final String abberviation;
-  final List<int> teachers;
 
-  AddOrEditSemesterEdite(this.access, this.id, this.schoolId, this.materialName,
-      this.abberviation, this.teachers);
+  final int id;
+  final String name;
+
+  final int schoolId;
+
+  final int academicId;
+  final bool isCurrentSemester;
+
+  AddOrEditSemesterEdite(this.access, this.id, this.name, this.schoolId,
+      this.academicId, this.isCurrentSemester);
 }
 
 class AddOrEditSemesterSelect extends SemesterEvent {

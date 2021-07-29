@@ -113,20 +113,18 @@ class Commons {
       {@required String message,
       @required BuildContext context,
       Color color,
-      int duration = 3}) {
+      int duration = 3,
+      int gravity = 0}) {
     return Toast.show(
       message,
       context,
       backgroundColor: color == null ? mainAppColor : color,
       duration: duration,
-      gravity: Toast.BOTTOM,
+      gravity: gravity,
     );
   }
 
-  static  bool isKeyboardHidden(BuildContext context){
+  static bool isKeyboardHidden(BuildContext context) {
     return MediaQuery.of(context).viewInsets.bottom == 0;
   }
 }
-
-
-

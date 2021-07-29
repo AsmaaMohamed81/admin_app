@@ -93,7 +93,7 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-            height: MediaQuery.of(context).size.height * .25,
+            height: MediaQuery.of(context).size.height * .3,
             width: MediaQuery.of(context).size.width * .7,
             child: new Center(
               child: Form(

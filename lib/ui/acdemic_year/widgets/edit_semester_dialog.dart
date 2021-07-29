@@ -91,7 +91,7 @@ class _EditSemesterDialogState extends State<EditSemesterDialog>
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-            height: MediaQuery.of(context).size.height * .15,
+            height: MediaQuery.of(context).size.height * .2,
             width: MediaQuery.of(context).size.width * .7,
             child: new Center(
               child: Form(
@@ -227,15 +227,13 @@ class _EditSemesterDialogState extends State<EditSemesterDialog>
               _semetername = widget.semester.name;
             }
 
-            context.read<SemesterBloc>().add(AddOrEditSemester(
+            context.read<SemesterBloc>().add(AddOrEditSemesterEdite(
                 _authProvider.currentUser.accessToken,
                 widget.semester.id,
                 _semetername,
                 _authProvider.ownSchool.id,
                 widget.semester.academicYearId,
                 checksemester));
-
-            Navigator.of(context).pop();
 
             print("stattee");
           }

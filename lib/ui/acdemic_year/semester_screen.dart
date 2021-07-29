@@ -198,7 +198,7 @@ class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
                   color: HexColor('212121'),
                   size: 17,
                 ),
-                hintText: "Search Semester",
+                hintText: "Search Semester Name",
               ),
             ),
           ),
@@ -217,12 +217,27 @@ class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
                   print("bootom sheet re open");
 
                   print("nonoononononon");
-                  Commons.showError(context, state.results["message"], () {
+                  Commons.showError(
+                      context, "This semester is already in this year", () {
                     if (valueu == 0) {
                       _settingModalBottomSheet(context);
                       valueu = null;
                     }
                   });
+                }
+              } else if (state is SemesterAddOrEditeEdite) {
+                if (state.results['status'] == "Success") {
+                  Navigator.of(context).pop();
+                  _result(state.results);
+                } else {
+                  Commons.showError(
+                      context, "This semester is already in this year", () {});
+                }
+              } else if (state is SemesterDeleted) {
+                if (state.message['status'] == "Success") {
+                  _result(state.message);
+                } else {
+                  Commons.showError(context, state.message["message"], () {});
                 }
               }
               // TODO: implement listener
@@ -283,7 +298,7 @@ class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
                 checksemester));
 
             Navigator.of(context).pop();
-            clearTextInput();
+            // clearTextInput();
           }
         },
         color: floatbottom,
@@ -327,7 +342,7 @@ class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
                             onChanged: (value) {
                               _semetername = value;
                             },
-                            validator: validateSemester,
+                            validator: validateSemesteredit,
                             decoration: InputDecoration(
                               errorMaxLines: 2,
                               errorStyle: TextStyle(fontSize: 9),

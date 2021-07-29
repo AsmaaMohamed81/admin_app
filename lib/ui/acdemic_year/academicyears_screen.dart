@@ -203,6 +203,12 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                     }
                   });
                 }
+              } else if (state is AcademicDeleted) {
+                if (state.message['status'] == "Success") {
+                  _result(state.message);
+                } else {
+                  Commons.showError(context, state.message["message"], () {});
+                }
               }
               // TODO: implement listener
             },
@@ -258,7 +264,8 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                     context: context,
                     message:
                         "  The current semester must be selected to set the academic year as the current year",
-                    duration: 3);
+                    duration: 3,
+                    gravity: 1);
               } else {
                 if (_semetername == '' || _semetername == null) {
                   Commons.showToast(
@@ -278,7 +285,6 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                       [checksemester]));
 
                   Navigator.of(context).pop();
-                  clearTextInput();
                 }
               }
             } else {
@@ -293,7 +299,6 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   [checksemester]));
 
               Navigator.of(context).pop();
-              clearTextInput();
             }
           }
         },
@@ -322,7 +327,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
               padding: MediaQuery.of(context).viewInsets,
               child: new Container(
                   padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
-                  height: 300,
+                  height: 330,
                   decoration: new BoxDecoration(
                       color: HexColor('F2F7F9'),
                       borderRadius: new BorderRadius.only(

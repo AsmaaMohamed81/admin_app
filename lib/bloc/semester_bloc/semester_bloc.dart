@@ -74,16 +74,16 @@ class SemesterBloc extends Bloc<SemesterEvent, SemesterState> {
     } else if (event is AddOrEditSemesterEdite) {
       yield SemesterLoading();
       try {
-        final result = await repository.addEditeSemesterDelete(
+        final result = await repository.addEditeSemester(
             event.access,
-            event.materialName,
             event.id,
+            event.name,
             event.schoolId,
-            event.abberviation,
-            event.teachers);
+            event.academicId,
+            event.isCurrentSemester);
         yield SemesterAddOrEditeEdite(result);
 
-        final semester = await repository.getAllSemester(event.schoolId);
+        final semester = await repository.getAllSemester(event.academicId);
         yield SemesterLoaded(semester);
       } catch (e) {
         yield SemesterError(e.toString());
