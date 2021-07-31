@@ -277,11 +277,11 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   context.read<AcademicBloc>().add(AddOrEditAcademic(
                       _authProvider.currentUser.accessToken,
                       0,
-                      _yearsname,
+                      _yearsname.trim(),
                       checkyear,
                       _authProvider.ownSchool.id,
                       [0],
-                      [_semetername],
+                      [_semetername.trim()],
                       [checksemester]));
 
                   Navigator.of(context).pop();
@@ -291,11 +291,11 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
               context.read<AcademicBloc>().add(AddOrEditAcademic(
                   _authProvider.currentUser.accessToken,
                   0,
-                  _yearsname,
+                  _yearsname.trim(),
                   checkyear,
                   _authProvider.ownSchool.id,
                   [0],
-                  [_semetername],
+                  [_semetername.trim()],
                   [checksemester]));
 
               Navigator.of(context).pop();

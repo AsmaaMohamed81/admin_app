@@ -230,7 +230,7 @@ class _EditSemesterDialogState extends State<EditSemesterDialog>
             context.read<SemesterBloc>().add(AddOrEditSemesterEdite(
                 _authProvider.currentUser.accessToken,
                 widget.semester.id,
-                _semetername,
+                _semetername.trim(),
                 _authProvider.ownSchool.id,
                 widget.semester.academicYearId,
                 checksemester));

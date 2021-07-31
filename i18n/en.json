@@ -250,7 +250,7 @@
 
   "academic_name_validation":"Please enter Academic Year",
   "academic_name_validation_lenght":"Sorry academic year name must be between 4 and 15 characters long.",
-  "semester_name_validation":"Please enter Semester",
+  "semester_name_validation":"Please enter Semester name",
 
   "semester_name_validation_lenght":"Sorry, semester name must be between 3 and 15 characters long.",
 

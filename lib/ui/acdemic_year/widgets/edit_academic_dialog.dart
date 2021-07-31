@@ -260,7 +260,7 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
             context.read<AcademicBloc>().add(AddOrEditAcademic(
                 _authProvider.currentUser.accessToken,
                 widget.academic.id,
-                _yearsname,
+                _yearsname.trim(),
                 checkyear,
                 _authProvider.ownSchool.id,
                 listsemesterid,
