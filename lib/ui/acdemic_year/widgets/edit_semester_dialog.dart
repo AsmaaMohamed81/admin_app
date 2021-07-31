@@ -91,7 +91,7 @@ class _EditSemesterDialogState extends State<EditSemesterDialog>
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-            height: MediaQuery.of(context).size.height * .2,
+            height: MediaQuery.of(context).size.height * .23,
             width: MediaQuery.of(context).size.width * .7,
             child: new Center(
               child: Form(

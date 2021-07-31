@@ -292,7 +292,7 @@ class _SemesterScreenState extends State<SemesterScreen> with ValidationMixin {
             context.read<SemesterBloc>().add(AddOrEditSemester(
                 _authProvider.currentUser.accessToken,
                 0,
-                _semetername,
+                _semetername.trim(),
                 _authProvider.ownSchool.id,
                 args.academic.id,
                 checksemester));

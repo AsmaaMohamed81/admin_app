@@ -82,7 +82,7 @@ class SemesterBloc extends Bloc<SemesterEvent, SemesterState> {
             event.academicId,
             event.isCurrentSemester);
         yield SemesterAddOrEditeEdite(result);
-
+        sleep1();
         final semester = await repository.getAllSemester(event.academicId);
         yield SemesterLoaded(semester);
       } catch (e) {

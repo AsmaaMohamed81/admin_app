@@ -54,7 +54,7 @@ class _SemeterItemState extends State<SemeterItem> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.semester.name,
+              widget.semester.name != null ? widget.semester.name : "",
               style: TextStyle(color: HexColor('140A31'), fontSize: 16),
             ),
             SizedBox(
