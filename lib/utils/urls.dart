@@ -33,7 +33,7 @@ class Urls {
   static const String Delete_Academic_Years =
       BASE_URL + "/SchoolApi/AcademicYears/DeleteAcademicYear";
   static const String Edit_Academic_Years =
-      BASE_URL + "/SchoolApi​/AcademicYears​/EditAcademicYear";
+      BASE_URL + "/SchoolApi/AcademicYears/EditAcademicYear";
 
   ////////////Classes
   static const String Get_ALL_CLASSES =

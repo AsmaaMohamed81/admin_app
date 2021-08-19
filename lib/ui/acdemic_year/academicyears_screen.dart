@@ -209,6 +209,13 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                 } else {
                   Commons.showError(context, state.message["message"], () {});
                 }
+              } else if (state is AcademicEdite) {
+                if (state.results['status'] == "Success") {
+                  Navigator.of(context).pop();
+                  _result(state.results);
+                } else {
+                  Commons.showError(context, state.results["message"], () {});
+                }
               }
               // TODO: implement listener
             },
@@ -295,7 +302,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   checkyear,
                   _authProvider.ownSchool.id,
                   [0],
-                  [_semetername.isEmpty ? "" : _semetername.trim()],
+                  [_semetername == null ? "" : _semetername.trim()],
                   [checksemester]));
 
               Navigator.of(context).pop();

@@ -58,8 +58,9 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
   bool checkyear = false;
   bool checksemester = false;
   bool ischeckyear = false;
-  List<Semester> _yearsList;
+  List<Semester> _semesterList;
   Semester _selsectsemster;
+  int vali;
 
   clearTextInput() {
     nameHolder.clear();
@@ -146,13 +147,21 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
                                   value: checkyear,
                                   onChanged: (bool value) {
                                     print("{checkyear1 $checkyear}");
+                                    if (widget.academic.isCurrentYear == true) {
+                                      Commons.showToast(
+                                          context: context,
+                                          message:
+                                              " set the academic year as the current year",
+                                          duration: 3,
+                                          gravity: 1);
+                                    } else {
+                                      setState(() {
+                                        //use that state here
+                                        checkyear = value;
 
-                                    setState(() {
-                                      //use that state here
-                                      checkyear = value;
-
-                                      print("{checkyear2 $checkyear}");
-                                    });
+                                        print("{checkyear2 $checkyear}");
+                                      });
+                                    }
                                   }),
                             )),
                         SizedBox(
@@ -203,25 +212,32 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
   }
 
   Widget _buildDropDowenyears() {
-    _yearsList = widget.academic.semesters;
-    var yearsListDropDown = _yearsList.map((Semester years) {
+    _semesterList = widget.academic.semesters;
+    var yearsListDropDown = _semesterList.map((Semester semester) {
       return new DropdownMenuItem<Semester>(
-        value: years,
+        value: semester,
         child: new Text(
-          years.name,
+          semester.name,
           style: new TextStyle(color: Colors.black),
         ),
       );
     }).toList();
 
+    for (int i = 0; i < widget.academic.semesters.length; i++) {
+      if (widget.academic.semesters[i].isCurrentSemester) {
+        vali = i;
+      }
+    }
     return Container(
-      height: 40,
+      height: 60,
       child: DropDownListSelectorObject(
-        validatemessage: "Please Select Academic Year",
-        hint: widget.value != 0
+        validatemessage: "Please Select Current Semester",
+        hint: widget.academic.isCurrentYear
             ? "${widget.academic.name}"
-            : "Select Current SemesterS",
-        value: _selsectsemster,
+            : "Select Current Semester",
+        value: widget.academic.isCurrentYear
+            ? widget.academic.semesters[vali]
+            : _selsectsemster,
         onChangeFunc: (newValue) {
           setState(() {
             _selsectsemster = newValue;
@@ -241,6 +257,12 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
       child: RaisedButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         onPressed: () async {
+          if (_yearsname == null) {
+            _yearsname = widget.academic.name;
+          }
+          if (semesterCurrentId == null) {
+            semesterCurrentId = widget.academic.semesters[vali].id;
+          }
           print(_authProvider.currentUser.accessToken);
           print(widget.academic.id.toString());
           print(_yearsname.trim());
@@ -258,8 +280,6 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
                   semesterCurrentId,
                   _authProvider.ownSchool.id,
                 ));
-
-            Navigator.of(context).pop();
 
             print("stattee");
           }
