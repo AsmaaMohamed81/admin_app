@@ -29,6 +29,12 @@ class AcademicAddOrEdite extends AcademicState {
   AcademicAddOrEdite(this.results);
 }
 
+class AcademicEdite extends AcademicState {
+  final Map<String, dynamic> results;
+
+  AcademicEdite(this.results);
+}
+
 class AcademicAddOrEditeDelete extends AcademicState {
   final Map<String, dynamic> results;
 

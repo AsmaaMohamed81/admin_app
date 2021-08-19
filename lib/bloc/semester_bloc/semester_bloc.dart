@@ -72,7 +72,7 @@ class SemesterBloc extends Bloc<SemesterEvent, SemesterState> {
         yield SemesterError(e.toString());
       }
     } else if (event is AddOrEditSemesterEdite) {
-      yield SemesterLoading();
+      // yield SemesterLoading();
       try {
         final result = await repository.addEditeSemester(
             event.access,
@@ -81,8 +81,9 @@ class SemesterBloc extends Bloc<SemesterEvent, SemesterState> {
             event.schoolId,
             event.academicId,
             event.isCurrentSemester);
+
         yield SemesterAddOrEditeEdite(result);
-        sleep1();
+
         final semester = await repository.getAllSemester(event.academicId);
         yield SemesterLoaded(semester);
       } catch (e) {
@@ -110,5 +111,5 @@ class SemesterBloc extends Bloc<SemesterEvent, SemesterState> {
 }
 
 Future sleep1() {
-  return new Future.delayed(const Duration(seconds: 5), () => "1");
+  return new Future.delayed(const Duration(seconds: 500), () => "1");
 }

@@ -58,6 +58,24 @@ class AcademicBloc extends Bloc<AcademicEvent, AcademicState> {
       } catch (e) {
         yield AcademicError(e.toString());
       }
+    } else if (event is EditAcademic) {
+      yield AcademicLoading();
+      try {
+        final result = await repository.editeAcademic(
+          event.access,
+          event.id,
+          event.name,
+          event.isCurrentYear,
+          event.currentSemetserId,
+          event.schoolId,
+        );
+        yield AcademicEdite(result);
+
+        final academic = await repository.getAllAcademic(event.schoolId);
+        yield AcademicLoaded(academic);
+      } catch (e) {
+        yield AcademicError(e.toString());
+      }
     } else if (event is AddOrEditAcademicDelete) {
       yield AcademicLoading();
       try {

@@ -46,6 +46,20 @@ class AddOrEditAcademic extends AcademicEvent {
   );
 }
 
+class EditAcademic extends AcademicEvent {
+  final String access;
+
+  final int id;
+  final String name;
+  final bool isCurrentYear;
+
+  final int schoolId;
+  final int currentSemetserId;
+
+  EditAcademic(this.access, this.id, this.name, this.isCurrentYear,
+      this.currentSemetserId, this.schoolId);
+}
+
 class AddOrEditAcademicEdite extends AcademicEvent {
   final String access;
   final int id;

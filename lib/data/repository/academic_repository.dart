@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 
 abstract class AcademicRepository {
   Future<List<Academic>> getAllAcademic(int schoolId);
-  Future<List<Academic>> editAcademic();
   Future<Map<String, dynamic>> deleteAcademic(
       String accessToken, int idAcademic);
   Future<Map<String, dynamic>> addEditeAcademic(
@@ -17,6 +16,9 @@ abstract class AcademicRepository {
       List<int> semestersId,
       List<String> semestersName,
       List<bool> isCurrentSemester);
+
+  Future<Map<String, dynamic>> editeAcademic(String accessToken, int id,
+      String name, bool isCurrentYear, int semesterCurrentId, int schoolId);
 
   Future<Map<String, dynamic>> addEditeAcademicDelete(
       String accessToken,
@@ -54,9 +56,6 @@ class AcademicRepositoryImp extends AcademicRepository {
 
     return results;
   }
-
-  @override
-  Future<List<Academic>> editAcademic() {}
 
   @override
   Future<Map<String, dynamic>> addEditeAcademic(
@@ -113,6 +112,36 @@ class AcademicRepositoryImp extends AcademicRepository {
             },
             header: headers);
 
+    return results;
+  }
+
+  @override
+  Future<Map<String, dynamic>> editeAcademic(
+      String accessToken,
+      int id,
+      String name,
+      bool isCurrentYear,
+      int semesterCurrentId,
+      int schoolId) async {
+    Map<String, String> headers = {
+      'accept': 'text/plain',
+      "Authorization": "Bearer ${accessToken}",
+      'Content-Type': 'application/json-patch+json',
+    };
+    Map<String, dynamic> results =
+        await _apiProvider.post(Urls.Edit_Academic_Years,
+            body: {
+              "id": id,
+              "name": name,
+              "isCurrentYear": isCurrentYear,
+              "currentSemesterId": semesterCurrentId,
+              "schoolId": schoolId,
+            },
+            header: headers);
+    print(headers);
+    print("$id$name$isCurrentYear$semesterCurrentId$schoolId");
+
+    print(results);
     return results;
   }
 }

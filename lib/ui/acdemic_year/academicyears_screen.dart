@@ -295,7 +295,7 @@ class _AcademicYearsState extends State<AcademicYears> with ValidationMixin {
                   checkyear,
                   _authProvider.ownSchool.id,
                   [0],
-                  [_semetername.trim()],
+                  [_semetername.isEmpty ? "" : _semetername.trim()],
                   [checksemester]));
 
               Navigator.of(context).pop();

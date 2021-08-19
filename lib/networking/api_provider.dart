@@ -33,11 +33,18 @@ class ApiProvider {
 
   Future<dynamic> post(String url, {body, Map<String, String> header}) async {
     var responseJson;
+    print(url);
+    print(
+        "https://talentnotionapidev.azurewebsites.net/api/SchoolApi/AcademicYears/EditAcademicYear");
+    print(body);
+    print(header);
+
     try {
       final response = await http.post(Uri.encodeFull(url),
           headers: header == null ? _defaultHeader : header,
           body: json.encode(body));
       responseJson = _response(response);
+      print(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -58,6 +65,9 @@ class ApiProvider {
       case 500:
 
       default:
+        print(response.body.toString());
+        print(response.request.toString());
+
         throw FetchDataException(
             'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
     }

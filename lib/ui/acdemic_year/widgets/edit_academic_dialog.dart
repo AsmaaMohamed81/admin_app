@@ -49,7 +49,7 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
 
   List<int> id = [];
 
-  int levelId, classId, materialId, yearId;
+  int levelId, classId, materialId, semesterCurrentId;
   bool ismatch = false;
 
   final nameHolder = TextEditingController();
@@ -145,13 +145,13 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
                                   // checkColor: HexColor('F98622'),
                                   value: checkyear,
                                   onChanged: (bool value) {
-                                    print("{$checksemester}");
+                                    print("{checkyear1 $checkyear}");
 
                                     setState(() {
                                       //use that state here
                                       checkyear = value;
 
-                                      print("{$ischeckyear}");
+                                      print("{checkyear2 $checkyear}");
                                     });
                                   }),
                             )),
@@ -225,8 +225,8 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
         onChangeFunc: (newValue) {
           setState(() {
             _selsectsemster = newValue;
-            yearId = _selsectsemster.id;
-            print("semesterid = ${yearId.toString()}");
+            semesterCurrentId = _selsectsemster.id;
+            print("semesterid = ${semesterCurrentId.toString()}");
           });
         },
         dropDownList: yearsListDropDown,
@@ -241,31 +241,23 @@ class _EditAcademicDialogState extends State<EditAcademicDialog>
       child: RaisedButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         onPressed: () async {
+          print(_authProvider.currentUser.accessToken);
+          print(widget.academic.id.toString());
+          print(_yearsname.trim());
+          print(checkyear);
+          print(_authProvider.ownSchool.id.toString());
+          print(semesterCurrentId.toString());
           if (_formKey.currentState.validate()) {
             CircularProgressIndicator();
 
-            List<String> listsemestername;
-            widget.academic.semesters.forEach((userDetail) {
-              listsemestername.add(userDetail.name);
-            });
-            List<int> listsemesterid;
-            widget.academic.semesters.forEach((userDetail) {
-              listsemesterid.add(userDetail.id);
-            });
-            List<bool> listsemestercheck;
-            widget.academic.semesters.forEach((userDetail) {
-              listsemestercheck.add(userDetail.isCurrentSemester);
-            });
-
-            context.read<AcademicBloc>().add(AddOrEditAcademic(
-                _authProvider.currentUser.accessToken,
-                widget.academic.id,
-                _yearsname.trim(),
-                checkyear,
-                _authProvider.ownSchool.id,
-                listsemesterid,
-                listsemestername,
-                listsemestercheck));
+            context.read<AcademicBloc>().add(EditAcademic(
+                  _authProvider.currentUser.accessToken,
+                  widget.academic.id,
+                  _yearsname.trim(),
+                  checkyear,
+                  semesterCurrentId,
+                  _authProvider.ownSchool.id,
+                ));
 
             Navigator.of(context).pop();
 
