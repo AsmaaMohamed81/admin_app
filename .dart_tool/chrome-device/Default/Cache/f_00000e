@@ -1,0 +1,701 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/Semester_repository.dart', 'packages/admin_app/data/model/semester.dart'], (function load__packages__admin_app__bloc__semester_bloc__semester_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__Semester_repository$46dart, packages__admin_app__data__model__semester$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const Semester_repository = packages__admin_app__data__repository__Semester_repository$46dart.data__repository__Semester_repository;
+  const semester = packages__admin_app__data__model__semester$46dart.data__model__semester;
+  var semester_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    SemesterEventL: () => (T.SemesterEventL = dart.constFn(dart.legacy(semester_bloc.SemesterEvent)))(),
+    FetchSemesterL: () => (T.FetchSemesterL = dart.constFn(dart.legacy(semester_bloc.FetchSemester)))(),
+    DeletSemesterL: () => (T.DeletSemesterL = dart.constFn(dart.legacy(semester_bloc.DeletSemester)))(),
+    AddOrEditSemesterL: () => (T.AddOrEditSemesterL = dart.constFn(dart.legacy(semester_bloc.AddOrEditSemester)))(),
+    AddOrEditSemesterDeleteL: () => (T.AddOrEditSemesterDeleteL = dart.constFn(dart.legacy(semester_bloc.AddOrEditSemesterDelete)))(),
+    AddOrEditSemesterEditeL: () => (T.AddOrEditSemesterEditeL = dart.constFn(dart.legacy(semester_bloc.AddOrEditSemesterEdite)))(),
+    AddOrEditSemesterSelectL: () => (T.AddOrEditSemesterSelectL = dart.constFn(dart.legacy(semester_bloc.AddOrEditSemesterSelect)))(),
+    SemesterStateL: () => (T.SemesterStateL = dart.constFn(dart.legacy(semester_bloc.SemesterState)))(),
+    _AsyncStarImplOfSemesterStateL: () => (T._AsyncStarImplOfSemesterStateL = dart.constFn(async._AsyncStarImpl$(T.SemesterStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/semester_bloc/semester_bloc.dart"];
+  var repository$ = dart.privateName(semester_bloc, "SemesterBloc.repository");
+  semester_bloc.SemesterEvent = class SemesterEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (semester_bloc.SemesterEvent.new = function() {
+    semester_bloc.SemesterEvent.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterEvent.prototype;
+  dart.addTypeTests(semester_bloc.SemesterEvent);
+  dart.addTypeCaches(semester_bloc.SemesterEvent);
+  dart.setGetterSignature(semester_bloc.SemesterEvent, () => ({
+    __proto__: dart.getGetters(semester_bloc.SemesterEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(semester_bloc.SemesterEvent, I[0]);
+  semester_bloc.SemesterState = class SemesterState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (semester_bloc.SemesterState.new = function() {
+    semester_bloc.SemesterState.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterState.prototype;
+  dart.addTypeTests(semester_bloc.SemesterState);
+  dart.addTypeCaches(semester_bloc.SemesterState);
+  dart.setGetterSignature(semester_bloc.SemesterState, () => ({
+    __proto__: dart.getGetters(semester_bloc.SemesterState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(semester_bloc.SemesterState, I[0]);
+  semester_bloc.SemesterBloc = class SemesterBloc extends bloc.Bloc$(dart.legacy(semester_bloc.SemesterEvent), dart.legacy(semester_bloc.SemesterState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.SemesterEventL().as(event);
+      return new (T._AsyncStarImplOfSemesterStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchSemesterL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let semester = (yield this.repository.getAllSemester(event.Id));
+            if (stream.add(new semester_bloc.SemesterLoaded.new(semester))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletSemesterL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteSemester(event.access, event.id));
+            if (stream.add(new semester_bloc.SemesterDeleted.new(isdelete))) return;
+            yield;
+            let semester = (yield this.repository.getAllSemester(event.academicId));
+            if (stream.add(new semester_bloc.SemesterLoaded.new(semester))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSemesterL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSemester(event.access, event.id, event.name, event.schoolId, event.academicId, event.isCurrentSemester));
+            if (stream.add(new semester_bloc.SemesterAddOrEdite.new(result))) return;
+            yield;
+            let semester = (yield this.repository.getAllSemester(event.academicId));
+            if (stream.add(new semester_bloc.SemesterLoaded.new(semester))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSemesterDeleteL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSemesterDelete(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new semester_bloc.SemesterAddOrEditeDelete.new(result))) return;
+            yield;
+            let semester = (yield this.repository.getAllSemester(event.schoolId));
+            if (stream.add(new semester_bloc.SemesterLoaded.new(semester))) return;
+            yield;
+          } catch (e$2) {
+            let e = dart.getThrown(e$2);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSemesterEditeL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSemester(event.access, event.id, event.name, event.schoolId, event.academicId, event.isCurrentSemester));
+            if (stream.add(new semester_bloc.SemesterAddOrEditeEdite.new(result))) return;
+            yield;
+            let semester = (yield this.repository.getAllSemester(event.academicId));
+            if (stream.add(new semester_bloc.SemesterLoaded.new(semester))) return;
+            yield;
+          } catch (e$3) {
+            let e = dart.getThrown(e$3);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSemesterSelectL().is(event)) {
+          if (stream.add(new semester_bloc.SemesterLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSemesterDelete(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new semester_bloc.SemesterAddOrEditeSelecte.new(result))) return;
+            yield;
+          } catch (e$4) {
+            let e = dart.getThrown(e$4);
+            if (stream.add(new semester_bloc.SemesterError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (semester_bloc.SemesterBloc.new = function(repository) {
+    this[repository$] = repository;
+    semester_bloc.SemesterBloc.__proto__.new.call(this, new semester_bloc.SemesterInitial.new());
+    ;
+  }).prototype = semester_bloc.SemesterBloc.prototype;
+  dart.addTypeTests(semester_bloc.SemesterBloc);
+  dart.addTypeCaches(semester_bloc.SemesterBloc);
+  dart.setMethodSignature(semester_bloc.SemesterBloc, () => ({
+    __proto__: dart.getMethods(semester_bloc.SemesterBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(semester_bloc.SemesterState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(semester_bloc.SemesterBloc, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterBloc, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(Semester_repository.SemesterRepository))
+  }));
+  var Id$ = dart.privateName(semester_bloc, "FetchSemester.Id");
+  semester_bloc.FetchSemester = class FetchSemester extends semester_bloc.SemesterEvent {
+    get Id() {
+      return this[Id$];
+    }
+    set Id(value) {
+      super.Id = value;
+    }
+  };
+  (semester_bloc.FetchSemester.new = function(Id) {
+    this[Id$] = Id;
+    semester_bloc.FetchSemester.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.FetchSemester.prototype;
+  dart.addTypeTests(semester_bloc.FetchSemester);
+  dart.addTypeCaches(semester_bloc.FetchSemester);
+  dart.setLibraryUri(semester_bloc.FetchSemester, I[0]);
+  dart.setFieldSignature(semester_bloc.FetchSemester, () => ({
+    __proto__: dart.getFields(semester_bloc.FetchSemester.__proto__),
+    Id: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(semester_bloc, "DeletSemester.access");
+  var id$ = dart.privateName(semester_bloc, "DeletSemester.id");
+  var schoolId$ = dart.privateName(semester_bloc, "DeletSemester.schoolId");
+  var academicId$ = dart.privateName(semester_bloc, "DeletSemester.academicId");
+  semester_bloc.DeletSemester = class DeletSemester extends semester_bloc.SemesterEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get academicId() {
+      return this[academicId$];
+    }
+    set academicId(value) {
+      super.academicId = value;
+    }
+  };
+  (semester_bloc.DeletSemester.new = function(access, id, schoolId, academicId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$] = schoolId;
+    this[academicId$] = academicId;
+    semester_bloc.DeletSemester.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.DeletSemester.prototype;
+  dart.addTypeTests(semester_bloc.DeletSemester);
+  dart.addTypeCaches(semester_bloc.DeletSemester);
+  dart.setLibraryUri(semester_bloc.DeletSemester, I[0]);
+  dart.setFieldSignature(semester_bloc.DeletSemester, () => ({
+    __proto__: dart.getFields(semester_bloc.DeletSemester.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    academicId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(semester_bloc, "AddOrEditSemester.access");
+  var id$0 = dart.privateName(semester_bloc, "AddOrEditSemester.id");
+  var name$ = dart.privateName(semester_bloc, "AddOrEditSemester.name");
+  var schoolId$0 = dart.privateName(semester_bloc, "AddOrEditSemester.schoolId");
+  var academicId$0 = dart.privateName(semester_bloc, "AddOrEditSemester.academicId");
+  var isCurrentSemester$ = dart.privateName(semester_bloc, "AddOrEditSemester.isCurrentSemester");
+  semester_bloc.AddOrEditSemester = class AddOrEditSemester extends semester_bloc.SemesterEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get academicId() {
+      return this[academicId$0];
+    }
+    set academicId(value) {
+      super.academicId = value;
+    }
+    get isCurrentSemester() {
+      return this[isCurrentSemester$];
+    }
+    set isCurrentSemester(value) {
+      super.isCurrentSemester = value;
+    }
+  };
+  (semester_bloc.AddOrEditSemester.new = function(access, id, name, schoolId, academicId, isCurrentSemester) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[name$] = name;
+    this[schoolId$0] = schoolId;
+    this[academicId$0] = academicId;
+    this[isCurrentSemester$] = isCurrentSemester;
+    semester_bloc.AddOrEditSemester.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.AddOrEditSemester.prototype;
+  dart.addTypeTests(semester_bloc.AddOrEditSemester);
+  dart.addTypeCaches(semester_bloc.AddOrEditSemester);
+  dart.setLibraryUri(semester_bloc.AddOrEditSemester, I[0]);
+  dart.setFieldSignature(semester_bloc.AddOrEditSemester, () => ({
+    __proto__: dart.getFields(semester_bloc.AddOrEditSemester.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    academicId: dart.finalFieldType(dart.legacy(core.int)),
+    isCurrentSemester: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  var access$1 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.access");
+  var id$1 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.id");
+  var name$0 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.name");
+  var schoolId$1 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.schoolId");
+  var academicId$1 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.academicId");
+  var isCurrentSemester$0 = dart.privateName(semester_bloc, "AddOrEditSemesterEdite.isCurrentSemester");
+  semester_bloc.AddOrEditSemesterEdite = class AddOrEditSemesterEdite extends semester_bloc.SemesterEvent {
+    get access() {
+      return this[access$1];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$1];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get name() {
+      return this[name$0];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get academicId() {
+      return this[academicId$1];
+    }
+    set academicId(value) {
+      super.academicId = value;
+    }
+    get isCurrentSemester() {
+      return this[isCurrentSemester$0];
+    }
+    set isCurrentSemester(value) {
+      super.isCurrentSemester = value;
+    }
+  };
+  (semester_bloc.AddOrEditSemesterEdite.new = function(access, id, name, schoolId, academicId, isCurrentSemester) {
+    this[access$1] = access;
+    this[id$1] = id;
+    this[name$0] = name;
+    this[schoolId$1] = schoolId;
+    this[academicId$1] = academicId;
+    this[isCurrentSemester$0] = isCurrentSemester;
+    semester_bloc.AddOrEditSemesterEdite.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.AddOrEditSemesterEdite.prototype;
+  dart.addTypeTests(semester_bloc.AddOrEditSemesterEdite);
+  dart.addTypeCaches(semester_bloc.AddOrEditSemesterEdite);
+  dart.setLibraryUri(semester_bloc.AddOrEditSemesterEdite, I[0]);
+  dart.setFieldSignature(semester_bloc.AddOrEditSemesterEdite, () => ({
+    __proto__: dart.getFields(semester_bloc.AddOrEditSemesterEdite.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    academicId: dart.finalFieldType(dart.legacy(core.int)),
+    isCurrentSemester: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  var access$2 = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.access");
+  var id$2 = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.id");
+  var schoolId$2 = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.schoolId");
+  var materialName$ = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.materialName");
+  var abberviation$ = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.abberviation");
+  var teachers$ = dart.privateName(semester_bloc, "AddOrEditSemesterSelect.teachers");
+  semester_bloc.AddOrEditSemesterSelect = class AddOrEditSemesterSelect extends semester_bloc.SemesterEvent {
+    get access() {
+      return this[access$2];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$2];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$2];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (semester_bloc.AddOrEditSemesterSelect.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$2] = access;
+    this[id$2] = id;
+    this[schoolId$2] = schoolId;
+    this[materialName$] = materialName;
+    this[abberviation$] = abberviation;
+    this[teachers$] = teachers;
+    semester_bloc.AddOrEditSemesterSelect.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.AddOrEditSemesterSelect.prototype;
+  dart.addTypeTests(semester_bloc.AddOrEditSemesterSelect);
+  dart.addTypeCaches(semester_bloc.AddOrEditSemesterSelect);
+  dart.setLibraryUri(semester_bloc.AddOrEditSemesterSelect, I[0]);
+  dart.setFieldSignature(semester_bloc.AddOrEditSemesterSelect, () => ({
+    __proto__: dart.getFields(semester_bloc.AddOrEditSemesterSelect.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  var access$3 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.access");
+  var id$3 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.id");
+  var schoolId$3 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.schoolId");
+  var materialName$0 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.materialName");
+  var abberviation$0 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.abberviation");
+  var teachers$0 = dart.privateName(semester_bloc, "AddOrEditSemesterDelete.teachers");
+  semester_bloc.AddOrEditSemesterDelete = class AddOrEditSemesterDelete extends semester_bloc.SemesterEvent {
+    get access() {
+      return this[access$3];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$3];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$3];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$0];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$0];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$0];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (semester_bloc.AddOrEditSemesterDelete.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$3] = access;
+    this[id$3] = id;
+    this[schoolId$3] = schoolId;
+    this[materialName$0] = materialName;
+    this[abberviation$0] = abberviation;
+    this[teachers$0] = teachers;
+    semester_bloc.AddOrEditSemesterDelete.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.AddOrEditSemesterDelete.prototype;
+  dart.addTypeTests(semester_bloc.AddOrEditSemesterDelete);
+  dart.addTypeCaches(semester_bloc.AddOrEditSemesterDelete);
+  dart.setLibraryUri(semester_bloc.AddOrEditSemesterDelete, I[0]);
+  dart.setFieldSignature(semester_bloc.AddOrEditSemesterDelete, () => ({
+    __proto__: dart.getFields(semester_bloc.AddOrEditSemesterDelete.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  semester_bloc.SemesterInitial = class SemesterInitial extends semester_bloc.SemesterState {};
+  (semester_bloc.SemesterInitial.new = function() {
+    semester_bloc.SemesterInitial.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterInitial.prototype;
+  dart.addTypeTests(semester_bloc.SemesterInitial);
+  dart.addTypeCaches(semester_bloc.SemesterInitial);
+  dart.setLibraryUri(semester_bloc.SemesterInitial, I[0]);
+  semester_bloc.SemesterLoading = class SemesterLoading extends semester_bloc.SemesterState {};
+  (semester_bloc.SemesterLoading.new = function() {
+    semester_bloc.SemesterLoading.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterLoading.prototype;
+  dart.addTypeTests(semester_bloc.SemesterLoading);
+  dart.addTypeCaches(semester_bloc.SemesterLoading);
+  dart.setLibraryUri(semester_bloc.SemesterLoading, I[0]);
+  var semester$ = dart.privateName(semester_bloc, "SemesterLoaded.semester");
+  semester_bloc.SemesterLoaded = class SemesterLoaded extends semester_bloc.SemesterState {
+    get semester() {
+      return this[semester$];
+    }
+    set semester(value) {
+      super.semester = value;
+    }
+  };
+  (semester_bloc.SemesterLoaded.new = function(semester) {
+    this[semester$] = semester;
+    semester_bloc.SemesterLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterLoaded.prototype;
+  dart.addTypeTests(semester_bloc.SemesterLoaded);
+  dart.addTypeCaches(semester_bloc.SemesterLoaded);
+  dart.setLibraryUri(semester_bloc.SemesterLoaded, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterLoaded, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterLoaded.__proto__),
+    semester: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(semester.Semester))))
+  }));
+  var message$ = dart.privateName(semester_bloc, "SemesterDeleted.message");
+  semester_bloc.SemesterDeleted = class SemesterDeleted extends semester_bloc.SemesterState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (semester_bloc.SemesterDeleted.new = function(message) {
+    this[message$] = message;
+    semester_bloc.SemesterDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterDeleted.prototype;
+  dart.addTypeTests(semester_bloc.SemesterDeleted);
+  dart.addTypeCaches(semester_bloc.SemesterDeleted);
+  dart.setLibraryUri(semester_bloc.SemesterDeleted, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterDeleted, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(semester_bloc, "SemesterAddOrEdite.results");
+  semester_bloc.SemesterAddOrEdite = class SemesterAddOrEdite extends semester_bloc.SemesterState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (semester_bloc.SemesterAddOrEdite.new = function(results) {
+    this[results$] = results;
+    semester_bloc.SemesterAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterAddOrEdite.prototype;
+  dart.addTypeTests(semester_bloc.SemesterAddOrEdite);
+  dart.addTypeCaches(semester_bloc.SemesterAddOrEdite);
+  dart.setLibraryUri(semester_bloc.SemesterAddOrEdite, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterAddOrEdite, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$0 = dart.privateName(semester_bloc, "SemesterAddOrEditeDelete.results");
+  semester_bloc.SemesterAddOrEditeDelete = class SemesterAddOrEditeDelete extends semester_bloc.SemesterState {
+    get results() {
+      return this[results$0];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (semester_bloc.SemesterAddOrEditeDelete.new = function(results) {
+    this[results$0] = results;
+    semester_bloc.SemesterAddOrEditeDelete.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterAddOrEditeDelete.prototype;
+  dart.addTypeTests(semester_bloc.SemesterAddOrEditeDelete);
+  dart.addTypeCaches(semester_bloc.SemesterAddOrEditeDelete);
+  dart.setLibraryUri(semester_bloc.SemesterAddOrEditeDelete, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterAddOrEditeDelete, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterAddOrEditeDelete.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$1 = dart.privateName(semester_bloc, "SemesterAddOrEditeEdite.results");
+  semester_bloc.SemesterAddOrEditeEdite = class SemesterAddOrEditeEdite extends semester_bloc.SemesterState {
+    get results() {
+      return this[results$1];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (semester_bloc.SemesterAddOrEditeEdite.new = function(results) {
+    this[results$1] = results;
+    semester_bloc.SemesterAddOrEditeEdite.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterAddOrEditeEdite.prototype;
+  dart.addTypeTests(semester_bloc.SemesterAddOrEditeEdite);
+  dart.addTypeCaches(semester_bloc.SemesterAddOrEditeEdite);
+  dart.setLibraryUri(semester_bloc.SemesterAddOrEditeEdite, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterAddOrEditeEdite, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterAddOrEditeEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$2 = dart.privateName(semester_bloc, "SemesterAddOrEditeSelecte.results");
+  semester_bloc.SemesterAddOrEditeSelecte = class SemesterAddOrEditeSelecte extends semester_bloc.SemesterState {
+    get results() {
+      return this[results$2];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (semester_bloc.SemesterAddOrEditeSelecte.new = function(results) {
+    this[results$2] = results;
+    semester_bloc.SemesterAddOrEditeSelecte.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterAddOrEditeSelecte.prototype;
+  dart.addTypeTests(semester_bloc.SemesterAddOrEditeSelecte);
+  dart.addTypeCaches(semester_bloc.SemesterAddOrEditeSelecte);
+  dart.setLibraryUri(semester_bloc.SemesterAddOrEditeSelecte, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterAddOrEditeSelecte, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterAddOrEditeSelecte.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(semester_bloc, "SemesterError.message");
+  semester_bloc.SemesterError = class SemesterError extends semester_bloc.SemesterState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (semester_bloc.SemesterError.new = function(message) {
+    this[message$0] = message;
+    semester_bloc.SemesterError.__proto__.new.call(this);
+    ;
+  }).prototype = semester_bloc.SemesterError.prototype;
+  dart.addTypeTests(semester_bloc.SemesterError);
+  dart.addTypeCaches(semester_bloc.SemesterError);
+  dart.setLibraryUri(semester_bloc.SemesterError, I[0]);
+  dart.setFieldSignature(semester_bloc.SemesterError, () => ({
+    __proto__: dart.getFields(semester_bloc.SemesterError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  semester_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/semester_bloc/semester_bloc.dart", {
+    "package:admin_app/bloc/semester_bloc/semester_bloc.dart": semester_bloc
+  }, {
+    "package:admin_app/bloc/semester_bloc/semester_bloc.dart": ["semester_event.dart", "semester_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["semester_event.dart","semester_state.dart","semester_bloc.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/admin_app/bloc/semester_bloc/semester_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__semester_bloc__semester_bloc: semester_bloc
+  };
+}));
+
+//# sourceMappingURL=semester_bloc.dart.lib.js.map

@@ -1,0 +1,348 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/layout_builder.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/borders.dart', 'packages/admin_app/utils/app_colors.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__admin_app__custom_widget__buttons__custom_button_dart(dart_sdk, packages__flutter__src__widgets__layout_builder$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__borders$46dart, packages__admin_app__utils__app_colors$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__strut_style$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const layout_builder = packages__flutter__src__widgets__layout_builder$46dart.src__widgets__layout_builder;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const raised_button = packages__flutter__src__material__icon_button$46dart.src__material__raised_button;
+  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const app_colors = packages__admin_app__utils__app_colors$46dart.utils__app_colors;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  var custom_button = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    RaisedButtonL: () => (T.RaisedButtonL = dart.constFn(dart.legacy(raised_button.RaisedButton)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToRaisedButtonL: () => (T.BuildContextLToRaisedButtonL = dart.constFn(dart.fnType(T.RaisedButtonL(), [T.BuildContextL()])))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BoxConstraintsL: () => (T.BoxConstraintsL = dart.constFn(dart.legacy(box.BoxConstraints)))(),
+    BuildContextLAndBoxConstraintsLToContainerL: () => (T.BuildContextLAndBoxConstraintsLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.BoxConstraintsL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 34,
+        [_Location_line]: 50,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 25,
+        [_Location_line]: 51,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 49,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 23,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 47,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "elevation",
+        [_Location_column]: 19,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 19,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 19,
+        [_Location_line]: 44,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 34,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 9,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 27,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 26,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 25,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/buttons/custom_button.dart"
+      });
+    }
+  }, false);
+  var C = Array(26).fill(void 0);
+  var I = ["package:admin_app/custom_widget/buttons/custom_button.dart"];
+  var borderColor$ = dart.privateName(custom_button, "CustomButton.borderColor");
+  var btnColor$ = dart.privateName(custom_button, "CustomButton.btnColor");
+  var btnLbl$ = dart.privateName(custom_button, "CustomButton.btnLbl");
+  var onPressedFunction$ = dart.privateName(custom_button, "CustomButton.onPressedFunction");
+  var btnStyle$ = dart.privateName(custom_button, "CustomButton.btnStyle");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  custom_button.CustomButton = class CustomButton extends framework.StatelessWidget {
+    get borderColor() {
+      return this[borderColor$];
+    }
+    set borderColor(value) {
+      super.borderColor = value;
+    }
+    get btnColor() {
+      return this[btnColor$];
+    }
+    set btnColor(value) {
+      super.btnColor = value;
+    }
+    get btnLbl() {
+      return this[btnLbl$];
+    }
+    set btnLbl(value) {
+      super.btnLbl = value;
+    }
+    get onPressedFunction() {
+      return this[onPressedFunction$];
+    }
+    set onPressedFunction(value) {
+      super.onPressedFunction = value;
+    }
+    get btnStyle() {
+      return this[btnStyle$];
+    }
+    set btnStyle(value) {
+      super.btnStyle = value;
+    }
+    build(context) {
+      return new layout_builder.LayoutBuilder.new({builder: dart.fn((context, constraints) => new container.Container.new({height: constraints.maxHeight, margin: new edge_insets.EdgeInsets.symmetric({horizontal: dart.notNull(constraints.maxWidth) * 0.05, vertical: dart.notNull(constraints.maxHeight) * 0.01}), child: new basic.Builder.new({builder: dart.fn(context => new raised_button.RaisedButton.new({onPressed: dart.fn(() => {
+                dart.dsend(this, 'onPressedFunction', []);
+              }, T.VoidToNull()), elevation: 0.0, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(25.0), side: new borders.BorderSide.new({color: this.borderColor != null ? this.borderColor : app_colors.mainAppColor})}), color: this.btnColor != null ? this.btnColor : theme.Theme.of(context).primaryColor, child: new container.Container.new({alignment: alignment.Alignment.center, child: new text.Text.new(dart.str(this.btnLbl), {style: this.btnStyle == null ? theme.Theme.of(context).textTheme.button : this.btnStyle, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), T.BuildContextLToRaisedButtonL()), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), T.BuildContextLAndBoxConstraintsLToContainerL()), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
+    }
+  };
+  (custom_button.CustomButton.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let btnLbl = opts && 'btnLbl' in opts ? opts.btnLbl : null;
+    let onPressedFunction = opts && 'onPressedFunction' in opts ? opts.onPressedFunction : null;
+    let btnColor = opts && 'btnColor' in opts ? opts.btnColor : null;
+    let borderColor = opts && 'borderColor' in opts ? opts.borderColor : null;
+    let btnStyle = opts && 'btnStyle' in opts ? opts.btnStyle : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[btnLbl$] = btnLbl;
+    this[onPressedFunction$] = onPressedFunction;
+    this[btnColor$] = btnColor;
+    this[borderColor$] = borderColor;
+    this[btnStyle$] = btnStyle;
+    custom_button.CustomButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = custom_button.CustomButton.prototype;
+  dart.addTypeTests(custom_button.CustomButton);
+  dart.addTypeCaches(custom_button.CustomButton);
+  dart.setMethodSignature(custom_button.CustomButton, () => ({
+    __proto__: dart.getMethods(custom_button.CustomButton.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(custom_button.CustomButton, I[0]);
+  dart.setFieldSignature(custom_button.CustomButton, () => ({
+    __proto__: dart.getFields(custom_button.CustomButton.__proto__),
+    borderColor: dart.finalFieldType(dart.legacy(ui.Color)),
+    btnColor: dart.finalFieldType(dart.legacy(ui.Color)),
+    btnLbl: dart.finalFieldType(dart.legacy(core.String)),
+    onPressedFunction: dart.finalFieldType(dart.legacy(core.Function)),
+    btnStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle))
+  }));
+  dart.trackLibraries("packages/admin_app/custom_widget/buttons/custom_button.dart", {
+    "package:admin_app/custom_widget/buttons/custom_button.dart": custom_button
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["custom_button.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAKc;;;;;;IACA;;;;;;IACC;;;;;;IACE;;;;;;IACC;;;;;;UAcU;AACxB,YAAO,gDACI,SAAC,SAAQ,gBACR,qCACA,AAAY,WAAD,oBACA,kDAEQ,aAApB,AAAY,WAAD,aAAW,gBACO,aAAtB,AAAY,WAAD,cAAa,eAC/B,gCACM,QAAC,WAAY,+CACL;AACU,gBAAF,WAAjB;6CAES,YACA,uEACW,wCAAsB,aACjC,mCAAiB,AAAY,2BAClC,mBAAc,oCAEb,AAAS,wBACV,gBACM,AAAY,eAAT,OAAO,uBACf,wCACkB,mCACV,kBACA,SAAP,sBACK,AAAS,wBACJ,AAAY,AAAU,eAAnB,OAAO,qBAChB;IAK5B;;;QA5CS;QACA;QACA;QACA;QACA;QACA;;IAJA;IACA;IACA;IACA;IACA;AAEH,8DAAW,GAAG;;EAAC","file":"../../../../../../../packages/admin_app/custom_widget/buttons/custom_button.dart.lib.js"}');
+  // Exports:
+  return {
+    custom_widget__buttons__custom_button: custom_button
+  };
+}));
+
+//# sourceMappingURL=custom_button.dart.lib.js.map

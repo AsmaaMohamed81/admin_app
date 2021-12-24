@@ -1,0 +1,911 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/admin_app/data/model/subjects.dart', 'packages/admin_app/networking/api_provider.dart', 'packages/flutter/src/widgets/form.dart', 'packages/provider/src/provider.dart', 'packages/admin_app/provider/auth_provider.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/material/button_bar.dart', 'packages/admin_app/utils/hex_color.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/admin_app/utils/app_colors.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/progress_indicator.dart', 'packages/admin_app/bloc/subjects_bloc/subjects_bloc.dart', 'packages/admin_app/custom_widget/validation_mixin.dart'], (function load__packages__admin_app__ui__subjects__widget__adding_new_class_dialog_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__admin_app__data__model__subjects$46dart, packages__admin_app__networking__api_provider$46dart, packages__flutter__src__widgets__form$46dart, packages__provider__src__provider$46dart, packages__admin_app__provider__auth_provider$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__material__button_bar$46dart, packages__admin_app__utils__hex_color$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__rendering__flex$46dart, packages__admin_app__utils__app_colors$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__progress_indicator$46dart, packages__admin_app__bloc__subjects_bloc__subjects_bloc$46dart, packages__admin_app__custom_widget__validation_mixin$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const subjects = packages__admin_app__data__model__subjects$46dart.data__model__subjects;
+  const api_provider = packages__admin_app__networking__api_provider$46dart.networking__api_provider;
+  const form = packages__flutter__src__widgets__form$46dart.src__widgets__form;
+  const provider = packages__provider__src__provider$46dart.src__provider;
+  const auth_provider = packages__admin_app__provider__auth_provider$46dart.provider__auth_provider;
+  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const dialog = packages__flutter__src__material__button_bar$46dart.src__material__dialog;
+  const hex_color = packages__admin_app__utils__hex_color$46dart.utils__hex_color;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const raised_button = packages__flutter__src__material__icon_button$46dart.src__material__raised_button;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const app_colors = packages__admin_app__utils__app_colors$46dart.utils__app_colors;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const progress_indicator = packages__flutter__src__material__progress_indicator$46dart.src__material__progress_indicator;
+  const subjects_bloc = packages__admin_app__bloc__subjects_bloc__subjects_bloc$46dart.bloc__subjects_bloc__subjects_bloc;
+  const validation_mixin = packages__admin_app__custom_widget__validation_mixin$46dart.custom_widget__validation_mixin;
+  var adding_new_class_dialog = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $add = dartx.add;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    FormStateL: () => (T.FormStateL = dart.constFn(dart.legacy(form.FormState)))(),
+    GlobalKeyOfFormStateL: () => (T.GlobalKeyOfFormStateL = dart.constFn(framework.GlobalKey$(T.FormStateL())))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    JSArrayOfintL: () => (T.JSArrayOfintL = dart.constFn(_interceptors.JSArray$(T.intL())))(),
+    AuthProviderL: () => (T.AuthProviderL = dart.constFn(dart.legacy(auth_provider.AuthProvider)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    SubjectsBlocL: () => (T.SubjectsBlocL = dart.constFn(dart.legacy(subjects_bloc.SubjectsBloc)))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    VoidToFutureLOfNull: () => (T.VoidToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialValue",
+        [_Location_column]: 21,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 21,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 21,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 21,
+        [_Location_line]: 95,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialValue",
+        [_Location_column]: 21,
+        [_Location_line]: 98,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 21,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 21,
+        [_Location_line]: 107,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 21,
+        [_Location_line]: 110,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 97,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 21,
+        [_Location_line]: 113,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.constList([C[14] || CT.C14], T._LocationL());
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[13] || CT.C13,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 112,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 81,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 15,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 79,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 77,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 120,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 120,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 26,
+        [_Location_line]: 125,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31], T._LocationL());
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 125,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 23,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 139,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 137,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 21,
+        [_Location_line]: 130,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 21,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 21,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 129,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 127,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 129,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 126,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 122,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 121,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 11,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "contentPadding",
+        [_Location_column]: 11,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actionsPadding",
+        [_Location_column]: 11,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 11,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 11,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actions",
+        [_Location_column]: 11,
+        [_Location_line]: 119,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58], T._LocationL());
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 70,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C66() {
+      return C[66] = dart.constList([], T._LocationL());
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[66] || CT.C66,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 177,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 11,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 11,
+        [_Location_line]: 202,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70], T._LocationL());
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[68] || CT.C68,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 9,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 9,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 199,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 200,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73, C[74] || CT.C74, C[75] || CT.C75, C[76] || CT.C76], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 159,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 157,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 159,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.constList([C[79] || CT.C79, C[80] || CT.C80, C[81] || CT.C81], T._LocationL());
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[78] || CT.C78,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 156,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/adding_new_class_dialog.dart"
+      });
+    }
+  }, false);
+  var C = Array(82).fill(void 0);
+  var I = ["package:admin_app/ui/subjects/widget/adding_new_class_dialog.dart"];
+  var subjects$ = dart.privateName(adding_new_class_dialog, "AddingNewClassDialog.subjects");
+  var value$ = dart.privateName(adding_new_class_dialog, "AddingNewClassDialog.value");
+  var subjectsList$ = dart.privateName(adding_new_class_dialog, "AddingNewClassDialog.subjectsList");
+  adding_new_class_dialog.AddingNewClassDialog = class AddingNewClassDialog extends framework.StatefulWidget {
+    get subjects() {
+      return this[subjects$];
+    }
+    set subjects(value) {
+      super.subjects = value;
+    }
+    get value() {
+      return this[value$];
+    }
+    set value(value) {
+      super.value = value;
+    }
+    get subjectsList() {
+      return this[subjectsList$];
+    }
+    set subjectsList(value) {
+      super.subjectsList = value;
+    }
+    createState() {
+      return new adding_new_class_dialog._AddingNewClassDialogState.new();
+    }
+  };
+  (adding_new_class_dialog.AddingNewClassDialog.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let subjects = opts && 'subjects' in opts ? opts.subjects : null;
+    let value = opts && 'value' in opts ? opts.value : null;
+    let subjectsList = opts && 'subjectsList' in opts ? opts.subjectsList : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[subjects$] = subjects;
+    this[value$] = value;
+    this[subjectsList$] = subjectsList;
+    adding_new_class_dialog.AddingNewClassDialog.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = adding_new_class_dialog.AddingNewClassDialog.prototype;
+  dart.addTypeTests(adding_new_class_dialog.AddingNewClassDialog);
+  dart.addTypeCaches(adding_new_class_dialog.AddingNewClassDialog);
+  dart.setMethodSignature(adding_new_class_dialog.AddingNewClassDialog, () => ({
+    __proto__: dart.getMethods(adding_new_class_dialog.AddingNewClassDialog.__proto__),
+    createState: dart.fnType(dart.legacy(adding_new_class_dialog._AddingNewClassDialogState), [])
+  }));
+  dart.setLibraryUri(adding_new_class_dialog.AddingNewClassDialog, I[0]);
+  dart.setFieldSignature(adding_new_class_dialog.AddingNewClassDialog, () => ({
+    __proto__: dart.getFields(adding_new_class_dialog.AddingNewClassDialog.__proto__),
+    subjects: dart.finalFieldType(dart.legacy(subjects.Subjects)),
+    value: dart.finalFieldType(dart.legacy(core.int)),
+    subjectsList: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(subjects.Subjects))))
+  }));
+  var _width = dart.privateName(adding_new_class_dialog, "_width");
+  var _authProvider = dart.privateName(adding_new_class_dialog, "_authProvider");
+  var _apiProvider = dart.privateName(adding_new_class_dialog, "_apiProvider");
+  var _materialName = dart.privateName(adding_new_class_dialog, "_materialName");
+  var _abberviation = dart.privateName(adding_new_class_dialog, "_abberviation");
+  var _formKey = dart.privateName(adding_new_class_dialog, "_formKey");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _buildSaveBtn = dart.privateName(adding_new_class_dialog, "_buildSaveBtn");
+  const State_ValidationMixin$36 = class State_ValidationMixin extends framework.State$(dart.legacy(adding_new_class_dialog.AddingNewClassDialog)) {};
+  (State_ValidationMixin$36.new = function() {
+    validation_mixin.ValidationMixin$(dart.legacy(adding_new_class_dialog.AddingNewClassDialog))[dart.mixinNew].call(this);
+    State_ValidationMixin$36.__proto__.new.call(this);
+  }).prototype = State_ValidationMixin$36.prototype;
+  dart.applyMixin(State_ValidationMixin$36, validation_mixin.ValidationMixin$(dart.legacy(adding_new_class_dialog.AddingNewClassDialog)));
+  adding_new_class_dialog._AddingNewClassDialogState = class _AddingNewClassDialogState extends State_ValidationMixin$36 {
+    initState() {
+      super.initState();
+      if (dart.notNull(this.widget.subjects.teacherToSubjects[$length]) > 0) {
+        for (let i = 0; i < dart.notNull(this.widget.subjects.teacherToSubjects[$length]); i = i + 1) {
+          this.id[$add](this.widget.subjects.teacherToSubjects[$_get](i).teacherId);
+        }
+      }
+    }
+    build(context) {
+      this[_authProvider] = provider.Provider.of(T.AuthProviderL(), context);
+      this[_width] = media_query.MediaQuery.of(context).size.width;
+      core.print("ldksldlenghtttt=" + dart.str(this.widget.subjects.teacherToSubjects[$length]));
+      return new basic.Center.new({child: new single_child_scroll_view.SingleChildScrollView.new({child: new dialog.AlertDialog.new({backgroundColor: new hex_color.HexColor.new("F2F7F9"), contentPadding: new edge_insets.EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), actionsPadding: new edge_insets.EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0), shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.all(new ui.Radius.circular(20.0))}), content: new container.Container.new({width: dart.notNull(media_query.MediaQuery.of(context).size.width) * 0.7, child: new form.Form.new({key: this[_formKey], child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new text_form_field.TextFormField.new({initialValue: this.widget.value === 0 ? dart.str(this.widget.subjects.name) : null, decoration: new input_decorator.InputDecoration.new({errorMaxLines: 2, errorStyle: new text_style.TextStyle.new({fontSize: 9.0}), hintText: "Subject Name", hintStyle: new text_style.TextStyle.new({fontSize: 10.0})}), onChanged: dart.fn(text => {
+                        this[_materialName] = text;
+                      }, T.StringLToNull()), validator: dart.bind(this, 'validateSubjects'), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new text_form_field.TextFormField.new({initialValue: this.widget.value === 0 ? dart.str(this.widget.subjects.abbreviation) : null, decoration: new input_decorator.InputDecoration.new({errorMaxLines: 2, errorStyle: new text_style.TextStyle.new({fontSize: 9.0}), hintText: "Abbreviation", hintStyle: new text_style.TextStyle.new({fontSize: 10.0})}), onChanged: dart.fn(text => {
+                        this[_abberviation] = text;
+                      }, T.StringLToNull()), validator: dart.bind(this, 'validateAbberviation'), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[12] || CT.C12})]), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), $creationLocationd_0dea112b090073317d4: C[22] || CT.C22}), actions: T.JSArrayOfWidgetL().of([new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.start, children: T.JSArrayOfWidgetL().of([this[_buildSaveBtn](context), new basic.SizedBox.new({width: 10.0, $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}), new container.Container.new({height: 30.0, width: 75.0, child: new raised_button.RaisedButton.new({shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(15.0)}), onPressed: dart.fn(() => {
+                        navigator.Navigator.of(context).pop(T.ObjectL());
+                      }, T.VoidToNull()), color: app_colors.bluecancel, child: new text.Text.new("Cancel", {style: new text_style.TextStyle.new({fontSize: 12.0, color: colors.Colors.white, fontFamily: "IBMPlexSans", fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42})]), $creationLocationd_0dea112b090073317d4: C[47] || CT.C47})]), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51}), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62});
+    }
+    [_buildSaveBtn](context) {
+      return new container.Container.new({height: 30.0, width: 75.0, child: new raised_button.RaisedButton.new({shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(15.0)}), onPressed: dart.fn(() => async.async(core.Null, (function*() {
+            if (dart.test(this[_formKey].currentState.validate())) {
+              new progress_indicator.CircularProgressIndicator.new({$creationLocationd_0dea112b090073317d4: C[65] || CT.C65});
+              if (this[_materialName] == null) {
+                this[_materialName] = this.widget.subjects.name;
+              }
+              if (this[_abberviation] == null) {
+                this[_abberviation] = this.widget.subjects.abbreviation;
+              }
+              provider['ReadContext|read'](T.SubjectsBlocL(), context).add(new subjects_bloc.AddOrEditSubjectsEdite.new(this[_authProvider].currentUser.accessToken, this.widget.subjects.id, this[_authProvider].ownSchool.id, this[_materialName], this[_abberviation], this.id));
+              core.print("stattee");
+            }
+          }).bind(this)), T.VoidToFutureLOfNull()), color: app_colors.floatbottom, child: new text.Text.new("Save", {style: new text_style.TextStyle.new({fontSize: 12.0, color: colors.Colors.white, fontFamily: "IBMPlexSans", fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[67] || CT.C67}), $creationLocationd_0dea112b090073317d4: C[71] || CT.C71}), $creationLocationd_0dea112b090073317d4: C[77] || CT.C77});
+    }
+  };
+  (adding_new_class_dialog._AddingNewClassDialogState.new = function() {
+    this[_width] = 0.0;
+    this[_authProvider] = null;
+    this[_apiProvider] = api_provider.ApiProvider.new();
+    this.isloeded = false;
+    this[_materialName] = null;
+    this[_abberviation] = null;
+    this[_formKey] = T.GlobalKeyOfFormStateL().new();
+    this.id = T.JSArrayOfintL().of([]);
+    this.levelId = null;
+    this.classId = null;
+    this.materialId = null;
+    this.yearId = null;
+    this.ismatch = false;
+    adding_new_class_dialog._AddingNewClassDialogState.__proto__.new.call(this);
+    ;
+  }).prototype = adding_new_class_dialog._AddingNewClassDialogState.prototype;
+  dart.addTypeTests(adding_new_class_dialog._AddingNewClassDialogState);
+  dart.addTypeCaches(adding_new_class_dialog._AddingNewClassDialogState);
+  dart.setMethodSignature(adding_new_class_dialog._AddingNewClassDialogState, () => ({
+    __proto__: dart.getMethods(adding_new_class_dialog._AddingNewClassDialogState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_buildSaveBtn]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(adding_new_class_dialog._AddingNewClassDialogState, I[0]);
+  dart.setFieldSignature(adding_new_class_dialog._AddingNewClassDialogState, () => ({
+    __proto__: dart.getFields(adding_new_class_dialog._AddingNewClassDialogState.__proto__),
+    [_width]: dart.fieldType(dart.legacy(core.double)),
+    [_authProvider]: dart.fieldType(dart.legacy(auth_provider.AuthProvider)),
+    [_apiProvider]: dart.fieldType(dart.legacy(api_provider.ApiProvider)),
+    isloeded: dart.fieldType(dart.legacy(core.bool)),
+    [_materialName]: dart.fieldType(dart.legacy(core.String)),
+    [_abberviation]: dart.fieldType(dart.legacy(core.String)),
+    [_formKey]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(form.FormState)))),
+    id: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.int)))),
+    levelId: dart.fieldType(dart.legacy(core.int)),
+    classId: dart.fieldType(dart.legacy(core.int)),
+    materialId: dart.fieldType(dart.legacy(core.int)),
+    yearId: dart.fieldType(dart.legacy(core.int)),
+    ismatch: dart.fieldType(dart.legacy(core.bool))
+  }));
+  dart.trackLibraries("packages/admin_app/ui/subjects/widget/adding_new_class_dialog.dart", {
+    "package:admin_app/ui/subjects/widget/adding_new_class_dialog.dart": adding_new_class_dialog
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["adding_new_class_dialog.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/admin_app/ui/subjects/widget/adding_new_class_dialog.dart.lib.js"}');
+  // Exports:
+  return {
+    ui__subjects__widget__adding_new_class_dialog: adding_new_class_dialog
+  };
+}));
+
+//# sourceMappingURL=adding_new_class_dialog.dart.lib.js.map

@@ -1,0 +1,334 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/admin_app/custom_widget/custom_text/custom_text.dart', 'packages/admin_app/utils/app_colors.dart', 'packages/admin_app/locale/app_localizations.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/colors.dart'], (function load__packages__admin_app__custom_widget__custom_text_form__custom_text_form_field_auth_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__flex$46dart, packages__admin_app__custom_widget__custom_text__custom_text$46dart, packages__admin_app__utils__app_colors$46dart, packages__admin_app__locale__app_localizations$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__services__text_input$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__colors$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const focus_scope = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_scope;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const custom_text = packages__admin_app__custom_widget__custom_text__custom_text$46dart.custom_widget__custom_text__custom_text;
+  const app_colors = packages__admin_app__utils__app_colors$46dart.utils__app_colors;
+  const app_localizations = packages__admin_app__locale__app_localizations$46dart.locale__app_localizations;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  var custom_text_form_field_auth = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    StringTovoid: () => (T.StringTovoid = dart.constFn(dart.fnType(dart.void, [core.String])))(),
+    StringToNvoid: () => (T.StringToNvoid = dart.constFn(dart.nullable(T.StringTovoid())))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    StringNToStringN: () => (T.StringNToStringN = dart.constFn(dart.fnType(T.StringN(), [T.StringN()])))(),
+    StringNToNStringN: () => (T.StringNToNStringN = dart.constFn(dart.nullable(T.StringNToStringN())))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 15,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 15,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fontSize",
+        [_Location_column]: 15,
+        [_Location_line]: 34,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fontWeight",
+        [_Location_column]: 15,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/custom_text_form/custom_text_form_field_auth.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 15,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 15,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textInputAction",
+        [_Location_column]: 15,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 15,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "obscureText",
+        [_Location_column]: 15,
+        [_Location_line]: 57,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/custom_text_form/custom_text_form_field_auth.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/custom_text_form/custom_text_form_field_auth.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 30,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/custom_text_form/custom_text_form_field_auth.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 7,
+        [_Location_line]: 27,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 26,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/custom_widget/custom_text_form/custom_text_form_field_auth.dart"
+      });
+    }
+  }, false);
+  var C = Array(24).fill(void 0);
+  var I = ["package:admin_app/custom_widget/custom_text_form/custom_text_form_field_auth.dart"];
+  var text$ = dart.privateName(custom_text_form_field_auth, "CustomTextFormFieldAuth.text");
+  var hintText$ = dart.privateName(custom_text_form_field_auth, "CustomTextFormFieldAuth.hintText");
+  var onChange$ = dart.privateName(custom_text_form_field_auth, "CustomTextFormFieldAuth.onChange");
+  var validator$ = dart.privateName(custom_text_form_field_auth, "CustomTextFormFieldAuth.validator");
+  var obsecureText$ = dart.privateName(custom_text_form_field_auth, "CustomTextFormFieldAuth.obsecureText");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  custom_text_form_field_auth.CustomTextFormFieldAuth = class CustomTextFormFieldAuth extends framework.StatelessWidget {
+    get text() {
+      return this[text$];
+    }
+    set text(value) {
+      super.text = value;
+    }
+    get hintText() {
+      return this[hintText$];
+    }
+    set hintText(value) {
+      super.hintText = value;
+    }
+    get onChange() {
+      return this[onChange$];
+    }
+    set onChange(value) {
+      super.onChange = value;
+    }
+    get validator() {
+      return this[validator$];
+    }
+    set validator(value) {
+      super.validator = value;
+    }
+    get obsecureText() {
+      return this[obsecureText$];
+    }
+    set obsecureText(value) {
+      super.obsecureText = value;
+    }
+    build(context) {
+      let node = focus_scope.FocusScope.of(context);
+      return new container.Container.new({margin: new edge_insets.EdgeInsets.symmetric({horizontal: 20.0, vertical: 6.0}), child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new custom_text.CustomText.new({color: app_colors.mainAppColor, text: app_localizations.AppLocalizations.of(context).translate(this.text), fontSize: 12.0, fontWeight: ui.FontWeight.w500, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new container.Container.new({child: new text_form_field.TextFormField.new({onChanged: T.StringToNvoid().as(this.onChange), validator: T.StringNToNStringN().as(this.validator), textInputAction: text_input.TextInputAction.next, decoration: new input_decorator.InputDecoration.new({isDense: true, errorStyle: new text_style.TextStyle.new({color: colors.Colors.red, fontSize: 10.0}), errorMaxLines: 3, hintText: this.hintText, hintStyle: new text_style.TextStyle.new({color: colors.Colors.grey.shade600, fontSize: 12.0}), fillColor: colors.Colors.white}), obscureText: this.obsecureText, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13})]), $creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+    }
+  };
+  (custom_text_form_field_auth.CustomTextFormFieldAuth.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let text = opts && 'text' in opts ? opts.text : "text";
+    let hintText = opts && 'hintText' in opts ? opts.hintText : null;
+    let onChange = opts && 'onChange' in opts ? opts.onChange : null;
+    let obsecureText = opts && 'obsecureText' in opts ? opts.obsecureText : false;
+    let validator = opts && 'validator' in opts ? opts.validator : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[text$] = text;
+    this[hintText$] = hintText;
+    this[onChange$] = onChange;
+    this[obsecureText$] = obsecureText;
+    this[validator$] = validator;
+    custom_text_form_field_auth.CustomTextFormFieldAuth.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = custom_text_form_field_auth.CustomTextFormFieldAuth.prototype;
+  dart.addTypeTests(custom_text_form_field_auth.CustomTextFormFieldAuth);
+  dart.addTypeCaches(custom_text_form_field_auth.CustomTextFormFieldAuth);
+  dart.setMethodSignature(custom_text_form_field_auth.CustomTextFormFieldAuth, () => ({
+    __proto__: dart.getMethods(custom_text_form_field_auth.CustomTextFormFieldAuth.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(custom_text_form_field_auth.CustomTextFormFieldAuth, I[0]);
+  dart.setFieldSignature(custom_text_form_field_auth.CustomTextFormFieldAuth, () => ({
+    __proto__: dart.getFields(custom_text_form_field_auth.CustomTextFormFieldAuth.__proto__),
+    text: dart.finalFieldType(dart.legacy(core.String)),
+    hintText: dart.finalFieldType(dart.legacy(core.String)),
+    onChange: dart.finalFieldType(dart.legacy(core.Function)),
+    validator: dart.finalFieldType(dart.legacy(core.Function)),
+    obsecureText: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  dart.trackLibraries("packages/admin_app/custom_widget/custom_text_form/custom_text_form_field_auth.dart", {
+    "package:admin_app/custom_widget/custom_text_form/custom_text_form_field_auth.dart": custom_text_form_field_auth
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["custom_text_form_field_auth.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAMe;;;;;;IACA;;;;;;IACE;;;;;;IACA;;;;;;IACJ;;;;;;UAYe;AAClB,iBAAkB,0BAAG,OAAO;AAElC,YAAO,sCACc,kDAAsB,gBAAc,cAChD,0CACkC,yCAC7B,yBACR,uCACW,+BACgB,AAAY,sCAAT,OAAO,YAAY,sBACnC,kBACa,6EAC3B,oCACS,uEACM,oDACA,kCAGsB,6CAKrB,kDACC,kBACG,qCAAwB,6BAAe,uBACpC,aACL,0BACC,qCACK,AAAK,uCACT,mBAEM,oCACT;IAMzB;;;QAjDS;QACA;QACA;QACA;QACA;QACA;;IAJA;IACA;IACA;IACA;IACA;AACH,uFAAW,GAAG;;EAAC","file":"../../../../../../../packages/admin_app/custom_widget/custom_text_form/custom_text_form_field_auth.dart.lib.js"}');
+  // Exports:
+  return {
+    custom_widget__custom_text_form__custom_text_form_field_auth: custom_text_form_field_auth
+  };
+}));
+
+//# sourceMappingURL=custom_text_form_field_auth.dart.lib.js.map

@@ -1,0 +1,95 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.admin_app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.VIBRATE" />
+11-->[:vibration] C:\Users\Asmaa Mohammed\Documents\admin_app\build\vibration\intermediates\library_manifest\release\AndroidManifest.xml:7:5-66
+11-->[:vibration] C:\Users\Asmaa Mohammed\Documents\admin_app\build\vibration\intermediates\library_manifest\release\AndroidManifest.xml:7:22-63
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[:connectivity] C:\Users\Asmaa Mohammed\Documents\admin_app\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:7:5-79
+12-->[:connectivity] C:\Users\Asmaa Mohammed\Documents\admin_app\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->[:connectivity] C:\Users\Asmaa Mohammed\Documents\admin_app\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:8:5-76
+13-->[:connectivity] C:\Users\Asmaa Mohammed\Documents\admin_app\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:8:22-73
+14
+15    <application
+15-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:3:4-40:19
+16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+16-->[androidx.core:core:1.1.0] C:\Users\Asmaa Mohammed\.gradle\caches\transforms-2\files-2.1\2e94107f30f39be366a17347c2bf100b\core-1.1.0\AndroidManifest.xml:24:18-86
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:5:9-43
+18        android:label="admin_app" >
+18-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:4:9-34
+19        <activity
+19-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:6:9-34:20
+20            android:name="com.example.admin_app.MainActivity"
+20-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:7:13-41
+21            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+21-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:10:13-163
+22            android:hardwareAccelerated="true"
+22-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:11:13-47
+23            android:launchMode="singleTop"
+23-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:8:13-43
+24            android:theme="@style/LaunchTheme"
+24-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:9:13-47
+25            android:windowSoftInputMode="adjustResize" >
+25-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:12:13-55
+26
+27            <!--
+28                 Specifies an Android theme to apply to this Activity as soon as
+29                 the Android process has started. This theme is visible to the user
+30                 while the Flutter UI initializes. After that, this theme continues
+31                 to determine the Window background behind the Flutter UI.
+32            -->
+33            <meta-data
+33-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:17:13-20:17
+34                android:name="io.flutter.embedding.android.NormalTheme"
+34-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:18:15-70
+35                android:resource="@style/NormalTheme" />
+35-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:19:15-52
+36            <!--
+37                 Displays an Android View that continues showing the launch screen
+38                 Drawable until Flutter paints its first frame, then this splash
+39                 screen fades out. A splash screen is useful to avoid any visual
+40                 gap between the end of Android's launch screen and the painting of
+41                 Flutter's first frame.
+42            -->
+43            <meta-data
+43-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:26:13-29:17
+44                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+44-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:27:15-79
+45                android:resource="@drawable/launch_background" />
+45-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:28:15-61
+46
+47            <intent-filter>
+47-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:30:13-33:29
+48                <action android:name="android.intent.action.MAIN" />
+48-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:31:17-68
+48-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:31:25-66
+49
+50                <category android:name="android.intent.category.LAUNCHER" />
+50-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:32:17-76
+50-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:32:27-74
+51            </intent-filter>
+52        </activity>
+53        <!--
+54             Don't delete the meta-data below.
+55             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+56        -->
+57        <meta-data
+57-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:37:9-39:33
+58            android:name="flutterEmbedding"
+58-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:38:13-44
+59            android:value="2" />
+59-->C:\Users\Asmaa Mohammed\Documents\admin_app\android\app\src\main\AndroidManifest.xml:39:13-30
+60    </application>
+61
+62</manifest>

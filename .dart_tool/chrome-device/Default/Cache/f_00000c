@@ -1,0 +1,692 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/subjects.repository.dart', 'packages/admin_app/data/model/subjects.dart'], (function load__packages__admin_app__bloc__subjects_bloc__subjects_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__subjects$46repository$46dart, packages__admin_app__data__model__subjects$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const subjects$46repository = packages__admin_app__data__repository__subjects$46repository$46dart.data__repository__subjects$46repository;
+  const subjects = packages__admin_app__data__model__subjects$46dart.data__model__subjects;
+  var subjects_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    SubjectsEventL: () => (T.SubjectsEventL = dart.constFn(dart.legacy(subjects_bloc.SubjectsEvent)))(),
+    FetchSubjectsL: () => (T.FetchSubjectsL = dart.constFn(dart.legacy(subjects_bloc.FetchSubjects)))(),
+    DeletSubjectsL: () => (T.DeletSubjectsL = dart.constFn(dart.legacy(subjects_bloc.DeletSubjects)))(),
+    AddOrEditSubjectsL: () => (T.AddOrEditSubjectsL = dart.constFn(dart.legacy(subjects_bloc.AddOrEditSubjects)))(),
+    AddOrEditSubjectsDeleteL: () => (T.AddOrEditSubjectsDeleteL = dart.constFn(dart.legacy(subjects_bloc.AddOrEditSubjectsDelete)))(),
+    AddOrEditSubjectsEditeL: () => (T.AddOrEditSubjectsEditeL = dart.constFn(dart.legacy(subjects_bloc.AddOrEditSubjectsEdite)))(),
+    AddOrEditSubjectsSelectL: () => (T.AddOrEditSubjectsSelectL = dart.constFn(dart.legacy(subjects_bloc.AddOrEditSubjectsSelect)))(),
+    SubjectsStateL: () => (T.SubjectsStateL = dart.constFn(dart.legacy(subjects_bloc.SubjectsState)))(),
+    _AsyncStarImplOfSubjectsStateL: () => (T._AsyncStarImplOfSubjectsStateL = dart.constFn(async._AsyncStarImpl$(T.SubjectsStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/subjects_bloc/subjects_bloc.dart"];
+  var repository$ = dart.privateName(subjects_bloc, "SubjectsBloc.repository");
+  subjects_bloc.SubjectsEvent = class SubjectsEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (subjects_bloc.SubjectsEvent.new = function() {
+    subjects_bloc.SubjectsEvent.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsEvent.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsEvent);
+  dart.addTypeCaches(subjects_bloc.SubjectsEvent);
+  dart.setGetterSignature(subjects_bloc.SubjectsEvent, () => ({
+    __proto__: dart.getGetters(subjects_bloc.SubjectsEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(subjects_bloc.SubjectsEvent, I[0]);
+  subjects_bloc.SubjectsState = class SubjectsState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (subjects_bloc.SubjectsState.new = function() {
+    subjects_bloc.SubjectsState.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsState.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsState);
+  dart.addTypeCaches(subjects_bloc.SubjectsState);
+  dart.setGetterSignature(subjects_bloc.SubjectsState, () => ({
+    __proto__: dart.getGetters(subjects_bloc.SubjectsState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(subjects_bloc.SubjectsState, I[0]);
+  subjects_bloc.SubjectsBloc = class SubjectsBloc extends bloc.Bloc$(dart.legacy(subjects_bloc.SubjectsEvent), dart.legacy(subjects_bloc.SubjectsState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.SubjectsEventL().as(event);
+      return new (T._AsyncStarImplOfSubjectsStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchSubjectsL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let subjects = (yield this.repository.getAllSubjects(event.schoolId));
+            if (stream.add(new subjects_bloc.SubjectsLoaded.new(subjects))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletSubjectsL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteSubjects(event.access, event.id));
+            if (stream.add(new subjects_bloc.SubjectsDeleted.new(isdelete))) return;
+            yield;
+            let subjects = (yield this.repository.getAllSubjects(event.schoolId));
+            if (stream.add(new subjects_bloc.SubjectsLoaded.new(subjects))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSubjectsL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSubjects(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new subjects_bloc.SubjectsAddOrEdite.new(result))) return;
+            yield;
+            let subjects = (yield this.repository.getAllSubjects(event.schoolId));
+            if (stream.add(new subjects_bloc.SubjectsLoaded.new(subjects))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSubjectsDeleteL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSubjectsDelete(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new subjects_bloc.SubjectsAddOrEditeDelete.new(result))) return;
+            yield;
+            let subjects = (yield this.repository.getAllSubjects(event.schoolId));
+            if (stream.add(new subjects_bloc.SubjectsLoaded.new(subjects))) return;
+            yield;
+          } catch (e$2) {
+            let e = dart.getThrown(e$2);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSubjectsEditeL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSubjectsDelete(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new subjects_bloc.SubjectsAddOrEditeEdite.new(result))) return;
+            yield;
+            let subjects = (yield this.repository.getAllSubjects(event.schoolId));
+            if (stream.add(new subjects_bloc.SubjectsLoaded.new(subjects))) return;
+            yield;
+          } catch (e$3) {
+            let e = dart.getThrown(e$3);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditSubjectsSelectL().is(event)) {
+          if (stream.add(new subjects_bloc.SubjectsLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeSubjectsDelete(event.access, event.materialName, event.id, event.schoolId, event.abberviation, event.teachers));
+            if (stream.add(new subjects_bloc.SubjectsAddOrEditeSelecte.new(result))) return;
+            yield;
+          } catch (e$4) {
+            let e = dart.getThrown(e$4);
+            if (stream.add(new subjects_bloc.SubjectsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (subjects_bloc.SubjectsBloc.new = function(repository) {
+    this[repository$] = repository;
+    subjects_bloc.SubjectsBloc.__proto__.new.call(this, new subjects_bloc.SubjectsInitial.new());
+    ;
+  }).prototype = subjects_bloc.SubjectsBloc.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsBloc);
+  dart.addTypeCaches(subjects_bloc.SubjectsBloc);
+  dart.setMethodSignature(subjects_bloc.SubjectsBloc, () => ({
+    __proto__: dart.getMethods(subjects_bloc.SubjectsBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(subjects_bloc.SubjectsState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(subjects_bloc.SubjectsBloc, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsBloc, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(subjects$46repository.SubjectsRepository))
+  }));
+  var schoolId$ = dart.privateName(subjects_bloc, "FetchSubjects.schoolId");
+  subjects_bloc.FetchSubjects = class FetchSubjects extends subjects_bloc.SubjectsEvent {
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (subjects_bloc.FetchSubjects.new = function(schoolId) {
+    this[schoolId$] = schoolId;
+    subjects_bloc.FetchSubjects.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.FetchSubjects.prototype;
+  dart.addTypeTests(subjects_bloc.FetchSubjects);
+  dart.addTypeCaches(subjects_bloc.FetchSubjects);
+  dart.setLibraryUri(subjects_bloc.FetchSubjects, I[0]);
+  dart.setFieldSignature(subjects_bloc.FetchSubjects, () => ({
+    __proto__: dart.getFields(subjects_bloc.FetchSubjects.__proto__),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(subjects_bloc, "DeletSubjects.access");
+  var id$ = dart.privateName(subjects_bloc, "DeletSubjects.id");
+  var schoolId$0 = dart.privateName(subjects_bloc, "DeletSubjects.schoolId");
+  subjects_bloc.DeletSubjects = class DeletSubjects extends subjects_bloc.SubjectsEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (subjects_bloc.DeletSubjects.new = function(access, id, schoolId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$0] = schoolId;
+    subjects_bloc.DeletSubjects.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.DeletSubjects.prototype;
+  dart.addTypeTests(subjects_bloc.DeletSubjects);
+  dart.addTypeCaches(subjects_bloc.DeletSubjects);
+  dart.setLibraryUri(subjects_bloc.DeletSubjects, I[0]);
+  dart.setFieldSignature(subjects_bloc.DeletSubjects, () => ({
+    __proto__: dart.getFields(subjects_bloc.DeletSubjects.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(subjects_bloc, "AddOrEditSubjects.access");
+  var id$0 = dart.privateName(subjects_bloc, "AddOrEditSubjects.id");
+  var schoolId$1 = dart.privateName(subjects_bloc, "AddOrEditSubjects.schoolId");
+  var materialName$ = dart.privateName(subjects_bloc, "AddOrEditSubjects.materialName");
+  var abberviation$ = dart.privateName(subjects_bloc, "AddOrEditSubjects.abberviation");
+  var teachers$ = dart.privateName(subjects_bloc, "AddOrEditSubjects.teachers");
+  subjects_bloc.AddOrEditSubjects = class AddOrEditSubjects extends subjects_bloc.SubjectsEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (subjects_bloc.AddOrEditSubjects.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[schoolId$1] = schoolId;
+    this[materialName$] = materialName;
+    this[abberviation$] = abberviation;
+    this[teachers$] = teachers;
+    subjects_bloc.AddOrEditSubjects.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.AddOrEditSubjects.prototype;
+  dart.addTypeTests(subjects_bloc.AddOrEditSubjects);
+  dart.addTypeCaches(subjects_bloc.AddOrEditSubjects);
+  dart.setLibraryUri(subjects_bloc.AddOrEditSubjects, I[0]);
+  dart.setFieldSignature(subjects_bloc.AddOrEditSubjects, () => ({
+    __proto__: dart.getFields(subjects_bloc.AddOrEditSubjects.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  var access$1 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.access");
+  var id$1 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.id");
+  var schoolId$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.schoolId");
+  var materialName$0 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.materialName");
+  var abberviation$0 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.abberviation");
+  var teachers$0 = dart.privateName(subjects_bloc, "AddOrEditSubjectsEdite.teachers");
+  subjects_bloc.AddOrEditSubjectsEdite = class AddOrEditSubjectsEdite extends subjects_bloc.SubjectsEvent {
+    get access() {
+      return this[access$1];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$1];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$2];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$0];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$0];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$0];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (subjects_bloc.AddOrEditSubjectsEdite.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$1] = access;
+    this[id$1] = id;
+    this[schoolId$2] = schoolId;
+    this[materialName$0] = materialName;
+    this[abberviation$0] = abberviation;
+    this[teachers$0] = teachers;
+    subjects_bloc.AddOrEditSubjectsEdite.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.AddOrEditSubjectsEdite.prototype;
+  dart.addTypeTests(subjects_bloc.AddOrEditSubjectsEdite);
+  dart.addTypeCaches(subjects_bloc.AddOrEditSubjectsEdite);
+  dart.setLibraryUri(subjects_bloc.AddOrEditSubjectsEdite, I[0]);
+  dart.setFieldSignature(subjects_bloc.AddOrEditSubjectsEdite, () => ({
+    __proto__: dart.getFields(subjects_bloc.AddOrEditSubjectsEdite.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  var access$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.access");
+  var id$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.id");
+  var schoolId$3 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.schoolId");
+  var materialName$1 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.materialName");
+  var abberviation$1 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.abberviation");
+  var teachers$1 = dart.privateName(subjects_bloc, "AddOrEditSubjectsSelect.teachers");
+  subjects_bloc.AddOrEditSubjectsSelect = class AddOrEditSubjectsSelect extends subjects_bloc.SubjectsEvent {
+    get access() {
+      return this[access$2];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$2];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$3];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$1];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$1];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$1];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (subjects_bloc.AddOrEditSubjectsSelect.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$2] = access;
+    this[id$2] = id;
+    this[schoolId$3] = schoolId;
+    this[materialName$1] = materialName;
+    this[abberviation$1] = abberviation;
+    this[teachers$1] = teachers;
+    subjects_bloc.AddOrEditSubjectsSelect.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.AddOrEditSubjectsSelect.prototype;
+  dart.addTypeTests(subjects_bloc.AddOrEditSubjectsSelect);
+  dart.addTypeCaches(subjects_bloc.AddOrEditSubjectsSelect);
+  dart.setLibraryUri(subjects_bloc.AddOrEditSubjectsSelect, I[0]);
+  dart.setFieldSignature(subjects_bloc.AddOrEditSubjectsSelect, () => ({
+    __proto__: dart.getFields(subjects_bloc.AddOrEditSubjectsSelect.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  var access$3 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.access");
+  var id$3 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.id");
+  var schoolId$4 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.schoolId");
+  var materialName$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.materialName");
+  var abberviation$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.abberviation");
+  var teachers$2 = dart.privateName(subjects_bloc, "AddOrEditSubjectsDelete.teachers");
+  subjects_bloc.AddOrEditSubjectsDelete = class AddOrEditSubjectsDelete extends subjects_bloc.SubjectsEvent {
+    get access() {
+      return this[access$3];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$3];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$4];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get materialName() {
+      return this[materialName$2];
+    }
+    set materialName(value) {
+      super.materialName = value;
+    }
+    get abberviation() {
+      return this[abberviation$2];
+    }
+    set abberviation(value) {
+      super.abberviation = value;
+    }
+    get teachers() {
+      return this[teachers$2];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (subjects_bloc.AddOrEditSubjectsDelete.new = function(access, id, schoolId, materialName, abberviation, teachers) {
+    this[access$3] = access;
+    this[id$3] = id;
+    this[schoolId$4] = schoolId;
+    this[materialName$2] = materialName;
+    this[abberviation$2] = abberviation;
+    this[teachers$2] = teachers;
+    subjects_bloc.AddOrEditSubjectsDelete.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.AddOrEditSubjectsDelete.prototype;
+  dart.addTypeTests(subjects_bloc.AddOrEditSubjectsDelete);
+  dart.addTypeCaches(subjects_bloc.AddOrEditSubjectsDelete);
+  dart.setLibraryUri(subjects_bloc.AddOrEditSubjectsDelete, I[0]);
+  dart.setFieldSignature(subjects_bloc.AddOrEditSubjectsDelete, () => ({
+    __proto__: dart.getFields(subjects_bloc.AddOrEditSubjectsDelete.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    materialName: dart.finalFieldType(dart.legacy(core.String)),
+    abberviation: dart.finalFieldType(dart.legacy(core.String)),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.int))))
+  }));
+  subjects_bloc.SubjectsInitial = class SubjectsInitial extends subjects_bloc.SubjectsState {};
+  (subjects_bloc.SubjectsInitial.new = function() {
+    subjects_bloc.SubjectsInitial.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsInitial.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsInitial);
+  dart.addTypeCaches(subjects_bloc.SubjectsInitial);
+  dart.setLibraryUri(subjects_bloc.SubjectsInitial, I[0]);
+  subjects_bloc.SubjectsLoading = class SubjectsLoading extends subjects_bloc.SubjectsState {};
+  (subjects_bloc.SubjectsLoading.new = function() {
+    subjects_bloc.SubjectsLoading.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsLoading.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsLoading);
+  dart.addTypeCaches(subjects_bloc.SubjectsLoading);
+  dart.setLibraryUri(subjects_bloc.SubjectsLoading, I[0]);
+  var subjects$ = dart.privateName(subjects_bloc, "SubjectsLoaded.subjects");
+  subjects_bloc.SubjectsLoaded = class SubjectsLoaded extends subjects_bloc.SubjectsState {
+    get subjects() {
+      return this[subjects$];
+    }
+    set subjects(value) {
+      super.subjects = value;
+    }
+  };
+  (subjects_bloc.SubjectsLoaded.new = function(subjects) {
+    this[subjects$] = subjects;
+    subjects_bloc.SubjectsLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsLoaded.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsLoaded);
+  dart.addTypeCaches(subjects_bloc.SubjectsLoaded);
+  dart.setLibraryUri(subjects_bloc.SubjectsLoaded, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsLoaded, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsLoaded.__proto__),
+    subjects: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(subjects.Subjects))))
+  }));
+  var message$ = dart.privateName(subjects_bloc, "SubjectsDeleted.message");
+  subjects_bloc.SubjectsDeleted = class SubjectsDeleted extends subjects_bloc.SubjectsState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (subjects_bloc.SubjectsDeleted.new = function(message) {
+    this[message$] = message;
+    subjects_bloc.SubjectsDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsDeleted.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsDeleted);
+  dart.addTypeCaches(subjects_bloc.SubjectsDeleted);
+  dart.setLibraryUri(subjects_bloc.SubjectsDeleted, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsDeleted, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(subjects_bloc, "SubjectsAddOrEdite.results");
+  subjects_bloc.SubjectsAddOrEdite = class SubjectsAddOrEdite extends subjects_bloc.SubjectsState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (subjects_bloc.SubjectsAddOrEdite.new = function(results) {
+    this[results$] = results;
+    subjects_bloc.SubjectsAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsAddOrEdite.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsAddOrEdite);
+  dart.addTypeCaches(subjects_bloc.SubjectsAddOrEdite);
+  dart.setLibraryUri(subjects_bloc.SubjectsAddOrEdite, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsAddOrEdite, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$0 = dart.privateName(subjects_bloc, "SubjectsAddOrEditeDelete.results");
+  subjects_bloc.SubjectsAddOrEditeDelete = class SubjectsAddOrEditeDelete extends subjects_bloc.SubjectsState {
+    get results() {
+      return this[results$0];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (subjects_bloc.SubjectsAddOrEditeDelete.new = function(results) {
+    this[results$0] = results;
+    subjects_bloc.SubjectsAddOrEditeDelete.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsAddOrEditeDelete.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsAddOrEditeDelete);
+  dart.addTypeCaches(subjects_bloc.SubjectsAddOrEditeDelete);
+  dart.setLibraryUri(subjects_bloc.SubjectsAddOrEditeDelete, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsAddOrEditeDelete, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsAddOrEditeDelete.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$1 = dart.privateName(subjects_bloc, "SubjectsAddOrEditeEdite.results");
+  subjects_bloc.SubjectsAddOrEditeEdite = class SubjectsAddOrEditeEdite extends subjects_bloc.SubjectsState {
+    get results() {
+      return this[results$1];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (subjects_bloc.SubjectsAddOrEditeEdite.new = function(results) {
+    this[results$1] = results;
+    subjects_bloc.SubjectsAddOrEditeEdite.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsAddOrEditeEdite.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsAddOrEditeEdite);
+  dart.addTypeCaches(subjects_bloc.SubjectsAddOrEditeEdite);
+  dart.setLibraryUri(subjects_bloc.SubjectsAddOrEditeEdite, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsAddOrEditeEdite, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsAddOrEditeEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$2 = dart.privateName(subjects_bloc, "SubjectsAddOrEditeSelecte.results");
+  subjects_bloc.SubjectsAddOrEditeSelecte = class SubjectsAddOrEditeSelecte extends subjects_bloc.SubjectsState {
+    get results() {
+      return this[results$2];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (subjects_bloc.SubjectsAddOrEditeSelecte.new = function(results) {
+    this[results$2] = results;
+    subjects_bloc.SubjectsAddOrEditeSelecte.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsAddOrEditeSelecte.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsAddOrEditeSelecte);
+  dart.addTypeCaches(subjects_bloc.SubjectsAddOrEditeSelecte);
+  dart.setLibraryUri(subjects_bloc.SubjectsAddOrEditeSelecte, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsAddOrEditeSelecte, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsAddOrEditeSelecte.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(subjects_bloc, "SubjectsError.message");
+  subjects_bloc.SubjectsError = class SubjectsError extends subjects_bloc.SubjectsState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (subjects_bloc.SubjectsError.new = function(message) {
+    this[message$0] = message;
+    subjects_bloc.SubjectsError.__proto__.new.call(this);
+    ;
+  }).prototype = subjects_bloc.SubjectsError.prototype;
+  dart.addTypeTests(subjects_bloc.SubjectsError);
+  dart.addTypeCaches(subjects_bloc.SubjectsError);
+  dart.setLibraryUri(subjects_bloc.SubjectsError, I[0]);
+  dart.setFieldSignature(subjects_bloc.SubjectsError, () => ({
+    __proto__: dart.getFields(subjects_bloc.SubjectsError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  subjects_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/subjects_bloc/subjects_bloc.dart", {
+    "package:admin_app/bloc/subjects_bloc/subjects_bloc.dart": subjects_bloc
+  }, {
+    "package:admin_app/bloc/subjects_bloc/subjects_bloc.dart": ["subjects_event.dart", "subjects_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["subjects_event.dart","subjects_state.dart","subjects_bloc.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/admin_app/bloc/subjects_bloc/subjects_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__subjects_bloc__subjects_bloc: subjects_bloc
+  };
+}));
+
+//# sourceMappingURL=subjects_bloc.dart.lib.js.map

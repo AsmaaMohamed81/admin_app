@@ -1,0 +1,368 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/level.repository.dart', 'packages/admin_app/data/model/level.dart'], (function load__packages__admin_app__bloc__levels_bloc__levels_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__level$46repository$46dart, packages__admin_app__data__model__level$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const level$46repository = packages__admin_app__data__repository__level$46repository$46dart.data__repository__level$46repository;
+  const level = packages__admin_app__data__model__level$46dart.data__model__level;
+  var levels_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    LevelsEventL: () => (T.LevelsEventL = dart.constFn(dart.legacy(levels_bloc.LevelsEvent)))(),
+    FetchLevelsL: () => (T.FetchLevelsL = dart.constFn(dart.legacy(levels_bloc.FetchLevels)))(),
+    DeletLevelsL: () => (T.DeletLevelsL = dart.constFn(dart.legacy(levels_bloc.DeletLevels)))(),
+    AddOrEditLevelsL: () => (T.AddOrEditLevelsL = dart.constFn(dart.legacy(levels_bloc.AddOrEditLevels)))(),
+    LevelsStateL: () => (T.LevelsStateL = dart.constFn(dart.legacy(levels_bloc.LevelsState)))(),
+    _AsyncStarImplOfLevelsStateL: () => (T._AsyncStarImplOfLevelsStateL = dart.constFn(async._AsyncStarImpl$(T.LevelsStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/levels_bloc/levels_bloc.dart"];
+  var repository$ = dart.privateName(levels_bloc, "LevelsBloc.repository");
+  levels_bloc.LevelsEvent = class LevelsEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (levels_bloc.LevelsEvent.new = function() {
+    levels_bloc.LevelsEvent.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelsEvent.prototype;
+  dart.addTypeTests(levels_bloc.LevelsEvent);
+  dart.addTypeCaches(levels_bloc.LevelsEvent);
+  dart.setGetterSignature(levels_bloc.LevelsEvent, () => ({
+    __proto__: dart.getGetters(levels_bloc.LevelsEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(levels_bloc.LevelsEvent, I[0]);
+  levels_bloc.LevelsState = class LevelsState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (levels_bloc.LevelsState.new = function() {
+    levels_bloc.LevelsState.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelsState.prototype;
+  dart.addTypeTests(levels_bloc.LevelsState);
+  dart.addTypeCaches(levels_bloc.LevelsState);
+  dart.setGetterSignature(levels_bloc.LevelsState, () => ({
+    __proto__: dart.getGetters(levels_bloc.LevelsState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(levels_bloc.LevelsState, I[0]);
+  levels_bloc.LevelsBloc = class LevelsBloc extends bloc.Bloc$(dart.legacy(levels_bloc.LevelsEvent), dart.legacy(levels_bloc.LevelsState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.LevelsEventL().as(event);
+      return new (T._AsyncStarImplOfLevelsStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchLevelsL().is(event)) {
+          if (stream.add(new levels_bloc.LevelLoading.new())) return;
+          yield;
+          try {
+            let levels = (yield this.repository.getAllLevels(event.schoolId));
+            if (stream.add(new levels_bloc.LevelLoaded.new(levels))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new levels_bloc.LevelError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletLevelsL().is(event)) {
+          if (stream.add(new levels_bloc.LevelLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteLevels(event.access, event.id));
+            if (stream.add(new levels_bloc.LevelsDeleted.new(isdelete))) return;
+            yield;
+            let levels = (yield this.repository.getAllLevels(event.schoolId));
+            if (stream.add(new levels_bloc.LevelLoaded.new(levels))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new levels_bloc.LevelError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditLevelsL().is(event)) {
+          if (stream.add(new levels_bloc.LevelLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeLevels(event.access, event.name, event.id, event.schoolId));
+            if (stream.add(new levels_bloc.LevelsAddOrEdite.new(result))) return;
+            yield;
+            let levels = (yield this.repository.getAllLevels(event.schoolId));
+            if (stream.add(new levels_bloc.LevelLoaded.new(levels))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new levels_bloc.LevelError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (levels_bloc.LevelsBloc.new = function(repository) {
+    this[repository$] = repository;
+    levels_bloc.LevelsBloc.__proto__.new.call(this, new levels_bloc.LevelsInitial.new());
+    ;
+  }).prototype = levels_bloc.LevelsBloc.prototype;
+  dart.addTypeTests(levels_bloc.LevelsBloc);
+  dart.addTypeCaches(levels_bloc.LevelsBloc);
+  dart.setMethodSignature(levels_bloc.LevelsBloc, () => ({
+    __proto__: dart.getMethods(levels_bloc.LevelsBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(levels_bloc.LevelsState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(levels_bloc.LevelsBloc, I[0]);
+  dart.setFieldSignature(levels_bloc.LevelsBloc, () => ({
+    __proto__: dart.getFields(levels_bloc.LevelsBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(level$46repository.LevelRepository))
+  }));
+  var schoolId$ = dart.privateName(levels_bloc, "FetchLevels.schoolId");
+  levels_bloc.FetchLevels = class FetchLevels extends levels_bloc.LevelsEvent {
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (levels_bloc.FetchLevels.new = function(schoolId) {
+    this[schoolId$] = schoolId;
+    levels_bloc.FetchLevels.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.FetchLevels.prototype;
+  dart.addTypeTests(levels_bloc.FetchLevels);
+  dart.addTypeCaches(levels_bloc.FetchLevels);
+  dart.setLibraryUri(levels_bloc.FetchLevels, I[0]);
+  dart.setFieldSignature(levels_bloc.FetchLevels, () => ({
+    __proto__: dart.getFields(levels_bloc.FetchLevels.__proto__),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(levels_bloc, "DeletLevels.access");
+  var id$ = dart.privateName(levels_bloc, "DeletLevels.id");
+  var schoolId$0 = dart.privateName(levels_bloc, "DeletLevels.schoolId");
+  levels_bloc.DeletLevels = class DeletLevels extends levels_bloc.LevelsEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (levels_bloc.DeletLevels.new = function(access, id, schoolId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$0] = schoolId;
+    levels_bloc.DeletLevels.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.DeletLevels.prototype;
+  dart.addTypeTests(levels_bloc.DeletLevels);
+  dart.addTypeCaches(levels_bloc.DeletLevels);
+  dart.setLibraryUri(levels_bloc.DeletLevels, I[0]);
+  dart.setFieldSignature(levels_bloc.DeletLevels, () => ({
+    __proto__: dart.getFields(levels_bloc.DeletLevels.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(levels_bloc, "AddOrEditLevels.access");
+  var id$0 = dart.privateName(levels_bloc, "AddOrEditLevels.id");
+  var schoolId$1 = dart.privateName(levels_bloc, "AddOrEditLevels.schoolId");
+  var name$ = dart.privateName(levels_bloc, "AddOrEditLevels.name");
+  levels_bloc.AddOrEditLevels = class AddOrEditLevels extends levels_bloc.LevelsEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+  };
+  (levels_bloc.AddOrEditLevels.new = function(access, id, schoolId, name) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[schoolId$1] = schoolId;
+    this[name$] = name;
+    levels_bloc.AddOrEditLevels.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.AddOrEditLevels.prototype;
+  dart.addTypeTests(levels_bloc.AddOrEditLevels);
+  dart.addTypeCaches(levels_bloc.AddOrEditLevels);
+  dart.setLibraryUri(levels_bloc.AddOrEditLevels, I[0]);
+  dart.setFieldSignature(levels_bloc.AddOrEditLevels, () => ({
+    __proto__: dart.getFields(levels_bloc.AddOrEditLevels.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  levels_bloc.LevelsInitial = class LevelsInitial extends levels_bloc.LevelsState {};
+  (levels_bloc.LevelsInitial.new = function() {
+    levels_bloc.LevelsInitial.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelsInitial.prototype;
+  dart.addTypeTests(levels_bloc.LevelsInitial);
+  dart.addTypeCaches(levels_bloc.LevelsInitial);
+  dart.setLibraryUri(levels_bloc.LevelsInitial, I[0]);
+  levels_bloc.LevelLoading = class LevelLoading extends levels_bloc.LevelsState {};
+  (levels_bloc.LevelLoading.new = function() {
+    levels_bloc.LevelLoading.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelLoading.prototype;
+  dart.addTypeTests(levels_bloc.LevelLoading);
+  dart.addTypeCaches(levels_bloc.LevelLoading);
+  dart.setLibraryUri(levels_bloc.LevelLoading, I[0]);
+  var levels$ = dart.privateName(levels_bloc, "LevelLoaded.levels");
+  levels_bloc.LevelLoaded = class LevelLoaded extends levels_bloc.LevelsState {
+    get levels() {
+      return this[levels$];
+    }
+    set levels(value) {
+      super.levels = value;
+    }
+  };
+  (levels_bloc.LevelLoaded.new = function(levels) {
+    this[levels$] = levels;
+    levels_bloc.LevelLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelLoaded.prototype;
+  dart.addTypeTests(levels_bloc.LevelLoaded);
+  dart.addTypeCaches(levels_bloc.LevelLoaded);
+  dart.setLibraryUri(levels_bloc.LevelLoaded, I[0]);
+  dart.setFieldSignature(levels_bloc.LevelLoaded, () => ({
+    __proto__: dart.getFields(levels_bloc.LevelLoaded.__proto__),
+    levels: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(level.Levels))))
+  }));
+  var message$ = dart.privateName(levels_bloc, "LevelsDeleted.message");
+  levels_bloc.LevelsDeleted = class LevelsDeleted extends levels_bloc.LevelsState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (levels_bloc.LevelsDeleted.new = function(message) {
+    this[message$] = message;
+    levels_bloc.LevelsDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelsDeleted.prototype;
+  dart.addTypeTests(levels_bloc.LevelsDeleted);
+  dart.addTypeCaches(levels_bloc.LevelsDeleted);
+  dart.setLibraryUri(levels_bloc.LevelsDeleted, I[0]);
+  dart.setFieldSignature(levels_bloc.LevelsDeleted, () => ({
+    __proto__: dart.getFields(levels_bloc.LevelsDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(levels_bloc, "LevelsAddOrEdite.results");
+  levels_bloc.LevelsAddOrEdite = class LevelsAddOrEdite extends levels_bloc.LevelsState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (levels_bloc.LevelsAddOrEdite.new = function(results) {
+    this[results$] = results;
+    levels_bloc.LevelsAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelsAddOrEdite.prototype;
+  dart.addTypeTests(levels_bloc.LevelsAddOrEdite);
+  dart.addTypeCaches(levels_bloc.LevelsAddOrEdite);
+  dart.setLibraryUri(levels_bloc.LevelsAddOrEdite, I[0]);
+  dart.setFieldSignature(levels_bloc.LevelsAddOrEdite, () => ({
+    __proto__: dart.getFields(levels_bloc.LevelsAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(levels_bloc, "LevelError.message");
+  levels_bloc.LevelError = class LevelError extends levels_bloc.LevelsState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (levels_bloc.LevelError.new = function(message) {
+    this[message$0] = message;
+    levels_bloc.LevelError.__proto__.new.call(this);
+    ;
+  }).prototype = levels_bloc.LevelError.prototype;
+  dart.addTypeTests(levels_bloc.LevelError);
+  dart.addTypeCaches(levels_bloc.LevelError);
+  dart.setLibraryUri(levels_bloc.LevelError, I[0]);
+  dart.setFieldSignature(levels_bloc.LevelError, () => ({
+    __proto__: dart.getFields(levels_bloc.LevelError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  levels_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/levels_bloc/levels_bloc.dart", {
+    "package:admin_app/bloc/levels_bloc/levels_bloc.dart": levels_bloc
+  }, {
+    "package:admin_app/bloc/levels_bloc/levels_bloc.dart": ["levels_event.dart", "levels_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["levels_event.dart","levels_state.dart","levels_bloc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAM4B;IAAE;;;AAHtB;;EAAa;;;;;;;;;;ACGO;IAAE;;;AAHtB;;EAAa;;;;;;;;;ICSG;;;;;;;0BAMR;AADqB;AAGjC,YAAU,oBAAN,KAAK;AACP,yBAAM;UAAN;AACA;AACQ,0BAAS,MAAM,AAAW,6BAAa,AAAM,KAAD;AAClD,2BAAM,gCAAY,MAAM;YAAxB;;gBACO;AACP,2BAAM,+BAAa,cAAF,CAAC;YAAlB;;cAEG,KAAU,oBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,4BAAW,MAAM,AAAW,6BAAa,AAAM,KAAD,SAAS,AAAM,KAAD;AAClE,2BAAM,kCAAc,QAAQ;YAA5B;AAEQ,0BAAS,MAAM,AAAW,6BAAa,AAAM,KAAD;AAClD,2BAAM,gCAAY,MAAM;YAAxB;;gBAEK;AACP,2BAAM,+BAAa,cAAF,CAAC;YAAlB;;cAEG,KAAU,wBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,0BAAS,MAAM,AAAW,+BAC5B,AAAM,KAAD,SAAS,AAAM,KAAD,OAAO,AAAM,KAAD,KAAK,AAAM,KAAD;AAC7C,2BAAM,qCAAiB,MAAM;YAA7B;AAEM,0BAAS,MAAM,AAAW,6BAAa,AAAM,KAAD;AAClD,2BAAM,gCAAY,MAAM;YAAxB;;gBACO;AACP,2BAAM,+BAAa,cAAF,CAAC;YAAlB;;;MAGN;;;;IAvC0B;AAAc,oDAAM;;EAAgB;;;;;;;;;;;;;;IFJpD;;;;;;;;IAEO;AAAjB;;EAA0B;;;;;;;;;;;;IAIb;;;;;;IACH;;;;;;IACA;;;;;;;0CAEO,QAAa,IAAS;IAAtB;IAAa;IAAS;AAAvC;;EAAgD;;;;;;;;;;;;;;;IAInC;;;;;;IACH;;;;;;IACA;;;;;;IACG;;;;;;;8CAEQ,QAAa,IAAS,UAAe;IAArC;IAAa;IAAS;IAAe;AAA1D;;EAA+D;;;;;;;;;;;;;;;ECpBxB;;;;;;;;EAED;;;;;;IAGnB;;;;;;;;IAEF;AAAjB;;EAAwB;;;;;;;;;;IAIG;;;;;;;;IAER;AAAnB;;EAA2B;;;;;;;;;;IAIA;;;;;;;;IAEL;AAAtB;;EAA8B;;;;;;;;;;IAIjB;;;;;;;;IAEG;AAAhB;;EAAwB;;;;;;;;;;ACuBxB,UAAW,qCAA2C,cAAM;EAC9D","file":"../../../../../../../packages/admin_app/bloc/levels_bloc/levels_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__levels_bloc__levels_bloc: levels_bloc
+  };
+}));
+
+//# sourceMappingURL=levels_bloc.dart.lib.js.map

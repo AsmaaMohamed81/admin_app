@@ -1,0 +1,643 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/curves.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/box_decoration.dart'], (function load__packages__flutter_spinkit__src__folding_cube_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__curves$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__box_decoration$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  var folding_cube = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    BuildContextLAndintLToWidgetL: () => (T.BuildContextLAndintLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.intL()])))(),
+    BuildContextLAndintLToLWidgetL: () => (T.BuildContextLAndintLToLWidgetL = dart.constFn(dart.legacy(T.BuildContextLAndintLToWidgetL())))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    TweenOfdoubleL: () => (T.TweenOfdoubleL = dart.constFn(tween.Tween$(T.doubleL())))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 2400000
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 1,
+        [Cubic_b]: 0,
+        [Cubic_a]: 0.42
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: curves.Interval.prototype,
+        [Interval_curve]: C[2] || CT.C2,
+        [Interval_end]: 0.25,
+        [Interval_begin]: 0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: curves.Interval.prototype,
+        [Interval_curve]: C[2] || CT.C2,
+        [Interval_end]: 0.5,
+        [Interval_begin]: 0.25
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: curves.Interval.prototype,
+        [Interval_curve]: C[2] || CT.C2,
+        [Interval_end]: 0.75,
+        [Interval_begin]: 0.5
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: curves.Interval.prototype,
+        [Interval_curve]: C[2] || CT.C2,
+        [Interval_end]: 1,
+        [Interval_begin]: 0.75
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "angle",
+        [_Location_column]: 13,
+        [_Location_line]: 60,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 61,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 59,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 58,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 9,
+        [_Location_line]: 57,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 56,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 56,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 55,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 17,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 94,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 92,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 15,
+        [_Location_line]: 91,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 90,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transform",
+        [_Location_column]: 13,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 13,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 90,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35], T._LocationL());
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[32] || CT.C32,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 87,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 11,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39], T._LocationL());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 85,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transform",
+        [_Location_column]: 9,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[41] || CT.C41,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 7,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 7,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 80,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 22,
+        [_Location_line]: 105,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.constList([C[51] || CT.C51], T._LocationL());
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[50] || CT.C50,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 105,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart"
+      });
+    }
+  }, false);
+  var C = Array(52).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib/src/folding_cube.dart",
+    "package:flutter_spinkit/src/folding_cube.dart"
+  ];
+  var color$ = dart.privateName(folding_cube, "SpinKitFoldingCube.color");
+  var size$ = dart.privateName(folding_cube, "SpinKitFoldingCube.size");
+  var itemBuilder$ = dart.privateName(folding_cube, "SpinKitFoldingCube.itemBuilder");
+  var duration$ = dart.privateName(folding_cube, "SpinKitFoldingCube.duration");
+  var controller$ = dart.privateName(folding_cube, "SpinKitFoldingCube.controller");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  folding_cube.SpinKitFoldingCube = class SpinKitFoldingCube extends framework.StatefulWidget {
+    get color() {
+      return this[color$];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get size() {
+      return this[size$];
+    }
+    set size(value) {
+      super.size = value;
+    }
+    get itemBuilder() {
+      return this[itemBuilder$];
+    }
+    set itemBuilder(value) {
+      super.itemBuilder = value;
+    }
+    get duration() {
+      return this[duration$];
+    }
+    set duration(value) {
+      super.duration = value;
+    }
+    get controller() {
+      return this[controller$];
+    }
+    set controller(value) {
+      super.controller = value;
+    }
+    createState() {
+      return new folding_cube._SpinKitFoldingCubeState.new();
+    }
+  };
+  (folding_cube.SpinKitFoldingCube.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let color = opts && 'color' in opts ? opts.color : null;
+    let size = opts && 'size' in opts ? opts.size : 50;
+    let itemBuilder = opts && 'itemBuilder' in opts ? opts.itemBuilder : null;
+    let duration = opts && 'duration' in opts ? opts.duration : C[0] || CT.C0;
+    let controller = opts && 'controller' in opts ? opts.controller : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[color$] = color;
+    this[size$] = size;
+    this[itemBuilder$] = itemBuilder;
+    this[duration$] = duration;
+    this[controller$] = controller;
+    if (!(!(T.BuildContextLAndintLToLWidgetL().is(itemBuilder) && T.ColorL().is(color)) && !(itemBuilder == null && color == null))) dart.assertFailed("You should specify either a itemBuilder or a color", I[0], 11, 16, "!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null)");
+    if (!(size != null)) dart.assertFailed(null, I[0], 13, 16, "size != null");
+    folding_cube.SpinKitFoldingCube.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = folding_cube.SpinKitFoldingCube.prototype;
+  dart.addTypeTests(folding_cube.SpinKitFoldingCube);
+  dart.addTypeCaches(folding_cube.SpinKitFoldingCube);
+  dart.setMethodSignature(folding_cube.SpinKitFoldingCube, () => ({
+    __proto__: dart.getMethods(folding_cube.SpinKitFoldingCube.__proto__),
+    createState: dart.fnType(dart.legacy(folding_cube._SpinKitFoldingCubeState), [])
+  }));
+  dart.setLibraryUri(folding_cube.SpinKitFoldingCube, I[1]);
+  dart.setFieldSignature(folding_cube.SpinKitFoldingCube, () => ({
+    __proto__: dart.getFields(folding_cube.SpinKitFoldingCube.__proto__),
+    color: dart.finalFieldType(dart.legacy(ui.Color)),
+    size: dart.finalFieldType(dart.legacy(core.double)),
+    itemBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(core.int)]))),
+    duration: dart.finalFieldType(dart.legacy(core.Duration)),
+    controller: dart.finalFieldType(dart.legacy(animation_controller.AnimationController))
+  }));
+  var _controller = dart.privateName(folding_cube, "_controller");
+  var _rotate1 = dart.privateName(folding_cube, "_rotate1");
+  var _rotate2 = dart.privateName(folding_cube, "_rotate2");
+  var _rotate3 = dart.privateName(folding_cube, "_rotate3");
+  var _rotate4 = dart.privateName(folding_cube, "_rotate4");
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  var Interval_curve = dart.privateName(curves, "Interval.curve");
+  var Interval_end = dart.privateName(curves, "Interval.end");
+  var Interval_begin = dart.privateName(curves, "Interval.begin");
+  var _cube = dart.privateName(folding_cube, "_cube");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _itemBuilder = dart.privateName(folding_cube, "_itemBuilder");
+  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(dart.legacy(folding_cube.SpinKitFoldingCube)) {};
+  (State_SingleTickerProviderStateMixin$36.new = function() {
+    ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(folding_cube.SpinKitFoldingCube))[dart.mixinNew].call(this);
+    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(folding_cube.SpinKitFoldingCube)));
+  folding_cube._SpinKitFoldingCubeState = class _SpinKitFoldingCubeState extends State_SingleTickerProviderStateMixin$36 {
+    initState() {
+      let t0, t0$;
+      super.initState();
+      this[_controller] = (t0$ = (t0 = this.widget.controller, t0 == null ? new animation_controller.AnimationController.new({vsync: this, duration: this.widget.duration}) : t0), (() => {
+        t0$.addListener(dart.fn(() => this.setState(dart.fn(() => {
+        }, T.VoidToNull())), T.VoidTovoid()));
+        t0$.repeat({reverse: true});
+        return t0$;
+      })());
+      this[_rotate1] = new (T.TweenOfdoubleL()).new({begin: 0.0, end: 180.0}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: C[1] || CT.C1}));
+      this[_rotate2] = new (T.TweenOfdoubleL()).new({begin: 0.0, end: 180.0}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: C[3] || CT.C3}));
+      this[_rotate3] = new (T.TweenOfdoubleL()).new({begin: 0.0, end: 180.0}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: C[4] || CT.C4}));
+      this[_rotate4] = new (T.TweenOfdoubleL()).new({begin: 0.0, end: 180.0}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: C[5] || CT.C5}));
+    }
+    dispose() {
+      this[_controller].dispose();
+      super.dispose();
+    }
+    build(context) {
+      return new basic.Center.new({child: new basic.SizedBox.fromSize({size: new ui.Size.square(this.widget.size), child: new basic.Center.new({child: new basic.Transform.rotate({angle: -45.0 * 0.0174533, child: new basic.Stack.new({children: T.JSArrayOfWidgetL().of([this[_cube](1, {animation: this[_rotate2]}), this[_cube](2, {animation: this[_rotate3]}), this[_cube](3, {animation: this[_rotate4]}), this[_cube](4, {animation: this[_rotate1]})]), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), $creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+    }
+    [_cube](i, opts) {
+      let t0;
+      let animation = opts && 'animation' in opts ? opts.animation : null;
+      let _size = dart.notNull(this.widget.size) * 0.5;
+      let _position = dart.notNull(this.widget.size) * 0.5;
+      let _tRotate = (t0 = vector_math_64.Matrix4.identity(), (() => {
+        t0.rotateY(dart.notNull(animation.value) * 0.0174533);
+        return t0;
+      })());
+      return new basic.Positioned.fill({top: _position, left: _position, child: new basic.Transform.new({transform: vector_math_64.Matrix4.rotationZ(90.0 * (dart.notNull(i) - 1) * 0.0174533), child: new basic.Align.new({alignment: alignment.Alignment.center, child: new basic.Transform.new({transform: _tRotate, alignment: alignment.Alignment.centerLeft, child: new basic.Opacity.new({opacity: 1.0 - dart.notNull(animation.value) / 180.0, child: new basic.SizedBox.fromSize({size: new ui.Size.square(_size), child: this[_itemBuilder](dart.notNull(i) - 1), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), $creationLocationd_0dea112b090073317d4: C[31] || CT.C31}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36}), $creationLocationd_0dea112b090073317d4: C[40] || CT.C40}), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44});
+    }
+    [_itemBuilder](index) {
+      let t2, t1, t0;
+      return this.widget.itemBuilder != null ? (t0 = this.widget, t1 = this.context, t2 = index, t0.itemBuilder(t1, t2)) : new container.DecoratedBox.new({decoration: new box_decoration.BoxDecoration.new({color: this.widget.color}), $creationLocationd_0dea112b090073317d4: C[49] || CT.C49});
+    }
+  };
+  (folding_cube._SpinKitFoldingCubeState.new = function() {
+    this[_controller] = null;
+    this[_rotate1] = null;
+    this[_rotate2] = null;
+    this[_rotate3] = null;
+    this[_rotate4] = null;
+    folding_cube._SpinKitFoldingCubeState.__proto__.new.call(this);
+    ;
+  }).prototype = folding_cube._SpinKitFoldingCubeState.prototype;
+  dart.addTypeTests(folding_cube._SpinKitFoldingCubeState);
+  dart.addTypeCaches(folding_cube._SpinKitFoldingCubeState);
+  dart.setMethodSignature(folding_cube._SpinKitFoldingCubeState, () => ({
+    __proto__: dart.getMethods(folding_cube._SpinKitFoldingCubeState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_cube]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.int)], {animation: dart.legacy(animation.Animation$(dart.legacy(core.double)))}, {}),
+    [_itemBuilder]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.int)])
+  }));
+  dart.setLibraryUri(folding_cube._SpinKitFoldingCubeState, I[1]);
+  dart.setFieldSignature(folding_cube._SpinKitFoldingCubeState, () => ({
+    __proto__: dart.getFields(folding_cube._SpinKitFoldingCubeState.__proto__),
+    [_controller]: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    [_rotate1]: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    [_rotate2]: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    [_rotate3]: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    [_rotate4]: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double))))
+  }));
+  dart.trackLibraries("packages/flutter_spinkit/src/folding_cube.dart", {
+    "package:flutter_spinkit/src/folding_cube.dart": folding_cube
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["folding_cube.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAec;;;;;;IACC;;;;;;IACc;;;;;;IACZ;;;;;;IACW;;;;;;;AAGgB;IAA0B;;;QAlB9D;QACC;QACA;QACA;QACA;QACA;;IAJA;IACA;IACA;IACA;IACA;UAC+D,EAA3C,sCAAZ,WAAW,KAAkC,cAAN,KAAK,QAAgB,AAAY,WAAD,YAAY,AAAM,KAAD,8BAC7F;UACG,AAAK,IAAD;AACX,mEAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAkBF,MAAX;AAImB,MAFzB,4BAAiC,KAAlB,AAAO,wBAAA,aAAc,yDAA2B,gBAAgB,AAAO,8BAArD;AAC7B,wBAAY,cAAM,cAAS;;AAC3B,6BAAgB;;;AAEsF,MAD1G,iBAAW,AACN,qCADmB,UAAU,gBACrB,4CAAwB;AAEqE,MAD1G,iBAAW,AACN,qCADmB,UAAU,gBACrB,4CAAwB;AAEqE,MAD1G,iBAAW,AACN,qCADmB,UAAU,gBACrB,4CAAwB;AAEqE,MAD1G,iBAAW,AACN,qCADmB,UAAU,gBACrB,4CAAwB;IACvC;;AAIuB,MAArB,AAAY;AACG,MAAT;IACR;UAG0B;AACxB,YAAO,8BACW,mCACH,mBAAO,AAAO,0BAClB,6BACY,mCACR,AAAM,CAAL,OAAO,kBACR,+BACa,yBAChB,YAAM,eAAc,kBACpB,YAAM,eAAc,kBACpB,YAAM,eAAc,kBACpB,YAAM,eAAc;IAOlC;YAEiB;;UAAsB;AAC/B,kBAAoB,aAAZ,AAAO,oBAAO;AAAK,sBAAwB,aAAZ,AAAO,oBAAO;AAE7C,8DAAmB;AAAY,mBAAwB,aAAhB,AAAU,SAAD,UAAS;;;AAEvE,YAAkB,iCACX,SAAS,QACR,SAAS,SACR,oCACc,iCAAU,AAAK,AAAU,QAAL,aAAF,CAAC,IAAG,KAAK,mBACvC,gCACgB,mCACd,oCACM,QAAQ,aACE,uCACd,gCACI,AAAI,MAAmB,aAAhB,AAAU,SAAD,UAAS,cAClB,mCACH,mBAAO,KAAK,UAChB,mBAAe,aAAF,CAAC,IAAG;IAOtC;mBAEwB;;AAAU,YAAA,AAAO,AAAY,yCAC/C,kBAAmB,mBAAS,KAAK,EAAf,0BAClB,4CAAyB,6CAAqB,AAAO;IAAO;;;IA9E9C;IACF;IAAU;IAAU;IAAU;;;EA8ElD","file":"../../../../../../../../packages/flutter_spinkit/src/folding_cube.dart.lib.js"}');
+  // Exports:
+  return {
+    src__folding_cube: folding_cube
+  };
+}));
+
+//# sourceMappingURL=folding_cube.dart.lib.js.map

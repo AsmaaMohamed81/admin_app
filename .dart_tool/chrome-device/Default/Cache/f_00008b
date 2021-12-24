@@ -1,0 +1,1342 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/admin_app/data/model/subjects.dart', 'packages/flutter/src/widgets/form.dart', 'packages/provider/src/provider.dart', 'packages/admin_app/bloc/subjects_bloc/subjects_bloc.dart', 'packages/admin_app/provider/auth_provider.dart', 'packages/flutter_slidable/src/widgets/slidable_dismissal.dart', 'packages/flutter_slidable/src/widgets/slidable_action_pane.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/admin_app/utils/hex_color.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter_slidable/src/widgets/slide_action.dart', 'packages/flutter/src/material/button_bar.dart', 'packages/admin_app/ui/subjects/widget/adding_new_class_dialog.dart', 'packages/admin_app/ui/subjects/arguments/arguments.teacher.dart', 'packages/admin_app/ui/subjects/arguments/arguments_techer_subjects.dart', 'packages/admin_app/custom_widget/dialogs/log_out_dialog.dart', 'packages/admin_app/utils/urls.dart', 'packages/admin_app/custom_widget/validation_mixin.dart'], (function load__packages__admin_app__ui__subjects__widget__subjects_item_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__admin_app__data__model__subjects$46dart, packages__flutter__src__widgets__form$46dart, packages__provider__src__provider$46dart, packages__admin_app__bloc__subjects_bloc__subjects_bloc$46dart, packages__admin_app__provider__auth_provider$46dart, packages__flutter_slidable__src__widgets__slidable_dismissal$46dart, packages__flutter_slidable__src__widgets__slidable_action_pane$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__strut_style$46dart, packages__admin_app__utils__hex_color$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__colors$46dart, packages__flutter_slidable__src__widgets__slide_action$46dart, packages__flutter__src__material__button_bar$46dart, packages__admin_app__ui__subjects__widget__adding_new_class_dialog$46dart, packages__admin_app__ui__subjects__arguments__arguments$46teacher$46dart, packages__admin_app__ui__subjects__arguments__arguments_techer_subjects$46dart, packages__admin_app__custom_widget__dialogs__log_out_dialog$46dart, packages__admin_app__utils__urls$46dart, packages__admin_app__custom_widget__validation_mixin$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const subjects = packages__admin_app__data__model__subjects$46dart.data__model__subjects;
+  const form = packages__flutter__src__widgets__form$46dart.src__widgets__form;
+  const provider = packages__provider__src__provider$46dart.src__provider;
+  const subjects_bloc = packages__admin_app__bloc__subjects_bloc__subjects_bloc$46dart.bloc__subjects_bloc__subjects_bloc;
+  const auth_provider = packages__admin_app__provider__auth_provider$46dart.provider__auth_provider;
+  const slidable = packages__flutter_slidable__src__widgets__slidable_dismissal$46dart.src__widgets__slidable;
+  const slidable_dismissal = packages__flutter_slidable__src__widgets__slidable_dismissal$46dart.src__widgets__slidable_dismissal;
+  const slidable_action_pane = packages__flutter_slidable__src__widgets__slidable_action_pane$46dart.src__widgets__slidable_action_pane;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const hex_color = packages__admin_app__utils__hex_color$46dart.utils__hex_color;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  const divider = packages__flutter__src__material__icon_button$46dart.src__material__divider;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const slide_action = packages__flutter_slidable__src__widgets__slide_action$46dart.src__widgets__slide_action;
+  const dialog = packages__flutter__src__material__button_bar$46dart.src__material__dialog;
+  const adding_new_class_dialog = packages__admin_app__ui__subjects__widget__adding_new_class_dialog$46dart.ui__subjects__widget__adding_new_class_dialog;
+  const arguments$46teacher = packages__admin_app__ui__subjects__arguments__arguments$46teacher$46dart.ui__subjects__arguments__arguments$46teacher;
+  const arguments_techer_subjects = packages__admin_app__ui__subjects__arguments__arguments_techer_subjects$46dart.ui__subjects__arguments__arguments_techer_subjects;
+  const log_out_dialog = packages__admin_app__custom_widget__dialogs__log_out_dialog$46dart.custom_widget__dialogs__log_out_dialog;
+  const urls = packages__admin_app__utils__urls$46dart.utils__urls;
+  const validation_mixin = packages__admin_app__custom_widget__validation_mixin$46dart.custom_widget__validation_mixin;
+  var subjects$46item = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $add = dartx.add;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    JSArrayOfintL: () => (T.JSArrayOfintL = dart.constFn(_interceptors.JSArray$(T.intL())))(),
+    FormStateL: () => (T.FormStateL = dart.constFn(dart.legacy(form.FormState)))(),
+    GlobalKeyOfFormStateL: () => (T.GlobalKeyOfFormStateL = dart.constFn(framework.GlobalKey$(T.FormStateL())))(),
+    SubjectsBlocL: () => (T.SubjectsBlocL = dart.constFn(dart.legacy(subjects_bloc.SubjectsBloc)))(),
+    AuthProviderL: () => (T.AuthProviderL = dart.constFn(dart.legacy(auth_provider.AuthProvider)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    AddingNewClassDialogL: () => (T.AddingNewClassDialogL = dart.constFn(dart.legacy(adding_new_class_dialog.AddingNewClassDialog)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToAddingNewClassDialogL: () => (T.BuildContextLToAddingNewClassDialogL = dart.constFn(dart.fnType(T.AddingNewClassDialogL(), [T.BuildContextL()])))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    LogoutDialogL: () => (T.LogoutDialogL = dart.constFn(dart.legacy(log_out_dialog.LogoutDialog)))(),
+    BuildContextLToLogoutDialogL: () => (T.BuildContextLToLogoutDialogL = dart.constFn(dart.fnType(T.LogoutDialogL(), [T.BuildContextL()])))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    VoidToFutureLOfNull: () => (T.VoidToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.constList([], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 58,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 52,
+        [_Location_line]: 58,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 17,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 62,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 66,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 15,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 45,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 29,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 75,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 27,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 73,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 31,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 27,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 81,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 23,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 23,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 70,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 39,
+        [_Location_line]: 99,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialValue",
+        [_Location_column]: 39,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 39,
+        [_Location_line]: 103,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 39,
+        [_Location_line]: 104,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 98,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 39,
+        [_Location_line]: 113,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialValue",
+        [_Location_column]: 39,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 39,
+        [_Location_line]: 118,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 39,
+        [_Location_line]: 119,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.constList([C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[34] || CT.C34,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 112,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 33,
+        [_Location_line]: 97,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41], T._LocationL());
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 96,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 31,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 95,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 45,
+        [_Location_line]: 142,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 39,
+        [_Location_line]: 143,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 39,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 44,
+        [_Location_line]: 141,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 37,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 37,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 135,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 33,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 33,
+        [_Location_line]: 133,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 131,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 31,
+        [_Location_line]: 131,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.constList([C[60] || CT.C60], T._LocationL());
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[59] || CT.C59,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 130,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 27,
+        [_Location_line]: 94,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.constList([C[63] || CT.C63], T._LocationL());
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[62] || CT.C62,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 93,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 25,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.constList([C[66] || CT.C66, C[67] || CT.C67], T._LocationL());
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[65] || CT.C65,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 91,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 91,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.constList([C[70] || CT.C70], T._LocationL());
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[69] || CT.C69,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 90,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 61,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 60,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actionPane",
+        [_Location_column]: 11,
+        [_Location_line]: 57,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actionExtentRatio",
+        [_Location_column]: 11,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 60,
+        [_Location_file]: null
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "secondaryActions",
+        [_Location_column]: 11,
+        [_Location_line]: 156,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76, C[77] || CT.C77, C[78] || CT.C78, C[79] || CT.C79], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 56,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "thickness",
+        [_Location_column]: 19,
+        [_Location_line]: 168,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.constList([C[82] || CT.C82], T._LocationL());
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[81] || CT.C81,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 167,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 166,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 167,
+        [_Location_file]: null
+      });
+    },
+    get C84() {
+      return C[84] = dart.constList([C[85] || CT.C85, C[86] || CT.C86], T._LocationL());
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[84] || CT.C84,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 165,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 11,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.constList([C[89] || CT.C89, C[90] || CT.C90], T._LocationL());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[88] || CT.C88,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 162,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 55,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.constList([C[93] || CT.C93], T._LocationL());
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[92] || CT.C92,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 54,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "subjectsList",
+        [_Location_column]: 17,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "subjects",
+        [_Location_column]: 17,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 17,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.constList([C[96] || CT.C96, C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[95] || CT.C95,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 185,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 178,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 7,
+        [_Location_line]: 179,
+        [_Location_file]: null
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 7,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101, C[102] || CT.C102, C[103] || CT.C103], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 177,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 197,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 7,
+        [_Location_line]: 198,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "foregroundColor",
+        [_Location_column]: 7,
+        [_Location_line]: 199,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 7,
+        [_Location_line]: 200,
+        [_Location_file]: null
+      });
+    },
+    get C105() {
+      return C[105] = dart.constList([C[106] || CT.C106, C[107] || CT.C107, C[108] || CT.C108, C[109] || CT.C109], T._LocationL());
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[105] || CT.C105,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 196,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "button1",
+        [_Location_column]: 17,
+        [_Location_line]: 224,
+        [_Location_file]: null
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "button2",
+        [_Location_column]: 17,
+        [_Location_line]: 225,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alertMessage",
+        [_Location_column]: 17,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressedConfirm",
+        [_Location_column]: 17,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.constList([C[112] || CT.C112, C[113] || CT.C113, C[114] || CT.C114, C[115] || CT.C115], T._LocationL());
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[111] || CT.C111,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 223,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 216,
+        [_Location_file]: null
+      });
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 7,
+        [_Location_line]: 217,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 7,
+        [_Location_line]: 218,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.constList([C[118] || CT.C118, C[119] || CT.C119, C[120] || CT.C120], T._LocationL());
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 215,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 15,
+        [_Location_line]: 270,
+        [_Location_file]: null
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 271,
+        [_Location_file]: null
+      });
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 9,
+        [_Location_line]: 272,
+        [_Location_file]: null
+      });
+    },
+    get C122() {
+      return C[122] = dart.constList([C[123] || CT.C123, C[124] || CT.C124, C[125] || CT.C125], T._LocationL());
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[122] || CT.C122,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 269,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 7,
+        [_Location_line]: 245,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 269,
+        [_Location_file]: null
+      });
+    },
+    get C127() {
+      return C[127] = dart.constList([C[128] || CT.C128, C[129] || CT.C129], T._LocationL());
+    },
+    get C126() {
+      return C[126] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[127] || CT.C127,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 244,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 244,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.constList([C[132] || CT.C132], T._LocationL());
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[131] || CT.C131,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 243,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/subjects/widget/subjects.item.dart"
+      });
+    }
+  }, false);
+  var C = Array(133).fill(void 0);
+  var I = ["package:admin_app/ui/subjects/widget/subjects.item.dart"];
+  var subjects$ = dart.privateName(subjects$46item, "SubjectsItem.subjects");
+  var listobject$ = dart.privateName(subjects$46item, "SubjectsItem.listobject");
+  subjects$46item.SubjectsItem = class SubjectsItem extends framework.StatefulWidget {
+    get subjects() {
+      return this[subjects$];
+    }
+    set subjects(value) {
+      super.subjects = value;
+    }
+    get listobject() {
+      return this[listobject$];
+    }
+    set listobject(value) {
+      super.listobject = value;
+    }
+    createState() {
+      return new subjects$46item._SubjectsItemState.new();
+    }
+  };
+  (subjects$46item.SubjectsItem.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let subjects = opts && 'subjects' in opts ? opts.subjects : null;
+    let listobject = opts && 'listobject' in opts ? opts.listobject : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[subjects$] = subjects;
+    this[listobject$] = listobject;
+    subjects$46item.SubjectsItem.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = subjects$46item.SubjectsItem.prototype;
+  dart.addTypeTests(subjects$46item.SubjectsItem);
+  dart.addTypeCaches(subjects$46item.SubjectsItem);
+  dart.setMethodSignature(subjects$46item.SubjectsItem, () => ({
+    __proto__: dart.getMethods(subjects$46item.SubjectsItem.__proto__),
+    createState: dart.fnType(dart.legacy(subjects$46item._SubjectsItemState), [])
+  }));
+  dart.setLibraryUri(subjects$46item.SubjectsItem, I[0]);
+  dart.setFieldSignature(subjects$46item.SubjectsItem, () => ({
+    __proto__: dart.getFields(subjects$46item.SubjectsItem.__proto__),
+    subjects: dart.finalFieldType(dart.legacy(subjects.Subjects)),
+    listobject: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(subjects.Subjects))))
+  }));
+  var _authProvider = dart.privateName(subjects$46item, "_authProvider");
+  var _editeSubjects = dart.privateName(subjects$46item, "_editeSubjects");
+  var _editeabbrevation = dart.privateName(subjects$46item, "_editeabbrevation");
+  var _formkey = dart.privateName(subjects$46item, "_formkey");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _buildCheckEditIcon = dart.privateName(subjects$46item, "_buildCheckEditIcon");
+  var _buildAddIcon = dart.privateName(subjects$46item, "_buildAddIcon");
+  var _buildEditIcon = dart.privateName(subjects$46item, "_buildEditIcon");
+  var _buildDeleteIcon = dart.privateName(subjects$46item, "_buildDeleteIcon");
+  const State_ValidationMixin$36 = class State_ValidationMixin extends framework.State$(dart.legacy(subjects$46item.SubjectsItem)) {};
+  (State_ValidationMixin$36.new = function() {
+    validation_mixin.ValidationMixin$(dart.legacy(subjects$46item.SubjectsItem))[dart.mixinNew].call(this);
+    State_ValidationMixin$36.__proto__.new.call(this);
+  }).prototype = State_ValidationMixin$36.prototype;
+  dart.applyMixin(State_ValidationMixin$36, validation_mixin.ValidationMixin$(dart.legacy(subjects$46item.SubjectsItem)));
+  subjects$46item._SubjectsItemState = class _SubjectsItemState extends State_ValidationMixin$36 {
+    build(context) {
+      let d = provider['ReadContext|read'](T.SubjectsBlocL(), context).state;
+      core.print("stattedsjdjsde====" + dart.str(d));
+      this[_authProvider] = provider.Provider.of(T.AuthProviderL(), context);
+      return new basic.Column.new({children: T.JSArrayOfWidgetL().of([new slidable.Slidable.new({actionPane: dart.test(this.isEdit) ? new slidable_dismissal.SlidableDrawerDismissal.new({$creationLocationd_0dea112b090073317d4: C[0] || CT.C0}) : new slidable_action_pane.SlidableBehindActionPane.new({$creationLocationd_0dea112b090073317d4: C[2] || CT.C2}), actionExtentRatio: 0.12, child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new image.Image.asset("assets/images/materialll.png", {width: 65.0, $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new basic.SizedBox.new({width: 10.0, $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), dart.test(this.isEdit) ? new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new basic.Padding.new({padding: C[10] || CT.C10, child: new text.Text.new(this.widget.subjects.name, {style: new text_style.TextStyle.new({color: new hex_color.HexColor.new("707070"), fontSize: 16.0}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), new text.Text.new(this.widget.subjects.abbreviation == null ? " " : "(" + dart.str(this.widget.subjects.abbreviation) + ")", {style: new text_style.TextStyle.new({color: new hex_color.HexColor.new("9A9AA1"), fontSize: 10.0}), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19})]), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}) : new basic.Expanded.new({child: new form.Form.new({key: this[_formkey], child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new text_form_field.TextFormField.new({onChanged: dart.fn(value => {
+                                  this[_editeSubjects] = value;
+                                }, T.StringLToNull()), initialValue: this.widget.subjects.name, validator: dart.bind(this, 'validateSubjects'), decoration: new input_decorator.InputDecoration.new({errorMaxLines: 2, errorStyle: new text_style.TextStyle.new({fontSize: dart.notNull(media_query.MediaQuery.of(context).size.width) * 0.02})}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), new text_form_field.TextFormField.new({onChanged: dart.fn(value => {
+                                  this[_editeabbrevation] = value;
+                                }, T.StringLToNull()), initialValue: this.widget.subjects.abbreviation, validator: dart.bind(this, 'validateAbberviation'), decoration: new input_decorator.InputDecoration.new({errorMaxLines: 2, errorStyle: new text_style.TextStyle.new({fontSize: dart.notNull(media_query.MediaQuery.of(context).size.width) * 0.02})}), $creationLocationd_0dea112b090073317d4: C[33] || CT.C33})]), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), new basic.Expanded.new({child: new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.end, children: T.JSArrayOfWidgetL().of([this[_buildCheckEditIcon](), new ink_well.InkWell.new({onTap: dart.fn(() => {
+                                  this.setState(dart.fn(() => {
+                                    this.isEdit = true;
+                                  }, T.VoidToNull()));
+                                }, T.VoidToNull()), child: new icon.Icon.new(icons.Icons.cancel_rounded, {color: colors.Colors.red, size: 40.0, $creationLocationd_0dea112b090073317d4: C[45] || CT.C45}), $creationLocationd_0dea112b090073317d4: C[50] || CT.C50})]), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58})]), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61}), $creationLocationd_0dea112b090073317d4: C[64] || CT.C64}), $creationLocationd_0dea112b090073317d4: C[68] || CT.C68})]), $creationLocationd_0dea112b090073317d4: C[71] || CT.C71}), secondaryActions: T.JSArrayOfWidgetL().of([this[_buildAddIcon](), this[_buildEditIcon](), this[_buildDeleteIcon]()]), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74}), new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.end, children: T.JSArrayOfWidgetL().of([new basic.SizedBox.new({width: dart.notNull(media_query.MediaQuery.of(context).size.width) * 0.75, child: new divider.Divider.new({thickness: 2.0, $creationLocationd_0dea112b090073317d4: C[80] || CT.C80}), $creationLocationd_0dea112b090073317d4: C[83] || CT.C83})]), $creationLocationd_0dea112b090073317d4: C[87] || CT.C87})]), $creationLocationd_0dea112b090073317d4: C[91] || CT.C91});
+    }
+    [_buildEditIcon]() {
+      return new slide_action.IconSlideAction.new({color: colors.Colors.green, icon: icons.Icons.edit, onTap: dart.fn(() => {
+          dialog.showDialog(dart.dynamic, {barrierDismissible: true, context: this.context, builder: dart.fn(_ => new adding_new_class_dialog.AddingNewClassDialog.new({subjectsList: this.widget.listobject, subjects: this.widget.subjects, value: 0, $creationLocationd_0dea112b090073317d4: C[94] || CT.C94}), T.BuildContextLToAddingNewClassDialogL())});
+        }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[99] || CT.C99});
+    }
+    [_buildAddIcon]() {
+      return new slide_action.IconSlideAction.new({color: new hex_color.HexColor.new("88C0E3"), icon: icons.Icons.person_add, foregroundColor: colors.Colors.white, onTap: dart.fn(() => {
+          this.widget.subjects.teacherToSubjects[$length] === 0 ? navigator.Navigator.pushReplacementNamed(T.ObjectL(), T.ObjectL(), this.context, "/add_taecher", {arguments: new arguments$46teacher.ArgumentsTeacher.new(this.widget.subjects, null)}) : navigator.Navigator.pushNamed(T.ObjectL(), this.context, "/list_teacher_screen", {arguments: new arguments_techer_subjects.ArgumentsTeacherSubjects.new(this.widget.subjects.teacherToSubjects, null, this.widget.subjects)});
+        }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[104] || CT.C104});
+    }
+    [_buildDeleteIcon]() {
+      return new slide_action.IconSlideAction.new({color: colors.Colors.red, icon: icons.Icons.delete, onTap: dart.fn(() => async.async(core.Null, (function*() {
+          dialog.showDialog(dart.dynamic, {barrierDismissible: true, context: this.context, builder: dart.fn(_ => new log_out_dialog.LogoutDialog.new({button1: "Yes", button2: "NO", alertMessage: "Are you sure you want to delete Subject \"" + dart.str(this.widget.subjects.name) + "\" , Do you want to continue?", onPressedConfirm: dart.fn(() => {
+                provider['ReadContext|read'](T.SubjectsBlocL(), this.context).add(new subjects_bloc.DeletSubjects.new(this[_authProvider].currentUser.accessToken, this.widget.subjects.id, this[_authProvider].ownSchool.id));
+              }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[110] || CT.C110}), T.BuildContextLToLogoutDialogL())});
+          core.print(" " + dart.str(urls.Urls.Delete_Subject) + "?Id=" + dart.str(this.widget.subjects.id));
+        }).bind(this)), T.VoidToFutureLOfNull()), $creationLocationd_0dea112b090073317d4: C[116] || CT.C116});
+    }
+    [_buildCheckEditIcon]() {
+      return new container.Container.new({child: new ink_well.InkWell.new({onTap: dart.fn(() => {
+            if (this[_editeSubjects] == null) {
+              this[_editeSubjects] = this.widget.subjects.name;
+            }
+            if (this[_editeabbrevation] == null) {
+              this[_editeabbrevation] = this.widget.subjects.abbreviation;
+            }
+            if (this.listIdTeacher == null) {
+              this.listIdTeacher = this.widget.subjects.teacherToSubjects;
+              for (let i = 0; i < dart.notNull(this.widget.subjects.teacherToSubjects[$length]); i = i + 1) {
+                this.id[$add](this.widget.subjects.teacherToSubjects[$_get](i).teacherId);
+              }
+            }
+            if (dart.test(this[_formkey].currentState.validate())) {
+              provider['ReadContext|read'](T.SubjectsBlocL(), this.context).add(new subjects_bloc.AddOrEditSubjects.new(this[_authProvider].currentUser.accessToken, this.widget.subjects.id, this[_authProvider].ownSchool.id, this[_editeSubjects], this[_editeabbrevation], this.id));
+            }
+          }, T.VoidToNull()), child: new icon.Icon.new(icons.Icons.check_circle, {color: colors.Colors.green, size: 40.0, $creationLocationd_0dea112b090073317d4: C[121] || CT.C121}), $creationLocationd_0dea112b090073317d4: C[126] || CT.C126}), $creationLocationd_0dea112b090073317d4: C[130] || CT.C130});
+    }
+  };
+  (subjects$46item._SubjectsItemState.new = function() {
+    this[_authProvider] = null;
+    this.isEdit = true;
+    this[_editeSubjects] = null;
+    this[_editeabbrevation] = null;
+    this.listIdTeacher = null;
+    this.id = T.JSArrayOfintL().of([]);
+    this[_formkey] = T.GlobalKeyOfFormStateL().new();
+    subjects$46item._SubjectsItemState.__proto__.new.call(this);
+    ;
+  }).prototype = subjects$46item._SubjectsItemState.prototype;
+  dart.addTypeTests(subjects$46item._SubjectsItemState);
+  dart.addTypeCaches(subjects$46item._SubjectsItemState);
+  dart.setMethodSignature(subjects$46item._SubjectsItemState, () => ({
+    __proto__: dart.getMethods(subjects$46item._SubjectsItemState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_buildEditIcon]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_buildAddIcon]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_buildDeleteIcon]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_buildCheckEditIcon]: dart.fnType(dart.legacy(framework.Widget), [])
+  }));
+  dart.setLibraryUri(subjects$46item._SubjectsItemState, I[0]);
+  dart.setFieldSignature(subjects$46item._SubjectsItemState, () => ({
+    __proto__: dart.getFields(subjects$46item._SubjectsItemState.__proto__),
+    [_authProvider]: dart.fieldType(dart.legacy(auth_provider.AuthProvider)),
+    isEdit: dart.fieldType(dart.legacy(core.bool)),
+    [_editeSubjects]: dart.fieldType(dart.legacy(core.String)),
+    [_editeabbrevation]: dart.fieldType(dart.legacy(core.String)),
+    listIdTeacher: dart.fieldType(dart.legacy(core.List$(dart.legacy(subjects.TeacherToSubjects)))),
+    id: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.int)))),
+    [_formkey]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(form.FormState))))
+  }));
+  dart.trackLibraries("packages/admin_app/ui/subjects/widget/subjects.item.dart", {
+    "package:admin_app/ui/subjects/widget/subjects.item.dart": subjects$46item
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["subjects.item.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAiBiB;;;;;;IACM;;;;;;;AAMe;IAAoB;;;QAJhC;QAAU;QAAe;;IAAf;IAAe;AAC3C,gEAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAkBK;AAWpB,cAAY,AAAqB,gDAA7B,OAAO;AACgB,MAA/B,WAAM,AAAwB,gCAAH,CAAC;AACsB,MAAlD,sBAAyB,wCAAiB,OAAO;AACjD,YAAO,iCACK,yBACR,iDAEM,eAAS,8GAA4B,mIACtB,aACZ,6BACK,yBACF,sBACJ,wCACO,+DAET,+BACS,yEAET,eACM,0CACyC,yCAC7B,yBACR,wDAES,kBACL,AAAO,AAAS,mCACT,qCACI,2BAAS,qBAAqB,8HAG7C,kBACE,AAAO,AAAS,AAAa,4CACvB,MACA,AAAmC,eAA/B,AAAO,AAAS,qCAAa,aAChC,qCACI,2BAAS,qBAAqB,iIAI/C,+BACS,wBACA,uBACE,6BACK,yBACR,+BACS,gCACK,yBACR,kDACe,QAAC;AACY,kCAAtB,uBAAiB,KAAK;qEAEV,AAAO,AAAS,gDACnB,uCACC,wDACK,eACH,wCAGO,aAFM,AACZ,AACA,0BAFe,OAAO,gBAG3B,qEAEd,kDACe,QAAC;AACe,kCAAzB,0BAAoB,KAAK;qEAGvB,AAAO,AAAS,wDACT,2CACC,wDACK,eACH,wCAGO,aAFM,AACZ,AACA,0BAFe,OAAO,gBAG3B,6LAKpB,+BACS,sCACgC,sCAC3B,yBACR,6BACA,iCACS;AAGH,kCAFF,cAAS;AACM,oCAAb,cAAS;;2DAGN,kBACC,oCACQ,yBACR,sfAYR,yBACxB,uBACA,wBACA,uFAGJ,sCACuC,sCAC3B,yBACR,+BAC6C,aAAvB,AAAY,AAAK,0BAAd,OAAO,gBAAe,aACpC,oCACM;IAM3B;;AAGE,YAAO,8CACS,2BACF,yBACL;AAUC,UATN,qDACwB,eACX,uBACA,QAAC,KACD,oEACS,AAAO,kCACX,AAAO,6BACV;;IAKrB;;AAGE,YAAO,8CACE,2BAAS,iBACJ,yCACY,4BACjB;AASiE,UARtE,AAAO,AAAS,AAAkB,AAAO,oDAAG,IAC5B,mEACR,cACA,4BACW,6CAAiB,AAAO,sBAAU,UAErC,2CAAU,cAAS,oCAChB,2DACP,AAAO,AAAS,wCAAmB,MAAM,AAAO;;IAGlE;;AAGE,YAAO,8CACS,yBACF,2BACL;AAiBC,UAhBN,qDACwB,eACX,uBACA,QAAC,KACD,8CACI,gBACA,oBAEL,AAAgG,wDAAnD,AAAO,AAAS,6BAAK,mDACpD;AAIgB,gBAHxB,AAAqB,gDAA7B,kBAAiC,oCAC7B,AAAc,AAAY,6CAC1B,AAAO,AAAS,yBAChB,AAAc,AAAU;;AAKmB,UAAzD,WAAM,AAAkD,eAAzC,4BAAe,kBAAM,AAAO,AAAS;QACrD;IAEL;;AAGE,YAAO,qCACI,iCACF;AACL,gBAAI,AAAe;AACoB,cAArC,uBAAiB,AAAO,AAAS;;AAEnC,gBAAI,AAAkB;AAC4B,cAAhD,0BAAoB,AAAO,AAAS;;AAEtC,gBAAI,AAAc;AACiC,cAAjD,qBAAgB,AAAO,AAAS;AAEhC,uBAAS,IAAI,GAAG,AAAE,CAAD,gBAAG,AAAO,AAAS,AAAkB,kDAAQ,IAAA,AAAC,CAAA;AACP,gBAAtD,AAAG,cAAI,AAAO,AAAS,AAAiB,AAAI,8CAAH,CAAC;;;AAG9C,0BAAI,AAAS,AAAa;AAOhB,cANA,AAAqB,gDAA7B,kBAAiC,wCAC7B,AAAc,AAAY,6CAC1B,AAAO,AAAS,yBAChB,AAAc,AAAU,kCACxB,sBACA,yBACA;;qCAGD,kBACC,kCACQ,2BACR;IAGZ;;;IAtPa;IAER,cAAS;IAEP;IAAgB;IACC;IACd,UAAK;IAET,iBAAW;;;EA+OnB","file":"../../../../../../../../packages/admin_app/ui/subjects/widget/subjects.item.dart.lib.js"}');
+  // Exports:
+  return {
+    ui__subjects__widget__subjects$46item: subjects$46item
+  };
+}));
+
+//# sourceMappingURL=subjects.item.dart.lib.js.map

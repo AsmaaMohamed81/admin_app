@@ -1,0 +1,256 @@
+define(['dart_sdk', 'packages/admin_app/ui/splash/splash_screen.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/admin_app/ui/levels/levels_screen.dart', 'packages/admin_app/ui/home/home_screen.dart', 'packages/admin_app/ui/subjects/subjects_screen.dart', 'packages/admin_app/ui/auth/login_screen.dart', 'packages/admin_app/ui/intro/intro_screen.dart', 'packages/admin_app/ui/education_classes/classes_screen.dart', 'packages/admin_app/ui/auth/sign_up_screen.dart', 'packages/admin_app/ui/own_schools/own_school_screen.dart', 'packages/admin_app/ui/education_classes/widgets/new_class.dart', 'packages/admin_app/ui/subjects/new_subject.dart', 'packages/admin_app/ui/subjects/add_teacher.dart', 'packages/admin_app/ui/subjects/select_teacher.dart', 'packages/admin_app/ui/subjects/list_teacher_screen.dart', 'packages/admin_app/ui/acdemic_year/academicyears_screen.dart', 'packages/admin_app/ui/acdemic_year/semester_screen.dart'], (function load__packages__admin_app__utils__routes_dart(dart_sdk, packages__admin_app__ui__splash__splash_screen$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__admin_app__ui__levels__levels_screen$46dart, packages__admin_app__ui__home__home_screen$46dart, packages__admin_app__ui__subjects__subjects_screen$46dart, packages__admin_app__ui__auth__login_screen$46dart, packages__admin_app__ui__intro__intro_screen$46dart, packages__admin_app__ui__education_classes__classes_screen$46dart, packages__admin_app__ui__auth__sign_up_screen$46dart, packages__admin_app__ui__own_schools__own_school_screen$46dart, packages__admin_app__ui__education_classes__widgets__new_class$46dart, packages__admin_app__ui__subjects__new_subject$46dart, packages__admin_app__ui__subjects__add_teacher$46dart, packages__admin_app__ui__subjects__select_teacher$46dart, packages__admin_app__ui__subjects__list_teacher_screen$46dart, packages__admin_app__ui__acdemic_year__academicyears_screen$46dart, packages__admin_app__ui__acdemic_year__semester_screen$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const splash_screen = packages__admin_app__ui__splash__splash_screen$46dart.ui__splash__splash_screen;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const levels_screen = packages__admin_app__ui__levels__levels_screen$46dart.ui__levels__levels_screen;
+  const home_screen = packages__admin_app__ui__home__home_screen$46dart.ui__home__home_screen;
+  const subjects_screen = packages__admin_app__ui__subjects__subjects_screen$46dart.ui__subjects__subjects_screen;
+  const login_screen = packages__admin_app__ui__auth__login_screen$46dart.ui__auth__login_screen;
+  const intro_screen = packages__admin_app__ui__intro__intro_screen$46dart.ui__intro__intro_screen;
+  const classes_screen = packages__admin_app__ui__education_classes__classes_screen$46dart.ui__education_classes__classes_screen;
+  const sign_up_screen = packages__admin_app__ui__auth__sign_up_screen$46dart.ui__auth__sign_up_screen;
+  const own_school_screen = packages__admin_app__ui__own_schools__own_school_screen$46dart.ui__own_schools__own_school_screen;
+  const new_class = packages__admin_app__ui__education_classes__widgets__new_class$46dart.ui__education_classes__widgets__new_class;
+  const new_subject = packages__admin_app__ui__subjects__new_subject$46dart.ui__subjects__new_subject;
+  const add_teacher = packages__admin_app__ui__subjects__add_teacher$46dart.ui__subjects__add_teacher;
+  const select_teacher = packages__admin_app__ui__subjects__select_teacher$46dart.ui__subjects__select_teacher;
+  const list_teacher_screen = packages__admin_app__ui__subjects__list_teacher_screen$46dart.ui__subjects__list_teacher_screen;
+  const academicyears_screen = packages__admin_app__ui__acdemic_year__academicyears_screen$46dart.ui__acdemic_year__academicyears_screen;
+  const semester_screen = packages__admin_app__ui__acdemic_year__semester_screen$46dart.ui__acdemic_year__semester_screen;
+  var routes = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    SplashScreenL: () => (T.SplashScreenL = dart.constFn(dart.legacy(splash_screen.SplashScreen)))(),
+    dynamicToSplashScreenL: () => (T.dynamicToSplashScreenL = dart.constFn(dart.fnType(T.SplashScreenL(), [dart.dynamic])))(),
+    LevelsScreenL: () => (T.LevelsScreenL = dart.constFn(dart.legacy(levels_screen.LevelsScreen)))(),
+    dynamicToLevelsScreenL: () => (T.dynamicToLevelsScreenL = dart.constFn(dart.fnType(T.LevelsScreenL(), [dart.dynamic])))(),
+    HomeScreenL: () => (T.HomeScreenL = dart.constFn(dart.legacy(home_screen.HomeScreen)))(),
+    dynamicToHomeScreenL: () => (T.dynamicToHomeScreenL = dart.constFn(dart.fnType(T.HomeScreenL(), [dart.dynamic])))(),
+    SubjectsScreenL: () => (T.SubjectsScreenL = dart.constFn(dart.legacy(subjects_screen.SubjectsScreen)))(),
+    dynamicToSubjectsScreenL: () => (T.dynamicToSubjectsScreenL = dart.constFn(dart.fnType(T.SubjectsScreenL(), [dart.dynamic])))(),
+    LoginScreenL: () => (T.LoginScreenL = dart.constFn(dart.legacy(login_screen.LoginScreen)))(),
+    dynamicToLoginScreenL: () => (T.dynamicToLoginScreenL = dart.constFn(dart.fnType(T.LoginScreenL(), [dart.dynamic])))(),
+    IntroScreenL: () => (T.IntroScreenL = dart.constFn(dart.legacy(intro_screen.IntroScreen)))(),
+    dynamicToIntroScreenL: () => (T.dynamicToIntroScreenL = dart.constFn(dart.fnType(T.IntroScreenL(), [dart.dynamic])))(),
+    ClassesScreenL: () => (T.ClassesScreenL = dart.constFn(dart.legacy(classes_screen.ClassesScreen)))(),
+    dynamicToClassesScreenL: () => (T.dynamicToClassesScreenL = dart.constFn(dart.fnType(T.ClassesScreenL(), [dart.dynamic])))(),
+    SignUpScreenL: () => (T.SignUpScreenL = dart.constFn(dart.legacy(sign_up_screen.SignUpScreen)))(),
+    dynamicToSignUpScreenL: () => (T.dynamicToSignUpScreenL = dart.constFn(dart.fnType(T.SignUpScreenL(), [dart.dynamic])))(),
+    OwnSchoolsScreenL: () => (T.OwnSchoolsScreenL = dart.constFn(dart.legacy(own_school_screen.OwnSchoolsScreen)))(),
+    dynamicToOwnSchoolsScreenL: () => (T.dynamicToOwnSchoolsScreenL = dart.constFn(dart.fnType(T.OwnSchoolsScreenL(), [dart.dynamic])))(),
+    NewClassL: () => (T.NewClassL = dart.constFn(dart.legacy(new_class.NewClass)))(),
+    dynamicToNewClassL: () => (T.dynamicToNewClassL = dart.constFn(dart.fnType(T.NewClassL(), [dart.dynamic])))(),
+    NewSubjectL: () => (T.NewSubjectL = dart.constFn(dart.legacy(new_subject.NewSubject)))(),
+    dynamicToNewSubjectL: () => (T.dynamicToNewSubjectL = dart.constFn(dart.fnType(T.NewSubjectL(), [dart.dynamic])))(),
+    AddTeacherL: () => (T.AddTeacherL = dart.constFn(dart.legacy(add_teacher.AddTeacher)))(),
+    dynamicToAddTeacherL: () => (T.dynamicToAddTeacherL = dart.constFn(dart.fnType(T.AddTeacherL(), [dart.dynamic])))(),
+    SelectTeacherL: () => (T.SelectTeacherL = dart.constFn(dart.legacy(select_teacher.SelectTeacher)))(),
+    dynamicToSelectTeacherL: () => (T.dynamicToSelectTeacherL = dart.constFn(dart.fnType(T.SelectTeacherL(), [dart.dynamic])))(),
+    ListTeacherScreenL: () => (T.ListTeacherScreenL = dart.constFn(dart.legacy(list_teacher_screen.ListTeacherScreen)))(),
+    dynamicToListTeacherScreenL: () => (T.dynamicToListTeacherScreenL = dart.constFn(dart.fnType(T.ListTeacherScreenL(), [dart.dynamic])))(),
+    AcademicYearsL: () => (T.AcademicYearsL = dart.constFn(dart.legacy(academicyears_screen.AcademicYears)))(),
+    dynamicToAcademicYearsL: () => (T.dynamicToAcademicYearsL = dart.constFn(dart.fnType(T.AcademicYearsL(), [dart.dynamic])))(),
+    SemesterScreenL: () => (T.SemesterScreenL = dart.constFn(dart.legacy(semester_screen.SemesterScreen)))(),
+    dynamicToSemesterScreenL: () => (T.dynamicToSemesterScreenL = dart.constFn(dart.fnType(T.SemesterScreenL(), [dart.dynamic])))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    dynamicToWidgetL: () => (T.dynamicToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [dart.dynamic])))(),
+    dynamicToLWidgetL: () => (T.dynamicToLWidgetL = dart.constFn(dart.legacy(T.dynamicToWidgetL())))(),
+    IdentityMapOfStringL$dynamicToLWidgetL: () => (T.IdentityMapOfStringL$dynamicToLWidgetL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.dynamicToLWidgetL())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.constList([], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 22,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 23,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 24,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 25,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 27,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 29,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 30,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 39,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 35,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 42,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 38,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/utils/routes.dart"
+      });
+    }
+  }, false);
+  var C = Array(17).fill(void 0);
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  dart.defineLazy(routes, {
+    /*routes.routes*/get routes() {
+      return new (T.IdentityMapOfStringL$dynamicToLWidgetL()).from(["/", dart.fn(context => new splash_screen.SplashScreen.new({$creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), T.dynamicToSplashScreenL()), "/level_screen", dart.fn(context => new levels_screen.LevelsScreen.new({$creationLocationd_0dea112b090073317d4: C[2] || CT.C2}), T.dynamicToLevelsScreenL()), "/home_screen", dart.fn(context => new home_screen.HomeScreen.new({$creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), T.dynamicToHomeScreenL()), "/subjects_screen", dart.fn(context => new subjects_screen.SubjectsScreen.new({$creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), T.dynamicToSubjectsScreenL()), "/login_screen", dart.fn(context => new login_screen.LoginScreen.new({$creationLocationd_0dea112b090073317d4: C[5] || CT.C5}), T.dynamicToLoginScreenL()), "/intro_screen", dart.fn(context => new intro_screen.IntroScreen.new({$creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), T.dynamicToIntroScreenL()), "/classes_screen", dart.fn(context => new classes_screen.ClassesScreen.new({$creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), T.dynamicToClassesScreenL()), "/sign_up_screen", dart.fn(context => new sign_up_screen.SignUpScreen.new({$creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), T.dynamicToSignUpScreenL()), "/own_schools_screen", dart.fn(context => new own_school_screen.OwnSchoolsScreen.new({$creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), T.dynamicToOwnSchoolsScreenL()), "/new_class", dart.fn(context => new new_class.NewClass.new({$creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), T.dynamicToNewClassL()), "/new_subject", dart.fn(context => new new_subject.NewSubject.new({$creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), T.dynamicToNewSubjectL()), "/add_taecher", dart.fn(context => new add_teacher.AddTeacher.new({$creationLocationd_0dea112b090073317d4: C[12] || CT.C12}), T.dynamicToAddTeacherL()), "/select_teacher", dart.fn(context => new select_teacher.SelectTeacher.new({$creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), T.dynamicToSelectTeacherL()), "/list_teacher_screen", dart.fn(context => new list_teacher_screen.ListTeacherScreen.new({$creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), T.dynamicToListTeacherScreenL()), "/academic_years_screen", dart.fn(context => new academicyears_screen.AcademicYears.new({$creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), T.dynamicToAcademicYearsL()), "/semester_screen", dart.fn(context => new semester_screen.SemesterScreen.new({$creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), T.dynamicToSemesterScreenL())]);
+    }
+  }, true);
+  dart.trackLibraries("packages/admin_app/utils/routes.dart", {
+    "package:admin_app/utils/routes.dart": routes
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["routes.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAoBM,aAAM;YAAG,wDACb,KAAK,QAAC,WAAY,0HAClB,iBAAiB,QAAC,WAAY,0HAC9B,gBAAgB,QAAC,WAAY,oHAC7B,oBAAoB,QAAC,WAAY,gIAEjC,iBAAiB,QAAC,WAAY,uHAC9B,iBAAiB,QAAC,WAAY,uHAC9B,mBAAmB,QAAC,WAAY,6HAChC,mBAAmB,QAAC,WAAY,2HAChC,uBAAuB,QAAC,WAAY,sIACpC,cAAc,QAAC,WAAY,gHAC3B,gBAAgB,QAAC,WAAY,sHAC7B,gBAAgB,QAAC,WAAY,sHAC7B,mBAAmB,QAAC,WAAY,+HAChC,wBAAwB,QAAC,WAAY,4IACrC,0BAA0B,QAAC,WAAY,qIACvC,oBAAoB,QAAC,WAAY","file":"../../../../../../packages/admin_app/utils/routes.dart.lib.js"}');
+  // Exports:
+  return {
+    utils__routes: routes
+  };
+}));
+
+//# sourceMappingURL=routes.dart.lib.js.map

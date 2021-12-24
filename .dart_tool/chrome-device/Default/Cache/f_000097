@@ -1,0 +1,368 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/teacher.repository.dart', 'packages/admin_app/data/model/teachers.dart'], (function load__packages__admin_app__bloc__teachers_bloc__teachers_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__teacher$46repository$46dart, packages__admin_app__data__model__teachers$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const teacher$46repository = packages__admin_app__data__repository__teacher$46repository$46dart.data__repository__teacher$46repository;
+  const teachers = packages__admin_app__data__model__teachers$46dart.data__model__teachers;
+  var teachers_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    TeachersEventL: () => (T.TeachersEventL = dart.constFn(dart.legacy(teachers_bloc.TeachersEvent)))(),
+    FetchTeachersL: () => (T.FetchTeachersL = dart.constFn(dart.legacy(teachers_bloc.FetchTeachers)))(),
+    DeletTeachersL: () => (T.DeletTeachersL = dart.constFn(dart.legacy(teachers_bloc.DeletTeachers)))(),
+    AddOrEditTeachersL: () => (T.AddOrEditTeachersL = dart.constFn(dart.legacy(teachers_bloc.AddOrEditTeachers)))(),
+    TeachersStateL: () => (T.TeachersStateL = dart.constFn(dart.legacy(teachers_bloc.TeachersState)))(),
+    _AsyncStarImplOfTeachersStateL: () => (T._AsyncStarImplOfTeachersStateL = dart.constFn(async._AsyncStarImpl$(T.TeachersStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/teachers_bloc/teachers_bloc.dart"];
+  var repository$ = dart.privateName(teachers_bloc, "TeachersBloc.repository");
+  teachers_bloc.TeachersEvent = class TeachersEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (teachers_bloc.TeachersEvent.new = function() {
+    teachers_bloc.TeachersEvent.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersEvent.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersEvent);
+  dart.addTypeCaches(teachers_bloc.TeachersEvent);
+  dart.setGetterSignature(teachers_bloc.TeachersEvent, () => ({
+    __proto__: dart.getGetters(teachers_bloc.TeachersEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(teachers_bloc.TeachersEvent, I[0]);
+  teachers_bloc.TeachersState = class TeachersState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (teachers_bloc.TeachersState.new = function() {
+    teachers_bloc.TeachersState.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersState.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersState);
+  dart.addTypeCaches(teachers_bloc.TeachersState);
+  dart.setGetterSignature(teachers_bloc.TeachersState, () => ({
+    __proto__: dart.getGetters(teachers_bloc.TeachersState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(teachers_bloc.TeachersState, I[0]);
+  teachers_bloc.TeachersBloc = class TeachersBloc extends bloc.Bloc$(dart.legacy(teachers_bloc.TeachersEvent), dart.legacy(teachers_bloc.TeachersState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.TeachersEventL().as(event);
+      return new (T._AsyncStarImplOfTeachersStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchTeachersL().is(event)) {
+          if (stream.add(new teachers_bloc.TeachersLoading.new())) return;
+          yield;
+          try {
+            let teachers = (yield this.repository.getAllTeachers(event.schoolId));
+            if (stream.add(new teachers_bloc.TeachersLoaded.new(teachers))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new teachers_bloc.TeachersError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletTeachersL().is(event)) {
+          if (stream.add(new teachers_bloc.TeachersLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteTeachers(event.access, event.id));
+            if (stream.add(new teachers_bloc.TeachersDeleted.new(isdelete))) return;
+            yield;
+            let teachers = (yield this.repository.getAllTeachers(event.schoolId));
+            if (stream.add(new teachers_bloc.TeachersLoaded.new(teachers))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new teachers_bloc.TeachersError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditTeachersL().is(event)) {
+          if (stream.add(new teachers_bloc.TeachersLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeTeachers(event.access, event.name, event.id, event.schoolId));
+            if (stream.add(new teachers_bloc.TeachersAddOrEdite.new(result))) return;
+            yield;
+            let teachers = (yield this.repository.getAllTeachers(event.schoolId));
+            if (stream.add(new teachers_bloc.TeachersLoaded.new(teachers))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new teachers_bloc.TeachersError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (teachers_bloc.TeachersBloc.new = function(repository) {
+    this[repository$] = repository;
+    teachers_bloc.TeachersBloc.__proto__.new.call(this, new teachers_bloc.TeachersInitial.new());
+    ;
+  }).prototype = teachers_bloc.TeachersBloc.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersBloc);
+  dart.addTypeCaches(teachers_bloc.TeachersBloc);
+  dart.setMethodSignature(teachers_bloc.TeachersBloc, () => ({
+    __proto__: dart.getMethods(teachers_bloc.TeachersBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(teachers_bloc.TeachersState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(teachers_bloc.TeachersBloc, I[0]);
+  dart.setFieldSignature(teachers_bloc.TeachersBloc, () => ({
+    __proto__: dart.getFields(teachers_bloc.TeachersBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(teacher$46repository.TeachersRepository))
+  }));
+  var schoolId$ = dart.privateName(teachers_bloc, "FetchTeachers.schoolId");
+  teachers_bloc.FetchTeachers = class FetchTeachers extends teachers_bloc.TeachersEvent {
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (teachers_bloc.FetchTeachers.new = function(schoolId) {
+    this[schoolId$] = schoolId;
+    teachers_bloc.FetchTeachers.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.FetchTeachers.prototype;
+  dart.addTypeTests(teachers_bloc.FetchTeachers);
+  dart.addTypeCaches(teachers_bloc.FetchTeachers);
+  dart.setLibraryUri(teachers_bloc.FetchTeachers, I[0]);
+  dart.setFieldSignature(teachers_bloc.FetchTeachers, () => ({
+    __proto__: dart.getFields(teachers_bloc.FetchTeachers.__proto__),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(teachers_bloc, "DeletTeachers.access");
+  var id$ = dart.privateName(teachers_bloc, "DeletTeachers.id");
+  var schoolId$0 = dart.privateName(teachers_bloc, "DeletTeachers.schoolId");
+  teachers_bloc.DeletTeachers = class DeletTeachers extends teachers_bloc.TeachersEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (teachers_bloc.DeletTeachers.new = function(access, id, schoolId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$0] = schoolId;
+    teachers_bloc.DeletTeachers.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.DeletTeachers.prototype;
+  dart.addTypeTests(teachers_bloc.DeletTeachers);
+  dart.addTypeCaches(teachers_bloc.DeletTeachers);
+  dart.setLibraryUri(teachers_bloc.DeletTeachers, I[0]);
+  dart.setFieldSignature(teachers_bloc.DeletTeachers, () => ({
+    __proto__: dart.getFields(teachers_bloc.DeletTeachers.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(teachers_bloc, "AddOrEditTeachers.access");
+  var id$0 = dart.privateName(teachers_bloc, "AddOrEditTeachers.id");
+  var schoolId$1 = dart.privateName(teachers_bloc, "AddOrEditTeachers.schoolId");
+  var name$ = dart.privateName(teachers_bloc, "AddOrEditTeachers.name");
+  teachers_bloc.AddOrEditTeachers = class AddOrEditTeachers extends teachers_bloc.TeachersEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+  };
+  (teachers_bloc.AddOrEditTeachers.new = function(access, id, schoolId, name) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[schoolId$1] = schoolId;
+    this[name$] = name;
+    teachers_bloc.AddOrEditTeachers.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.AddOrEditTeachers.prototype;
+  dart.addTypeTests(teachers_bloc.AddOrEditTeachers);
+  dart.addTypeCaches(teachers_bloc.AddOrEditTeachers);
+  dart.setLibraryUri(teachers_bloc.AddOrEditTeachers, I[0]);
+  dart.setFieldSignature(teachers_bloc.AddOrEditTeachers, () => ({
+    __proto__: dart.getFields(teachers_bloc.AddOrEditTeachers.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  teachers_bloc.TeachersInitial = class TeachersInitial extends teachers_bloc.TeachersState {};
+  (teachers_bloc.TeachersInitial.new = function() {
+    teachers_bloc.TeachersInitial.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersInitial.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersInitial);
+  dart.addTypeCaches(teachers_bloc.TeachersInitial);
+  dart.setLibraryUri(teachers_bloc.TeachersInitial, I[0]);
+  teachers_bloc.TeachersLoading = class TeachersLoading extends teachers_bloc.TeachersState {};
+  (teachers_bloc.TeachersLoading.new = function() {
+    teachers_bloc.TeachersLoading.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersLoading.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersLoading);
+  dart.addTypeCaches(teachers_bloc.TeachersLoading);
+  dart.setLibraryUri(teachers_bloc.TeachersLoading, I[0]);
+  var teachers$ = dart.privateName(teachers_bloc, "TeachersLoaded.teachers");
+  teachers_bloc.TeachersLoaded = class TeachersLoaded extends teachers_bloc.TeachersState {
+    get teachers() {
+      return this[teachers$];
+    }
+    set teachers(value) {
+      super.teachers = value;
+    }
+  };
+  (teachers_bloc.TeachersLoaded.new = function(teachers) {
+    this[teachers$] = teachers;
+    teachers_bloc.TeachersLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersLoaded.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersLoaded);
+  dart.addTypeCaches(teachers_bloc.TeachersLoaded);
+  dart.setLibraryUri(teachers_bloc.TeachersLoaded, I[0]);
+  dart.setFieldSignature(teachers_bloc.TeachersLoaded, () => ({
+    __proto__: dart.getFields(teachers_bloc.TeachersLoaded.__proto__),
+    teachers: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(teachers.Teachers))))
+  }));
+  var message$ = dart.privateName(teachers_bloc, "TeachersDeleted.message");
+  teachers_bloc.TeachersDeleted = class TeachersDeleted extends teachers_bloc.TeachersState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (teachers_bloc.TeachersDeleted.new = function(message) {
+    this[message$] = message;
+    teachers_bloc.TeachersDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersDeleted.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersDeleted);
+  dart.addTypeCaches(teachers_bloc.TeachersDeleted);
+  dart.setLibraryUri(teachers_bloc.TeachersDeleted, I[0]);
+  dart.setFieldSignature(teachers_bloc.TeachersDeleted, () => ({
+    __proto__: dart.getFields(teachers_bloc.TeachersDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(teachers_bloc, "TeachersAddOrEdite.results");
+  teachers_bloc.TeachersAddOrEdite = class TeachersAddOrEdite extends teachers_bloc.TeachersState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (teachers_bloc.TeachersAddOrEdite.new = function(results) {
+    this[results$] = results;
+    teachers_bloc.TeachersAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersAddOrEdite.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersAddOrEdite);
+  dart.addTypeCaches(teachers_bloc.TeachersAddOrEdite);
+  dart.setLibraryUri(teachers_bloc.TeachersAddOrEdite, I[0]);
+  dart.setFieldSignature(teachers_bloc.TeachersAddOrEdite, () => ({
+    __proto__: dart.getFields(teachers_bloc.TeachersAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(teachers_bloc, "TeachersError.message");
+  teachers_bloc.TeachersError = class TeachersError extends teachers_bloc.TeachersState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (teachers_bloc.TeachersError.new = function(message) {
+    this[message$0] = message;
+    teachers_bloc.TeachersError.__proto__.new.call(this);
+    ;
+  }).prototype = teachers_bloc.TeachersError.prototype;
+  dart.addTypeTests(teachers_bloc.TeachersError);
+  dart.addTypeCaches(teachers_bloc.TeachersError);
+  dart.setLibraryUri(teachers_bloc.TeachersError, I[0]);
+  dart.setFieldSignature(teachers_bloc.TeachersError, () => ({
+    __proto__: dart.getFields(teachers_bloc.TeachersError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  teachers_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/teachers_bloc/teachers_bloc.dart", {
+    "package:admin_app/bloc/teachers_bloc/teachers_bloc.dart": teachers_bloc
+  }, {
+    "package:admin_app/bloc/teachers_bloc/teachers_bloc.dart": ["teachers_event.dart", "teachers_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["teachers_event.dart","teachers_state.dart","teachers_bloc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAM4B;IAAE;;;AAHtB;;EAAe;;;;;;;;;;ACGK;IAAE;;;AAHtB;;EAAe;;;;;;;;;ICSI;;;;;;;4BAMT;AADqB;AAGnC,YAAU,sBAAN,KAAK;AACP,yBAAM;UAAN;AACA;AACQ,4BAAW,MAAM,AAAW,+BAAe,AAAM,KAAD;AACtD,2BAAM,qCAAe,QAAQ;YAA7B;;gBACO;AACP,2BAAM,oCAAgB,cAAF,CAAC;YAArB;;cAEG,KAAU,sBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,4BAAW,MAAM,AAAW,+BAAe,AAAM,KAAD,SAAS,AAAM,KAAD;AACpE,2BAAM,sCAAgB,QAAQ;YAA9B;AAEQ,4BAAW,MAAM,AAAW,+BAAe,AAAM,KAAD;AACtD,2BAAM,qCAAe,QAAQ;YAA7B;;gBAEK;AACP,2BAAM,oCAAgB,cAAF,CAAC;YAArB;;cAEG,KAAU,0BAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,0BAAS,MAAM,AAAW,iCAC5B,AAAM,KAAD,SAAS,AAAM,KAAD,OAAO,AAAM,KAAD,KAAK,AAAM,KAAD;AAC7C,2BAAM,yCAAmB,MAAM;YAA/B;AAEM,4BAAW,MAAM,AAAW,+BAAe,AAAM,KAAD;AACtD,2BAAM,qCAAe,QAAQ;YAA7B;;gBACO;AACP,2BAAM,oCAAgB,cAAF,CAAC;YAArB;;;MAGN;;;;IAvC4B;AAAc,wDAAM;;EAAkB;;;;;;;;;;;;;;IFJxD;;;;;;;;IAES;AAAnB;;EAA4B;;;;;;;;;;;;IAIf;;;;;;IACH;;;;;;IACA;;;;;;;8CAES,QAAa,IAAS;IAAtB;IAAa;IAAS;AAAzC;;EAAkD;;;;;;;;;;;;;;;IAIrC;;;;;;IACH;;;;;;IACA;;;;;;IACG;;;;;;;kDAEU,QAAa,IAAS,UAAe;IAArC;IAAa;IAAS;IAAe;AAA5D;;EAAiE;;;;;;;;;;;;;;;ECpBtB;;;;;;;;EAEA;;;;;;IAGtB;;;;;;;;IAED;AAApB;;EAA6B;;;;;;;;;;IAIF;;;;;;;;IAEN;AAArB;;EAA6B;;;;;;;;;;IAIF;;;;;;;;IAEH;AAAxB;;EAAgC;;;;;;;;;;IAInB;;;;;;;;IAEM;AAAnB;;EAA2B;;;;;;;;;;ACuB3B,UAAW,qCAA2C,cAAM;EAC9D","file":"../../../../../../../packages/admin_app/bloc/teachers_bloc/teachers_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__teachers_bloc__teachers_bloc: teachers_bloc
+  };
+}));
+
+//# sourceMappingURL=teachers_bloc.dart.lib.js.map

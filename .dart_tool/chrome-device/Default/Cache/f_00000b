@@ -1,0 +1,386 @@
+define(['dart_sdk', 'packages/bloc/src/bloc_observer.dart', 'packages/equatable/src/equatable_mixin.dart', 'packages/admin_app/data/repository/years.repository.dart', 'packages/admin_app/data/model/years.dart'], (function load__packages__admin_app__bloc__years_bloc__years_bloc_dart(dart_sdk, packages__bloc__src__bloc_observer$46dart, packages__equatable__src__equatable_mixin$46dart, packages__admin_app__data__repository__years$46repository$46dart, packages__admin_app__data__model__years$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const bloc = packages__bloc__src__bloc_observer$46dart.src__bloc;
+  const equatable = packages__equatable__src__equatable_mixin$46dart.src__equatable;
+  const years$46repository = packages__admin_app__data__repository__years$46repository$46dart.data__repository__years$46repository;
+  const years = packages__admin_app__data__model__years$46dart.data__model__years;
+  var years_bloc = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    YearsEventL: () => (T.YearsEventL = dart.constFn(dart.legacy(years_bloc.YearsEvent)))(),
+    FetchYearsL: () => (T.FetchYearsL = dart.constFn(dart.legacy(years_bloc.FetchYears)))(),
+    DeletYearsL: () => (T.DeletYearsL = dart.constFn(dart.legacy(years_bloc.DeletYears)))(),
+    AddOrEditYearsL: () => (T.AddOrEditYearsL = dart.constFn(dart.legacy(years_bloc.AddOrEditYears)))(),
+    YearsStateL: () => (T.YearsStateL = dart.constFn(dart.legacy(years_bloc.YearsState)))(),
+    _AsyncStarImplOfYearsStateL: () => (T._AsyncStarImplOfYearsStateL = dart.constFn(async._AsyncStarImpl$(T.YearsStateL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:admin_app/bloc/years_bloc/years_bloc.dart"];
+  var repository$ = dart.privateName(years_bloc, "YearsBloc.repository");
+  years_bloc.YearsEvent = class YearsEvent extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (years_bloc.YearsEvent.new = function() {
+    years_bloc.YearsEvent.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsEvent.prototype;
+  dart.addTypeTests(years_bloc.YearsEvent);
+  dart.addTypeCaches(years_bloc.YearsEvent);
+  dart.setGetterSignature(years_bloc.YearsEvent, () => ({
+    __proto__: dart.getGetters(years_bloc.YearsEvent.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(years_bloc.YearsEvent, I[0]);
+  years_bloc.YearsState = class YearsState extends equatable.Equatable {
+    get props() {
+      return T.JSArrayOfObjectL().of([]);
+    }
+  };
+  (years_bloc.YearsState.new = function() {
+    years_bloc.YearsState.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsState.prototype;
+  dart.addTypeTests(years_bloc.YearsState);
+  dart.addTypeCaches(years_bloc.YearsState);
+  dart.setGetterSignature(years_bloc.YearsState, () => ({
+    __proto__: dart.getGetters(years_bloc.YearsState.__proto__),
+    props: dart.legacy(core.List$(dart.legacy(core.Object)))
+  }));
+  dart.setLibraryUri(years_bloc.YearsState, I[0]);
+  years_bloc.YearsBloc = class YearsBloc extends bloc.Bloc$(dart.legacy(years_bloc.YearsEvent), dart.legacy(years_bloc.YearsState)) {
+    get repository() {
+      return this[repository$];
+    }
+    set repository(value) {
+      super.repository = value;
+    }
+    mapEventToState(event) {
+      T.YearsEventL().as(event);
+      return new (T._AsyncStarImplOfYearsStateL()).new((function* mapEventToState(stream) {
+        if (T.FetchYearsL().is(event)) {
+          if (stream.add(new years_bloc.YearsLoading.new())) return;
+          yield;
+          try {
+            let years = (yield this.repository.getAllYears(event.schoolId));
+            if (stream.add(new years_bloc.YearsLoaded.new(years))) return;
+            yield;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (stream.add(new years_bloc.YearsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.DeletYearsL().is(event)) {
+          if (stream.add(new years_bloc.YearsLoading.new())) return;
+          yield;
+          try {
+            let isdelete = (yield this.repository.deleteYears(event.access, event.id));
+            if (stream.add(new years_bloc.YearsDeleted.new(isdelete))) return;
+            yield;
+            let years = (yield this.repository.getAllYears(event.schoolId));
+            if (stream.add(new years_bloc.YearsLoaded.new(years))) return;
+            yield;
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            if (stream.add(new years_bloc.YearsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        } else if (T.AddOrEditYearsL().is(event)) {
+          if (stream.add(new years_bloc.YearsLoading.new())) return;
+          yield;
+          try {
+            let result = (yield this.repository.addEditeYears(event.access, event.id, event.schoolId, event.levelId, event.yearId, event.name));
+            if (stream.add(new years_bloc.YearsAddOrEdite.new(result))) return;
+            yield;
+            let years = (yield this.repository.getAllYears(event.schoolId));
+            if (stream.add(new years_bloc.YearsLoaded.new(years))) return;
+            yield;
+          } catch (e$1) {
+            let e = dart.getThrown(e$1);
+            if (stream.add(new years_bloc.YearsError.new(dart.toString(e)))) return;
+            yield;
+          }
+        }
+      }).bind(this)).stream;
+    }
+  };
+  (years_bloc.YearsBloc.new = function(repository) {
+    this[repository$] = repository;
+    years_bloc.YearsBloc.__proto__.new.call(this, new years_bloc.YearsInitial.new());
+    ;
+  }).prototype = years_bloc.YearsBloc.prototype;
+  dart.addTypeTests(years_bloc.YearsBloc);
+  dart.addTypeCaches(years_bloc.YearsBloc);
+  dart.setMethodSignature(years_bloc.YearsBloc, () => ({
+    __proto__: dart.getMethods(years_bloc.YearsBloc.__proto__),
+    mapEventToState: dart.fnType(dart.legacy(async.Stream$(dart.legacy(years_bloc.YearsState))), [dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(years_bloc.YearsBloc, I[0]);
+  dart.setFieldSignature(years_bloc.YearsBloc, () => ({
+    __proto__: dart.getFields(years_bloc.YearsBloc.__proto__),
+    repository: dart.finalFieldType(dart.legacy(years$46repository.YearsRepository))
+  }));
+  var schoolId$ = dart.privateName(years_bloc, "FetchYears.schoolId");
+  years_bloc.FetchYears = class FetchYears extends years_bloc.YearsEvent {
+    get schoolId() {
+      return this[schoolId$];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (years_bloc.FetchYears.new = function(schoolId) {
+    this[schoolId$] = schoolId;
+    years_bloc.FetchYears.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.FetchYears.prototype;
+  dart.addTypeTests(years_bloc.FetchYears);
+  dart.addTypeCaches(years_bloc.FetchYears);
+  dart.setLibraryUri(years_bloc.FetchYears, I[0]);
+  dart.setFieldSignature(years_bloc.FetchYears, () => ({
+    __proto__: dart.getFields(years_bloc.FetchYears.__proto__),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$ = dart.privateName(years_bloc, "DeletYears.access");
+  var id$ = dart.privateName(years_bloc, "DeletYears.id");
+  var schoolId$0 = dart.privateName(years_bloc, "DeletYears.schoolId");
+  years_bloc.DeletYears = class DeletYears extends years_bloc.YearsEvent {
+    get access() {
+      return this[access$];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$0];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+  };
+  (years_bloc.DeletYears.new = function(access, id, schoolId) {
+    this[access$] = access;
+    this[id$] = id;
+    this[schoolId$0] = schoolId;
+    years_bloc.DeletYears.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.DeletYears.prototype;
+  dart.addTypeTests(years_bloc.DeletYears);
+  dart.addTypeCaches(years_bloc.DeletYears);
+  dart.setLibraryUri(years_bloc.DeletYears, I[0]);
+  dart.setFieldSignature(years_bloc.DeletYears, () => ({
+    __proto__: dart.getFields(years_bloc.DeletYears.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int))
+  }));
+  var access$0 = dart.privateName(years_bloc, "AddOrEditYears.access");
+  var id$0 = dart.privateName(years_bloc, "AddOrEditYears.id");
+  var schoolId$1 = dart.privateName(years_bloc, "AddOrEditYears.schoolId");
+  var levelId$ = dart.privateName(years_bloc, "AddOrEditYears.levelId");
+  var yearId$ = dart.privateName(years_bloc, "AddOrEditYears.yearId");
+  var name$ = dart.privateName(years_bloc, "AddOrEditYears.name");
+  years_bloc.AddOrEditYears = class AddOrEditYears extends years_bloc.YearsEvent {
+    get access() {
+      return this[access$0];
+    }
+    set access(value) {
+      super.access = value;
+    }
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      super.id = value;
+    }
+    get schoolId() {
+      return this[schoolId$1];
+    }
+    set schoolId(value) {
+      super.schoolId = value;
+    }
+    get levelId() {
+      return this[levelId$];
+    }
+    set levelId(value) {
+      super.levelId = value;
+    }
+    get yearId() {
+      return this[yearId$];
+    }
+    set yearId(value) {
+      super.yearId = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+  };
+  (years_bloc.AddOrEditYears.new = function(access, id, schoolId, name, levelId, yearId) {
+    this[access$0] = access;
+    this[id$0] = id;
+    this[schoolId$1] = schoolId;
+    this[name$] = name;
+    this[levelId$] = levelId;
+    this[yearId$] = yearId;
+    years_bloc.AddOrEditYears.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.AddOrEditYears.prototype;
+  dart.addTypeTests(years_bloc.AddOrEditYears);
+  dart.addTypeCaches(years_bloc.AddOrEditYears);
+  dart.setLibraryUri(years_bloc.AddOrEditYears, I[0]);
+  dart.setFieldSignature(years_bloc.AddOrEditYears, () => ({
+    __proto__: dart.getFields(years_bloc.AddOrEditYears.__proto__),
+    access: dart.finalFieldType(dart.legacy(core.String)),
+    id: dart.finalFieldType(dart.legacy(core.int)),
+    schoolId: dart.finalFieldType(dart.legacy(core.int)),
+    levelId: dart.finalFieldType(dart.legacy(core.int)),
+    yearId: dart.finalFieldType(dart.legacy(core.int)),
+    name: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  years_bloc.YearsInitial = class YearsInitial extends years_bloc.YearsState {};
+  (years_bloc.YearsInitial.new = function() {
+    years_bloc.YearsInitial.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsInitial.prototype;
+  dart.addTypeTests(years_bloc.YearsInitial);
+  dart.addTypeCaches(years_bloc.YearsInitial);
+  dart.setLibraryUri(years_bloc.YearsInitial, I[0]);
+  years_bloc.YearsLoading = class YearsLoading extends years_bloc.YearsState {};
+  (years_bloc.YearsLoading.new = function() {
+    years_bloc.YearsLoading.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsLoading.prototype;
+  dart.addTypeTests(years_bloc.YearsLoading);
+  dart.addTypeCaches(years_bloc.YearsLoading);
+  dart.setLibraryUri(years_bloc.YearsLoading, I[0]);
+  var years$ = dart.privateName(years_bloc, "YearsLoaded.years");
+  years_bloc.YearsLoaded = class YearsLoaded extends years_bloc.YearsState {
+    get years() {
+      return this[years$];
+    }
+    set years(value) {
+      super.years = value;
+    }
+  };
+  (years_bloc.YearsLoaded.new = function(years) {
+    this[years$] = years;
+    years_bloc.YearsLoaded.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsLoaded.prototype;
+  dart.addTypeTests(years_bloc.YearsLoaded);
+  dart.addTypeCaches(years_bloc.YearsLoaded);
+  dart.setLibraryUri(years_bloc.YearsLoaded, I[0]);
+  dart.setFieldSignature(years_bloc.YearsLoaded, () => ({
+    __proto__: dart.getFields(years_bloc.YearsLoaded.__proto__),
+    years: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(years.Years))))
+  }));
+  var message$ = dart.privateName(years_bloc, "YearsDeleted.message");
+  years_bloc.YearsDeleted = class YearsDeleted extends years_bloc.YearsState {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (years_bloc.YearsDeleted.new = function(message) {
+    this[message$] = message;
+    years_bloc.YearsDeleted.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsDeleted.prototype;
+  dart.addTypeTests(years_bloc.YearsDeleted);
+  dart.addTypeCaches(years_bloc.YearsDeleted);
+  dart.setLibraryUri(years_bloc.YearsDeleted, I[0]);
+  dart.setFieldSignature(years_bloc.YearsDeleted, () => ({
+    __proto__: dart.getFields(years_bloc.YearsDeleted.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var results$ = dart.privateName(years_bloc, "YearsAddOrEdite.results");
+  years_bloc.YearsAddOrEdite = class YearsAddOrEdite extends years_bloc.YearsState {
+    get results() {
+      return this[results$];
+    }
+    set results(value) {
+      super.results = value;
+    }
+  };
+  (years_bloc.YearsAddOrEdite.new = function(results) {
+    this[results$] = results;
+    years_bloc.YearsAddOrEdite.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsAddOrEdite.prototype;
+  dart.addTypeTests(years_bloc.YearsAddOrEdite);
+  dart.addTypeCaches(years_bloc.YearsAddOrEdite);
+  dart.setLibraryUri(years_bloc.YearsAddOrEdite, I[0]);
+  dart.setFieldSignature(years_bloc.YearsAddOrEdite, () => ({
+    __proto__: dart.getFields(years_bloc.YearsAddOrEdite.__proto__),
+    results: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)))
+  }));
+  var message$0 = dart.privateName(years_bloc, "YearsError.message");
+  years_bloc.YearsError = class YearsError extends years_bloc.YearsState {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+  };
+  (years_bloc.YearsError.new = function(message) {
+    this[message$0] = message;
+    years_bloc.YearsError.__proto__.new.call(this);
+    ;
+  }).prototype = years_bloc.YearsError.prototype;
+  dart.addTypeTests(years_bloc.YearsError);
+  dart.addTypeCaches(years_bloc.YearsError);
+  dart.setLibraryUri(years_bloc.YearsError, I[0]);
+  dart.setFieldSignature(years_bloc.YearsError, () => ({
+    __proto__: dart.getFields(years_bloc.YearsError.__proto__),
+    message: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  years_bloc.sleep1 = function sleep1() {
+    return async.Future.delayed(C[0] || CT.C0, dart.fn(() => "1", T.VoidToStringL()));
+  };
+  dart.trackLibraries("packages/admin_app/bloc/years_bloc/years_bloc.dart", {
+    "package:admin_app/bloc/years_bloc/years_bloc.dart": years_bloc
+  }, {
+    "package:admin_app/bloc/years_bloc/years_bloc.dart": ["years_event.dart", "years_state.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["years_event.dart","years_state.dart","years_bloc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAM4B;IAAE;;;AAHtB;;EAAY;;;;;;;;;;ACGQ;IAAE;;;AAHtB;;EAAY;;;;;;;;;ICSI;;;;;;;yBAMT;AADqB;AAGhC,YAAU,mBAAN,KAAK;AACP,yBAAM;UAAN;AACA;AACQ,yBAAQ,MAAM,AAAW,4BAAY,AAAM,KAAD;AAChD,2BAAM,+BAAY,KAAK;YAAvB;;gBACO;AACP,2BAAM,8BAAa,cAAF,CAAC;YAAlB;;cAEG,KAAU,mBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,4BAAW,MAAM,AAAW,4BAAY,AAAM,KAAD,SAAS,AAAM,KAAD;AACjE,2BAAM,gCAAa,QAAQ;YAA3B;AAEM,yBAAQ,MAAM,AAAW,4BAAY,AAAM,KAAD;AAChD,2BAAM,+BAAY,KAAK;YAAvB;;gBACO;AACP,2BAAM,8BAAa,cAAF,CAAC;YAAlB;;cAEG,KAAU,uBAAN,KAAK;AACd,yBAAM;UAAN;AACA;AACQ,0BAAS,MAAM,AAAW,8BAAc,AAAM,KAAD,SAAS,AAAM,KAAD,KAC7D,AAAM,KAAD,WAAW,AAAM,KAAD,UAAU,AAAM,KAAD,SAAS,AAAM,KAAD;AACtD,2BAAM,mCAAgB,MAAM;YAA5B;AAEM,yBAAQ,MAAM,AAAW,4BAAY,AAAM,KAAD;AAChD,2BAAM,+BAAY,KAAK;YAAvB;;gBACO;AACP,2BAAM,8BAAa,cAAF,CAAC;YAAlB;;;MAGN;;;;IAtCyB;AAAc,kDAAM;;EAAe;;;;;;;;;;;;;;IFJlD;;;;;;;;IAEM;AAAhB;;EAAyB;;;;;;;;;;;;IAIZ;;;;;;IACH;;;;;;IACA;;;;;;;wCAEM,QAAa,IAAS;IAAtB;IAAa;IAAS;AAAtC;;EAA+C;;;;;;;;;;;;;;;;;IAIlC;;;;;;IACH;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACG;;;;;;;4CAEO,QAAa,IAAS,UAAe,MAAW,SAAc;IAA9D;IAAa;IAAS;IAAe;IAAW;IAAc;AAAlF;;EAAyF;;;;;;;;;;;;;;;;;ECtBpD;;;;;;;;EAEA;;;;;;IAGnB;;;;;;;;IAED;AAAjB;;EAAuB;;;;;;;;;;IAII;;;;;;;;IAET;AAAlB;;EAA0B;;;;;;;;;;IAIC;;;;;;;;IAEN;AAArB;;EAA6B;;;;;;;;;;IAIhB;;;;;;;;IAEG;AAAhB;;EAAwB;;;;;;;;;;ACsBxB,UAAW,qCAA2C,cAAM;EAC9D","file":"../../../../../../../packages/admin_app/bloc/years_bloc/years_bloc.dart.lib.js"}');
+  // Exports:
+  return {
+    bloc__years_bloc__years_bloc: years_bloc
+  };
+}));
+
+//# sourceMappingURL=years_bloc.dart.lib.js.map

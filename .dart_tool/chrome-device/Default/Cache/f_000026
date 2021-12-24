@@ -1,0 +1,2112 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/form.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/admin_app/data/model/level.dart', 'packages/flutter/src/material/refresh_indicator.dart', 'packages/flutter_bloc/src/multi_bloc_listener.dart', 'packages/admin_app/bloc/levels_bloc/levels_bloc.dart', 'packages/admin_app/utils/commons.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/admin_app/utils/app_colors.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/input_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/progress_indicator.dart', 'packages/admin_app/custom_widget/custom_text/custom_text.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/admin_app/ui/levels/levels.item.dart', 'packages/admin_app/custom_widget/no_data/no_data.dart', 'packages/flutter_bloc/src/bloc_provider.dart', 'packages/provider/src/provider.dart', 'packages/admin_app/provider/auth_provider.dart', 'packages/admin_app/custom_widget/dialogs/connectivity/network_indicator.dart', 'packages/admin_app/custom_widget/safe_area/page_container.dart', 'packages/admin_app/data/repository/level.repository.dart', 'packages/admin_app/custom_widget/app_drawer/app_drawer.dart', 'packages/flutter/src/widgets/bottom_navigation_bar_item.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/admin_app/custom_widget/validation_mixin.dart'], (function load__packages__admin_app__ui__levels__levels_screen_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__form$46dart, packages__flutter__src__material__icon_button$46dart, packages__admin_app__data__model__level$46dart, packages__flutter__src__material__refresh_indicator$46dart, packages__flutter_bloc__src__multi_bloc_listener$46dart, packages__admin_app__bloc__levels_bloc__levels_bloc$46dart, packages__admin_app__utils__commons$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__admin_app__utils__app_colors$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__input_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__progress_indicator$46dart, packages__admin_app__custom_widget__custom_text__custom_text$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__admin_app__ui__levels__levels$46item$46dart, packages__admin_app__custom_widget__no_data__no_data$46dart, packages__flutter_bloc__src__bloc_provider$46dart, packages__provider__src__provider$46dart, packages__admin_app__provider__auth_provider$46dart, packages__admin_app__custom_widget__dialogs__connectivity__network_indicator$46dart, packages__admin_app__custom_widget__safe_area__page_container$46dart, packages__admin_app__data__repository__level$46repository$46dart, packages__admin_app__custom_widget__app_drawer__app_drawer$46dart, packages__flutter__src__widgets__bottom_navigation_bar_item$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__admin_app__custom_widget__validation_mixin$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const editable_text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__editable_text;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const focus_scope = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_scope;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const form = packages__flutter__src__widgets__form$46dart.src__widgets__form;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const app_bar = packages__flutter__src__material__icon_button$46dart.src__material__app_bar;
+  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const bottom_navigation_bar = packages__flutter__src__material__icon_button$46dart.src__material__bottom_navigation_bar;
+  const level = packages__admin_app__data__model__level$46dart.data__model__level;
+  const refresh_indicator = packages__flutter__src__material__refresh_indicator$46dart.src__material__refresh_indicator;
+  const bloc_listener = packages__flutter_bloc__src__multi_bloc_listener$46dart.src__bloc_listener;
+  const bloc_builder = packages__flutter_bloc__src__multi_bloc_listener$46dart.src__bloc_builder;
+  const levels_bloc = packages__admin_app__bloc__levels_bloc__levels_bloc$46dart.bloc__levels_bloc__levels_bloc;
+  const commons = packages__admin_app__utils__commons$46dart.utils__commons;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const app_colors = packages__admin_app__utils__app_colors$46dart.utils__app_colors;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const input_border = packages__flutter__src__material__input_border$46dart.src__material__input_border;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const progress_indicator = packages__flutter__src__material__progress_indicator$46dart.src__material__progress_indicator;
+  const custom_text = packages__admin_app__custom_widget__custom_text__custom_text$46dart.custom_widget__custom_text__custom_text;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const levels$46item = packages__admin_app__ui__levels__levels$46item$46dart.ui__levels__levels$46item;
+  const no_data = packages__admin_app__custom_widget__no_data__no_data$46dart.custom_widget__no_data__no_data;
+  const bloc_provider = packages__flutter_bloc__src__bloc_provider$46dart.src__bloc_provider;
+  const provider = packages__provider__src__provider$46dart.src__provider;
+  const auth_provider = packages__admin_app__provider__auth_provider$46dart.provider__auth_provider;
+  const network_indicator = packages__admin_app__custom_widget__dialogs__connectivity__network_indicator$46dart.custom_widget__dialogs__connectivity__network_indicator;
+  const page_container = packages__admin_app__custom_widget__safe_area__page_container$46dart.custom_widget__safe_area__page_container;
+  const level$46repository = packages__admin_app__data__repository__level$46repository$46dart.data__repository__level$46repository;
+  const app_drawer = packages__admin_app__custom_widget__app_drawer__app_drawer$46dart.custom_widget__app_drawer__app_drawer;
+  const bottom_navigation_bar_item = packages__flutter__src__widgets__bottom_navigation_bar_item$46dart.src__widgets__bottom_navigation_bar_item;
+  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
+  const validation_mixin = packages__admin_app__custom_widget__validation_mixin$46dart.custom_widget__validation_mixin;
+  var levels_screen = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $clear = dartx.clear;
+  var $isEmpty = dartx.isEmpty;
+  var $toLowerCase = dartx.toLowerCase;
+  var $contains = dartx.contains;
+  var $add = dartx.add;
+  var $forEach = dartx.forEach;
+  var $length = dartx.length;
+  var $isNotEmpty = dartx.isNotEmpty;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    FormStateL: () => (T.FormStateL = dart.constFn(dart.legacy(form.FormState)))(),
+    GlobalKeyOfFormStateL: () => (T.GlobalKeyOfFormStateL = dart.constFn(framework.GlobalKey$(T.FormStateL())))(),
+    ScaffoldStateL: () => (T.ScaffoldStateL = dart.constFn(dart.legacy(scaffold.ScaffoldState)))(),
+    GlobalKeyOfScaffoldStateL: () => (T.GlobalKeyOfScaffoldStateL = dart.constFn(framework.GlobalKey$(T.ScaffoldStateL())))(),
+    LevelsL: () => (T.LevelsL = dart.constFn(dart.legacy(level.Levels)))(),
+    JSArrayOfLevelsL: () => (T.JSArrayOfLevelsL = dart.constFn(_interceptors.JSArray$(T.LevelsL())))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    VoidToFutureLOfNull: () => (T.VoidToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [])))(),
+    LevelsBlocL: () => (T.LevelsBlocL = dart.constFn(dart.legacy(levels_bloc.LevelsBloc)))(),
+    LevelsStateL: () => (T.LevelsStateL = dart.constFn(dart.legacy(levels_bloc.LevelsState)))(),
+    BlocListenerOfLevelsBlocL$LevelsStateL: () => (T.BlocListenerOfLevelsBlocL$LevelsStateL = dart.constFn(bloc_listener.BlocListener$(T.LevelsBlocL(), T.LevelsStateL())))(),
+    LevelsAddOrEditeL: () => (T.LevelsAddOrEditeL = dart.constFn(dart.legacy(levels_bloc.LevelsAddOrEdite)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    LevelsDeletedL: () => (T.LevelsDeletedL = dart.constFn(dart.legacy(levels_bloc.LevelsDeleted)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLAndLevelsStateLToNull: () => (T.BuildContextLAndLevelsStateLToNull = dart.constFn(dart.fnType(core.Null, [T.BuildContextL(), T.LevelsStateL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    LevelsLToNull: () => (T.LevelsLToNull = dart.constFn(dart.fnType(core.Null, [T.LevelsL()])))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    BlocBuilderOfLevelsBlocL$LevelsStateL: () => (T.BlocBuilderOfLevelsBlocL$LevelsStateL = dart.constFn(bloc_builder.BlocBuilder$(T.LevelsBlocL(), T.LevelsStateL())))(),
+    LevelLoadingL: () => (T.LevelLoadingL = dart.constFn(dart.legacy(levels_bloc.LevelLoading)))(),
+    DeletLevelsL: () => (T.DeletLevelsL = dart.constFn(dart.legacy(levels_bloc.DeletLevels)))(),
+    LevelLoadedL: () => (T.LevelLoadedL = dart.constFn(dart.legacy(levels_bloc.LevelLoaded)))(),
+    LevelErrorL: () => (T.LevelErrorL = dart.constFn(dart.legacy(levels_bloc.LevelError)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextLAndLevelsStateLToWidgetL: () => (T.BuildContextLAndLevelsStateLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.LevelsStateL()])))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    LevelsItemL: () => (T.LevelsItemL = dart.constFn(dart.legacy(levels$46item.LevelsItem)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    BuildContextLAndintLToLevelsItemL: () => (T.BuildContextLAndintLToLevelsItemL = dart.constFn(dart.fnType(T.LevelsItemL(), [T.BuildContextL(), T.intL()])))(),
+    intN: () => (T.intN = dart.constFn(dart.nullable(core.int)))(),
+    VoidToStringL: () => (T.VoidToStringL = dart.constFn(dart.fnType(T.StringL(), [])))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BuildContextLAndLevelsStateLToContainerL: () => (T.BuildContextLAndLevelsStateLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.LevelsStateL()])))(),
+    AuthProviderL: () => (T.AuthProviderL = dart.constFn(dart.legacy(auth_provider.AuthProvider)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    BlocProviderOfLevelsBlocL: () => (T.BlocProviderOfLevelsBlocL = dart.constFn(bloc_provider.BlocProvider$(T.LevelsBlocL())))(),
+    BuildContextLToLevelsBlocL: () => (T.BuildContextLToLevelsBlocL = dart.constFn(dart.fnType(T.LevelsBlocL(), [T.BuildContextL()])))(),
+    BottomNavigationBarItemL: () => (T.BottomNavigationBarItemL = dart.constFn(dart.legacy(bottom_navigation_bar_item.BottomNavigationBarItem)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 17,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 35,
+        [_Location_line]: 124,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 29,
+        [_Location_line]: 125,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 39,
+        [_Location_line]: 123,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 25,
+        [_Location_line]: 91,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cursorColor",
+        [_Location_column]: 25,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 25,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 25,
+        [_Location_line]: 112,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 25,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 90,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 23,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 90,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 86,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 23,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 131,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 48,
+        [_Location_line]: 139,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 41,
+        [_Location_line]: 139,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 139,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 39,
+        [_Location_line]: 145,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 145,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 147,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 27,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.constList([C[33] || CT.C33], T._LocationL());
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[32] || CT.C32,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 136,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 135,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 84,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 17,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[41] || CT.C41,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 80,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "listener",
+        [_Location_column]: 11,
+        [_Location_line]: 52,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 51,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onRefresh",
+        [_Location_column]: 9,
+        [_Location_line]: 50,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 51,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54], T._LocationL());
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 49,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 21,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 21,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57, C[58] || CT.C58], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 162,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "levels",
+        [_Location_column]: 25,
+        [_Location_line]: 170,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 169,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 21,
+        [_Location_line]: 167,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 21,
+        [_Location_line]: 168,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 166,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "levels",
+        [_Location_column]: 21,
+        [_Location_line]: 177,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.constList([C[68] || CT.C68], T._LocationL());
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[67] || CT.C67,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 176,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 17,
+        [_Location_line]: 174,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 17,
+        [_Location_line]: 175,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71, C[72] || CT.C72], T._LocationL());
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 173,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "message",
+        [_Location_column]: 18,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.constList([C[75] || CT.C75], T._LocationL());
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[74] || CT.C74,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 180,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 10000000
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 17,
+        [_Location_line]: 220,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 51,
+        [_Location_line]: 220,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.constList([C[79] || CT.C79, C[80] || CT.C80], T._LocationL());
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[78] || CT.C78,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 219,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 11,
+        [_Location_line]: 210,
+        [_Location_file]: null
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 11,
+        [_Location_line]: 211,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 11,
+        [_Location_line]: 214,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 11,
+        [_Location_line]: 215,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.constList([C[83] || CT.C83, C[84] || CT.C84, C[85] || CT.C85, C[86] || CT.C86], T._LocationL());
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[82] || CT.C82,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 209,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 9,
+        [_Location_line]: 208,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.constList([C[89] || CT.C89, C[90] || CT.C90], T._LocationL());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[88] || CT.C88,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 207,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 204,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.constList([C[93] || CT.C93, C[94] || CT.C94], T._LocationL());
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[92] || CT.C92,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 203,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 19,
+        [_Location_line]: 235,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 236,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.constList([C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[96] || CT.C96,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 234,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 234,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 11,
+        [_Location_line]: 238,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101, C[102] || CT.C102], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 233,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 233,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.constList([C[105] || CT.C105], T._LocationL());
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[104] || CT.C104,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 232,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 229,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.constList([C[108] || CT.C108], T._LocationL());
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[107] || CT.C107,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 228,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 13,
+        [_Location_line]: 271,
+        [_Location_file]: null
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 272,
+        [_Location_file]: null
+      });
+    },
+    get C110() {
+      return C[110] = dart.constList([C[111] || CT.C111, C[112] || CT.C112], T._LocationL());
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[110] || CT.C110,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 270,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 11,
+        [_Location_line]: 269,
+        [_Location_file]: null
+      });
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 270,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.constList([C[115] || CT.C115, C[116] || CT.C116], T._LocationL());
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 268,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 274,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 29,
+        [_Location_line]: 274,
+        [_Location_file]: null
+      });
+    },
+    get C118() {
+      return C[118] = dart.constList([C[119] || CT.C119, C[120] || CT.C120], T._LocationL());
+    },
+    get C117() {
+      return C[117] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[118] || CT.C118,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 274,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 27,
+        [_Location_line]: 286,
+        [_Location_file]: null
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 21,
+        [_Location_line]: 287,
+        [_Location_file]: null
+      });
+    },
+    get C122() {
+      return C[122] = dart.constList([C[123] || CT.C123, C[124] || CT.C124], T._LocationL());
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[122] || CT.C122,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 285,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 19,
+        [_Location_line]: 282,
+        [_Location_file]: null
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 283,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 284,
+        [_Location_file]: null
+      });
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 285,
+        [_Location_file]: null
+      });
+    },
+    get C126() {
+      return C[126] = dart.constList([C[127] || CT.C127, C[128] || CT.C128, C[129] || CT.C129, C[130] || CT.C130], T._LocationL());
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[126] || CT.C126,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 281,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 22,
+        [_Location_line]: 280,
+        [_Location_file]: null
+      });
+    },
+    get C132() {
+      return C[132] = dart.constList([C[133] || CT.C133], T._LocationL());
+    },
+    get C131() {
+      return C[131] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[132] || CT.C132,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 280,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C136() {
+      return C[136] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 279,
+        [_Location_file]: null
+      });
+    },
+    get C135() {
+      return C[135] = dart.constList([C[136] || CT.C136], T._LocationL());
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[135] || CT.C135,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 278,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 11,
+        [_Location_line]: 277,
+        [_Location_file]: null
+      });
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 278,
+        [_Location_file]: null
+      });
+    },
+    get C138() {
+      return C[138] = dart.constList([C[139] || CT.C139, C[140] || CT.C140], T._LocationL());
+    },
+    get C137() {
+      return C[137] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[138] || CT.C138,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 276,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C143() {
+      return C[143] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 7,
+        [_Location_line]: 266,
+        [_Location_file]: null
+      });
+    },
+    get C144() {
+      return C[144] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "elevation",
+        [_Location_column]: 7,
+        [_Location_line]: 267,
+        [_Location_file]: null
+      });
+    },
+    get C145() {
+      return C[145] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "leading",
+        [_Location_column]: 7,
+        [_Location_line]: 268,
+        [_Location_file]: null
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 7,
+        [_Location_line]: 274,
+        [_Location_file]: null
+      });
+    },
+    get C147() {
+      return C[147] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actions",
+        [_Location_column]: 7,
+        [_Location_line]: 275,
+        [_Location_file]: null
+      });
+    },
+    get C142() {
+      return C[142] = dart.constList([C[143] || CT.C143, C[144] || CT.C144, C[145] || CT.C145, C[146] || CT.C146, C[147] || CT.C147], T._LocationL());
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[142] || CT.C142,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 265,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C148() {
+      return C[148] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 307,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C151() {
+      return C[151] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 304,
+        [_Location_file]: null
+      });
+    },
+    get C152() {
+      return C[152] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 307,
+        [_Location_file]: null
+      });
+    },
+    get C150() {
+      return C[150] = dart.constList([C[151] || CT.C151, C[152] || CT.C152], T._LocationL());
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[150] || CT.C150,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 303,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 33,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C157() {
+      return C[157] = dart.constList([C[158] || CT.C158], T._LocationL());
+    },
+    get C156() {
+      return C[156] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[157] || CT.C157,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 317,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 62074
+      });
+    },
+    get C155() {
+      return C[155] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[156] || CT.C156,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[159] || CT.C159
+      });
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: bottom_navigation_bar_item.BottomNavigationBarItem.prototype,
+        [BottomNavigationBarItem_tooltip]: null,
+        [BottomNavigationBarItem_backgroundColor]: null,
+        [BottomNavigationBarItem_label]: " ",
+        [BottomNavigationBarItem_title]: null,
+        [BottomNavigationBarItem_activeIcon]: C[155] || CT.C155,
+        [BottomNavigationBarItem_icon]: C[155] || CT.C155
+      });
+    },
+    get C164() {
+      return C[164] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 33,
+        [_Location_line]: 324,
+        [_Location_file]: null
+      });
+    },
+    get C163() {
+      return C[163] = dart.constList([C[164] || CT.C164], T._LocationL());
+    },
+    get C162() {
+      return C[162] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[163] || CT.C163,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 323,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C165() {
+      return C[165] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 58447
+      });
+    },
+    get C161() {
+      return C[161] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[162] || CT.C162,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[165] || CT.C165
+      });
+    },
+    get C160() {
+      return C[160] = dart.const({
+        __proto__: bottom_navigation_bar_item.BottomNavigationBarItem.prototype,
+        [BottomNavigationBarItem_tooltip]: null,
+        [BottomNavigationBarItem_backgroundColor]: null,
+        [BottomNavigationBarItem_label]: " ",
+        [BottomNavigationBarItem_title]: null,
+        [BottomNavigationBarItem_activeIcon]: C[161] || CT.C161,
+        [BottomNavigationBarItem_icon]: C[161] || CT.C161
+      });
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 33,
+        [_Location_line]: 330,
+        [_Location_file]: null
+      });
+    },
+    get C169() {
+      return C[169] = dart.constList([C[170] || CT.C170], T._LocationL());
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[169] || CT.C169,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 329,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C171() {
+      return C[171] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 58136
+      });
+    },
+    get C167() {
+      return C[167] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[168] || CT.C168,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[171] || CT.C171
+      });
+    },
+    get C166() {
+      return C[166] = dart.const({
+        __proto__: bottom_navigation_bar_item.BottomNavigationBarItem.prototype,
+        [BottomNavigationBarItem_tooltip]: null,
+        [BottomNavigationBarItem_backgroundColor]: null,
+        [BottomNavigationBarItem_label]: "",
+        [BottomNavigationBarItem_title]: null,
+        [BottomNavigationBarItem_activeIcon]: C[167] || CT.C167,
+        [BottomNavigationBarItem_icon]: C[167] || CT.C167
+      });
+    },
+    get C176() {
+      return C[176] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 33,
+        [_Location_line]: 336,
+        [_Location_file]: null
+      });
+    },
+    get C175() {
+      return C[175] = dart.constList([C[176] || CT.C176], T._LocationL());
+    },
+    get C174() {
+      return C[174] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[175] || CT.C175,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 335,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C177() {
+      return C[177] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 58780
+      });
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[174] || CT.C174,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[177] || CT.C177
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: bottom_navigation_bar_item.BottomNavigationBarItem.prototype,
+        [BottomNavigationBarItem_tooltip]: null,
+        [BottomNavigationBarItem_backgroundColor]: null,
+        [BottomNavigationBarItem_label]: " ",
+        [BottomNavigationBarItem_title]: null,
+        [BottomNavigationBarItem_activeIcon]: C[173] || CT.C173,
+        [BottomNavigationBarItem_icon]: C[173] || CT.C173
+      });
+    },
+    get C182() {
+      return C[182] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 33,
+        [_Location_line]: 342,
+        [_Location_file]: null
+      });
+    },
+    get C181() {
+      return C[181] = dart.constList([C[182] || CT.C182], T._LocationL());
+    },
+    get C180() {
+      return C[180] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[181] || CT.C181,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 341,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C183() {
+      return C[183] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 58370
+      });
+    },
+    get C179() {
+      return C[179] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[180] || CT.C180,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[183] || CT.C183
+      });
+    },
+    get C178() {
+      return C[178] = dart.const({
+        __proto__: bottom_navigation_bar_item.BottomNavigationBarItem.prototype,
+        [BottomNavigationBarItem_tooltip]: null,
+        [BottomNavigationBarItem_backgroundColor]: null,
+        [BottomNavigationBarItem_label]: " ",
+        [BottomNavigationBarItem_title]: null,
+        [BottomNavigationBarItem_activeIcon]: C[179] || CT.C179,
+        [BottomNavigationBarItem_icon]: C[179] || CT.C179
+      });
+    },
+    get C153() {
+      return C[153] = dart.constList([C[154] || CT.C154, C[160] || CT.C160, C[166] || CT.C166, C[172] || CT.C172, C[178] || CT.C178], T.BottomNavigationBarItemL());
+    },
+    get C186() {
+      return C[186] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "currentIndex",
+        [_Location_column]: 21,
+        [_Location_line]: 312,
+        [_Location_file]: null
+      });
+    },
+    get C187() {
+      return C[187] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "items",
+        [_Location_column]: 21,
+        [_Location_line]: 315,
+        [_Location_file]: null
+      });
+    },
+    get C188() {
+      return C[188] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "selectedItemColor",
+        [_Location_column]: 21,
+        [_Location_line]: 347,
+        [_Location_file]: null
+      });
+    },
+    get C189() {
+      return C[189] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "type",
+        [_Location_column]: 21,
+        [_Location_line]: 348,
+        [_Location_file]: null
+      });
+    },
+    get C190() {
+      return C[190] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "unselectedItemColor",
+        [_Location_column]: 21,
+        [_Location_line]: 349,
+        [_Location_file]: null
+      });
+    },
+    get C191() {
+      return C[191] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "iconSize",
+        [_Location_column]: 21,
+        [_Location_line]: 350,
+        [_Location_file]: null
+      });
+    },
+    get C192() {
+      return C[192] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "elevation",
+        [_Location_column]: 21,
+        [_Location_line]: 352,
+        [_Location_file]: null
+      });
+    },
+    get C193() {
+      return C[193] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 21,
+        [_Location_line]: 353,
+        [_Location_file]: null
+      });
+    },
+    get C185() {
+      return C[185] = dart.constList([C[186] || CT.C186, C[187] || CT.C187, C[188] || CT.C188, C[189] || CT.C189, C[190] || CT.C190, C[191] || CT.C191, C[192] || CT.C192, C[193] || CT.C193], T._LocationL());
+    },
+    get C184() {
+      return C[184] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[185] || CT.C185,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 311,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C196() {
+      return C[196] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "drawer",
+        [_Location_column]: 19,
+        [_Location_line]: 303,
+        [_Location_file]: null
+      });
+    },
+    get C197() {
+      return C[197] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 19,
+        [_Location_line]: 309,
+        [_Location_file]: null
+      });
+    },
+    get C198() {
+      return C[198] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "appBar",
+        [_Location_column]: 19,
+        [_Location_line]: 310,
+        [_Location_file]: null
+      });
+    },
+    get C199() {
+      return C[199] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottomNavigationBar",
+        [_Location_column]: 19,
+        [_Location_line]: 311,
+        [_Location_file]: null
+      });
+    },
+    get C200() {
+      return C[200] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 19,
+        [_Location_line]: 355,
+        [_Location_file]: null
+      });
+    },
+    get C201() {
+      return C[201] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "resizeToAvoidBottomInset",
+        [_Location_column]: 19,
+        [_Location_line]: 356,
+        [_Location_file]: null
+      });
+    },
+    get C195() {
+      return C[195] = dart.constList([C[196] || CT.C196, C[197] || CT.C197, C[198] || CT.C198, C[199] || CT.C199, C[200] || CT.C200, C[201] || CT.C201], T._LocationL());
+    },
+    get C194() {
+      return C[194] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[195] || CT.C195,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 302,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C204() {
+      return C[204] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "create",
+        [_Location_column]: 17,
+        [_Location_line]: 300,
+        [_Location_file]: null
+      });
+    },
+    get C205() {
+      return C[205] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 302,
+        [_Location_file]: null
+      });
+    },
+    get C203() {
+      return C[203] = dart.constList([C[204] || CT.C204, C[205] || CT.C205], T._LocationL());
+    },
+    get C202() {
+      return C[202] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[203] || CT.C203,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 299,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C208() {
+      return C[208] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 299,
+        [_Location_file]: null
+      });
+    },
+    get C207() {
+      return C[207] = dart.constList([C[208] || CT.C208], T._LocationL());
+    },
+    get C206() {
+      return C[206] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[207] || CT.C207,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 298,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    },
+    get C211() {
+      return C[211] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 298,
+        [_Location_file]: null
+      });
+    },
+    get C210() {
+      return C[210] = dart.constList([C[211] || CT.C211], T._LocationL());
+    },
+    get C209() {
+      return C[209] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[210] || CT.C210,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 297,
+        [_Location_file]: "file:///C:/Users/Asmaa%20Mohammed/Documents/admin_app/lib/ui/levels/levels_screen.dart"
+      });
+    }
+  }, false);
+  var C = Array(212).fill(void 0);
+  var I = ["package:admin_app/ui/levels/levels_screen.dart"];
+  levels_screen.LevelsScreen = class LevelsScreen extends framework.StatefulWidget {
+    createState() {
+      return new levels_screen._LevelsScreenState.new();
+    }
+  };
+  (levels_screen.LevelsScreen.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    levels_screen.LevelsScreen.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = levels_screen.LevelsScreen.prototype;
+  dart.addTypeTests(levels_screen.LevelsScreen);
+  dart.addTypeCaches(levels_screen.LevelsScreen);
+  dart.setMethodSignature(levels_screen.LevelsScreen, () => ({
+    __proto__: dart.getMethods(levels_screen.LevelsScreen.__proto__),
+    createState: dart.fnType(dart.legacy(levels_screen._LevelsScreenState), [])
+  }));
+  dart.setLibraryUri(levels_screen.LevelsScreen, I[0]);
+  var _searchController = dart.privateName(levels_screen, "_searchController");
+  var _authProvider = dart.privateName(levels_screen, "_authProvider");
+  var _materialName = dart.privateName(levels_screen, "_materialName");
+  var _formKey = dart.privateName(levels_screen, "_formKey");
+  var _scaffoldKey = dart.privateName(levels_screen, "_scaffoldKey");
+  var _searchResult = dart.privateName(levels_screen, "_searchResult");
+  var _levelList = dart.privateName(levels_screen, "_levelList");
+  var _selectedIndex = dart.privateName(levels_screen, "_selectedIndex");
+  var _result = dart.privateName(levels_screen, "_result");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _buildAddLevels = dart.privateName(levels_screen, "_buildAddLevels");
+  var _buildListLevels = dart.privateName(levels_screen, "_buildListLevels");
+  var _buildBodyItem = dart.privateName(levels_screen, "_buildBodyItem");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _buildSaveBtn = dart.privateName(levels_screen, "_buildSaveBtn");
+  var _onItemTap = dart.privateName(levels_screen, "_onItemTap");
+  var BottomNavigationBarItem_tooltip = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.tooltip");
+  var BottomNavigationBarItem_backgroundColor = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.backgroundColor");
+  var BottomNavigationBarItem_label = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.label");
+  var BottomNavigationBarItem_title = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.title");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
+  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
+  var Icon_color = dart.privateName(icon, "Icon.color");
+  var Icon_size = dart.privateName(icon, "Icon.size");
+  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
+  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
+  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
+  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
+  var Icon_icon = dart.privateName(icon, "Icon.icon");
+  var BottomNavigationBarItem_activeIcon = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.activeIcon");
+  var BottomNavigationBarItem_icon = dart.privateName(bottom_navigation_bar_item, "BottomNavigationBarItem.icon");
+  const State_ValidationMixin$36 = class State_ValidationMixin extends framework.State$(dart.legacy(levels_screen.LevelsScreen)) {};
+  (State_ValidationMixin$36.new = function() {
+    validation_mixin.ValidationMixin$(dart.legacy(levels_screen.LevelsScreen))[dart.mixinNew].call(this);
+    State_ValidationMixin$36.__proto__.new.call(this);
+  }).prototype = State_ValidationMixin$36.prototype;
+  dart.applyMixin(State_ValidationMixin$36, validation_mixin.ValidationMixin$(dart.legacy(levels_screen.LevelsScreen)));
+  levels_screen._LevelsScreenState = class _LevelsScreenState extends State_ValidationMixin$36 {
+    clearTextInput() {
+      this.nameHolder.clear();
+    }
+    initState() {
+      super.initState();
+    }
+    [_buildBodyItem]() {
+      return new refresh_indicator.RefreshIndicator.new({onRefresh: dart.fn(() => async.async(core.Null, function*() {
+        }), T.VoidToFutureLOfNull()), child: new (T.BlocListenerOfLevelsBlocL$LevelsStateL()).new({listener: dart.fn((context, state) => {
+            if (T.LevelsAddOrEditeL().is(state)) {
+              if (dart.equals(state.results[$_get]("status"), "Success")) {
+                this[_result](state.results);
+              } else {
+                commons.Commons.showError(context, T.StringL().as(state.results[$_get]("message")), dart.fn(() => {
+                }, T.VoidToNull()));
+              }
+            } else if (T.LevelsDeletedL().is(state)) {
+              if (dart.equals(state.message[$_get]("status"), "Success")) {
+                this[_result](state.message);
+              } else {
+                commons.Commons.showError(context, T.StringL().as(state.message[$_get]("message")), dart.fn(() => {
+                }, T.VoidToNull()));
+              }
+            }
+          }, T.BuildContextLAndLevelsStateLToNull()), child: new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({height: 80.0, decoration: new box_decoration.BoxDecoration.new({color: app_colors.mainAppColor, borderRadius: new border_radius.BorderRadius.only({topLeft: ui.Radius.zero, topRight: ui.Radius.zero, bottomLeft: new ui.Radius.circular(20.0), bottomRight: new ui.Radius.circular(20.0)})}), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new container.Container.new({padding: new edge_insets.EdgeInsets.symmetric({horizontal: dart.notNull(media_query.MediaQuery.of(this.context).size.width) * 0.05, vertical: dart.notNull(media_query.MediaQuery.of(this.context).size.height) * 0.03}), child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({decoration: new box_decoration.BoxDecoration.new({color: app_colors.white, borderRadius: new border_radius.BorderRadius.circular(20.0)}), child: new text_form_field.TextFormField.new({controller: this[_searchController], cursorColor: app_colors.mainAppColor, onChanged: dart.fn(text => {
+                          this[_searchResult][$clear]();
+                          if (text[$isEmpty]) {
+                            this.setState(dart.fn(() => {
+                            }, T.VoidToNull()));
+                            core.print("empty");
+                            return;
+                          } else {
+                            this.setState(dart.fn(() => {
+                            }, T.VoidToNull()));
+                            this[_levelList][$forEach](dart.fn(userDetail => {
+                              if (userDetail.name[$toLowerCase]()[$contains](text[$toLowerCase]())) {
+                                this[_searchResult][$add](userDetail);
+                              }
+                            }, T.LevelsLToNull()));
+                          }
+                        }, T.StringLToNull()), style: new text_style.TextStyle.new({color: colors.Colors.black, fontSize: 12.0, fontWeight: ui.FontWeight.w400}), decoration: new input_decorator.InputDecoration.new({border: new input_border.OutlineInputBorder.new({borderRadius: new border_radius.BorderRadius.circular(20.0), borderSide: new borders.BorderSide.new({color: app_colors.mainAppColor})}), contentPadding: new edge_insets.EdgeInsets.symmetric({horizontal: 12.0}), prefixIcon: new icon.Icon.new(icons.Icons.search, {color: app_colors.mainAppColor, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), hintText: "Search levels"}), $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), new basic.SizedBox.new({height: 15.0, $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), this[_buildAddLevels](), new basic.Expanded.new({child: new (T.BlocBuilderOfLevelsBlocL$LevelsStateL()).new({builder: dart.fn((context, state) => {
+                          if (T.LevelLoadingL().is(state)) {
+                            return new basic.Center.new({child: new progress_indicator.CircularProgressIndicator.new({$creationLocationd_0dea112b090073317d4: C[22] || CT.C22}), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24});
+                          } else if (T.DeletLevelsL().is(state)) {
+                          } else if (T.LevelLoadedL().is(state)) {
+                            this[_levelList] = state.levels;
+                            return this[_buildListLevels](this[_levelList]);
+                          } else if (T.LevelErrorL().is(state)) {
+                            return new text.Text.new("sorry", {$creationLocationd_0dea112b090073317d4: C[27] || CT.C27});
+                          }
+                          return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[30] || CT.C30});
+                        }, T.BuildContextLAndLevelsStateLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[31] || CT.C31}), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34})]), $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), $creationLocationd_0dea112b090073317d4: C[40] || CT.C40})]), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44}), $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51});
+    }
+    [_buildListLevels](_levelList) {
+      return dart.dtest(dart.dsend(dart.dload(_levelList, 'length'), '>', [0])) ? this[_searchResult][$length] !== 0 || this[_searchController].text[$isNotEmpty] ? this[_searchResult][$length] === 0 ? new custom_text.CustomText.new({text: "  No records found", color: app_colors.mainAppColor, $creationLocationd_0dea112b090073317d4: C[55] || CT.C55}) : new scroll_view.ListView.builder({itemCount: this[_searchResult][$length], itemBuilder: dart.fn((context, index) => new levels$46item.LevelsItem.new({levels: this[_searchResult][$_get](index), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), T.BuildContextLAndintLToLevelsItemL()), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62}) : new scroll_view.ListView.builder({itemCount: T.intN().as(dart.dload(_levelList, 'length')), itemBuilder: dart.fn((context, index) => new levels$46item.LevelsItem.new({levels: T.LevelsL().as(dart.dsend(_levelList, '_get', [index])), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66}), T.BuildContextLAndintLToLevelsItemL()), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69}) : new no_data.NoData.new({message: "No Levels", $creationLocationd_0dea112b090073317d4: C[73] || CT.C73});
+    }
+    [_result](results) {
+      commons.Commons.showToast({context: this.context, message: T.StringL().as(results[$_get]("message"))});
+      this.clearTextInput();
+      let currentFocus = focus_scope.FocusScope.of(this.context);
+      this.sleep1();
+      if (!dart.test(currentFocus.hasPrimaryFocus)) {
+        currentFocus.unfocus();
+      }
+    }
+    sleep1() {
+      return async.Future.delayed(C[76] || CT.C76, dart.fn(() => "1", T.VoidToStringL()));
+    }
+    [_buildAddLevels]() {
+      return new container.Container.new({padding: new edge_insets.EdgeInsets.symmetric({horizontal: dart.notNull(media_query.MediaQuery.of(this.context).size.width) * 0.04}), child: new form.Form.new({key: this[_formKey], child: new text_form_field.TextFormField.new({controller: this.nameHolder, onChanged: dart.fn(value => {
+              this[_materialName] = value;
+            }, T.StringLToNull()), validator: dart.bind(this, 'validatelevel'), decoration: new input_decorator.InputDecoration.new({errorMaxLines: 2, hintText: "Add New Level", hintStyle: new text_style.TextStyle.new({fontSize: 12.0}), suffixIcon: new basic.Padding.new({padding: new edge_insets.EdgeInsets.only({top: 5.0}), child: this[_buildSaveBtn](), $creationLocationd_0dea112b090073317d4: C[77] || CT.C77})}), $creationLocationd_0dea112b090073317d4: C[81] || CT.C81}), $creationLocationd_0dea112b090073317d4: C[87] || CT.C87}), $creationLocationd_0dea112b090073317d4: C[91] || CT.C91});
+    }
+    [_buildSaveBtn]() {
+      return new (T.BlocBuilderOfLevelsBlocL$LevelsStateL()).new({builder: dart.fn((context, state) => {
+          let bloc = bloc_provider.BlocProvider.of(T.LevelsBlocL(), context);
+          return new container.Container.new({child: new gesture_detector.GestureDetector.new({child: new icon.Icon.new(icons.Icons.add, {color: app_colors.mainAppColor, $creationLocationd_0dea112b090073317d4: C[95] || CT.C95}), onTap: dart.fn(() => async.async(core.Null, (function*() {
+                let currentFocus = focus_scope.FocusScope.of(context);
+                if (!dart.test(currentFocus.hasPrimaryFocus)) {
+                  currentFocus.unfocus();
+                }
+                if (dart.test(this[_formKey].currentState.validate())) {
+                  bloc.add(new levels_bloc.AddOrEditLevels.new(this[_authProvider].currentUser.accessToken, 0, this[_authProvider].ownSchool.id, this[_materialName]));
+                }
+              }).bind(this)), T.VoidToFutureLOfNull()), $creationLocationd_0dea112b090073317d4: C[99] || CT.C99}), $creationLocationd_0dea112b090073317d4: C[103] || CT.C103});
+        }, T.BuildContextLAndLevelsStateLToContainerL()), $creationLocationd_0dea112b090073317d4: C[106] || CT.C106});
+    }
+    [_onItemTap](index) {
+      this.setState(dart.fn(() => {
+        this[_selectedIndex] = index;
+      }, T.VoidToNull()));
+    }
+    build(context) {
+      this[_authProvider] = provider.Provider.of(T.AuthProviderL(), context);
+      let appBar = new app_bar.AppBar.new({backgroundColor: app_colors.mainAppColor, elevation: 0.0, leading: new gesture_detector.GestureDetector.new({onTap: dart.fn(() => this[_scaffoldKey].currentState.openDrawer(), T.VoidTovoid()), child: new image.Image.asset("assets/images/menu.png", {color: colors.Colors.white, $creationLocationd_0dea112b090073317d4: C[109] || CT.C109}), $creationLocationd_0dea112b090073317d4: C[113] || CT.C113}), title: new text.Text.new("Levels", {style: theme.Theme.of(context).textTheme.headline1, $creationLocationd_0dea112b090073317d4: C[117] || CT.C117}), actions: T.JSArrayOfWidgetL().of([new gesture_detector.GestureDetector.new({onTap: dart.fn(() => navigator.Navigator.pop(T.ObjectL(), context), T.VoidTovoid()), child: new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new basic.Column.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({left: 10.0, right: 10.0, top: 15.0}), height: 30.0, width: 30.0, child: new icon.Icon.new(icons.Icons.arrow_forward_ios, {color: colors.Colors.white, $creationLocationd_0dea112b090073317d4: C[121] || CT.C121}), $creationLocationd_0dea112b090073317d4: C[125] || CT.C125})]), $creationLocationd_0dea112b090073317d4: C[131] || CT.C131})]), $creationLocationd_0dea112b090073317d4: C[134] || CT.C134}), $creationLocationd_0dea112b090073317d4: C[137] || CT.C137})]), $creationLocationd_0dea112b090073317d4: C[141] || CT.C141});
+      return new network_indicator.NetworkIndicator.new({child: new page_container.PageContainer.new({child: new (T.BlocProviderOfLevelsBlocL()).new({create: dart.fn(context => {
+              let t0;
+              t0 = new levels_bloc.LevelsBloc.new(new level$46repository.LevelsRepositoryImp.new());
+              return (() => {
+                t0.add(new levels_bloc.FetchLevels.new(this[_authProvider].ownSchool.id));
+                return t0;
+              })();
+            }, T.BuildContextLToLevelsBlocL()), child: new scaffold.Scaffold.new({drawer: new theme.Theme.new({data: theme.Theme.of(context).copyWith({canvasColor: app_colors.mainAppColor}), child: new app_drawer.AppDrawer.new({$creationLocationd_0dea112b090073317d4: C[148] || CT.C148}), $creationLocationd_0dea112b090073317d4: C[149] || CT.C149}), key: this[_scaffoldKey], appBar: appBar, bottomNavigationBar: new bottom_navigation_bar.BottomNavigationBar.new({currentIndex: 2, items: C[153] || CT.C153, selectedItemColor: app_colors.mainAppColor, type: bottom_navigation_bar.BottomNavigationBarType.fixed, unselectedItemColor: colors.Colors.grey, iconSize: 30.0, elevation: 5.0, onTap: dart.bind(this, _onItemTap), $creationLocationd_0dea112b090073317d4: C[184] || CT.C184}), body: this[_buildBodyItem](), resizeToAvoidBottomInset: false, $creationLocationd_0dea112b090073317d4: C[194] || CT.C194}), $creationLocationd_0dea112b090073317d4: C[202] || CT.C202}), $creationLocationd_0dea112b090073317d4: C[206] || CT.C206}), $creationLocationd_0dea112b090073317d4: C[209] || CT.C209});
+    }
+  };
+  (levels_screen._LevelsScreenState.new = function() {
+    this[_searchController] = new editable_text.TextEditingController.new();
+    this[_authProvider] = null;
+    this[_materialName] = "";
+    this[_formKey] = T.GlobalKeyOfFormStateL().new();
+    this[_scaffoldKey] = T.GlobalKeyOfScaffoldStateL().new();
+    this.nameHolder = new editable_text.TextEditingController.new();
+    this[_searchResult] = T.JSArrayOfLevelsL().of([]);
+    this[_levelList] = T.JSArrayOfLevelsL().of([]);
+    this[_selectedIndex] = 0;
+    levels_screen._LevelsScreenState.__proto__.new.call(this);
+    ;
+  }).prototype = levels_screen._LevelsScreenState.prototype;
+  dart.addTypeTests(levels_screen._LevelsScreenState);
+  dart.addTypeCaches(levels_screen._LevelsScreenState);
+  dart.setMethodSignature(levels_screen._LevelsScreenState, () => ({
+    __proto__: dart.getMethods(levels_screen._LevelsScreenState.__proto__),
+    clearTextInput: dart.fnType(dart.dynamic, []),
+    [_buildBodyItem]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_buildListLevels]: dart.fnType(dart.legacy(framework.Widget), [dart.dynamic]),
+    [_result]: dart.fnType(dart.dynamic, [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    sleep1: dart.fnType(dart.legacy(async.Future), []),
+    [_buildAddLevels]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_buildSaveBtn]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_onItemTap]: dart.fnType(dart.void, [dart.legacy(core.int)]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(levels_screen._LevelsScreenState, I[0]);
+  dart.setFieldSignature(levels_screen._LevelsScreenState, () => ({
+    __proto__: dart.getFields(levels_screen._LevelsScreenState.__proto__),
+    [_searchController]: dart.fieldType(dart.legacy(editable_text.TextEditingController)),
+    [_authProvider]: dart.fieldType(dart.legacy(auth_provider.AuthProvider)),
+    [_materialName]: dart.fieldType(dart.legacy(core.String)),
+    [_formKey]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(form.FormState)))),
+    [_scaffoldKey]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(scaffold.ScaffoldState)))),
+    nameHolder: dart.finalFieldType(dart.legacy(editable_text.TextEditingController)),
+    [_searchResult]: dart.fieldType(dart.legacy(core.List$(dart.legacy(level.Levels)))),
+    [_levelList]: dart.fieldType(dart.legacy(core.List$(dart.legacy(level.Levels)))),
+    [_selectedIndex]: dart.fieldType(dart.legacy(core.int))
+  }));
+  dart.trackLibraries("packages/admin_app/ui/levels/levels_screen.dart", {
+    "package:admin_app/ui/levels/levels_screen.dart": levels_screen
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["levels_screen.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAsBsC;IAAoB;;;;;;EAC1D;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAgBsB,MAAlB,AAAW;IACb;;AAImB,MAAX;IACR;;AAGE,YAAO,wDACQ;QAAW,qCACf,gEACK,SAAC,SAAS;AAClB,gBAAU,yBAAN,KAAK;AACP,kBAA4B,YAAxB,AAAM,AAAO,KAAR,gBAAS,WAAa;AACP,gBAAtB,cAAQ,AAAM,KAAD;;AAE4C,gBAAjD,0BAAU,OAAO,iBAAE,AAAM,AAAO,KAAR,gBAAS,aAAW;;;kBAEjD,KAAU,sBAAN,KAAK;AACd,kBAA4B,YAAxB,AAAM,AAAO,KAAR,gBAAS,WAAa;AACP,gBAAtB,cAAQ,AAAM,KAAD;;AAE4C,gBAAjD,0BAAU,OAAO,iBAAE,AAAM,AAAO,KAAR,gBAAS,aAAW;;;;6DAInD,+BACK,yBACR,qCACU,kBACI,6CACH,uCACoB,8CACP,0BACC,4BACE,uBAAS,oBACR,uBAAS,oEAGrC,sCACsB,kDAC8B,aAAvB,AAAY,AAAK,0BAAd,4BAAsB,gBACH,aAAxB,AAAY,AAAK,0BAAd,6BAAuB,eAC5C,gCACa,yBAChB,yCACc,6CACD,gCACoB,wCAAS,gBACjC,mDACO,sCACC,oCACF,QAAC;AACW,0BAArB,AAAc;AAEd,8BAAI,AAAK,IAAD;AACS,4BAAf,cAAS;;AACK,4BAAd,WAAM;AACN;;AAEe,4BAAf,cAAS;;AAQP,4BANF,AAAW,2BAAQ,QAAC;AAClB,kCAAI,AAAW,AACV,AACA,UAFS,iCAEA,AAAK,IAAD;AACa,gCAA7B,AAAc,0BAAI,UAAU;;;;sDAK7B,qCACW,+BACJ,kBACa,kCACf,iDACF,uDACqB,wCAAS,mBACxB,mCAAkB,6CAGjB,kDAAsB,oBACzB,kBACJ,4BACC,4FAEC,uIAIhB,gCACU,iEAEV,yBACA,+BACS,8DACM,SAAC,SAAS;AACrB,8BAAU,qBAAN,KAAK;AACP,kCAAO,8BAAc;gCAChB,KAAU,oBAAN,KAAK;gCACT,KAAU,oBAAN,KAAK;AACW,4BAAzB,mBAAa,AAAM,KAAD;AAClB,kCAAO,wBAAiB;gCACnB,KAAU,mBAAN,KAAK;AACd,kCAAO,mBAAK;;AAEd,gCAAO;;IAS7B;uBAEwB;AACtB,wBAAyB,WAAP,WAAX,UAAU,mBAAU,OACrB,AAAc,AAAY,iCAAF,KAAK,AAAkB,AAAK,4CAChD,AAAc,AAAO,iCAAG,IACpB,sCACQ,6BACC,qFAEA,6CACI,AAAc,2CACZ,SAAc,SAAa,UAC/B,0CACG,AAAa,2BAAC,KAAK,kKAG5B,yDACe,WAAX,UAAU,2BACR,SAAc,SAAa,UAC/B,yDACa,WAAV,UAAU,WAAC,KAAK,oKAGlC,iCAAgB;IACxB;cAE6B;AAI1B,MAHO,oCACG,sCACA,AAAO,OAAA,QAAC;AAGH,MAAhB;AACe,yBAA0B,0BAAG;AACpC,MAAR;AAEA,qBAAK,AAAa,YAAD;AACO,QAAtB,AAAa,YAAD;;IAEhB;;AAGE,YAAW,uCAA4C,cAAM;IAC/D;;AAGE,YAAO,uCACe,kDAC4B,aAAvB,AAAY,AAAK,0BAAd,4BAAsB,eAE3C,wBACA,uBACE,mDACO,4BACD,QAAC;AACW,cAArB,sBAAgB,KAAK;wDAEZ,oCACC,wDACK,aACL,4BACC,wCAAoB,oBACnB,gCACY,sCAAU,cAAW;IAKvD;;AAGE,YAAO,+DACI,SAAC,SAAS;AACN,qBAAoB,+CAAe,OAAO;AAErD,gBAAO,qCACI,iDACF,kBACC,yBACC,2FAEF;AACU,mCAA0B,0BAAG,OAAO;AAEnD,+BAAK,AAAa,YAAD;AACO,kBAAtB,AAAa,YAAD;;AAEd,8BAAI,AAAS,AAAa;AAEuB,kBAD/C,AAAK,IAAD,KAAK,oCAAgB,AAAc,AAAY,6CAAa,GAC5D,AAAc,AAAU,kCAAI;;cAEnC;;IAIT;iBAGoB;AAGhB,MAFF,cAAS;AACe,QAAtB,uBAAiB,KAAK;;IAE1B;UAG0B;AAC0B,MAAlD,sBAAyB,wCAAiB,OAAO;AAE3C,mBAAS,yCACI,oCACN,cACF,iDACE,cAAM,AAAa,AAAa,sEAC1B,sBACX,kCACc,sJAEb,kBAAK,kBAAuB,AAAY,AAAU,eAAnB,OAAO,6FAC5B,yBACf,iDACS,cAAgB,qCAAI,OAAO,2BAC3B,+BACa,yBAChB,gCAAyB,yBACvB,qCACqB,uCAAW,aAAW,WAAS,gBAC1C,aACD,aACA,kBACC,uCACQ;AAU9B,YAAO,oDACI,6CACI,iDACK,QAAC;;AAAY,kDAAW;oBAAX;AACjB,uBAAI,gCAAY,AAAc,AAAU;;;uDACrC,mCACG,2BACM,AAAY,eAAT,OAAO,yBACP,kCAER,6JAEJ,4BACG,MAAM,uBACO,iEAEf,gDAkCe,+BACW,0EACF,8BAClB,iBAEC,sBACJ,sFAEH,kDACoB;IAE1C;;;IA3UsB,0BAAoB;IAE7B;IACN,sBAAgB;IACjB,iBAAW;IACY,qBACnB;IAEJ,kBAAa;IACN,sBAAgB;IAEhB,mBAAa;IAwNtB,uBAAiB;;;EAyGvB","file":"../../../../../../../packages/admin_app/ui/levels/levels_screen.dart.lib.js"}');
+  // Exports:
+  return {
+    ui__levels__levels_screen: levels_screen
+  };
+}));
+
+//# sourceMappingURL=levels_screen.dart.lib.js.map

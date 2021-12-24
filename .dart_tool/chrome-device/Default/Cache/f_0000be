@@ -1,0 +1,299 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/connectivity/connectivity.dart', 'packages/connectivity_platform_interface/src/enums.dart', 'packages/flutter_offline/src/utils.dart', 'packages/flutter/src/widgets/async.dart'], (function load__packages__flutter_offline__src__main_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__connectivity__connectivity$46dart, packages__connectivity_platform_interface__src__enums$46dart, packages__flutter_offline__src__utils$46dart, packages__flutter__src__widgets__async$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const connectivity = packages__connectivity__connectivity$46dart.connectivity;
+  const enums = packages__connectivity_platform_interface__src__enums$46dart.src__enums;
+  const utils = packages__flutter_offline__src__utils$46dart.src__utils;
+  const async$ = packages__flutter__src__widgets__async$46dart.src__widgets__async;
+  var main = Object.create(dart.library);
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToWidgetL: () => (T.BuildContextLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL()])))(),
+    BuildContextLToLWidgetL: () => (T.BuildContextLToLWidgetL = dart.constFn(dart.legacy(T.BuildContextLToWidgetL())))(),
+    ConnectivityResultL: () => (T.ConnectivityResultL = dart.constFn(dart.legacy(enums.ConnectivityResult)))(),
+    StreamOfConnectivityResultL: () => (T.StreamOfConnectivityResultL = dart.constFn(async.Stream$(T.ConnectivityResultL())))(),
+    StreamLOfConnectivityResultL: () => (T.StreamLOfConnectivityResultL = dart.constFn(dart.legacy(T.StreamOfConnectivityResultL())))(),
+    ConnectivityResultLToStreamLOfConnectivityResultL: () => (T.ConnectivityResultLToStreamLOfConnectivityResultL = dart.constFn(dart.fnType(T.StreamLOfConnectivityResultL(), [T.ConnectivityResultL()])))(),
+    StreamBuilderOfConnectivityResultL: () => (T.StreamBuilderOfConnectivityResultL = dart.constFn(async$.StreamBuilder$(T.ConnectivityResultL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    AsyncSnapshotOfConnectivityResultL: () => (T.AsyncSnapshotOfConnectivityResultL = dart.constFn(async$.AsyncSnapshot$(T.ConnectivityResultL())))(),
+    AsyncSnapshotLOfConnectivityResultL: () => (T.AsyncSnapshotLOfConnectivityResultL = dart.constFn(dart.legacy(T.AsyncSnapshotOfConnectivityResultL())))(),
+    BuildContextLAndAsyncSnapshotLOfConnectivityResultLToWidgetL: () => (T.BuildContextLAndAsyncSnapshotLOfConnectivityResultLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.AsyncSnapshotLOfConnectivityResultL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 3000000
+      });
+    },
+    get C3() {
+      return C[3] = dart.constList([], T._LocationL());
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[3] || CT.C3,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 104,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_offline-0.2.4+1/lib/src/main.dart"
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: basic.SizedBox.prototype,
+        [Widget__location]: C[2] || CT.C2,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: null,
+        [SizedBox_height]: null,
+        [SizedBox_width]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 7,
+        [_Location_line]: 97,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 98,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 96,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_offline-0.2.4+1/lib/src/main.dart"
+      });
+    }
+  }, false);
+  var C = Array(8).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_offline-0.2.4+1/lib/src/main.dart",
+    "package:flutter_offline/src/main.dart"
+  ];
+  var connectivityService$ = dart.privateName(main, "OfflineBuilder.connectivityService");
+  var debounceDuration$ = dart.privateName(main, "OfflineBuilder.debounceDuration");
+  var connectivityBuilder$ = dart.privateName(main, "OfflineBuilder.connectivityBuilder");
+  var builder$ = dart.privateName(main, "OfflineBuilder.builder");
+  var child$ = dart.privateName(main, "OfflineBuilder.child");
+  var errorBuilder$ = dart.privateName(main, "OfflineBuilder.errorBuilder");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  main.OfflineBuilder = class OfflineBuilder extends framework.StatefulWidget {
+    get connectivityService() {
+      return this[connectivityService$];
+    }
+    set connectivityService(value) {
+      super.connectivityService = value;
+    }
+    get debounceDuration() {
+      return this[debounceDuration$];
+    }
+    set debounceDuration(value) {
+      super.debounceDuration = value;
+    }
+    get connectivityBuilder() {
+      return this[connectivityBuilder$];
+    }
+    set connectivityBuilder(value) {
+      super.connectivityBuilder = value;
+    }
+    get builder() {
+      return this[builder$];
+    }
+    set builder(value) {
+      super.builder = value;
+    }
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    get errorBuilder() {
+      return this[errorBuilder$];
+    }
+    set errorBuilder(value) {
+      super.errorBuilder = value;
+    }
+    static new(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let connectivityBuilder = opts && 'connectivityBuilder' in opts ? opts.connectivityBuilder : null;
+      let debounceDuration = opts && 'debounceDuration' in opts ? opts.debounceDuration : C[0] || CT.C0;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let errorBuilder = opts && 'errorBuilder' in opts ? opts.errorBuilder : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      return new main.OfflineBuilder.initialize({key: key, connectivityBuilder: connectivityBuilder, connectivityService: connectivity.Connectivity.new(), debounceDuration: debounceDuration, builder: builder, child: child, errorBuilder: errorBuilder, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    }
+    createState() {
+      return new main.OfflineBuilderState.new();
+    }
+  };
+  (main.OfflineBuilder.initialize = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let connectivityBuilder = opts && 'connectivityBuilder' in opts ? opts.connectivityBuilder : null;
+    let connectivityService = opts && 'connectivityService' in opts ? opts.connectivityService : null;
+    let debounceDuration = opts && 'debounceDuration' in opts ? opts.debounceDuration : C[0] || CT.C0;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let errorBuilder = opts && 'errorBuilder' in opts ? opts.errorBuilder : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[connectivityBuilder$] = connectivityBuilder;
+    this[connectivityService$] = connectivityService;
+    this[debounceDuration$] = debounceDuration;
+    this[builder$] = builder;
+    this[child$] = child;
+    this[errorBuilder$] = errorBuilder;
+    if (!(connectivityBuilder != null)) dart.assertFailed("connectivityBuilder cannot be null", I[0], 42, 13, "connectivityBuilder != null");
+    if (!(debounceDuration != null)) dart.assertFailed("debounceDuration cannot be null", I[0], 43, 16, "debounceDuration != null");
+    if (!(connectivityService != null)) dart.assertFailed("connectivityService cannot be null", I[0], 45, 13, "connectivityService != null");
+    if (!(!(T.BuildContextLToLWidgetL().is(builder) && T.WidgetL().is(child)) && !(builder == null && child == null))) dart.assertFailed("You should specify either a builder or a child", I[0], 47, 13, "!(builder is WidgetBuilder && child is Widget) &&\n                !(builder == null && child == null)");
+    main.OfflineBuilder.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = main.OfflineBuilder.prototype;
+  dart.addTypeTests(main.OfflineBuilder);
+  dart.addTypeCaches(main.OfflineBuilder);
+  dart.setMethodSignature(main.OfflineBuilder, () => ({
+    __proto__: dart.getMethods(main.OfflineBuilder.__proto__),
+    createState: dart.fnType(dart.legacy(main.OfflineBuilderState), [])
+  }));
+  dart.setLibraryUri(main.OfflineBuilder, I[1]);
+  dart.setFieldSignature(main.OfflineBuilder, () => ({
+    __proto__: dart.getFields(main.OfflineBuilder.__proto__),
+    connectivityService: dart.finalFieldType(dart.legacy(connectivity.Connectivity)),
+    debounceDuration: dart.finalFieldType(dart.legacy(core.Duration)),
+    connectivityBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(enums.ConnectivityResult), dart.legacy(framework.Widget)]))),
+    builder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]))),
+    child: dart.finalFieldType(dart.legacy(framework.Widget)),
+    errorBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])))
+  }));
+  var _connectivityStream = dart.privateName(main, "_connectivityStream");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var SingleChildRenderObjectWidget_child = dart.privateName(framework, "SingleChildRenderObjectWidget.child");
+  var SizedBox_height = dart.privateName(basic, "SizedBox.height");
+  var SizedBox_width = dart.privateName(basic, "SizedBox.width");
+  main.OfflineBuilderState = class OfflineBuilderState extends framework.State$(dart.legacy(main.OfflineBuilder)) {
+    initState() {
+      super.initState();
+      this[_connectivityStream] = T.StreamOfConnectivityResultL().fromFuture(this.widget.connectivityService.checkConnectivity()).asyncExpand(T.ConnectivityResultL(), dart.fn(data => this.widget.connectivityService.onConnectivityChanged.transform(T.ConnectivityResultL(), utils.startsWith(data)), T.ConnectivityResultLToStreamLOfConnectivityResultL())).transform(T.ConnectivityResultL(), utils.debounce(this.widget.debounceDuration));
+    }
+    build(context) {
+      return new (T.StreamBuilderOfConnectivityResultL()).new({stream: this[_connectivityStream], builder: dart.fn((context, snapshot) => {
+          let t2, t1, t0, t1$, t0$, t3, t2$, t1$0, t0$0;
+          let child = (t0 = this.widget.child, t0 == null ? (t1 = this.widget, t2 = context, t1.builder(t2)) : t0);
+          if (!dart.test(snapshot.hasData) && !dart.test(snapshot.hasError)) {
+            return C[1] || CT.C1;
+          } else if (dart.test(snapshot.hasError)) {
+            if (this.widget.errorBuilder != null) {
+              t0$ = this.widget;
+              t1$ = context;
+              return t0$.errorBuilder(t1$);
+            }
+            dart.throw(new main.OfflineBuilderError.new(snapshot.error));
+          }
+          t0$0 = this.widget;
+          t1$0 = context;
+          t2$ = snapshot.data;
+          t3 = child;
+          return t0$0.connectivityBuilder(t1$0, t2$, t3);
+        }, T.BuildContextLAndAsyncSnapshotLOfConnectivityResultLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[4] || CT.C4});
+    }
+  };
+  (main.OfflineBuilderState.new = function() {
+    this[_connectivityStream] = null;
+    main.OfflineBuilderState.__proto__.new.call(this);
+    ;
+  }).prototype = main.OfflineBuilderState.prototype;
+  dart.addTypeTests(main.OfflineBuilderState);
+  dart.addTypeCaches(main.OfflineBuilderState);
+  dart.setMethodSignature(main.OfflineBuilderState, () => ({
+    __proto__: dart.getMethods(main.OfflineBuilderState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(main.OfflineBuilderState, I[1]);
+  dart.setFieldSignature(main.OfflineBuilderState, () => ({
+    __proto__: dart.getFields(main.OfflineBuilderState.__proto__),
+    [_connectivityStream]: dart.fieldType(dart.legacy(async.Stream$(dart.legacy(enums.ConnectivityResult))))
+  }));
+  var error$ = dart.privateName(main, "OfflineBuilderError.error");
+  main.OfflineBuilderError = class OfflineBuilderError extends core.Error {
+    get error() {
+      return this[error$];
+    }
+    set error(value) {
+      super.error = value;
+    }
+    toString() {
+      return dart.toString(this.error);
+    }
+  };
+  (main.OfflineBuilderError.new = function(error) {
+    this[error$] = error;
+    main.OfflineBuilderError.__proto__.new.call(this);
+    ;
+  }).prototype = main.OfflineBuilderError.prototype;
+  dart.addTypeTests(main.OfflineBuilderError);
+  dart.addTypeCaches(main.OfflineBuilderError);
+  dart.setMethodSignature(main.OfflineBuilderError, () => ({
+    __proto__: dart.getMethods(main.OfflineBuilderError.__proto__),
+    toString: dart.fnType(dart.legacy(core.String), []),
+    [$toString]: dart.fnType(dart.legacy(core.String), [])
+  }));
+  dart.setLibraryUri(main.OfflineBuilderError, I[1]);
+  dart.setFieldSignature(main.OfflineBuilderError, () => ({
+    __proto__: dart.getFields(main.OfflineBuilderError.__proto__),
+    error: dart.finalFieldType(dart.legacy(core.Object))
+  }));
+  dart.defineExtensionMethods(main.OfflineBuilderError, ['toString']);
+  dart.defineLazy(main, {
+    /*main.kOfflineDebounceDuration*/get kOfflineDebounceDuration() {
+      return C[0] || CT.C0;
+    }
+  }, true);
+  dart.trackLibraries("packages/flutter_offline/src/main.dart", {
+    "package:flutter_offline/src/main.dart": main
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["main.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAoDqB;;;;;;IAGJ;;;;;;IAGW;;;;;;IAGN;;;;;;IAGP;;;;;;IAGO;;;;;;;UAtDd;UAC0B;UACrB;UACK;UACP;UACO;;AAEd,YAAsB,0CACf,GAAG,uBACa,mBAAmB,uBACnB,mDACH,gBAAgB,WACzB,OAAO,SACT,KAAK,gBACE,YAAY;IAE9B;;AAyCqC;IAAqB;;;QArCpD;QACW;QACA;QACV;QACA;QACA;QACA;;IALU;IACA;IACV;IACA;IACA;IACA;UAEG,AAAoB,mBAAD,6BAAU;UAC1B,AAAiB,gBAAD,6BAAU;UAE7B,AAAoB,mBAAD,6BAAU;UAEkB,EAArC,+BAAR,OAAO,KAA2B,eAAN,KAAK,QAC7B,AAAQ,OAAD,YAAY,AAAM,KAAD,8BAC9B;AACJ,uDAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6BF,MAAX;AAYL,MAVD,4BAA6B,AAE3B,AAMA,2CAPA,AAAO,AAAoB,0FAE3B,QAAoB,QACX,AAAO,AAAoB,AAAsB,yFACtD,iBAAW,IAAI,+FAInB,eAAS,AAAO;IAEpB;UAG0B;AACxB,YAAO,2DACG,oCACC,SACM,SACqB;;AAE5B,uBAAqB,KAAb,AAAO,mBAAA,mBAAS,kBAAe,OAAO,EAAR;AAC5C,yBAAK,AAAS,QAAD,wBAAa,AAAS,QAAD;AAChC;gBACK,eAAI,AAAS,QAAD;AACjB,gBAAI,AAAO;AACT,oBAAO;oBAAoB,OAAO;oBAAR;;AAEa,YAAzC,WAAM,iCAAoB,AAAS,QAAD;;AAEpC,iBAAO;iBAA2B,OAAO;gBAAE,AAAS,QAAD;eAAO,KAAK;gBAA9B;;IAGvC;;;IAvC2B;;;EAwC7B;;;;;;;;;;;;;;IAKe;;;;;;;AAGQ,YAAM,eAAN;IAAgB;;;IALZ;AAAzB;;EAA+B;;;;;;;;;;;;;;;MA/G3B,6BAAwB","file":"../../../../../../../../packages/flutter_offline/src/main.dart.lib.js"}');
+  // Exports:
+  return {
+    src__main: main
+  };
+}));
+
+//# sourceMappingURL=main.dart.lib.js.map

@@ -1,0 +1,428 @@
+define(['dart_sdk'], (function load__packages__admin_app__data__model__teachers_dart(dart_sdk) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  var teachers = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $add = dartx.add;
+  var $_set = dartx._set;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    MaterialsL: () => (T.MaterialsL = dart.constFn(dart.legacy(teachers.Materials)))(),
+    JSArrayOfMaterialsL: () => (T.JSArrayOfMaterialsL = dart.constFn(_interceptors.JSArray$(T.MaterialsL())))(),
+    MapOfStringL$dynamic: () => (T.MapOfStringL$dynamic = dart.constFn(core.Map$(T.StringL(), dart.dynamic)))(),
+    MapLOfStringL$dynamic: () => (T.MapLOfStringL$dynamic = dart.constFn(dart.legacy(T.MapOfStringL$dynamic())))(),
+    dynamicToNull: () => (T.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))(),
+    LinkedMapOfStringL$dynamic: () => (T.LinkedMapOfStringL$dynamic = dart.constFn(_js_helper.LinkedMap$(T.StringL(), dart.dynamic)))(),
+    MaterialsLToMapLOfStringL$dynamic: () => (T.MaterialsLToMapLOfStringL$dynamic = dart.constFn(dart.fnType(T.MapLOfStringL$dynamic(), [T.MaterialsL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var I = ["package:admin_app/data/model/teachers.dart"];
+  var id$ = dart.privateName(teachers, "Teachers.id");
+  var userId$ = dart.privateName(teachers, "Teachers.userId");
+  var userName$ = dart.privateName(teachers, "Teachers.userName");
+  var isAccountActivated$ = dart.privateName(teachers, "Teachers.isAccountActivated");
+  var status$ = dart.privateName(teachers, "Teachers.status");
+  var email$ = dart.privateName(teachers, "Teachers.email");
+  var userPhoto$ = dart.privateName(teachers, "Teachers.userPhoto");
+  var companyId$ = dart.privateName(teachers, "Teachers.companyId");
+  var companyName$ = dart.privateName(teachers, "Teachers.companyName");
+  var companyPhoto$ = dart.privateName(teachers, "Teachers.companyPhoto");
+  var acceptanceStatus$ = dart.privateName(teachers, "Teachers.acceptanceStatus");
+  var isClassRoomTeacher$ = dart.privateName(teachers, "Teachers.isClassRoomTeacher");
+  var updateDate$ = dart.privateName(teachers, "Teachers.updateDate");
+  var materials$ = dart.privateName(teachers, "Teachers.materials");
+  teachers.Teachers = class Teachers extends core.Object {
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      this[id$] = value;
+    }
+    get userId() {
+      return this[userId$];
+    }
+    set userId(value) {
+      this[userId$] = value;
+    }
+    get userName() {
+      return this[userName$];
+    }
+    set userName(value) {
+      this[userName$] = value;
+    }
+    get isAccountActivated() {
+      return this[isAccountActivated$];
+    }
+    set isAccountActivated(value) {
+      this[isAccountActivated$] = value;
+    }
+    get status() {
+      return this[status$];
+    }
+    set status(value) {
+      this[status$] = value;
+    }
+    get email() {
+      return this[email$];
+    }
+    set email(value) {
+      this[email$] = value;
+    }
+    get userPhoto() {
+      return this[userPhoto$];
+    }
+    set userPhoto(value) {
+      this[userPhoto$] = value;
+    }
+    get companyId() {
+      return this[companyId$];
+    }
+    set companyId(value) {
+      this[companyId$] = value;
+    }
+    get companyName() {
+      return this[companyName$];
+    }
+    set companyName(value) {
+      this[companyName$] = value;
+    }
+    get companyPhoto() {
+      return this[companyPhoto$];
+    }
+    set companyPhoto(value) {
+      this[companyPhoto$] = value;
+    }
+    get acceptanceStatus() {
+      return this[acceptanceStatus$];
+    }
+    set acceptanceStatus(value) {
+      this[acceptanceStatus$] = value;
+    }
+    get isClassRoomTeacher() {
+      return this[isClassRoomTeacher$];
+    }
+    set isClassRoomTeacher(value) {
+      this[isClassRoomTeacher$] = value;
+    }
+    get updateDate() {
+      return this[updateDate$];
+    }
+    set updateDate(value) {
+      this[updateDate$] = value;
+    }
+    get materials() {
+      return this[materials$];
+    }
+    set materials(value) {
+      this[materials$] = value;
+    }
+    toJson() {
+      let data = new (T.LinkedMapOfStringL$dynamic()).new();
+      data[$_set]("id", this.id);
+      data[$_set]("userId", this.userId);
+      data[$_set]("userName", this.userName);
+      data[$_set]("isAccountActivated", this.isAccountActivated);
+      data[$_set]("status", this.status);
+      data[$_set]("email", this.email);
+      data[$_set]("userPhoto", this.userPhoto);
+      data[$_set]("companyId", this.companyId);
+      data[$_set]("companyName", this.companyName);
+      data[$_set]("companyPhoto", this.companyPhoto);
+      data[$_set]("acceptanceStatus", this.acceptanceStatus);
+      data[$_set]("isClassRoomTeacher", this.isClassRoomTeacher);
+      data[$_set]("updateDate", this.updateDate);
+      if (this.materials != null) {
+        data[$_set]("materials", this.materials[$map](T.MapLOfStringL$dynamic(), dart.fn(v => v.toJson(), T.MaterialsLToMapLOfStringL$dynamic()))[$toList]());
+      }
+      return data;
+    }
+  };
+  (teachers.Teachers.new = function(opts) {
+    let id = opts && 'id' in opts ? opts.id : null;
+    let userId = opts && 'userId' in opts ? opts.userId : null;
+    let userName = opts && 'userName' in opts ? opts.userName : null;
+    let isAccountActivated = opts && 'isAccountActivated' in opts ? opts.isAccountActivated : null;
+    let status = opts && 'status' in opts ? opts.status : null;
+    let email = opts && 'email' in opts ? opts.email : null;
+    let userPhoto = opts && 'userPhoto' in opts ? opts.userPhoto : null;
+    let companyId = opts && 'companyId' in opts ? opts.companyId : null;
+    let companyName = opts && 'companyName' in opts ? opts.companyName : null;
+    let companyPhoto = opts && 'companyPhoto' in opts ? opts.companyPhoto : null;
+    let acceptanceStatus = opts && 'acceptanceStatus' in opts ? opts.acceptanceStatus : null;
+    let isClassRoomTeacher = opts && 'isClassRoomTeacher' in opts ? opts.isClassRoomTeacher : true;
+    let updateDate = opts && 'updateDate' in opts ? opts.updateDate : null;
+    let materials = opts && 'materials' in opts ? opts.materials : null;
+    this[id$] = id;
+    this[userId$] = userId;
+    this[userName$] = userName;
+    this[isAccountActivated$] = isAccountActivated;
+    this[status$] = status;
+    this[email$] = email;
+    this[userPhoto$] = userPhoto;
+    this[companyId$] = companyId;
+    this[companyName$] = companyName;
+    this[companyPhoto$] = companyPhoto;
+    this[acceptanceStatus$] = acceptanceStatus;
+    this[isClassRoomTeacher$] = isClassRoomTeacher;
+    this[updateDate$] = updateDate;
+    this[materials$] = materials;
+    ;
+  }).prototype = teachers.Teachers.prototype;
+  (teachers.Teachers.fromJson = function(json) {
+    this[materials$] = null;
+    this[updateDate$] = null;
+    this[isClassRoomTeacher$] = null;
+    this[acceptanceStatus$] = null;
+    this[companyPhoto$] = null;
+    this[companyName$] = null;
+    this[companyId$] = null;
+    this[userPhoto$] = null;
+    this[email$] = null;
+    this[status$] = null;
+    this[isAccountActivated$] = null;
+    this[userName$] = null;
+    this[userId$] = null;
+    this[id$] = null;
+    this.id = T.intL().as(json[$_get]("id"));
+    this.userId = T.intL().as(json[$_get]("userId"));
+    this.userName = T.StringL().as(json[$_get]("userName"));
+    this.isAccountActivated = T.boolL().as(json[$_get]("isAccountActivated"));
+    this.status = T.StringL().as(json[$_get]("status"));
+    this.email = T.StringL().as(json[$_get]("email"));
+    this.userPhoto = T.StringL().as(json[$_get]("userPhoto"));
+    this.companyId = T.intL().as(json[$_get]("companyId"));
+    this.companyName = T.StringL().as(json[$_get]("companyName"));
+    this.companyPhoto = T.StringL().as(json[$_get]("companyPhoto"));
+    this.acceptanceStatus = T.StringL().as(json[$_get]("acceptanceStatus"));
+    this.isClassRoomTeacher = T.boolL().as(json[$_get]("isClassRoomTeacher"));
+    this.updateDate = T.StringL().as(json[$_get]("updateDate"));
+    if (json[$_get]("materials") != null) {
+      this.materials = T.JSArrayOfMaterialsL().of([]);
+      dart.dsend(json[$_get]("materials"), 'forEach', [dart.fn(v => {
+          this.materials[$add](new teachers.Materials.fromJson(T.MapLOfStringL$dynamic().as(v)));
+        }, T.dynamicToNull())]);
+    }
+  }).prototype = teachers.Teachers.prototype;
+  dart.addTypeTests(teachers.Teachers);
+  dart.addTypeCaches(teachers.Teachers);
+  dart.setMethodSignature(teachers.Teachers, () => ({
+    __proto__: dart.getMethods(teachers.Teachers.__proto__),
+    toJson: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), [])
+  }));
+  dart.setLibraryUri(teachers.Teachers, I[0]);
+  dart.setFieldSignature(teachers.Teachers, () => ({
+    __proto__: dart.getFields(teachers.Teachers.__proto__),
+    id: dart.fieldType(dart.legacy(core.int)),
+    userId: dart.fieldType(dart.legacy(core.int)),
+    userName: dart.fieldType(dart.legacy(core.String)),
+    isAccountActivated: dart.fieldType(dart.legacy(core.bool)),
+    status: dart.fieldType(dart.legacy(core.String)),
+    email: dart.fieldType(dart.legacy(core.String)),
+    userPhoto: dart.fieldType(dart.legacy(core.String)),
+    companyId: dart.fieldType(dart.legacy(core.int)),
+    companyName: dart.fieldType(dart.legacy(core.String)),
+    companyPhoto: dart.fieldType(dart.legacy(core.String)),
+    acceptanceStatus: dart.fieldType(dart.legacy(core.String)),
+    isClassRoomTeacher: dart.fieldType(dart.legacy(core.bool)),
+    updateDate: dart.fieldType(dart.legacy(core.String)),
+    materials: dart.fieldType(dart.legacy(core.List$(dart.legacy(teachers.Materials))))
+  }));
+  var id$0 = dart.privateName(teachers, "Materials.id");
+  var teacherId$ = dart.privateName(teachers, "Materials.teacherId");
+  var teacherName$ = dart.privateName(teachers, "Materials.teacherName");
+  var academicYearId$ = dart.privateName(teachers, "Materials.academicYearId");
+  var academicYearName$ = dart.privateName(teachers, "Materials.academicYearName");
+  var organizationId$ = dart.privateName(teachers, "Materials.organizationId");
+  var levelId$ = dart.privateName(teachers, "Materials.levelId");
+  var levelName$ = dart.privateName(teachers, "Materials.levelName");
+  var semesterId$ = dart.privateName(teachers, "Materials.semesterId");
+  var semesterName$ = dart.privateName(teachers, "Materials.semesterName");
+  var subjectId$ = dart.privateName(teachers, "Materials.subjectId");
+  var subjectName$ = dart.privateName(teachers, "Materials.subjectName");
+  teachers.Materials = class Materials extends core.Object {
+    get id() {
+      return this[id$0];
+    }
+    set id(value) {
+      this[id$0] = value;
+    }
+    get teacherId() {
+      return this[teacherId$];
+    }
+    set teacherId(value) {
+      this[teacherId$] = value;
+    }
+    get teacherName() {
+      return this[teacherName$];
+    }
+    set teacherName(value) {
+      this[teacherName$] = value;
+    }
+    get academicYearId() {
+      return this[academicYearId$];
+    }
+    set academicYearId(value) {
+      this[academicYearId$] = value;
+    }
+    get academicYearName() {
+      return this[academicYearName$];
+    }
+    set academicYearName(value) {
+      this[academicYearName$] = value;
+    }
+    get organizationId() {
+      return this[organizationId$];
+    }
+    set organizationId(value) {
+      this[organizationId$] = value;
+    }
+    get levelId() {
+      return this[levelId$];
+    }
+    set levelId(value) {
+      this[levelId$] = value;
+    }
+    get levelName() {
+      return this[levelName$];
+    }
+    set levelName(value) {
+      this[levelName$] = value;
+    }
+    get semesterId() {
+      return this[semesterId$];
+    }
+    set semesterId(value) {
+      this[semesterId$] = value;
+    }
+    get semesterName() {
+      return this[semesterName$];
+    }
+    set semesterName(value) {
+      this[semesterName$] = value;
+    }
+    get subjectId() {
+      return this[subjectId$];
+    }
+    set subjectId(value) {
+      this[subjectId$] = value;
+    }
+    get subjectName() {
+      return this[subjectName$];
+    }
+    set subjectName(value) {
+      this[subjectName$] = value;
+    }
+    toJson() {
+      let data = new (T.LinkedMapOfStringL$dynamic()).new();
+      data[$_set]("id", this.id);
+      data[$_set]("teacherId", this.teacherId);
+      data[$_set]("teacherName", this.teacherName);
+      data[$_set]("academicYearId", this.academicYearId);
+      data[$_set]("academicYearName", this.academicYearName);
+      data[$_set]("organizationId", this.organizationId);
+      data[$_set]("levelId", this.levelId);
+      data[$_set]("levelName", this.levelName);
+      data[$_set]("semesterId", this.semesterId);
+      data[$_set]("semesterName", this.semesterName);
+      data[$_set]("subjectId", this.subjectId);
+      data[$_set]("subjectName", this.subjectName);
+      return data;
+    }
+  };
+  (teachers.Materials.new = function(opts) {
+    let id = opts && 'id' in opts ? opts.id : null;
+    let teacherId = opts && 'teacherId' in opts ? opts.teacherId : null;
+    let teacherName = opts && 'teacherName' in opts ? opts.teacherName : null;
+    let academicYearId = opts && 'academicYearId' in opts ? opts.academicYearId : null;
+    let academicYearName = opts && 'academicYearName' in opts ? opts.academicYearName : null;
+    let organizationId = opts && 'organizationId' in opts ? opts.organizationId : null;
+    let levelId = opts && 'levelId' in opts ? opts.levelId : null;
+    let levelName = opts && 'levelName' in opts ? opts.levelName : null;
+    let semesterId = opts && 'semesterId' in opts ? opts.semesterId : null;
+    let semesterName = opts && 'semesterName' in opts ? opts.semesterName : null;
+    let subjectId = opts && 'subjectId' in opts ? opts.subjectId : null;
+    let subjectName = opts && 'subjectName' in opts ? opts.subjectName : null;
+    this[id$0] = id;
+    this[teacherId$] = teacherId;
+    this[teacherName$] = teacherName;
+    this[academicYearId$] = academicYearId;
+    this[academicYearName$] = academicYearName;
+    this[organizationId$] = organizationId;
+    this[levelId$] = levelId;
+    this[levelName$] = levelName;
+    this[semesterId$] = semesterId;
+    this[semesterName$] = semesterName;
+    this[subjectId$] = subjectId;
+    this[subjectName$] = subjectName;
+    ;
+  }).prototype = teachers.Materials.prototype;
+  (teachers.Materials.fromJson = function(json) {
+    this[subjectName$] = null;
+    this[subjectId$] = null;
+    this[semesterName$] = null;
+    this[semesterId$] = null;
+    this[levelName$] = null;
+    this[levelId$] = null;
+    this[organizationId$] = null;
+    this[academicYearName$] = null;
+    this[academicYearId$] = null;
+    this[teacherName$] = null;
+    this[teacherId$] = null;
+    this[id$0] = null;
+    this.id = T.intL().as(json[$_get]("id"));
+    this.teacherId = T.intL().as(json[$_get]("teacherId"));
+    this.teacherName = T.StringL().as(json[$_get]("teacherName"));
+    this.academicYearId = T.intL().as(json[$_get]("academicYearId"));
+    this.academicYearName = T.StringL().as(json[$_get]("academicYearName"));
+    this.organizationId = T.intL().as(json[$_get]("organizationId"));
+    this.levelId = T.intL().as(json[$_get]("levelId"));
+    this.levelName = T.StringL().as(json[$_get]("levelName"));
+    this.semesterId = T.intL().as(json[$_get]("semesterId"));
+    this.semesterName = T.StringL().as(json[$_get]("semesterName"));
+    this.subjectId = T.intL().as(json[$_get]("subjectId"));
+    this.subjectName = T.StringL().as(json[$_get]("subjectName"));
+  }).prototype = teachers.Materials.prototype;
+  dart.addTypeTests(teachers.Materials);
+  dart.addTypeCaches(teachers.Materials);
+  dart.setMethodSignature(teachers.Materials, () => ({
+    __proto__: dart.getMethods(teachers.Materials.__proto__),
+    toJson: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), [])
+  }));
+  dart.setLibraryUri(teachers.Materials, I[0]);
+  dart.setFieldSignature(teachers.Materials, () => ({
+    __proto__: dart.getFields(teachers.Materials.__proto__),
+    id: dart.fieldType(dart.legacy(core.int)),
+    teacherId: dart.fieldType(dart.legacy(core.int)),
+    teacherName: dart.fieldType(dart.legacy(core.String)),
+    academicYearId: dart.fieldType(dart.legacy(core.int)),
+    academicYearName: dart.fieldType(dart.legacy(core.String)),
+    organizationId: dart.fieldType(dart.legacy(core.int)),
+    levelId: dart.fieldType(dart.legacy(core.int)),
+    levelName: dart.fieldType(dart.legacy(core.String)),
+    semesterId: dart.fieldType(dart.legacy(core.int)),
+    semesterName: dart.fieldType(dart.legacy(core.String)),
+    subjectId: dart.fieldType(dart.legacy(core.int)),
+    subjectName: dart.fieldType(dart.legacy(core.String))
+  }));
+  dart.trackLibraries("packages/admin_app/data/model/teachers.dart", {
+    "package:admin_app/data/model/teachers.dart": teachers
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["teachers.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/admin_app/data/model/teachers.dart.lib.js"}');
+  // Exports:
+  return {
+    data__model__teachers: teachers
+  };
+}));
+
+//# sourceMappingURL=teachers.dart.lib.js.map
