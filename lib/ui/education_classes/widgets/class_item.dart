@@ -135,9 +135,6 @@ class _ClassItemState extends State<ClassItem> {
             color: Colors.red,
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
         Text(
           "Delete",
           style: TextStyle(

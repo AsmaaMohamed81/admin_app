@@ -27,7 +27,7 @@ dependencies:
     sdk: flutter
   flutter_bloc:
   http:
-  equatable: ^2.0.0
+  equatable: ^2.0.3
   shared_preferences: ^2.0.6
   toast: ^0.1.5
   flutter_spinkit: ^4.1.2

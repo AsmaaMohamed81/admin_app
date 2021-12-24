@@ -114,145 +114,130 @@ class _ClassesScreenState extends State<ClassesScreen> {
                 }
               }
             },
-            child: Stack(
-              children: [
-                Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: mainAppColor,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.zero,
-                        topRight: Radius.zero,
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                  ),
-                ),
-                Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.05,
-                        vertical: MediaQuery.of(context).size.height * 0.03),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                            decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: TextFormField(
-                              textInputAction: TextInputAction.search,
-                              onChanged: (value) {
-                                _searchResult.clear();
+            child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                    vertical: MediaQuery.of(context).size.height * 0.03),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.circular(20.0)),
+                        child: TextFormField(
+                          textInputAction: TextInputAction.search,
+                          onChanged: (value) {
+                            _searchResult.clear();
 
-                                if (value.isEmpty) {
-                                  setState(() {});
-                                  print("empty");
-                                  return;
-                                } else {
-                                  istext = true;
-                                  _classesList.forEach((text) {
-                                    if (text.name
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase()) ||
-                                        text.levelName
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase()) ||
-                                        text.academicYearName
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase())) {
-                                      _searchResult.add(text);
-                                    }
-                                  });
-                                  setState(() {});
+                            if (value.isEmpty) {
+                              setState(() {});
+                              print("empty");
+                              return;
+                            } else {
+                              istext = true;
+                              _classesList.forEach((text) {
+                                if (text.name
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase()) ||
+                                    text.levelName
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase()) ||
+                                    text.academicYearName
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase())) {
+                                  _searchResult.add(text);
                                 }
-                              },
-                              controller: _searchController,
-                              cursorColor: mainAppColor,
-                              onFieldSubmitted: (value) {
-                                _searchResult.clear();
-
-                                if (value.isEmpty) {
-                                  setState(() {});
-                                  print("empty");
-                                  return;
-                                } else {
-                                  istext = true;
-                                  _classesList.forEach((text) {
-                                    if (text.name
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase()) ||
-                                        text.levelName
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase()) ||
-                                        text.academicYearName
-                                            .toLowerCase()
-                                            .contains(value.toLowerCase())) {
-                                      _searchResult.add(text);
-                                    }
-                                  });
-                                  setState(() {});
-                                }
-                              },
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                              decoration: InputDecoration(
-                                suffixIcon: istext
-                                    ? IconButton(
-                                        icon: Icon(Icons.close),
-                                        onPressed: () {
-                                          clearTextInput();
-                                          _searchResult.clear();
-
-                                          setState(() {
-                                            istext = false;
-                                          });
-                                        })
-                                    : null,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: mainAppColor),
-                                ),
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 12.0),
-                                prefixIcon: Icon(
-                                  Icons.search,
-                                  color: mainAppColor,
-                                ),
-                                hintText: "Search Classes",
-                              ),
-                            )),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        _buildEducationClasses(),
-                        Expanded(
-                          child: BlocBuilder<ClassesBloc, ClassesState>(
-                              builder: (context, state) {
-                            if (state is ClassesLoading) {
-                              return Center(child: CircularProgressIndicator());
-                            } else if (state is ClassesLoaded) {
-                              _classesList = state.classes;
-
-                              // if (!doItJustOnce) {
-                              //   //You should define a bool like (bool doItJustOnce = false;) on your state.
-                              //   _classesList = state.classes;
-                              //   _searchResult = _classesList;
-                              //   doItJustOnce =
-                              //       !doItJustOnce; //this line helps to do just once.
-                              // }
-                              // _searchResult = _classesList;
-
-                              return _buildListLevels(_classesList);
-                            } else if (state is ClassesError) {
-                              return Text(state.message.toString());
+                              });
+                              setState(() {});
                             }
-                            return Container();
-                          }),
-                        ),
-                      ],
-                    )),
-              ],
-            )));
+                          },
+                          controller: _searchController,
+                          cursorColor: mainAppColor,
+                          onFieldSubmitted: (value) {
+                            _searchResult.clear();
+
+                            if (value.isEmpty) {
+                              setState(() {});
+                              print("empty");
+                              return;
+                            } else {
+                              istext = true;
+                              _classesList.forEach((text) {
+                                if (text.name
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase()) ||
+                                    text.levelName
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase()) ||
+                                    text.academicYearName
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase())) {
+                                  _searchResult.add(text);
+                                }
+                              });
+                              setState(() {});
+                            }
+                          },
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400),
+                          decoration: InputDecoration(
+                            suffixIcon: istext
+                                ? IconButton(
+                                    icon: Icon(Icons.close),
+                                    onPressed: () {
+                                      clearTextInput();
+                                      _searchResult.clear();
+
+                                      setState(() {
+                                        istext = false;
+                                      });
+                                    })
+                                : null,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: mainAppColor),
+                            ),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12.0),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: mainAppColor,
+                            ),
+                            hintText: "Search Classes",
+                          ),
+                        )),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    _buildEducationClasses(),
+                    Expanded(
+                      child: BlocBuilder<ClassesBloc, ClassesState>(
+                          builder: (context, state) {
+                        if (state is ClassesLoading) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (state is ClassesLoaded) {
+                          _classesList = state.classes;
+
+                          // if (!doItJustOnce) {
+                          //   //You should define a bool like (bool doItJustOnce = false;) on your state.
+                          //   _classesList = state.classes;
+                          //   _searchResult = _classesList;
+                          //   doItJustOnce =
+                          //       !doItJustOnce; //this line helps to do just once.
+                          // }
+                          // _searchResult = _classesList;
+
+                          return _buildListLevels(_classesList);
+                        } else if (state is ClassesError) {
+                          return Text(state.message.toString());
+                        }
+                        return Container();
+                      }),
+                    ),
+                  ],
+                ))));
   }
 
   Widget _buildListLevels(_classesList) {

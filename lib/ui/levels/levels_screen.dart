@@ -29,8 +29,7 @@ class _LevelsScreenState extends State<LevelsScreen> with ValidationMixin {
   AuthProvider _authProvider;
   String _materialName = '';
   final _formKey = GlobalKey<FormState>();
-final GlobalKey<ScaffoldState> _scaffoldKey =
-        new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final nameHolder = TextEditingController();
   List<Levels> _searchResult = [];
@@ -54,13 +53,13 @@ final GlobalKey<ScaffoldState> _scaffoldKey =
               if (state.results['status'] == "Success") {
                 _result(state.results);
               } else {
-                Commons.showError(context, state.results["message"],(){});
+                Commons.showError(context, state.results["message"], () {});
               }
             } else if (state is LevelsDeleted) {
               if (state.message['status'] == "Success") {
                 _result(state.message);
               } else {
-                Commons.showError(context, state.message["message"],(){});
+                Commons.showError(context, state.message["message"], () {});
               }
             }
           },
@@ -261,7 +260,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey =
   @override
   Widget build(BuildContext context) {
     _authProvider = Provider.of<AuthProvider>(context);
-    
+
     final appBar = AppBar(
       backgroundColor: mainAppColor,
       elevation: 0,
@@ -272,26 +271,26 @@ final GlobalKey<ScaffoldState> _scaffoldKey =
             color: Colors.white,
           )),
       title: Text("Levels", style: Theme.of(context).textTheme.headline1),
-      actions: <Widget>[
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Stack(
-            children: <Widget>[
-              Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: 15),
-                  height: 30,
-                  width: 30,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                  ),
-                ),
-              ])
-            ],
-          ),
-        )
-      ],
+      // actions: <Widget>[
+      //   GestureDetector(
+      //     onTap: () => Navigator.pop(context),
+      //     child: Stack(
+      //       children: <Widget>[
+      //         Column(children: <Widget>[
+      //           Container(
+      //             margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+      //             height: 30,
+      //             width: 30,
+      //             child: Icon(
+      //               Icons.arrow_forward_ios,
+      //               color: Colors.white,
+      //             ),
+      //           ),
+      //         ])
+      //       ],
+      //     ),
+      //   )
+      // ],
     );
 
     return NetworkIndicator(

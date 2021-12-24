@@ -1,7 +1,7 @@
 import 'hex_color.dart';
 import 'package:flutter/material.dart';
 
-final mainAppColor = HexColor('83A7BE');
+final mainAppColor = HexColor('382E7E');
 final hintColor = HexColor('B1B1B1');
 final boxColor = HexColor('#F9F9F9');
 final black = HexColor('#000000');
